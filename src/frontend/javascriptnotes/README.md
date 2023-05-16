@@ -1,1 +1,3 @@
-# 我是JavaScript
+---
+title: JavaScript
+---

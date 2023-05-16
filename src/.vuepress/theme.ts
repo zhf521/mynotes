@@ -1,6 +1,5 @@
 import { hopeTheme } from "vuepress-theme-hope";
 export default hopeTheme({
-  hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
   //作者信息
   author: {
     name: "Mr.Zhao",
@@ -66,8 +65,12 @@ export default hopeTheme({
     {
       text: "前端",
       prefix:"/frontend/",
-      children:[{text:"HTML",link:"htmlnotes/"},{text:"CSS",link:"cssnotes/"},{text:"JavaScript",link:"javascriptnotes/"},{text:"框架",link:"frameworknotes/"},]
+      children:[{text:"HTML",link:"htmlnotes/"},{text:"CSS",link:"cssnotes/"},{text:"JavaScript",link:"javascriptnotes/"},{text:"Vue",link:"vuenotes/"},]
     }
   ],
   //侧边栏
+  sidebar:
+  {
+    "/frontend/": "structure",
+  }
 });

@@ -1,7 +1,7 @@
 ---
 home: true
 icon: home
-title: 项目主页
+title: 茕茕の知识库
 heroImage: /logo.png
 heroText: 茕茕の知识库
 tagline: 学习过程中的个人笔记
