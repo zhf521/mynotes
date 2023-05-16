@@ -1,11 +1,11 @@
 ---
 title: Vue核心-事件处理
-sticky: -5
+order: 5
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/05-Vue核心-事件处理](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/05-Vue核心-事件处理)
 
-# 事件的基本用法
+## 事件的基本用法
 
 1. 使用 `v-on:xxx` 或 `@xxx` 绑定事件，其中 `xxx` 是事件名
 2. 事件的回调需要配置在 methods 对象中，最终会在 vm 上
@@ -60,7 +60,7 @@ sticky: -5
 
 ![Vue核心-事件处理01.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-事件处理01.gif)
 
-# 事件修饰符
+## 事件修饰符
 
 Vue 中的事件修饰符：
 1. `prevent` 阻止默认事件（常用）  
@@ -170,7 +170,7 @@ Vue 中的事件修饰符：
 
 ![Vue核心-事件处理02.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-事件处理02.gif)
 
-# 键盘事件
+## 键盘事件
 
 键盘上的每个按键都有自己的名称和编码，例如：Enter（13），而 Vue 还对一些常用按键起了别名方便使用  
 

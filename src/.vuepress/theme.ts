@@ -1,5 +1,7 @@
 import { hopeTheme } from "vuepress-theme-hope";
 export default hopeTheme({
+  //热重载，调试时使用
+  hotReload:true,
   //作者信息
   author: {
     name: "Mr.Zhao",
@@ -69,8 +71,7 @@ export default hopeTheme({
     }
   ],
   //侧边栏
-  sidebar:
-  {
+  sidebar: {
     "/frontend/": "structure",
   }
 });

@@ -1,11 +1,11 @@
 ---
 title: Vue核心-过滤器
-sticky: -11
+order: 11
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/11-Vue核心-过滤器](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/11-Vue核心-过滤器)
 
-# 过滤器 (Vue 3 已经移除)
+## 过滤器 (Vue 3 已经移除)
 
 定义：对要显示的数据进行特定格式化后再显示（适用于一些简单逻辑的处理） 
 

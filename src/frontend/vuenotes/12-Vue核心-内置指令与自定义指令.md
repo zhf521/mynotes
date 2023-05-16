@@ -1,11 +1,11 @@
 ---
 title: Vue核心-内置指令与自定义指令
-sticky: -12
+order: 12
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/12-Vue核心-内置指令与自定义指令](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/12-Vue核心-内置指令与自定义指令)
 
-# 内置指令
+## 内置指令
 
 常用的内置指令：
 `v-bind` 单向绑定解析表达式，可简写为 `:`  
@@ -17,7 +17,7 @@ sticky: -12
 `v-else-if` 条件渲染（动态控制节点是否存在）   
 `v-else` 条件渲染（动态控制节点是否存在） 
 
-## v-text 指令
+### v-text 指令
 
 v-text 指令     
 
@@ -61,7 +61,7 @@ v-text 指令
 
 ![Vue核心-内置指令与自定义指令01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令01.png)
 
-## v-html 指令
+### v-html 指令
 
 作用：向指定节点中渲染包含 html 结构的内容   
 
@@ -116,7 +116,7 @@ v-text 指令
 
 ![Vue核心-内置指令与自定义指令03.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令03.gif)
 
-## v-cloak 指令
+### v-cloak 指令
 
 v-cloak 指令（没有值）   
 
@@ -156,7 +156,7 @@ v-cloak 指令（没有值）
 </html>
 ```
 
-## v-once 指令
+### v-once 指令
 
 + v-once 所在节点在初次动态渲染后，就视为静态内容了  
 + 以后数据的改变不会引起 v-once 所在结构的更新，可以用于优化性能
@@ -196,7 +196,7 @@ v-cloak 指令（没有值）
 
 ![Vue核心-内置指令与自定义指令04.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令04.gif)
 
-## v-pre 指令
+### v-pre 指令
 
 + 跳过 v-pre 所在节点的编译过程  
 + 可利用它跳过：没有使用指令语法、没有使用插值语法的节点，会加快编译
@@ -236,13 +236,13 @@ v-cloak 指令（没有值）
 
 ![Vue核心-内置指令与自定义指令05.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令05.gif)
 
-# 自定义指令
+## 自定义指令
 
 `directives`
 
-## 定义语法
+### 定义语法
 
-### 局部指令
+#### 局部指令
 
 ```js
 new Vue({															
@@ -271,7 +271,7 @@ directives : {
 }
 ```
 
-### 全局指令
+#### 全局指令
 
 ```js
 Vue.directive(指令名, 配置对象)
@@ -288,7 +288,7 @@ Vue.directive('my-directive', function(el, binding){
 })
 ```
 
-## 配置对象中常用的3个回调函数  
+### 配置对象中常用的3个回调函数  
 
 + `bind (element, binding)` 指令与元素成功绑定时调用  
 + `inserted (element, binding)` 指令所在元素被插入页面时调用  
@@ -314,12 +314,12 @@ Vue.directive('fbind', {
 })
 ```
 
-## 注意
+### 注意
 
 + 指令定义时不加 `v-`，但使用时要加 `v-`  
 + 指令名如果是多个单词，要使用 `kebab-case` 命名方式，不要用 `camelCase` 命名
 
-## 使用指令
+### 使用指令
 
 ```html
 <!DOCTYPE html>

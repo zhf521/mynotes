@@ -1,6 +1,6 @@
 ---
 title: Vue核心-快速上手
-sticky: 12
+order: 1 
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/01-Vue核心-快速上手](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/01-Vue核心-快速上手)

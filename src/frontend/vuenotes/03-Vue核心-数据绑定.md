@@ -1,11 +1,11 @@
 ---
 title: Vue核心-数据绑定
-sticky: 10
+order: 3
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/03-Vue核心-数据绑定](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/03-Vue核心-数据绑定)
 
-# 数据绑定
+## 数据绑定
 
 Vue 中有两种数据绑定的方式：
 + 单向绑定 `v-bind` 数据只能从 data 流向页面
@@ -51,17 +51,17 @@ Vue 中有两种数据绑定的方式：
 
 ![Vue核心-数据绑定01.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-数据绑定01.gif)
 
-# v-model 指令的修饰符
+## v-model 指令的修饰符
 
-## v-model. number
+### v-model. number
 
 使用修饰符 `.number` 可以将输入的数据转换为 Number 类型，否则虽然你输入的是数字. 但它的类型其实是 String
 
-## v-model. trim
+### v-model. trim
 
 给 v-model 添加修饰符 `.trim` 可以自动过滤用户输入的首尾空格
 
-## v-model. lazy
+### v-model. lazy
 
 并不是实时改变，而是在失去焦点或者按回车时才会更新
 

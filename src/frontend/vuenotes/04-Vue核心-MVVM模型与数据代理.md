@@ -1,11 +1,11 @@
 ---
 title: Vue核心-MVVM模型与数据代理
-sticky: 9
+order: 4
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/04-Vue核心-MVVM模型与数据代理](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/04-Vue核心-MVVM模型与数据代理)
 
-# MVVM 模型
+## MVVM 模型
 
 ![Vue核心-MVVM模型与数据代理01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理01.png)
 
@@ -66,9 +66,9 @@ MVVM：
 
 ![Vue核心-MVVM模型与数据代理03.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理03.png)
 
-# Vue 中的数据代理
+## Vue 中的数据代理
 
-## Object. defineproperty 方法
+### Object. defineproperty 方法
 
 ```js
 <!DOCTYPE html>
@@ -115,7 +115,7 @@ MVVM：
 
 ![Vue核心-MVVM模型与数据代理04.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理04.png)
 
-## 数据代理
+### 数据代理
 
 数据代理：通过一个对象代理对另一个对象中属性的操作（读/写）
 

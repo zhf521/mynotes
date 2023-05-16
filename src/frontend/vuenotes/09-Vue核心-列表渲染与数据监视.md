@@ -1,13 +1,13 @@
 ---
 title: Vue核心-列表渲染与数据监视
-sticky: -9
+order: 9
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/09-Vue核心-列表渲染与数据监视](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/09-Vue核心-列表渲染与数据监视)
 
-# 列表渲染
+## 列表渲染
 
-## 基本列表
+### 基本列表
 
 v-for 指令  
 + 用于展示列表数据  
@@ -77,7 +77,7 @@ v-for 指令
 
 ![Vue核心-列表渲染与数据监视01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视01.png)
 
-## key 的作用与原理
+### key 的作用与原理
 
 原理：
 
@@ -148,7 +148,7 @@ v-for 指令
 
 ![Vue核心-列表渲染与数据监视04.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视04.gif)
 
-## 列表过滤
+### 列表过滤
 
 可以使用 watch 也可以使用计算属性，使用计算属性更加简单方便一点
 
@@ -216,7 +216,7 @@ v-for 指令
 
 ![Vue核心-列表渲染与数据监视05.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视05.gif)
 
-## 列表排序
+### 列表排序
 
 ```html
 <!DOCTYPE html>
@@ -279,7 +279,7 @@ v-for 指令
 
 ![Vue核心-列表渲染与数据监视06.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视06.gif)
 
-# Vue 数据监视
+## Vue 数据监视
 
 更新时的一个问题：`this.persons[0] = {id:'001',name:'马老师',age:50,sex:'男'}` 更改 data 数据，Vue 不监听，模板不改变
 

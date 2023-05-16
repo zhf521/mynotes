@@ -1,11 +1,11 @@
 ---
 title: Vue核心-条件渲染
-sticky: -8
+order: 8
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/08-Vue核心-条件渲染](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/08-Vue核心-条件渲染)
 
-# 条件渲染
+## 条件渲染
 
 v-if  
 + 写法跟 if else 语法类似  
