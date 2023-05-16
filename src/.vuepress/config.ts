@@ -1,19 +1,16 @@
 import { defineUserConfig } from "vuepress";
-import theme from "./theme.js";
-
+import theme from "./theme";
+import { searchProPlugin } from "vuepress-plugin-search-pro";
 export default defineUserConfig({
   base: "/mynotes/",
-
-  locales: {
-    "/": {
-      lang: "zh-CN",
-      title: "文档演示",
-      description: "vuepress-theme-hope 的文档演示",
-    },
-  },
-
   theme,
-
+  //插件配置
+  plugins: [
+    //搜索插件
+    searchProPlugin({
+      indexContent: true,
+    }),
+  ]
   // Enable it with pwa
   // shouldPrefetch: false,
 });
