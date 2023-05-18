@@ -234,6 +234,25 @@ fn(100, 200)
      fn(100, 200)
      ```
 
+### arguments对象
+
+函数内 `arguments` 表示它接收到的实参列表，它是一个类数组对象
+
+类数组对象：所有属性均为从 `0` 开始的自然数序列，并且有 `length` 属性，和数组类似可以用方括号书写下标访问对象的某个属性值，但是**不能调用数组的方法**
+
+> 数组的方法详见数组篇
+
+```js
+function fun() {
+    console.log(arguments)	    // 11 22 33 44
+    console.log(arguments[0])	// 11
+    console.log(arguments[1])	// 22
+    console.log(arguments[9])	// undefined
+}
+
+fun(11, 22, 33, 44)
+```
+
 ## 函数的return
 
 `return` 返回的意思，其实就是给函数一个 **返回值** 和 **终断函数**
@@ -285,44 +304,6 @@ function fn() {
 // 函数调用
 fn()
 ```
-
-## 预解析
-
-`js` 是一个解释型语言，就是在代码执行之前，先对代码进行通读和解释，然后再执行代码，也就是说，我们的 `js` 代码在运行的时候，会经历两个环节 **解释代码** 和 **执行代码**，因为是在所有代码执行之前进行解释，所以叫做 **预解析（预解释）**，也叫做变量、函数提升
-
-声明式函数：会把所有函数声明提升到当前作用域的最前面，只提升函数声明，不提升函数调用
-
-`var` 关键字：把所有var声明的变量提升到当前作用域的最前面，只提升声明，不提升赋值
-
-例：
-
-以下代码
-
-```javascript
-fn()
-console.log(num)
-
-function fn() {
-  console.log('我是 fn 函数')
-}
-
-var num = 100
-```
-
-经过预解析之后可以变形为
-
-```javascript
-function fn() {
-  console.log('我是 fn 函数')
-}
-var num
-
-fn()
-console.log(num)
-num = 100
-```
-
-赋值式函数会按照 `var` 关键字的规则进行预解析
 
 ## 作用域
 
@@ -440,3 +421,36 @@ fn()
 console.log(num) // 100
 ```
 
+## 函数提升
+
+声明式函数：会把所有函数声明提升到当前作用域的最前面，只提升函数声明，不提升函数调用
+
+例：
+
+以下代码
+
+```javascript
+fn()
+console.log(num)
+
+function fn() {
+  console.log('我是 fn 函数')
+}
+
+var num = 100
+```
+
+经过预解析之后可以变形为
+
+```javascript
+function fn() {
+  console.log('我是 fn 函数')
+}
+var num
+
+fn()
+console.log(num)
+num = 100
+```
+
+赋值式函数会按照 `var` 关键字的规则进行预解析

@@ -51,7 +51,7 @@ order: 17
   // 当你点击 div 的时候，this 指向 div
   ```
 
-- 自调用函数，`this => window`
+- 自调用函数（立即执行函数），`this => window`
 
   ```javascript
   (function () {
