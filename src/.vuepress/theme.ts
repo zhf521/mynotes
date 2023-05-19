@@ -1,7 +1,9 @@
 import { hopeTheme } from "vuepress-theme-hope";
 export default hopeTheme({
   //热重载，调试时使用
-  hotReload:true,
+  hotReload: true,
+  //网站favicon图标
+  favicon:"/assets/icon/favicon.ico",
   //作者信息
   author: {
     name: "Mr.Zhao",
