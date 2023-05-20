@@ -125,5 +125,5 @@ margin 属性用于设置外边距，即控制盒子和盒子之间的距离
 	+ 可以为父元素定义上内边距（padding）
 	+ 可以为父元素添加 `overflow:hidden`
 
-![CSS盒子模型02.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型03.png)
+![CSS盒子模型03.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型03.png)
 

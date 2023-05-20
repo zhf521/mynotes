@@ -68,12 +68,25 @@ export default hopeTheme({
   navbar: [
     {
       text: "前端",
-      prefix:"/frontend/",
-      children:[{text:"HTML",link:"htmlnotes/"},{text:"CSS",link:"cssnotes/"},{text:"JavaScript",link:"javascriptnotes/"},{text:"Vue",link:"vuenotes/"},]
+      prefix:"/front-end/",
+      children:[{text:"HTML",link:"html-notes/"},{text:"CSS",link:"css-notes/"},{text:"JavaScript",link:"javascript-notes/"},{text:"Vue",link:"vue-notes/"},]
+    },
+    {
+      text: "软件工具",
+      prefix: "/software-tool/",
+      children: [{ text: "Alist", link: "alist-notes/" }, { text: "Emmet", link: "emmet-notes/" }, { text: "Git", link: "git-notes/" }, { text: "Halo", link: "halo-notes/" }, { text: "MarkDown", link: "markdown-notes/" },
+        {text: "NodeJS",link:"nodejs-notes / "},{text:"Photoshop",link:"photoshop-notes/"},{text:"VSCode",link:"vscode-notes/"},{text:"图床",link:"image-hosting-website-notes/"},]
+    },
+    {
+      text: "电脑使用技巧",
+      prefix: "/computer-usage-skills/",
+      children:[{text:"疑难解答",link:"troubleshoot-notes/"},{text:"优化设置",link:"optimization-notes/"}]
     }
   ],
   //侧边栏
   sidebar: {
-    "/frontend/": "structure",
+    "/front-end/": "structure",
+    "/software-tool/": "structure",
+    "/computer-usage-skills/":"structure",
   }
 });

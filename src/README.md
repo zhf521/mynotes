@@ -7,8 +7,12 @@ heroText: 茕茕の知识库
 tagline: 学习过程中的个人笔记
 actions:
   - text: 前端
-    link: /frontend/
+    link: /front-end/
     type: primary
+  - text: 软件工具
+    link: /software-tool/
+  - text: 电脑使用技巧
+    link: /computer-usage-skills/
 features:
   - title: 图文并茂
     icon: markdown
