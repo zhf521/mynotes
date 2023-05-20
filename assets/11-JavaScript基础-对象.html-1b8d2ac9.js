@@ -1,0 +1,18 @@
+import{_ as s}from"./plugin-vue_export-helper-c27b6911.js";import{o as n,c as a,e}from"./app-f7e62909.js";const p={},o=e(`<p>对象是一个复杂数据类型</p><p>事实上没有很复杂，只不过是存储了一些基本数据类型的一个集合</p><div class="language-javascript line-numbers-mode" data-ext="js"><pre class="language-javascript"><code><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">num</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">str</span><span class="token operator">:</span> <span class="token string">&#39;hello world&#39;</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">boo</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>这里的 <code>{}</code> 和函数中的 <code>{}</code> 不一样，函数里面的是写代码的，而对象里面是写一些数据的，<strong>对象就是一个键值对的集合</strong>，<code>{}</code> 里面的每一个键都是一个成员，也就是说，我们可以把一些数据放在一个对象里面，那么他们就互不干扰了，其实就是我们准备一个房子，把我们想要的数据放进去，然后把房子的地址给到变量名，当我们需要某一个数据的时候，就可以根据变量名里面存储的地址找到对应的房子，然后去房子里面找到对应的数据</p><h2 id="创建对象" tabindex="-1"><a class="header-anchor" href="#创建对象" aria-hidden="true">#</a> 创建对象</h2><ul><li><p>字面量的方式创建一个对象</p><div class="language-javascript line-numbers-mode" data-ext="js"><pre class="language-javascript"><code><span class="token comment">// 创建一个空对象</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">// 像对象中添加成员</span>
+obj<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">&#39;Jack&#39;</span>
+obj<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">18</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li><li><p>内置构造函数的方式创建对象</p><div class="language-javascript line-numbers-mode" data-ext="js"><pre class="language-javascript"><code><span class="token comment">// 创建一个空对象</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 向对象中添加成员</span>
+obj<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">&#39;Rose&#39;</span>
+obj<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">20</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><code>Object</code> 是 <code>js</code> 内置给我们的构造函数，用于创建一个对象使用的</p></li></ul>`,6),t=[o];function c(l,i){return n(),a("div",null,t)}const u=s(p,[["render",c],["__file","11-JavaScript基础-对象.html.vue"]]);export{u as default};
