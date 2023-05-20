@@ -88,5 +88,5 @@ export default hopeTheme({
     "/front-end/": "structure",
     "/software-tool/": "structure",
     "/computer-usage-skills/":"structure",
-  }
+  },
 });
