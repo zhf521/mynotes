@@ -1,4 +1,7 @@
-#Alist 
+---
+title: 安卓端安装Alist
+order: 1
+---
 
 # 安装 termux
 

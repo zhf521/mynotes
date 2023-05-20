@@ -1,4 +1,7 @@
-#Alist 
+---
+title: Windows端安装Alist
+order: 2
+---
 
 # 安装
 
