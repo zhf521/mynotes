@@ -1,4 +1,7 @@
-#VSCode #Python 
+---
+title: VSCode配置Python环境
+order: 4
+--- 
 
 
 # 下载 Python

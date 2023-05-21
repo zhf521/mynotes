@@ -1,4 +1,7 @@
-#腾讯云 #Docker #Halo #Centos
+---
+title: Halo博客搭建
+order: 1
+---
 
 # 购买服务器
 需要购买服务器，内存至少 1G，这里以腾讯云为例，进入官网[腾讯云](https://cloud.tencent.com/)选购自己的服务器即可，推荐轻量应用服务器。购买以后装入 centos 系统。

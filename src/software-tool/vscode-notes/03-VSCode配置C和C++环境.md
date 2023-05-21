@@ -1,4 +1,7 @@
-#VSCode #CPP #C
+---
+title: VSCode配置C和C++环境
+order: 3
+---
 
 # C/C++的编译过程
 

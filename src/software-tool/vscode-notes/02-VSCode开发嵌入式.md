@@ -1,4 +1,7 @@
-#VSCode #单片机 
+---
+title: VSCode开发嵌入式
+order: 2
+---
 
 使用 [Embedded IDE](https://em-ide.com/zh-cn/) 配合 SDCC 来开发嵌入式
 网站中有详细的使用方法

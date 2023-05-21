@@ -1,4 +1,7 @@
-#VSCode 
+---
+title: VSCode使用EasyX图形库
+order: 6
+--- 
 
 # 安装 TDM-GCC
 联想应用商店下载链接：[TDM-GCC-联想应用商店](https://lestore.lenovo.com/detail/L101412)

@@ -1,4 +1,7 @@
-#VSCode #HTML #CSS 
+---
+title: VSCode编写HTML和CSS
+order: 1
+--- 
 
 # 写 HTML/CSS 文件
 新建一个文件，名为 test. html, 输入如下代码：

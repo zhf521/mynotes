@@ -1,4 +1,7 @@
-#VSCode #Vim 
+---
+title: VSCode使用Vim
+order: 7
+---
 
 使用 Vim 可以大幅提高编码效率
 找到扩展，安装 Vim 扩展即可

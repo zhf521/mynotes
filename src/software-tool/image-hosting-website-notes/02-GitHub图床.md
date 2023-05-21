@@ -1,4 +1,7 @@
-#GitHub #图床 #PicGo
+---
+title: GitHub图床
+order: 2
+---
 
 # 创建一个仓库
 
