@@ -1,0 +1,1 @@
+import{_ as e}from"./plugin-vue_export-helper-c27b6911.js";import{r as t,o as n,c as a,a as r}from"./app-df374de9.js";const s={};function c(_,l){const o=t("AutoCatalog");return n(),a("div",null,[r(o,{base:"/software/photoshop-notes/"})])}const p=e(s,[["render",c],["__file","index.html.vue"]]);export{p as default};
