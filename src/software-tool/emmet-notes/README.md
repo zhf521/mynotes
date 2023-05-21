@@ -1,4 +1,4 @@
 ---
 title: Emmet
 ---
-<AutoCatalog base='/software/emmet-notes/' />
+<AutoCatalog base='/software-tool/emmet-notes/' />

@@ -1,4 +1,4 @@
 ---
 title: Halo
 ---
-<AutoCatalog base='/software/halo-notes/' />
+<AutoCatalog base='/software-tool/halo-notes/' />

@@ -1,4 +1,4 @@
 ---
 title: VSCode
 ---
-<AutoCatalog base='/software/vscode-notes/' />
+<AutoCatalog base='/software-tool/vscode-notes/' />

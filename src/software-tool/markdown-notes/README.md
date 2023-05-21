@@ -1,4 +1,4 @@
 ---
 title: MarkDown
 ---
-<AutoCatalog base='/software/markdown-notes/' />
+<AutoCatalog base='/software-tool/markdown-notes/' />

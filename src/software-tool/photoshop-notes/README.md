@@ -1,4 +1,4 @@
 ---
 title: Photoshop
 ---
-<AutoCatalog base='/software/photoshop-notes/' />
+<AutoCatalog base='/software-tool/photoshop-notes/' />

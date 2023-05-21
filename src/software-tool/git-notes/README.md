@@ -1,4 +1,4 @@
 ---
 title: Git
 ---
-<AutoCatalog base='/software/git-notes/' />
+<AutoCatalog base='/software-tool/git-notes/' />

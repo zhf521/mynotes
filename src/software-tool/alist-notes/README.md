@@ -1,4 +1,4 @@
 ---
 title: Alist
 ---
-<AutoCatalog base='/software/alist-notes/' />
+<AutoCatalog base='/software-tool/alist-notes/' />

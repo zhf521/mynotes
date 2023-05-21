@@ -1,4 +1,4 @@
 ---
 title: NodeJS
 ---
-<AutoCatalog base='/software/nodejs-notes/' />
+<AutoCatalog base='/software-tool/nodejs-notes/' />

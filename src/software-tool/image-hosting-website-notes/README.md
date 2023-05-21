@@ -1,4 +1,4 @@
 ---
 title: 图床
 ---
-<AutoCatalog base='/software/image-hosting-website-notes/' />
+<AutoCatalog base='/software-tool/image-hosting-website-notes/' />
