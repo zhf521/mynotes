@@ -1,5 +1,5 @@
 ---
-title: CSS基础
+title: 初识CSS
 order: 1
 ---
 
