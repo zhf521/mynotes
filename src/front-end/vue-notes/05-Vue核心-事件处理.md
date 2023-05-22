@@ -58,7 +58,7 @@ order: 5
 
 效果：
 
-![Vue核心-事件处理01.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-事件处理01.gif)
+![Vue核心-事件处理01.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-事件处理01.gif)
 
 ## 事件修饰符
 
@@ -168,7 +168,7 @@ Vue 中的事件修饰符：
 
 效果：
 
-![Vue核心-事件处理02.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-事件处理02.gif)
+![Vue核心-事件处理02.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-事件处理02.gif)
 
 ## 键盘事件
 
@@ -245,4 +245,4 @@ Vue 中的事件修饰符：
 
 效果：
 
-![Vue核心-事件处理03.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-事件处理03.gif)
+![Vue核心-事件处理03.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-事件处理03.gif)

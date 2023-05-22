@@ -75,15 +75,15 @@ v-for 指令
 
 效果：
 
-![Vue核心-列表渲染与数据监视01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视01.png)
+![Vue核心-列表渲染与数据监视01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视01.png)
 
 ### key 的作用与原理
 
 原理：
 
-![Vue核心-列表渲染与数据监视02.jpg](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视02.jpg)
+![Vue核心-列表渲染与数据监视02.jpg](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视02.jpg)
 
-![Vue核心-列表渲染与数据监视03.jpg](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视03.jpg)
+![Vue核心-列表渲染与数据监视03.jpg](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视03.jpg)
 
 面试题：react、vue 中的 key 有什么作用？（key 的内部原理）  
 
@@ -146,7 +146,7 @@ v-for 指令
 
 效果：
 
-![Vue核心-列表渲染与数据监视04.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视04.gif)
+![Vue核心-列表渲染与数据监视04.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视04.gif)
 
 ### 列表过滤
 
@@ -214,7 +214,7 @@ v-for 指令
 
 效果：
 
-![Vue核心-列表渲染与数据监视05.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视05.gif)
+![Vue核心-列表渲染与数据监视05.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视05.gif)
 
 ### 列表排序
 
@@ -277,7 +277,7 @@ v-for 指令
 
 效果：
 
-![Vue核心-列表渲染与数据监视06.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视06.gif)
+![Vue核心-列表渲染与数据监视06.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视06.gif)
 
 ## Vue 数据监视
 
@@ -337,7 +337,7 @@ v-for 指令
 
 效果：
 
-![Vue核心-列表渲染与数据监视07.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视07.gif)
+![Vue核心-列表渲染与数据监视07.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视07.gif)
 
 
 我们先来研究一下 Vue 是如何监测对象里面属性的改变的
@@ -374,17 +374,17 @@ v-for 指令
 
 我们打开控制台，由于数据代理，data 中的数据最终会出现在 vm 身上
 
-![Vue核心-列表渲染与数据监视08.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视08.png)
+![Vue核心-列表渲染与数据监视08.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视08.png)
 
 我们复习一下数据代理：
 
-![Vue核心-MVVM模型与数据代理06.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理06.png)
+![Vue核心-MVVM模型与数据代理06.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理06.png)
 
 Vue 将 data 中的数据拷贝了一份到 `_data` 属性中，其实在这一步之前还有一步，那就是对 data 中的数据进行加工
 
 若没有加工的过程，那么 `_data` 和 data 中的内容应该就是一模一样的, 而 `_data` 中内容如下图：
 
-![Vue核心-列表渲染与数据监视09.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视09.png)
+![Vue核心-列表渲染与数据监视09.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视09.png)
 
 所谓加工简单来说就是把 data 中的每一组 key-value 都生成一个 getter 和 setter，那么为什么要加工 data 呢，因为这样可以做响应式：例如当我们修改了 data 中的 name 属性，name 的 setter 就会被调用，在 setter 中调用了一个方法，会重新解析模板，生成新的虚拟 DOM，然后 diff 算法对比，然后更新页面，从而实现对数据的监视
 
@@ -440,7 +440,7 @@ Observer 构造函数会将 data 中的每个属性都添加到 Observer 实例�
 
 效果：
 
-![Vue核心-列表渲染与数据监视10.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视10.png)
+![Vue核心-列表渲染与数据监视10.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视10.png)
 
 存在两个问题：
 1. 在 Vue 中还对 `_data`（data） 中的属性进行了代理，可以直接通过 `vm.xxx` 操作数据，而这里需要通过 `vm._data.xxx` 来操作数据
@@ -514,7 +514,7 @@ Observer 构造函数会将 data 中的每个属性都添加到 Observer 实例�
 
 效果：
 
-![Vue核心-列表渲染与数据监视11.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视11.gif)
+![Vue核心-列表渲染与数据监视11.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视11.gif)
 
 接下来我们研究一下 Vue 是如何监测数组里面属性的改变的
 
@@ -583,7 +583,7 @@ Observer 构造函数会将 data 中的每个属性都添加到 Observer 实例�
 
 我们在控制台中会发现：
 
-![Vue 核心-列表渲染与数据监视12.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视12.png)
+![Vue 核心-列表渲染与数据监视12.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视12.png)
 
 数组中的数据并没有 getter 和 setter 方法，这也就解释了上面的更新数组的问题
 
@@ -692,4 +692,4 @@ Observer 构造函数会将 data 中的每个属性都添加到 Observer 实例�
 
 效果：
 
-![Vue 核心-列表渲染与数据监视13.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视13.gif)
+![Vue 核心-列表渲染与数据监视13.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-列表渲染与数据监视13.gif)

@@ -25,11 +25,11 @@ order: 10
 
 效果：
 
-![CSS精灵图01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS精灵图01.png)
+![CSS精灵图01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS精灵图01.png)
 
 精灵图：
 
-![CSS精灵图02.jpg](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS精灵图02.jpg)
+![CSS精灵图02.jpg](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS精灵图02.jpg)
 
 结构：
 ```html

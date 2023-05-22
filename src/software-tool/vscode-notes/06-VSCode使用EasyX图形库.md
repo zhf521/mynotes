@@ -12,7 +12,7 @@ order: 6
 # 下载完之后解压
 解压完之后将 include 文件夹下的头文件和 lib32/lib64 文件夹下的库文件，分别拷贝到 MinGW 的头文件和库文件文件夹中
 
-![VSCode和EasyX01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和EasyX01.png)
+![VSCode和EasyX01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和EasyX01.png)
 
 (1) 将 include 文件夹下的 `easyx. h` 和 `graphics. h` 拷贝到 `C:\TDM-GCC-64\x86_64-w64-mingw32\include\ ` 文件夹里
 (2) 将 `lib64\libeasyx. a` 拷贝到 `C:\TDM-GCC-64\x86_64-w64-mingw32\lib\ ` 文件夹里

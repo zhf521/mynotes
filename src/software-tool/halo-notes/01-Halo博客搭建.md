@@ -5,13 +5,13 @@ order: 1
 
 # 购买服务器
 需要购买服务器，内存至少 1G，这里以腾讯云为例，进入官网[腾讯云](https://cloud.tencent.com/)选购自己的服务器即可，推荐轻量应用服务器。购买以后装入 centos 系统。
-![Halo博客搭建01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建01.png)
+![Halo博客搭建01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建01.png)
 防火墙开放 8090 端口
-![Halo博客搭建02.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建02.png)
+![Halo博客搭建02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建02.png)
 # 安装 Docker
 以下为 centos 系统安装教程，其他系统请参照官网教程[官网](https://docs.docker.com/engine/install/centos/)
 ## 登录自己的服务器
-![Halo博客搭建03.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建03.png)
+![Halo博客搭建03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建03.png)
 ## 卸载旧版本
 ```bash
 sudo yum remove docker \
@@ -92,7 +92,7 @@ systemctl enable docker
 进入腾讯云官网[腾讯云](https://cloud.tencent.com/)选购。
 ==注意：服务器与域名最好选用同一厂商，不然可能会莫名报错，配置失败。==
 添加域名解析，如图
-![Halo博客搭建04.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建04.png)
+![Halo博客搭建04.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建04.png)
 # 反向代理 (可选)
 ## 安装 Docker Compose
 ### 下载安装
@@ -179,7 +179,7 @@ Email:    admin@example. com
 Password: changeme
 按如下图设置即可
 
-![Halo博客搭建05.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建05.gif)
+![Halo博客搭建05.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建05.gif)
 
 最后就可以通过域名进行访问了
 

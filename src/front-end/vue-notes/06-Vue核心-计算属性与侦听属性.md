@@ -9,7 +9,7 @@ order: 6
 
 姓名案例：
 
-![Vue核心-计算属性与侦听属性01.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-计算属性与侦听属性01.gif)
+![Vue核心-计算属性与侦听属性01.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-计算属性与侦听属性01.gif)
 
 插值语法实现：
 ```html
@@ -215,7 +215,7 @@ watch 侦听属性
 
 效果：
 
-![Vue核心-计算属性与侦听属性02.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-计算属性与侦听属性02.gif)
+![Vue核心-计算属性与侦听属性02.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-计算属性与侦听属性02.gif)
 
 ### 深度侦听
 
@@ -278,7 +278,7 @@ watch 侦听属性
 
 效果：
 
-![Vue核心-计算属性与侦听属性03.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-计算属性与侦听属性03.gif)
+![Vue核心-计算属性与侦听属性03.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-计算属性与侦听属性03.gif)
 
 ### 侦听属性简写
 

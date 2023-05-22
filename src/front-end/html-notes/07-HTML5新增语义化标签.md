@@ -12,7 +12,7 @@ order: 7
 - `<aside>` 侧边栏标签
 - `<footer>` 尾部标签
 
-![HTML5新增语义化标签01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/HTML5新增语义化标签01.png)
+![HTML5新增语义化标签01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/HTML5新增语义化标签01.png)
 
 关于 article 和 section：
 1. artical 里面可以有多个 section 

@@ -49,7 +49,7 @@ Vue 中有两种数据绑定的方式：
 
 效果：
 
-![Vue核心-数据绑定01.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-数据绑定01.gif)
+![Vue核心-数据绑定01.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-数据绑定01.gif)
 
 ## v-model 指令的修饰符
 

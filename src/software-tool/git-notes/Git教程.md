@@ -25,7 +25,7 @@ Git 是用什么语言开发的：==C 语言==。
 
 安装完成后，在开始菜单里找到“Git”->“Git Bash”，会出现一个类似如下图命令行窗口的东西，就说明 Git 安装成功！
 
-![Git教程01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Git教程01.png)
+![Git教程01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Git教程01.png)
 
 # Git 初始化
 ## 设置用户签名
@@ -120,7 +120,7 @@ $ git reset --hard HEAD~2
 ```
 Git 的版本回退速度非常快，因为 Git 在内部有个指向当前版本的 `HEAD` 指针，当你回退版本的时候，Git 仅仅是把 HEAD 从指向 `当前版本` ，改为指向 `要回到的版本`
 
-![Git教程02.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Git教程02.gif)
+![Git教程02.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Git教程02.gif)
 
 然后顺便把工作区的文件更新了。所以你让 `HEAD` 指向哪个版本号，你就把当前版本定位在哪。
 ==如果回退错了，可以使用 `git reflog` 命令来查看所有的操作记录，可以通过前面的标识符（版本号）来回退==
@@ -130,11 +130,11 @@ Git 的版本回退速度非常快，因为 Git 在内部有个指向当前版�
 + git revert 是反做撤销其中的 commit-id，然后重新生成一个 commit-id。本身不会对其他的提交 commit-id 产生影响，如果要推送到远程服务器的话，就是普通的操作 git push 就可以
 git reset：
 
-![Git教程03.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Git教程03.gif)
+![Git教程03.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Git教程03.gif)
 
 git revert：
 
-![Git教程04.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Git教程04.gif)
+![Git教程04.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Git教程04.gif)
 
 # Git 分支
 ## 初识分支
@@ -245,4 +245,4 @@ $ git pull origin :login
  `.gitignore` 文件可以忽略文件，这个文件将不会上传
  # 一图总结
  
-![Git教程05.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Git教程05.png)
+![Git教程05.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Git教程05.png)

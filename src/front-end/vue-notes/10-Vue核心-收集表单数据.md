@@ -106,4 +106,4 @@ form 表单中 `@submit.prevent` 作用方法
 
 效果：
 
-![Vue核心-收集表单数据01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-收集表单数据01.png)
+![Vue核心-收集表单数据01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-收集表单数据01.png)

@@ -213,23 +213,23 @@ id 选择器可以为标有特定 id 的 HTML 元素指定特定的样式
 
 父元素：==直接==包裹某个元素的元素，就是该元素的父元素
 
-![CSS选择器01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS选择器01.png)
+![CSS选择器01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS选择器01.png)
 
 子元素：被父元素==直接==包含的元素（简记：儿子元素）
 
-![CSS选择器02.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS选择器02.png)
+![CSS选择器02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS选择器02.png)
 
 祖先元素：父亲的父亲......，一直往外找，都是祖先（父元素也算是祖先元素的一种）
 
-![CSS选择器03.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS选择器03.png)
+![CSS选择器03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS选择器03.png)
 
 后代元素：儿子的儿子......，一直往里找，都是后代（子元素，也算是后代元素的一种）
 
-![CSS选择器04.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS选择器04.png)
+![CSS选择器04.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS选择器04.png)
 
 兄弟元素：具有相同父元素的元素，互为兄弟元素
 
-![CSS选择器05.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS选择器05.png)
+![CSS选择器05.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS选择器05.png)
 
 #### 后代选择器
 
@@ -515,5 +515,5 @@ section[class$=data] {
 
 图示：
 
-![CSS选择器06.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS选择器06.png)
+![CSS选择器06.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS选择器06.png)
 

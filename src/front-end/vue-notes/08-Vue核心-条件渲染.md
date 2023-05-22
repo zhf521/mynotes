@@ -72,7 +72,7 @@ v-if
 
 效果：
 
-![Vue核心-条件渲染01.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-条件渲染01.gif)
+![Vue核心-条件渲染01.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-条件渲染01.gif)
 
 v-show
 ```html
@@ -109,4 +109,4 @@ v-show
 
 效果：
 
-![Vue核心-条件渲染02.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-条件渲染02.gif)
+![Vue核心-条件渲染02.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-条件渲染02.gif)

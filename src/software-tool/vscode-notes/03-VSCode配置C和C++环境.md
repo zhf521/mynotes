@@ -51,7 +51,7 @@ $ ./a.exe
 
 1. 下载 C/C++插件
 
-![VSCode和C01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和C01.png)
+![VSCode和C01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和C01.png)
 
 下载完成后重启 VSCode
 
@@ -85,11 +85,11 @@ int main()
 5. 设置外部窗口执行
 点击右上角齿轮按钮
 
-![VSCode和C02.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和C02.png)
+![VSCode和C02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和C02.png)
 
 点击生成和调试活动文件
 
-![VSCode和C03.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和C03.png)
+![VSCode和C03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和C03.png)
 
 此时 `.vscode` 文件夹中出现 `launch.json` 文件
 在 `launch.json` 文件中设置 `"externalConsole": false,` 将 false 改为 true
@@ -98,7 +98,7 @@ int main()
 9. 设置隐藏. exe 文件
 点击设置，搜索：Files: Exclude
 
-![VSCode和C04.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和C04.png)
+![VSCode和C04.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和C04.png)
 
 点击添加模式，添加
 
@@ -131,11 +131,11 @@ $ g++ .\src\fun.cpp .\main.cpp -o test -I.\include\
 
 安装过程中注意勾选添加系统环境变量
 
-![VSCode和C05.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和C05.png)
+![VSCode和C05.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和C05.png)
 
 安装插件 CMake 和 CMake Tools
 
-![VSCode和C06.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和C06.png)
+![VSCode和C06.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VSCode和C06.png)
 
 安装完成后重启即可
 

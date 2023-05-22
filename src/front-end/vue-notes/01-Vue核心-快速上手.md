@@ -96,7 +96,7 @@ order: 1
 
 效果：
 
-![Vue核心-快速上手01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-快速上手01.png)
+![Vue核心-快速上手01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-快速上手01.png)
 
 注意区分：JS 表达式和 JS 代码（语句）
 1. JS 表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方，如：`a`、`a+b`、`demo(1)`、`x === y ? 'a' : 'b'`  

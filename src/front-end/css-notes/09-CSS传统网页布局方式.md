@@ -54,7 +54,7 @@ float 属性用于创建浮动框，将其移动到一边，直到左边缘或�
 
 + 浮动元素会脱离标准流 (脱标：浮动的盒子不再保留原先的位置)
 
-![CSS传统网页布局方式01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS传统网页布局方式01.png)
+![CSS传统网页布局方式01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS传统网页布局方式01.png)
 
 + 浮动的元素会一行内显示并且元素顶部对齐
 	+ 注意：浮动的元素是互相贴靠在一起的（不会有缝隙），如果父级宽度装不下这些浮动的盒子，多出的盒子会另起一行对齐
@@ -66,7 +66,7 @@ float 属性用于创建浮动框，将其移动到一边，直到左边缘或�
 
 为了约束浮动元素位置, 我们网页布局一般采取的策略是: 先用标准流父元素排列上下位置, 之后内部子元素采取浮动排列左右位置，符合网页布局第一准侧
 
-![CSS传统网页布局方式02.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS传统网页布局方式02.png)
+![CSS传统网页布局方式02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS传统网页布局方式02.png)
 
 ### 浮动布局注意点
 

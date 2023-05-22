@@ -105,7 +105,7 @@ HSL 是通过：色相、饱和度、亮度，来表示一个颜色的，格式�
 
 色相：取值范围是 0~360 度，具体度数对应的颜色如下图
 
-![CSS长度和颜色01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS长度和颜色01.png)
+![CSS长度和颜色01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS长度和颜色01.png)
 
 饱和度：取值范围是 0%~100% 。（向色相中对应颜色中添加灰色， 0% 全灰， 100% 没有灰）
 

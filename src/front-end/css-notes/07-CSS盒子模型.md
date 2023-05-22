@@ -10,7 +10,7 @@ CSS 会把所有的 HTML 元素都看成一个盒子，所有的样式也都是�
 3. padding（内边距）： 紧贴内容的补白区域
 4. content（内容）：元素中的文本或后代元素都是它的内容
 
-![CSS盒子模型01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型01.png)
+![CSS盒子模型01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型01.png)
 
 `盒子的大小=content+左右 padding+左右border`
 
@@ -112,7 +112,7 @@ margin 属性用于设置外边距，即控制盒子和盒子之间的距离
 + 当上下相邻的两个块元素（兄弟关系）相遇时，如果上面的元素有下外边距 margin-bottom，下面的元素有上外边距 margin-top ，则他们之间的垂直间距不是 margin-bottom 与 margin-top 之和。取两个值中的较大者这种现象被称为相邻块元素垂直外边距的合并
 + 解决方案：尽量只给一个盒子添加 margin 值
 
-![CSS盒子模型02.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型02.png)
+![CSS盒子模型02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型02.png)
 
 ### margin 塌陷问题
 
@@ -125,5 +125,5 @@ margin 属性用于设置外边距，即控制盒子和盒子之间的距离
 	+ 可以为父元素定义上内边距（padding）
 	+ 可以为父元素添加 `overflow:hidden`
 
-![CSS盒子模型03.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型03.png)
+![CSS盒子模型03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型03.png)
 

@@ -67,4 +67,4 @@ Vue 模板语法包括两大类，分别是：
 
 效果：
 
-![Vue核心-模板语法01.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-模板语法01.gif)
+![Vue核心-模板语法01.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-模板语法01.gif)

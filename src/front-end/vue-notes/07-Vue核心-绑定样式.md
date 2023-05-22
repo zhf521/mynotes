@@ -76,7 +76,7 @@ order: 7
 
 效果：
 
-![Vue核心-绑定样式01.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式01.gif)
+![Vue核心-绑定样式01.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式01.gif)
 
 ### 数组写法
 
@@ -131,7 +131,7 @@ order: 7
 
 效果：
 
-![Vue核心-绑定样式02.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式02.png)
+![Vue核心-绑定样式02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式02.png)
 
 ### 对象写法
 
@@ -190,7 +190,7 @@ order: 7
 
 效果：
 
-![Vue核心-绑定样式03.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式03.png)
+![Vue核心-绑定样式03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式03.png)
 
 ## 绑定 style 样式
 
@@ -249,7 +249,7 @@ order: 7
 
 效果：
 
-![Vue核心-绑定样式04.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式04.png)
+![Vue核心-绑定样式04.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式04.png)
 
 ### 数组写法
 
@@ -302,4 +302,4 @@ order: 7
 
 效果：
 
-![Vue核心-绑定样式05.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式05.png)
+![Vue核心-绑定样式05.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式05.png)

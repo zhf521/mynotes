@@ -246,7 +246,7 @@ order: 5
 
 一个完整的表格由：表格标题、表格头部、表格主体、表格脚注，四部分组成
 
-![HTML基础01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/HTML基础01.png)
+![HTML基础01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/HTML基础01.png)
 
 表格涉及到的标签：
 
@@ -260,11 +260,11 @@ order: 5
 | `tr`      | 每一行   |
 | `th`、`td`          |  每一个单元格（备注：表格头部中用 `th`，表格主体、表格脚注中用 `td`）        |
 
-![HTML基础02.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/HTML基础02.png)
+![HTML基础02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/HTML基础02.png)
 
-![HTML基础03.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/HTML基础03.png)
+![HTML基础03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/HTML基础03.png)
 
-![HTML基础04.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/HTML基础04.png)
+![HTML基础04.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/HTML基础04.png)
 
 代码演示：
 ```html

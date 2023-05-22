@@ -7,7 +7,7 @@ order: 4
 
 ## MVVM 模型
 
-![Vue核心-MVVM模型与数据代理01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理01.png)
+![Vue核心-MVVM模型与数据代理01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理01.png)
 
 MVVM 本质上是 MVC （Model-View- Controller）的改进版。即模型-视图-视图模型
 
@@ -28,7 +28,7 @@ MVVM：
 + data 中所有的属性，最后都出现在了 vm 身上  
 + vm 身上所有的属性及 Vue 原型身上所有的属性，在 Vue 模板中都可以直接使用 
 
-![Vue核心-MVVM模型与数据代理02.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理02.png)
+![Vue核心-MVVM模型与数据代理02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理02.png)
 
 例：
 ```html
@@ -64,7 +64,7 @@ MVVM：
 
 效果：
 
-![Vue核心-MVVM模型与数据代理03.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理03.png)
+![Vue核心-MVVM模型与数据代理03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理03.png)
 
 ## Vue 中的数据代理
 
@@ -113,7 +113,7 @@ MVVM：
 
 效果：
 
-![Vue核心-MVVM模型与数据代理04.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理04.png)
+![Vue核心-MVVM模型与数据代理04.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理04.png)
 
 ### 数据代理
 
@@ -151,7 +151,7 @@ MVVM：
 
 效果：
 
-![Vue核心-MVVM模型与数据代理05.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理05.png)
+![Vue核心-MVVM模型与数据代理05.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理05.png)
 
 1. Vue 中的数据代理通过 vm 对象来代理 data 对象中属性的操作（读/写）  
 2. Vue 中数据代理的好处：更加方便的操作 data 中的数据  
@@ -160,7 +160,7 @@ MVVM：
 	2. 为每一个添加到 vm 上的属性，都指定一个 `getter` `setter`
 	3. 在 `getter`  `setter` 内部去操作（读/写）data 中对应的属性
 
-![Vue核心-MVVM模型与数据代理06.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理06.png)
+![Vue核心-MVVM模型与数据代理06.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理06.png)
 
 Vue 将 data 中的数据拷贝了一份到 `_data` 属性中，又将 `_data` 里面的属性提到 Vue 实例中（如 name），通过 defineProperty 实现数据代理，这样通过 geter/setter 操作 name，进而操作 `_data` 中的 name。而 `_data` 又对 data 进行数据劫持，实现响应式
 
@@ -197,4 +197,4 @@ Vue 将 data 中的数据拷贝了一份到 `_data` 属性中，又将 `_data` �
 
 效果：
 
-![Vue核心-MVVM模型与数据代理07.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理07.png)
+![Vue核心-MVVM模型与数据代理07.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-MVVM模型与数据代理07.png)

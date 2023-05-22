@@ -68,7 +68,7 @@ ul li:hover {
 }
 ```
 
-![CSS布局01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS布局01.png)
+![CSS布局01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS布局01.png)
 
 1. 我们用 CSS 边框可以模拟三角效果
 2. 宽度高度为 0

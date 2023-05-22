@@ -59,7 +59,7 @@ v-text 指令
 
 效果：
 
-![Vue核心-内置指令与自定义指令01.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令01.png)
+![Vue核心-内置指令与自定义指令01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令01.png)
 
 ### v-html 指令
 
@@ -108,13 +108,13 @@ v-text 指令
 
 我们在 cookie 中存放如下数据
 
-![Vue核心-内置指令与自定义指令02.png](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令02.png)
+![Vue核心-内置指令与自定义指令02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令02.png)
 
 点击案例中的链接就可以获取
 
 效果：
 
-![Vue核心-内置指令与自定义指令03.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令03.gif)
+![Vue核心-内置指令与自定义指令03.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令03.gif)
 
 ### v-cloak 指令
 
@@ -194,7 +194,7 @@ v-cloak 指令（没有值）
 
 效果：
 
-![Vue核心-内置指令与自定义指令04.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令04.gif)
+![Vue核心-内置指令与自定义指令04.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令04.gif)
 
 ### v-pre 指令
 
@@ -234,7 +234,7 @@ v-cloak 指令（没有值）
 
 效果：
 
-![Vue核心-内置指令与自定义指令05.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令05.gif)
+![Vue核心-内置指令与自定义指令05.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令05.gif)
 
 ## 自定义指令
 
@@ -392,4 +392,4 @@ Vue.directive('fbind', {
 
 效果：
 
-![Vue核心-内置指令与自定义指令06.gif](https://obsidian-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令06.gif)
+![Vue核心-内置指令与自定义指令06.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令06.gif)
