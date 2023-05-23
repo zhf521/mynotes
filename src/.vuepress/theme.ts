@@ -69,24 +69,30 @@ export default hopeTheme({
     {
       text: "前端",
       prefix:"/front-end/",
-      children:[{text:"HTML",link:"html-notes/"},{text:"CSS",link:"css-notes/"},{text:"JavaScript",link:"javascript-notes/"},{text:"Vue",link:"vue-notes/"},]
+      children:[{text:"HTML笔记",link:"html-notes/"},{text:"CSS笔记",link:"css-notes/"},{text:"JavaScript笔记",link:"javascript-notes/"},{text:"Vue笔记",link:"vue-notes/"},]
     },
     {
       text: "软件工具",
       prefix: "/software-tool/",
-      children: [{ text: "Alist", link: "alist-notes/" }, { text: "Emmet", link: "emmet-notes/" }, { text: "Git", link: "git-notes/" }, { text: "Halo", link: "halo-notes/" }, { text: "MarkDown", link: "markdown-notes/" },
-        {text: "NodeJS",link:"nodejs-notes / "},{text:"Photoshop",link:"photoshop-notes/"},{text:"VSCode",link:"vscode-notes/"},{text:"图床",link:"image-hosting-website-notes/"},]
+      children: [{ text: "Alist", link: "alist/" }, { text: "Emmet", link: "emmet/" }, { text: "Git", link: "git/" }, { text: "Halo", link: "halo/" }, { text: "MarkDown", link: "markdown/" },
+        {text: "NodeJS",link:"nodejs/"},{text:"Photoshop",link:"photoshop/"},{text:"VSCode",link:"vscode/"},{text:"图床",link:"image-hosting-website/"},]
     },
     {
       text: "电脑使用技巧",
       prefix: "/computer-usage-skills/",
-      children:[{text:"疑难解答",link:"troubleshoot-notes/"},{text:"优化设置",link:"optimization-notes/"}]
+      children:[{text:"疑难解答",link:"troubleshoot/"},{text:"优化设置",link:"optimization/"}]
+    },
+    {
+      text: "计算机网络",
+      prefix: "/computer-network/",
+      children:[{text:"计网微课堂笔记",link:"net-micro-class-notes"},]
     }
   ],
   //侧边栏
   sidebar: {
     "/front-end/": "structure",
     "/software-tool/": "structure",
-    "/computer-usage-skills/":"structure",
+    "/computer-usage-skills/": "structure",
+    "/computer-network/":"structure",
   },
 });

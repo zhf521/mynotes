@@ -13,6 +13,8 @@ actions:
     link: /software-tool/
   - text: 电脑使用技巧
     link: /computer-usage-skills/
+  - text: 计算机网络
+    link: /computer-network/
 features:
   - title: 图文并茂
     icon: markdown
