@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-103db9bf","path":"/front-end/html-notes/","title":"Html Notes","lang":"en-US","frontmatter":{"title":"Html Notes","article":false,"feed":false,"sitemap":false},"headers":[],"git":{},"readingTime":{"minutes":0,"words":1},"filePathRelative":null,"excerpt":""}');export{e as data};
