@@ -1057,6 +1057,8 @@ oDiv.attachEvent('onclick', function () {
 
 - `load` ： 页面全部资源加载完毕
 - `scroll` ： 浏览器滚动的时候触发
+- `resize`：窗口改变时触发
+- `DOMContentLoaded`：当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像等完全加载
 - ...
 
 #### 鼠标事件
@@ -1297,3 +1299,87 @@ target 这个属性是事件对象里面的属性，表示你点击的目标，�
 ```
 
 这样写完以后，你点击 a 标签的时候，就不会跳转链接了，而是会在控制台打印出 a 标签的 href 属性的值
+
+### 阻止冒泡
+
+阻止冒泡是指阻断事件的流动，保证事件只在当前元素被执行，而不再去影响到其对应的祖先元素
+
+前提：阻止事件冒泡需要拿到事件对象
+
+语法：
+
+```js
+事件对象.stopPropagation()
+```
+
+注意：此方法可以阻断事件流动传播，不光在冒泡阶段有效，捕获阶段也有效
+
+例：
+
+```js
+const father = document.querySelector('.father')
+const son = document.querySelector('.son')
+document.addEventListener('click', function () {
+	alert('我是爷爷')
+})
+father.addEventListener('click', function () {
+	alert('我是爸爸')
+})
+son.addEventListener('click', function (e) {
+	alert('我是儿子')
+    //阻止流动传播
+	e.stopPropagation()
+})
+```
+
+### 解绑事件
+
+on 事件方式，直接使用 null 覆盖就可以实现事件的解绑
+
+例：
+
+```js
+//绑定事件
+btn.onclick = function(){
+	alert('点击了')
+}
+//解绑事件
+btn.onclick = null
+```
+
+addEventListener 方式，必须使用：
+
+```js
+removeEventListener(事件类型,事件处理函数,[获取捕获或者冒泡阶段]) //[ ]内内容为可选的
+```
+
+例：
+
+```js
+function fn(){
+	alert('点击了')
+}
+//绑定了
+btn.addEventListener('click',fn)
+//解绑事件
+btn.removeEventListener('click',fn)
+```
+
+==注意：匿名函数无法被解绑==
+
+补充：
+
++ 鼠标经过事件：
+  + mouseover 和 mouseout 会有冒泡效果
+  + mouseenter 和 mouseleave 没有冒泡效果
++ 传统 on 注册（L 0）
+  + 同一个对象，后面注册的事件会覆盖前面注册（同一个事件）
+  + 直接使用 null 覆盖就可以实现事件的解绑
+  + 都是冒泡阶段执行的
++ 事件监听注册（L 2）
+  + 语法：`addEventListener(事件类型, 事件处理函数, 是否使用捕获)`
+  + 后面注册的事件不会覆盖前面注册的事件（同一个事件）
+  + 可以通过第三个参数去确定是在冒泡或者捕获阶段执行
+  + 必须使用 `removeEventListener(事件类型, 事件处理函数, 获取捕获或者冒泡阶段)`
+  + 匿名函数无法被解绑
+

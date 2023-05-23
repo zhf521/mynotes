@@ -1,7 +1,7 @@
 import { hopeTheme } from "vuepress-theme-hope";
 export default hopeTheme({
   //热重载，调试时使用
-  hotReload: true,
+  // hotReload: true,
   //网站favicon图标
   favicon:"/assets/icon/favicon.ico",
   //作者信息
@@ -67,9 +67,14 @@ export default hopeTheme({
   //导航栏
   navbar: [
     {
+      text: "主页",
+      icon: "home",
+      link: "/",
+    },
+    {
       text: "前端",
-      prefix:"/front-end/",
-      children:[{text:"HTML笔记",link:"html-notes/"},{text:"CSS笔记",link:"css-notes/"},{text:"JavaScript笔记",link:"javascript-notes/"},{text:"Vue笔记",link:"vue-notes/"},]
+      prefix: "/front-end/",
+      children: [{text:"HTML笔记",link:"html-notes/"},{text:"CSS笔记",link:"css-notes/"},{text:"JavaScript笔记",link:"javascript-notes/"},{text:"Vue笔记",link:"vue-notes/"},]
     },
     {
       text: "软件工具",
