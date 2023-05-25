@@ -1,6 +1,6 @@
 ---
-title: JavaScript基础-分支结构
-order: 8
+title: JavaScript-分支结构
+order: 9
 ---
 
 分支结构可以根据条件判断真假，来选择性的执行想要的代码

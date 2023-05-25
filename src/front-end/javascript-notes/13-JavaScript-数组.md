@@ -1,9 +1,9 @@
 ---
-title: JavaScript基础-数组
-order: 12
+title: JavaScript-数组
+order: 13
 ---
 
-数组字面理解就是 **数字的组合**，准确的来说数组是一个 **数据的集合**
+数组字面理解就是**数字的组合**，准确的来说数组是一个**数据的集合**
 
 也就是我们把一些数据放在一个盒子里面，按照顺序排好
 
@@ -73,7 +73,7 @@ console.log(arr[1]) // world
 
 ## 数组的常用方法
 
-### 数组常用方法之 push
+### push
 
 `push` 是用来在数组的末尾追加一个元素
 
@@ -86,7 +86,7 @@ arr.push(4)
 console.log(arr) // [1, 2, 3, 4]
 ```
 
-### 数组常用方法之 pop
+### pop
 
 `pop` 是用来删除数组末尾的一个元素
 
@@ -99,7 +99,7 @@ arr.pop()
 console.log(arr) // [1, 2]
 ```
 
-### 数组常用方法之 unshift
+### unshift
 
 `unshift` 是在数组的最前面添加一个元素
 
@@ -112,7 +112,7 @@ arr.unshift(4)
 console.log(arr) // [4, 1, 2, 3]
 ```
 
-### 数组常用方法之  shift
+### shift
 
 `shift` 是删除数组最前面的一个元素
 
@@ -125,7 +125,7 @@ arr.shift()
 console.log(arr) // [2, 3]
 ```
 
-### 数组常用方法之 splice
+### splice
 
 `splice` 是截取数组中的某些内容，按照数组的索引来截取
 
@@ -153,7 +153,7 @@ console.log(arr) // [1, '我是新内容', 4, 5]
 
 `arr.splice(1, 2, '我是新内容')` 表示从索引 1 开始截取 2 个内容，然后用第三个参数把截取完空出来的位置填充
 
-### 数组常用方法之 reverse
+### reverse
 
 `reverse` 是用来反转数组使用的
 
@@ -166,7 +166,7 @@ arr.reverse()
 console.log(arr) // [3, 2, 1]
 ```
 
-### 数组常用方法之 sort
+### sort
 
 `sort` 是用来给数组排序的
 
@@ -179,7 +179,7 @@ arr.sort()
 console.log(arr) // [1, 2, 3]
 ```
 
-### 数组常用方法之 concat
+### concat
 
 `concat` 是把多个数组进行拼接
 
@@ -197,7 +197,7 @@ console.log(newArr) // [1, 2, 3, 4, 5, 6]
 
 注意： **`concat` 方法不会改变原始数组**
 
-### 数组常用方法之 join
+### join
 
 `join` 是把数组里面的每一项内容链接起来，变成一个字符串，可以自己定义每一项之间链接的内容 `join(要以什么内容链接)`，不会改变原始数组，而是把链接好的字符串返回
 
@@ -213,7 +213,7 @@ console.log(str) // 1-2-3
 
 注意： **join 方法不会改变原始数组，而是返回链接好的字符串**
 
-### 数组常用方法之 indexOf
+### indexOf
 
 `indexOf` 用来找到数组中某一项的索引
 
@@ -241,7 +241,7 @@ console.log(index) // -1
 
 你要找的值在数组中不存在，那么就会返回 -1
 
-### 数组常用方法之 forEach
+### forEach
 
 和 `for` 循环一个作用，就是用来遍历数组的
 
@@ -261,7 +261,7 @@ arr.forEach(function (item, index, arr) {
 
 `forEach()` 的时候传递的那个函数，会根据数组的长度执行，数组的长度是多少，这个函数就会执行多少回
 
-### 数组常用方法之 map
+### map
 
 和 `forEach` 类似，只不过可以对数组中的每一项进行操作，返回一个新的数组，用于处理数据
 
@@ -279,7 +279,7 @@ var newArr = arr.map(function (item, index, arr) {
 console.log(newArr) // [11, 12, 13]
 ```
 
-### 数组常用方法之 filter
+### filter
 
 和 `map` 的使用方式类似，按照我们的条件来筛选数组，把原始数组中满足条件的筛选出来，组成一个新的数组返回，如果没有符合条件的元素则返回空数组，它不会影响原数组
 

@@ -1,5 +1,5 @@
 ---
-title: JavaScript基础-简介
+title: JavaScript-简介
 order: 1
 ---
 

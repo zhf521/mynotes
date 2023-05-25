@@ -73,24 +73,111 @@ export default hopeTheme({
     },
     {
       text: "前端",
+      icon:"html",
       prefix: "/front-end/",
-      children: [{text:"HTML笔记",link:"html-notes/"},{text:"CSS笔记",link:"css-notes/"},{text:"JavaScript笔记",link:"javascript-notes/"},{text:"Vue笔记",link:"vue-notes/"},]
+      children: [
+        {
+          text: "HTML笔记",
+          icon: "html",
+          link: "html-notes/"
+        },
+        {
+          text: "CSS笔记",
+          icon: "css",
+          link: "css-notes/"
+        },
+        {
+          text: "JavaScript笔记",
+          icon: "javascript",
+          link: "javascript-notes/"
+        },
+        {
+          text: "Vue笔记",
+          icon: "vue",
+          link: "vue-notes/"
+        },
+      ]
     },
     {
       text: "软件工具",
       prefix: "/software-tool/",
-      children: [{ text: "Alist", link: "alist/" }, { text: "Emmet", link: "emmet/" }, { text: "Git", link: "git/" }, { text: "Halo", link: "halo/" }, { text: "MarkDown", link: "markdown/" },
-        {text: "NodeJS",link:"nodejs/"},{text:"Photoshop",link:"photoshop/"},{text:"VSCode",link:"vscode/"},{text:"图床",link:"image-hosting-website/"},]
+      icon:"tool",
+      children: [
+        {
+          text: "Alist",
+          icon: "box",
+          link: "alist/"
+        },
+        {
+          text: "Emmet",
+          icon: "emmet",
+          link: "emmet/"
+        },
+        {
+          text: "Git",
+          icon: "git",
+          link: "git/"
+        },
+        {
+          text: "Halo",
+          icon: "blog",
+          link: "halo/"
+        },
+        {
+          text: "MarkDown",
+          icon: "markdown",
+          link: "markdown/"
+        },
+        {
+          text: "NodeJS",
+          icon: "nodeJS",
+          link: "nodejs/"
+        },
+        {
+          text: "Photoshop",
+          icon: "editor",
+          link: "photoshop/"
+        },
+        {
+          text: "VSCode",
+          icon: "vscode",
+          link: "vscode/"
+        },
+        {
+          text: "图床",
+          icon: "pic",
+          link: "image-hosting-website/"
+        },
+      ]
     },
     {
       text: "电脑使用技巧",
+      icon:"operate",
       prefix: "/computer-usage-skills/",
-      children:[{text:"疑难解答",link:"troubleshoot/"},{text:"优化设置",link:"optimization/"}]
+      children: [
+        {
+          text: "疑难解答",
+          icon: "question",
+          link: "troubleshoot/"
+        },
+        {
+          text: "优化设置",
+          icon: "config",
+          link: "optimization/"
+        }
+      ]
     },
     {
       text: "计算机网络",
       prefix: "/computer-network/",
-      children:[{text:"",link:""},]
+      icon:"network",
+      children: [
+        {
+          text: "",
+          icon:"",
+          link: ""
+        },
+      ]
     }
   ],
   //侧边栏

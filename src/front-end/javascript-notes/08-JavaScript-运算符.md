@@ -1,6 +1,6 @@
 ---
 title: JavaScript基础-运算符
-order: 7
+order: 8
 ---
 
 ## 算术运算符

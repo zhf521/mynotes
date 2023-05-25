@@ -1,6 +1,6 @@
 ---
-title: JavaScript基础-定时器
-order: 16
+title: JavaScript-定时器
+order: 17
 ---
 
 在 `JS` 里面，有两种定时器，**倒计时定时器** 和 **间隔定时器**

@@ -1,5 +1,5 @@
 ---
-title: JavaScript基础-输入输出
+title: JavaScript-输入输出
 order: 3
 ---
 

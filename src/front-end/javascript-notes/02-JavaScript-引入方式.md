@@ -1,5 +1,5 @@
 ---
-title: JavaScript基础-引入方式
+title: JavaScript-引入方式
 order: 2
 ---
 

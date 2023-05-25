@@ -1,6 +1,6 @@
 ---
-title: JavaScript基础-数据类型
-order: 6
+title: JavaScript-数据类型
+order: 7
 ---
 
 数据类型是指存储在内存中的数据的类型，通常分为两大类 **基本数据类型** 和 **复杂数据类型**

@@ -1,6 +1,6 @@
 ---
-title: JavaScript基础-this关键字
-order: 17
+title: JavaScript-this关键字
+order: 21
 ---
 
 每一个函数内部都有一个关键字是 `this` ，可以让我们直接使用的
@@ -12,6 +12,8 @@ order: 17
 函数内部的 this 指向谁，取决于函数的调用方式
 
 - 全局定义的函数直接调用，`this => window`
+
+- 普通函数没有明确调用者时 `this` 值为 `window`，严格模式下没有调用者时 `this` 的值为 `undefined`
 
   ```javascript
   function fn() {

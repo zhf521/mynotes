@@ -73,7 +73,7 @@ console.log(windowWidth)
   - 当你点击取消的时候，得到的是 `null`
   - 当你点击确定的时候得到的就是你输入的内容
 
-### console对象
+### 控制台对象
 
 
 

@@ -1,6 +1,6 @@
 ---
-title: JavaScript基础-字符串
-order: 13
+title: JavaScript-字符串
+order: 14
 ---
 
 ## 创建字符串

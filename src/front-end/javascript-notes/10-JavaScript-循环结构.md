@@ -1,6 +1,6 @@
 ---
-title: JavaScript基础-循环结构
-order: 9
+title: JavaScript-循环结构
+order: 10
 ---
 
 循环结构，就是根据某些给出的条件，重复的执行同一段代码
@@ -140,5 +140,4 @@ for (var i = 1; i <= 5; i++) {
   console.log('我吃了一个包子')
 }
 ```
-
 
