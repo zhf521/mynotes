@@ -391,6 +391,129 @@ img.title = '小刘'
 
 在设置的时候，不管之前有没有类名，都会全部被设置的值覆盖
 
+### 通过 classList 操作类控制 CSS
+
+为了解决 className 容易覆盖以前的类名的问题，我们可以通过 classList 方式追加或删除类名
+
+语法：
+
+```js
+// 追加一个类
+对象.classList.add('类名')
+// 删除一个类
+对象.classList.remove('类名')
+//切换一个类
+对象.classList.toggle('类名')
+```
+
+例：
+
+~~~html
+<div class="box">文字</div>
+~~~
+
+```css
+.box {
+	width: 200px;
+	height: 200px;
+	color: #333;
+}
+.active {
+	color: red;
+	background-color: pink;
+}
+```
+
+```js
+var box = document.querySelector('.box')
+box.classList.toggle('active') //切换类
+```
+
+### 操作自定义属性
+
+标准属性: 标签天生自带的属性比如 class、id、title 等, 可以直接使用点语法操作，比如： disabled、checked、selected
+
+自定义属性：
+
++ 在 HTML 5中推出来了专门的 `data-自定义属性`  
++ 在标签上一律以 `data-` 开头
++ 在 DOM 对象上一律以 `dataset` 对象方式获取
+
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+   <div data-id="1"> 自定义属性 </div>
+    <script>
+        // 1. 获取元素
+        let div = document.querySelector('div')
+        // 2. 获取自定义属性值
+         console.log(div.dataset.id)
+    </script>
+</body>
+
+</html>
+~~~
+
+### 操作表单元素属性
+
++ 表单很多情况下也需要修改属性，比如点击眼睛，可以看到密码，本质是把表单类型转换为文本框
++ 正常的有属性有取值的，跟其他的标签属性没有任何区别
+  + `DOM对象.属性名 = 新值`
+
+```js
+表单.value = '用户名'
+表单.type = 'password'
+```
+
+表单属性中添加就有效果，移除就没有效果，一律使用布尔值表示，如果为 true，代表添加了该属性，如果为 false，代表移除了该属性，如：disabled、checked、selected
+
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <input type="text" value="请输入">
+    <button disabled>按钮</button>
+    <input type="checkbox" name="" id="" class="agree">
+    <script>
+        // 1. 获取元素
+        let input = document.querySelector('input')
+        // 2. 取值或者设置值  得到input里面的值可以用 value
+        // console.log(input.value)
+        input.value = '小米手机'
+        input.type = 'password'
+
+        // 2. 启用按钮
+        let btn = document.querySelector('button')
+        // disabled 不可用   =  false  这样可以让按钮启用
+        btn.disabled = false
+        // 3. 勾选复选框
+        let checkbox = document.querySelector('.agree')
+        checkbox.checked = false
+    </script>
+</body>
+
+</html>
+~~~
+
 ## DOM节点
 
 ### 节点的分类

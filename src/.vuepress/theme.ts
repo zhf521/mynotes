@@ -90,7 +90,7 @@ export default hopeTheme({
     {
       text: "计算机网络",
       prefix: "/computer-network/",
-      children:[{text:"计网微课堂笔记",link:"net-micro-class-notes"},]
+      children:[{text:"",link:""},]
     }
   ],
   //侧边栏
