@@ -1,5 +1,5 @@
 ---
-title: DOM
+title: JavaScript-DOM
 order: 19
 ---
 
@@ -520,7 +520,7 @@ box.classList.toggle('active') //切换类
 
 `DOM` 的节点我们一般分为常用的三大类 **元素节点** 、**文本节点** 、 **属性节点**
 
-![DOM01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/DOM01.png)
+![JavaScript-DOM01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-DOM01.png)
 
 1. `元素节点`其实就是 HTML 标签，如上图中 `head`、`div`、`body` 等都属于元素节点
 2. `属性节点`是指 HTML 标签中的属性，如上图中 `a` 标签的 `href` 属性、`div` 标签的 `class` 属性
@@ -1279,7 +1279,7 @@ oDiv.onclick = function (e) {
 
 ### 事件的传播
 
-![DOM02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/DOM02.png)
+![JavaScript-DOM02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-DOM02.png)
 
 **当元素触发一个事件的时候，其父元素也会触发相同的事件，父元素的父元素也会触发相同的事件**，就像上面的图片一样，点击在红色盒子上的时候，会触发红色盒子的点击事件，也是点击在了粉色的盒子上，也会触发粉色盒子的点击事件，也是点击在了 body 上，也会触发 body 的点击事件，也是点击在了 html 上，也会触发 html 的点击事件，也是点击在了 document 上，也会触发 document 的点击事件，也是点击在了 window 上，也会触发 window 的点击事件，也就是说，页面上任何一个元素触发事件，都会一层一层最终导致 window 的相同事件触发，前提是各层级元素得有注册相同的事件，不然不会触发
 
