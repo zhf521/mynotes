@@ -1,4 +1,7 @@
-#JavaScript #Ajax 
+---
+title: Ajax
+order: 27
+---
 
 # Ajax 简介
 
