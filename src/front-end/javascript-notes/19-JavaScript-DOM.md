@@ -3,32 +3,28 @@ title: JavaScript-DOM
 order: 19
 ---
 
-`DOM（Document Object Model）`： 文档对象模型
+在JavaScript中，DOM (文档对象模型)是一种将HTML或XML文档表示为树形结构的API，它提供了访问和操作HTML或XML文档的方法
 
-其实就是操作 `html` 中的标签的一些能力
+## DOM树
 
-我们可以操作哪些内容？
+在JavaScript中，DOM (文档对象模型)是一种将HTML或XML文档表示为树形结构的API，它提供了访问和操作HTML或XML文档的方法
 
-- 获取一个元素
-- 移除一个元素
-- 创建一个元素
-- 向页面里面添加一个元素
-- 给元素绑定一些事件
-- 获取元素的属性
-- 给元素添加一些 `css` 样式
-- ...
+![JavaScript-DOM01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-DOM01.png)
 
-`DOM` 的核心对象就是 `docuemnt` 对象
+1. `元素节点`其实就是 HTML 标签，如上图中 `head`、`div`、`body` 等都属于元素节点
+2. `属性节点`是指 HTML 标签中的属性，如上图中 `a` 标签的 `href` 属性、`div` 标签的 `class` 属性
+3. `文本节点`是指 HTML 标签的文字内容，如 `title` 标签中的文字
+4. `根节点` 特指 `html` 标签
 
-`document` 对象是浏览器内置的一个对象，里面存储着专门用来操作元素的各种方法
+## DOM元素节点
 
-`DOM对象`： 页面中的标签，我们通过 `JS` 获取到以后，就把这个对象叫做 **DOM 对象**
+元素节点是 DOM 树中的一个分支点，它包含元素标签的所有属性和内容
 
-## 获取一个元素
+### 获取元素
 
 通过 `JS` 代码来获取页面中的标签，获取到以后我们就可以操作这些标签了
 
-### getElementById
+#### getElementById
 
 `getElementById` 是通过标签的 `id` 名称来获取标签的
 
@@ -45,7 +41,7 @@ order: 19
 </body>
 ```
 
-### getElementsByClassName
+#### getElementsByClassName
 
 `getElementsByClassName` 是通过标签的 `class` 名称来获取标签的
 
@@ -66,7 +62,7 @@ order: 19
 
 获取到的是一组元素，是一个长得和数组一样的数据结构，但是不是数组，是 **伪数组**，这组数据也是按照索引排列的，所以我们想要准确的拿到这个 `div`，需要用索引来获取
 
-### getElementsByTagName
+#### getElementsByTagName
 
 `getElementsByTagName` 是用过标签的标签名称来获取标签的
 
@@ -87,7 +83,7 @@ order: 19
 
 和 `getElementsByClassName` 一样，获取到的是一个长得很像数组的元素，必须要用索引才能得到准确的 `DOM` 元素
 
-### querySelector
+#### querySelector
 
 `querySelector` 是按照选择器的方式来获取元素，也就是说，按照我们写 `CSS` 的时候的选择器来获取
 
@@ -99,7 +95,7 @@ console.log(docuemnt.querySelector('.box')) // 获取页面中第一个有 box �
 console.log(document.querySelector('#box')) // 获取页面中第一个 id 名为 box 的元素
 ```
 
-### querySelectorAll
+#### querySelectorAll
 
 `querySelectorAll` 是按照选择器的方式来获取元素
 
@@ -112,11 +108,18 @@ console.log(docuemnt.querySelectorAll('.box')) // 获取页面中所有有 box �
 
 获取到的是一组数据，也是需要用索引来获取到准确的每一个 `DOM` 元素，或者是用遍历的方式获得，没有 `pop()` `push()` 等数组方法
 
-## 操作元素的属性
+#### 获取特殊元素
 
-通过我们各种获取元素的方式获取到页面中的标签以后，我们可以通过操作 `DOM` 元素的属性，就能直接把效果展示在页面上
++ 获取body元素：`doucumnet.body`
++ 获取html元素：`document.documentElement`
 
-### innerHTML
+### 操作元素
+
+通过我们各种获取元素的方式获取到页面中的标签以后，我们可以通过操作 `DOM` 元素的内容和属性，就能直接把效果展示在页面上
+
+#### 操作元素内容
+
+##### innerHTML
 
 获取元素内部的 `HTML` 结构
 
@@ -157,7 +160,7 @@ console.log(docuemnt.querySelectorAll('.box')) // 获取页面中所有有 box �
 
 设置完以后，页面中的 `div` 元素里面就会嵌套一个 `p` 元素
 
-### innerText
+##### innerText
 
 获取元素内部的文本（只能获取到文本内容，获取不到 `html` 标签）
 
@@ -191,7 +194,7 @@ console.log(docuemnt.querySelectorAll('.box')) // 获取页面中所有有 box �
 
 设置完毕以后，会把 `<p>hello</p>` 当作一个文本出现在 `div` 元素里面，而不会把 `p` 解析成标签
 
-### 操作元素常用属性
+#### 操作元素常用属性
 
 语法：
 
@@ -213,56 +216,9 @@ img.src = './images/2.webp'
 img.title = '小刘'
 ```
 
-### getAttribute
+#### 样式属性操作
 
-获取元素的某个属性（包括自定义属性）
-
-```html
-<body>
-  <div a="100" class="box"></div>
-
-  <script>
-    var div = document.querySelector('div')
-   	console.log(div.getAttribute('a')) // 100
-    console.log(div.getAttribute('class')) // box
-  </script>
-</body>
-```
-
-### setAttribute
-
-给元素设置一个属性（包括自定义属性）
-
-```html
-<body>
-  <div></div>
-
-  <script>
-    var div = document.querySelector('div')
-   	div.setAttribute('a', 100)
-    div.setAttribute('class', 'box')
-    console.log(div) // <div a="100" class="box"></div>
-  </script>
-</body>
-```
-
-### removeAttribute
-
-直接移除元素的某个属性
-
-```html
-<body>
-  <div a="100" class="box"></div>
-
-  <script>
-    var div = document.querySelector('div')
-   	div.removeAttribute('class')
-    console.log(div) // <div a="100"></div>
-  </script>
-</body>
-```
-
-### style
+##### style
 
 专门用来给元素添加 `css` 样式的，添加的都是行内样式
 
@@ -285,7 +241,7 @@ img.title = '小刘'
 
 页面中的 `div` 就会变成一个宽高都是 `100`，背景颜色是粉色
 
-### 获取元素的非行间样式
+##### 获取元素的非行间样式
 
 我们在操作 `DOM` 的时候，很重要的一点就是要操作元素的 `css` 样式，那么在操作 `css` 样式的时候，我们避免不了就要获取元素的样式，之前我们说过可以用 `元素.style.xxx` 来获取，但是这个方法只能获取到元素 **行间样式**，也就是写在行内的样式
 
@@ -312,7 +268,7 @@ img.title = '小刘'
 
 这里我们就要使用`getComputedStyle`和 `currentStyle`方法来获取，这两个方法的作用是一样的，只不过一个在 **非 IE** 浏览器，一个在 **IE** 浏览器
 
-#### getComputedStyle（非IE使用）
+###### getComputedStyle（非IE使用）
 
 语法：`window.getComputedStyle(元素, null).要获取的属性`
 
@@ -337,7 +293,7 @@ img.title = '小刘'
 
 这个方法获取行间样式和非行间样式都可以
 
-#### currentStyle（IE使用）
+###### currentStyle（IE使用）
 
 语法： `元素.currentStyle.要获取的属性`
 
@@ -360,7 +316,7 @@ img.title = '小刘'
 </body>
 ```
 
-### className
+##### className
 
 专门用来操作元素的 **类名的**
 
@@ -391,7 +347,7 @@ img.title = '小刘'
 
 在设置的时候，不管之前有没有类名，都会全部被设置的值覆盖
 
-### 通过 classList 操作类控制 CSS
+##### classList
 
 为了解决 className 容易覆盖以前的类名的问题，我们可以通过 classList 方式追加或删除类名
 
@@ -429,15 +385,73 @@ var box = document.querySelector('.box')
 box.classList.toggle('active') //切换类
 ```
 
-### 操作自定义属性
+#### 自定义属性的操作
 
-标准属性: 标签天生自带的属性比如 class、id、title 等, 可以直接使用点语法操作，比如： disabled、checked、selected
+##### getAttribute
+
+获取元素的某个属性（包括自定义属性）
+
+```html
+<body>
+  <div a="100" class="box"></div>
+
+  <script>
+    var div = document.querySelector('div')
+   	console.log(div.getAttribute('a')) // 100
+    console.log(div.getAttribute('class')) // box
+  </script>
+</body>
+```
+
+##### setAttribute
+
+给元素设置一个属性（包括自定义属性）
+
+```html
+<body>
+  <div></div>
+
+  <script>
+    var div = document.querySelector('div')
+   	div.setAttribute('a', 100)
+    div.setAttribute('class', 'box')
+    console.log(div) // <div a="100" class="box"></div>
+  </script>
+</body>
+```
+
+##### removeAttribute
+
+直接移除元素的某个属性
+
+```html
+<body>
+  <div a="100" class="box"></div>
+
+  <script>
+    var div = document.querySelector('div')
+   	div.removeAttribute('class')
+    console.log(div) // <div a="100"></div>
+  </script>
+</body>
+```
+
+#### 操作H5自定义属性
+
+自定义属性目的：是为了保存并使用数据。有些数据可以保存到页面中而不用保存到数据库中
+
+自定义属性通过 `getAttribute('属性')` 获取，但是有些自定义属性很容易引起歧义，不容易判断是元素的内置属性还是自定义属性，H5给我们新增了自定义属性
 
 自定义属性：
 
 + 在 HTML 5中推出来了专门的 `data-自定义属性`  
 + 在标签上一律以 `data-` 开头
 + 在 DOM 对象上一律以 `dataset` 对象方式获取
+
+获取自定义属性：
+
++ 兼容性获取：`element.getAttribute('data-index')`
++ H5新增：`element.dataset.index`或者`element.dataset['index']`
 
 ~~~html
 <!DOCTYPE html>
@@ -464,68 +478,11 @@ box.classList.toggle('active') //切换类
 </html>
 ~~~
 
-### 操作表单元素属性
-
-+ 表单很多情况下也需要修改属性，比如点击眼睛，可以看到密码，本质是把表单类型转换为文本框
-+ 正常的有属性有取值的，跟其他的标签属性没有任何区别
-  + `DOM对象.属性名 = 新值`
-
-```js
-表单.value = '用户名'
-表单.type = 'password'
-```
-
-表单属性中添加就有效果，移除就没有效果，一律使用布尔值表示，如果为 true，代表添加了该属性，如果为 false，代表移除了该属性，如：disabled、checked、selected
-
-~~~html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-</head>
-
-<body>
-    <input type="text" value="请输入">
-    <button disabled>按钮</button>
-    <input type="checkbox" name="" id="" class="agree">
-    <script>
-        // 1. 获取元素
-        let input = document.querySelector('input')
-        // 2. 取值或者设置值  得到input里面的值可以用 value
-        // console.log(input.value)
-        input.value = '小米手机'
-        input.type = 'password'
-
-        // 2. 启用按钮
-        let btn = document.querySelector('button')
-        // disabled 不可用   =  false  这样可以让按钮启用
-        btn.disabled = false
-        // 3. 勾选复选框
-        let checkbox = document.querySelector('.agree')
-        checkbox.checked = false
-    </script>
-</body>
-
-</html>
-~~~
-
 ## DOM节点
 
 ### 节点的分类
 
 `DOM` 的节点我们一般分为常用的三大类 **元素节点** 、**文本节点** 、 **属性节点**
-
-![JavaScript-DOM01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-DOM01.png)
-
-1. `元素节点`其实就是 HTML 标签，如上图中 `head`、`div`、`body` 等都属于元素节点
-2. `属性节点`是指 HTML 标签中的属性，如上图中 `a` 标签的 `href` 属性、`div` 标签的 `class` 属性
-3. `文本节点`是指 HTML 标签的文字内容，如 `title` 标签中的文字
-4. `根节点` 特指 `html` 标签
 
 ### 获取节点
 
@@ -1024,51 +981,43 @@ console.log(oDiv) // <div>我是一个文本</div>
 + 若为 false，则代表克隆时不包含后代节点
 + 默认为 false
 
-## 获取元素的偏移量
+## 对比DOM节点与元素
 
-就是元素在页面上相对于参考父级的左边和上边的距离
+### 异同
 
-### offsetParent
+在JavaScript中，每一个HTML标签都可以看做一个节点（Node）。节点是DOM的基本单位，而元素（Element）是节点的一种，是节点类型之一。可以将元素称为节点的子类。
 
-获取元素的偏移量参考父级
+元素节点是 DOM 树中的一个分支点，它包含元素标签的所有属性和内容。它也可以包含其他类型的节点，例如文本节点（Text）、注释节点（Comment）和其他元素节点（Element）。
 
-其实就是假设你要给一个元素 **绝对定位** 的时候，它是根据谁来进行定位的，那么这个元素的偏移量参考父级就是谁
+其他种类的节点还包括属性节点（Attribute Node）、文本节点（Text Node）、注释节点（Comment Node）等。这些节点类型并不是元素，但它们可以成为元素的一部分
 
-### offsetLeft 和 offsetTop
+区别：
 
-获取的是元素左边的偏移量和上边的偏移量
+- 元素节点是节点中的一种，而不是全部节点的总称。
+- 元素节点只有在包含标记字符的时候才存在，而其他节点没有该限制。
+- 节点有多种类型，元素节点就是其中之一。元素节点指的是HTML标签所表示的节点类型，它包含了属性和内容。
 
-- `offsetLeft` ： 该元素相对于参考父级的左侧偏移量
-- `offsetTop` ： 该元素相对于参考父级的上侧偏移量
+联系：
 
-## 获取元素尺寸
+- 元素节点是节点的一种，它们都是DOM树的组成部分。
+- 元素节点也是 DOM 树中的一种分支点，包含了很多其他类型的节点。
+- 在DOM操作中，既可以操作元素节点，也可以操作其他类型的节点。
 
-就是获取元素的 "占地面积"
+总之，元素可以看作是节点的一种特殊情况，是DOM树结构的重要组成部分。它们的关系并不是对立的，而是相互联系的。在进行DOM操作时必须区别开它们的特点，选取特定的操作方法
 
-注意:
+### 什么时候操作DOM元素，什么时候操作DOM节点
 
-- 获取到的尺寸是没有单位的数字
-- 当元素在页面中不占位置的时候， 获取到的是 0
-  - `display: none;` 元素在页面不占位
-  - `visibility: hidden;` 元素在页面占位
+在JavaScript中，开发人员可以通过操作DOM树来实现对HTML或XML文档的访问和修改。一般来说，当开发人员需要访问或修改文档中的HTML或XML元素元素时，它们可以操作DOM中的节点而不是元素。下面是操作DOM元素和操作DOM节点的区别：
 
-### offsetWith 和 offsetHeight
+1. 操作DOM元素
+   + 当开发人员需要通过操作文档的HTML或XML元素更新文档中的视觉效果时，就需要DOM元素来操作。比如需要改变元素的样式、更新元素的内容、或动态的向文档添加或移除元素等。但是，DOM元素并不只包含对元素直接的修改，也需要操纵元素的属性等相关内容
 
-- `offsetWidth` ： 获取的是元素 `内容 + padding + border` 的宽度
-- `offsetHeight` ： 获取的是元素 `内容 + padding + border` 的高度
+2. 操作DOM节点
+   + 在有些情况下，开发人员需要访问或修改节点本身而不是元素。比如获取一个元素的父节点或子节点、访问文本节点、或创建自定义的节点等。当需要插入新的元素时，也需要操作节点，因为需要向DOM结构中插入新的节点
 
-### clientWidth 和 clientHeight
+因此，在开发过程中，要根据需求来操作DOM元素或节点，具体取决于需要进行哪些文档操作。一般的解决方案就是通过操作节点，来达到更新或操纵元素的目的。
 
-- `clientWidth` ： 获取的是元素 `内容 + padding` 的宽度
-
-- `clientHeight` ： 获取的是元素 `内容 + padding` 的高度
-
-## 获取浏览器窗口尺寸
-
-我们之前学过一个 `innerWidth` 和 `innerHeight`，它们获取到的是窗口包含滚动条的尺寸，下面我们学习两个不包含滚动条的尺寸获取方式
-
-- `document.documentElement.clientWidth` ： 可视窗口的宽度
-- `document.documentElement.clientHeight` ： 可视窗口的高度
+需要注意的是，由于操作DOM可能对应页面的重新计算和渲染，频繁操作DOM会影响整个页面的性能。所以建议在操作DOM时，尽可能地减少对DOM的访问，以达到最佳性能表现
 
 ## 事件
 
@@ -1121,7 +1070,7 @@ oDiv.onclick = function () {
 
 `addEventListener` :  非 IE7、8 下使用
 
-语法： `元素.addEventListener('事件类型'， 事件处理函数， 冒泡还是捕获)`
+语法： `元素.addEventListener('事件类型'， 事件处理函数， 是否使用捕获)`
 
 > 这里的第三个参数是可选的，后面事件的传播会详述
 
@@ -1192,10 +1141,10 @@ oDiv.attachEvent('onclick', function () {
 - `mousedown` ：鼠标左键按下事件
 - `mouseup` ：鼠标左键抬起事件
 - `mousemove` ：鼠标移动
-- `mouseover` ：鼠标移入事件
-- `mouseout` ：鼠标移出事件
-- `mouseenter` ：鼠标移入事件
-- `mouseleave` ：鼠标移出事件
+- `mouseover` ：鼠标移入事件，会有冒泡效果
+- `mouseout` ：鼠标移出事件，会有冒泡效果
+- `mouseenter` ：鼠标移入事件，没有冒泡效果
+- `mouseleave` ：鼠标移出事件，没有冒泡效果
 - ...
 
 #### 键盘事件
@@ -1494,20 +1443,4 @@ btn.removeEventListener('click',fn)
 ```
 
 ==注意：匿名函数无法被解绑==
-
-补充：
-
-+ 鼠标经过事件：
-  + mouseover 和 mouseout 会有冒泡效果
-  + mouseenter 和 mouseleave 没有冒泡效果
-+ 传统 on 注册（L 0）
-  + 同一个对象，后面注册的事件会覆盖前面注册（同一个事件）
-  + 直接使用 null 覆盖就可以实现事件的解绑
-  + 都是冒泡阶段执行的
-+ 事件监听注册（L 2）
-  + 语法：`addEventListener(事件类型, 事件处理函数, 是否使用捕获)`
-  + 后面注册的事件不会覆盖前面注册的事件（同一个事件）
-  + 可以通过第三个参数去确定是在冒泡或者捕获阶段执行
-  + 必须使用 `removeEventListener(事件类型, 事件处理函数, 获取捕获或者冒泡阶段)`
-  + 匿名函数无法被解绑
 

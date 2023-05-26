@@ -39,6 +39,49 @@ var windowWidth = window.innerWidth
 console.log(windowWidth)
 ```
 
+不包含滚动条的尺寸获取方式
+
+- `document.documentElement.clientWidth` ： 可视窗口的宽度
+- `document.documentElement.clientHeight` ： 可视窗口的高度
+
+### 获取元素尺寸
+
+就是获取元素的 "占地面积"，使用`document`对象
+
+注意:
+
+- 获取到的尺寸是没有单位的数字
+- 当元素在页面中不占位置的时候， 获取到的是 0
+  - `display: none;` 元素在页面不占位
+  - `visibility: hidden;` 元素在页面占位
+
+#### offsetWith 和 offsetHeight
+
+- `offsetWidth` ： 获取的是元素 `内容 + padding + border` 的宽度
+- `offsetHeight` ： 获取的是元素 `内容 + padding + border` 的高度
+
+#### clientWidth 和 clientHeight
+
+- `clientWidth` ： 获取的是元素 `内容 + padding` 的宽度
+- `clientHeight` ： 获取的是元素 `内容 + padding` 的高度
+
+### 获取元素的偏移量
+
+就是元素在页面上相对于参考父级的左边和上边的距离，使用`document`对象
+
+#### offsetParent
+
+获取元素的偏移量参考父级
+
+其实就是假设你要给一个元素 **绝对定位** 的时候，它是根据谁来进行定位的，那么这个元素的偏移量参考父级就是谁
+
+#### offsetLeft 和 offsetTop
+
+获取的是元素左边的偏移量和上边的偏移量
+
+- `offsetLeft` ： 该元素相对于参考父级的左侧偏移量
+- `offsetTop` ： 该元素相对于参考父级的上侧偏移量
+
 ### 浏览器的弹出层
 
 + `alert` 是在浏览器弹出一个提示框
