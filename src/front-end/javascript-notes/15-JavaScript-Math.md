@@ -1,6 +1,6 @@
 ---
-title: JavaScript基础-Math
-order: 14
+title: JavaScript-Math
+order: 15
 ---
 
 Math 是 JS 的一个内置对象，称为数学对象，提供了一堆的属性和方法帮助我们操作 **数字**
