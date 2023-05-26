@@ -1,6 +1,6 @@
 ---
 title: JavaScript-异常处理
-order: 22
+order: 23
 ---
 
 ## throw

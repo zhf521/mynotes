@@ -1,6 +1,6 @@
 ---
 title: JavaScript-正则表达式
-order: 23
+order: 24
 ---
 
 **正则表达式**（Regular Expression）是一种字符串匹配的模式（规则）

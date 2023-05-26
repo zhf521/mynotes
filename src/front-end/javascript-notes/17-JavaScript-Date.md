@@ -1,6 +1,6 @@
 ---
 title: JavaScript-Date
-order: 16
+order: 17
 ---
 
 Date对象是JS提供的专门用来获取时间的

@@ -1,6 +1,6 @@
 ---
 title: JavaScript-垃圾回收机制
-order: 24
+order: 25
 ---
 
 ## 什么是垃圾回收机制

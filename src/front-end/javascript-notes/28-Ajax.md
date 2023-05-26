@@ -1,6 +1,6 @@
 ---
 title: Ajax
-order: 27
+order: 28
 ---
 
 # Ajax 简介

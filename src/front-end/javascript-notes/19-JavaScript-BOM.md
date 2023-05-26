@@ -1,6 +1,6 @@
 ---
 title: JavaScript-BOM
-order: 18
+order: 19
 ---
 
 `BOM（Browser Object Model）`： 浏览器对象模型

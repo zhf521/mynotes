@@ -1,6 +1,6 @@
 ---
 title: JavaScript-DOM
-order: 19
+order: 20
 ---
 
 在JavaScript中，DOM (文档对象模型)是一种将HTML或XML文档表示为树形结构的API，它提供了访问和操作HTML或XML文档的方法
