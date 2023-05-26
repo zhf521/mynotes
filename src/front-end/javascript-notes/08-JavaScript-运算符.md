@@ -1,5 +1,5 @@
 ---
-title: JavaScript基础-运算符
+title: JavaScript-运算符
 order: 8
 ---
 
