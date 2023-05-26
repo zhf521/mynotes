@@ -173,9 +173,9 @@ export default hopeTheme({
       icon:"network",
       children: [
         {
-          text: "",
-          icon:"",
-          link: ""
+          text: "小林coding计网",
+          icon: "network",
+          link: "xiaolin-coding-network/"
         },
       ]
     }
