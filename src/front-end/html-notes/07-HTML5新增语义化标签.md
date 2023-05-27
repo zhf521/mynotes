@@ -29,12 +29,21 @@ order: 7
 
 | 属性  | 值   | 描述     |
 | ----- | ---- | -------- |
-| heigh | 数值 | 规定高值 |
+| high | 数值 | 规定高值 |
 |  low     | 数值 |  规定低值        |
 |   max    | 数值 |     规定最大值     |
 |    min   | 数值 |     规定最小值     |
 |     optimum  | 数值 |  规定最优值        |
 |   value    |  数值    |    规定当前值      |
+
+::: normal-demo Demo 演示
+
+```html
+<span>手机电量：</span>
+<meter max="100" min="0" value="50" low="10" high="20"></meter> 
+```
+
+:::
 
 ### 2.2 progress 标签
 
@@ -46,6 +55,15 @@ order: 7
 | ----- | ---- | ---------- |
 | max   | 数值 | 规定目标值 |
 | value | 数值 | 规定当前值           |
+
+::: normal-demo Demo 演示
+
+```html
+<span>当前进度：</span>
+<progress max="100" value="20"></progress>
+```
+
+:::
 
 ## 3. 新增列表标签
 
@@ -102,3 +120,10 @@ order: 7
 
 注意： W3C 建议 mark 用于标记搜索结果中的关键字
 
+::: normal-demo Demo 演示
+
+```html
+<p>这是一段<mark>重要的</mark>话</p>
+```
+
+:::

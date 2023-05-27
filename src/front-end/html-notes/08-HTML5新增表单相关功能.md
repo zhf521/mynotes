@@ -1,5 +1,5 @@
 ---
-title: HTML5新增表单功能
+title: HTML5新增表单相关功能
 order: 8
 ---
 
@@ -22,9 +22,40 @@ input::placeholder{
 }
 ```
 
-## 2. input 新增属性值
+::: normal-demo Demo 演示
 
-在 HTML 5 中，帮我们新增加了很多类型的表单
+```html
+<form action="">
+    账号：<input type="text" name="account" placeholder="请输入账号" required autofocus>
+    <br>
+    密码：<input type="password" name="pwd" placeholder="请输入密码">
+    <br>
+    性别：
+    	<input type="radio" value="male" name="gender">男
+    	<input type="radio" value="female" name="gender">女
+    <br>
+    爱好：
+    	<input type="checkbox" value="singe" name="hobby">唱
+    	<input type="checkbox" value="dance" name="hobby">跳
+    	<input type="checkbox" value="rap" name="hobby">rap
+    <br>
+    其他：<textarea name="other"></textarea>
+    <br>
+    <button>提交</button>
+</form>    
+```
+
+```css
+input::placeholder{
+	color:pink;
+}
+```
+
+:::
+
+## 2. input新增type属性值
+
+在 HTML5 中，帮我们新增加了很多类型的表单
 
 案例代码：
 

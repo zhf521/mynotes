@@ -16,7 +16,7 @@ order: 11
 
 ```html
 <!--[if lt ie 9]>
-<script src="../sources/js/html5shiv.js"></script>
+<script src="html5shiv.js"></script>
 <![endif]-->
 ```
 

@@ -5,7 +5,7 @@ order: 9
 
 多媒体标签分为音频 **audio** 和视频 **video** 两个标签，使用它们，我们可以很方便的在页面中嵌入音频和视频，而不再去使用落后的 flash 和其他浏览器插件了
 
-## 1. 视频标签 - video
+## 1. 视频标签-video
 
 ### 1.1 基本使用
 
@@ -63,10 +63,10 @@ order: 9
 
 示例代码：
 ```html
-<video src="media/mi. mp 4" autoplay="autoplay" muted="muted"  loop="loop" poster="media/mi 9. jpg"></video>
+<video src="media/mi.mp4" autoplay="autoplay" muted="muted"  loop="loop" poster="media/mi.jpg"></video>
 ```
 
-## 2. 音频标签 - audio
+## 2. 音频标签-audio
 
 ### 2.1 基本使用
 
@@ -110,7 +110,7 @@ order: 9
 
 示例代码：
 ```html
-<audio src="media/music. mp 3" autoplay="autoplay" controls="controls"></audio>
+<audio src="media/music.mp3" autoplay="autoplay" controls="controls"></audio>
 ```
 
 ## 3. 小结
