@@ -433,6 +433,7 @@ order: 5
 ### 8.3 跨行跨列
 
 rowspan ：指定要跨的行数
+
 colspan ：指定要跨的列数
 
 ::: normal-demo Demo 演示
@@ -498,11 +499,6 @@ colspan ：指定要跨的列数
 
 在 HTML 中，一个段落中的文字会从左到右依次排列，直到浏览器窗口的右端，然后才自动换行。如果希望某段文本强制换行显示，就需要使用换行标签 `<br/>`
 
-具体实现：
-```html
-<br/>
-```
-
 特点：
 1. `<br/>` 是个单标签
 2. `<br/>` 标签只是简单地开始新的一行，跟段落不一样，段落之间会插入一些垂直的间距
@@ -554,6 +550,16 @@ colspan ：指定要跨的列数
 2. value 属性：输入框的默认输入值
 3. maxlength 属性：输入框最大可输入长度
 
+::: normal-demo Demo 演示
+
+```html
+<form>
+    <input type="text">
+</form>
+```
+
+:::
+
 #### 11.2.2 密码输入框
 
 ```html
@@ -564,6 +570,16 @@ colspan ：指定要跨的列数
 1. name 属性：数据的名称
 2. value 属性：输入框的默认输入值（一般不用，无意义）
 3. maxlength 属性：输入框最大可输入长度
+
+::: normal-demo Demo 演示
+
+```html
+<form>
+    <input type="password">
+</form>
+```
+
+:::
 
 #### 11.2.3 单选框
 
@@ -576,6 +592,17 @@ colspan ：指定要跨的列数
 1. name 属性：数据的名称，注意：想要单选效果，多个 radio 的 name 属性值要保持一致
 2. value 属性：提交的数据值
 3. checked 属性：让该单选按钮默认选中
+
+::: normal-demo Demo 演示
+
+```html
+<form>
+    <input type="radio" name="sex" value="female">女
+    <input type="radio" name="sex" value="male">男
+</form>
+```
+
+:::
 
 #### 11.2.4 复选框
 
@@ -590,6 +617,18 @@ colspan ：指定要跨的列数
 2. value 属性：提交的数据值
 3. checked 属性：让该复选框默认选中
 
+::: normal-demo Demo 演示
+
+```html
+<form>
+    <input type="checkbox" name="hobby" value="sing">唱
+    <input type="checkbox" name="hobby" value="dance">跳
+    <input type="checkbox" name="hobby" value="rap">rap
+</form>
+```
+
+:::
+
 #### 11.2.5 隐藏域
 
 ```html
@@ -601,6 +640,16 @@ colspan ：指定要跨的列数
 常用属性如下：
 1. name 属性：指定数据的名称
 2. value 属性：指定的是真正提交的数据
+
+::: normal-demo Demo 演示
+
+```html
+<form>
+    <input type="hidden" name="tag" value="100">
+</form>    
+```
+
+:::
 
 #### 11.2.6 提交按钮
 
@@ -614,6 +663,17 @@ colspan ：指定要跨的列数
 2. button 不要指定 name 属性 
 3. input 标签编写的按钮，使用 value 属性指定按钮文字
 
+::: normal-demo Demo 演示
+
+```html
+<form>
+    <input type="submit" value="点我提交表单">
+    <button>点我提交表单</button>
+</form>    
+```
+
+:::
+
 #### 11.2.7 重置按钮
 
 ```html
@@ -625,6 +685,17 @@ colspan ：指定要跨的列数
 1. button 不要指定 name 属性 
 2. input 标签编写的按钮，使用 value 属性指定按钮文字
 
+::: normal-demo Demo 演示
+
+```html
+<form>
+     <input type="reset" value="点我重置">
+     <button type="reset">点我重置</button>
+</form>  
+```
+
+:::
+
 #### 11.2.8 普通按钮
 
 ```html
@@ -633,6 +704,17 @@ colspan ：指定要跨的列数
 ```
 
 注意：普通按钮的 type 值为 button ，若不写 type 值是 submit 会引起表单的提交
+
+::: normal-demo Demo 演示
+
+```html
+<form>
+    <input type="button" value="普通按钮">
+    <button type="button">普通按钮</button>
+</form>    
+```
+
+:::
 
 #### 11.2.9 文本域
 
@@ -644,6 +726,16 @@ colspan ：指定要跨的列数
 1. rows 属性：指定默认显示的行数，会影响文本域的高度
 2. cols 属性：指定默认显示的列数，会影响文本域的宽度
 3. 不能编写 type 属性，其他属性，与普通文本输入框一致
+
+::: normal-demo Demo 演示
+
+```html
+<form>
+    <textarea name="msg" rows="22" cols="3">我是文本域</textarea>
+</form>    
+```
+
+:::
 
 #### 11.2.10 下拉框
 
@@ -659,6 +751,20 @@ colspan ：指定要跨的列数
 1. name 属性：指定数据的名称
 2. option 标签设置 value 属性，如果没有 value 属性，提交的数据是 option 中间的文字；如果设置了 value 属性，提交的数据就是 value 的值（建议设置 value 属性） 
 3. option 标签设置了 selected 属性，表示默认选中
+
+::: normal-demo Demo 演示
+
+```html
+<form>
+    <select name="from">
+        <option value="黑">黑龙江</option>
+        <option value="吉">吉林</option>
+        <option value="辽">辽宁</option>
+	</select>
+</form>
+```
+
+:::
 
 #### 11.2.11 禁用表单控件
 
@@ -678,7 +784,8 @@ label 标签可与表单控件相关联，关联之后点击文字，与之对�
 
 fieldset 可以为表单控件分组、 legend 标签是分组的标题
 
-例：
+::: normal-demo Demo 演示
+
 ```html
 <fieldset>
 	<legend>主要信息</legend>
@@ -695,14 +802,16 @@ fieldset 可以为表单控件分组、 legend 标签是分组的标题
 	<label>
 		<input type="radio" name="gender" value="female" id="nv">女
 	</label>
-</fieldset>
+</fieldset> 
 ```
+
+:::
 
 ## 12. 框架标签
 
-| 标签名 | 功能和语义                   | 属性                                                                                                                  | 单/双标签 |
-| ------ | ---------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------- |
-| iframe | 框架（在网页中嵌入其他文件） | name: 框架名字，可以与 target 属性配合；width：框架的宽度；height：框架的高度；frameborder：是否显示边框，值为 0 或 1 | 双        |
+| 标签名 | 功能和语义                   | 属性                                                         | 单/双标签 |
+| ------ | ---------------------------- | ------------------------------------------------------------ | --------- |
+| iframe | 框架（在网页中嵌入其他文件） | name: 框架名字，可以与 target 属性配合<br>width：框架的宽度<br>height：框架的高度<br>frameborder：是否显示边框，值为 0 或 1 | 双        |
 
 iframe 标签的实际应用：
 1. 在网页中嵌入广告
