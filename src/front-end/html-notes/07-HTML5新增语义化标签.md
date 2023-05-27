@@ -55,6 +55,8 @@ order: 7
 | details  | 用于展示问题和答案，或对专有名词进行解释    | 双        |
 | summary  | 写在 details 的里面，用于指定问题或专有名词 | 双          |
 
+::: normal-demo Demo 演示
+
 ```html
 <input type="text" list="mydata" />
 <datalist id="mydata">
@@ -67,8 +69,10 @@ order: 7
 <details>
 	<summary>如何走上人生巅峰？</summary>
 	<p>一步一步走呗</p>
-</details>
+</details> 
 ```
+
+:::
 
 ## 4. 新增文本标签
 
@@ -79,12 +83,16 @@ order: 7
 | ruby   | 包裹需要注音的文字              | 双        |
 | rt     | 写注音，rt 标签写在 ruby 的里面 | 双          |
 
+::: normal-demo Demo 演示
+
 ```html
 <ruby>
 	<span>魑魅魍魉</span>
 	<rt>chī mèi wǎng liǎng </rt>
 </ruby>
 ```
+
+:::
 
 ### 4.2 文本标记
 
