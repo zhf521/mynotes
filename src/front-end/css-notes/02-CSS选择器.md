@@ -450,25 +450,18 @@ section[class$=data] {
 ::: normal-demo Demo 演示
 
 ```html
-<div>
-    是
-</div> 
-```
-
-```css
-div {
-    width: 200px;
-    height: 200px;
-    background-color: pink;
-}
-/* div::before 权重是2 */
-div::before {
+<style>
+span::before {
     /* 这个content是必须要写的 */
     content: '我';
 }
-div::after {
+span::after {
     content: '小猪佩奇';
 }
+</style>
+<body>
+	<span>是</span>
+</body> 
 ```
 
 :::
