@@ -12,11 +12,11 @@ CSS 会把所有的 HTML 元素都看成一个盒子，所有的样式也都是�
 
 ![CSS盒子模型01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型01.png)
 
-`盒子的大小=content+左右 padding+左右border`
+`盒子的大小=content+左右padding+左右border`
 
 注意：外边距 margin 不会影响盒子的大小，但会影响盒子的位置
 
-## 盒子内容区（content）
+## 1. 盒子内容区（content）
 
 | CSS 属性名   | 功能                   | 属性值 |
 | ------------ | ---------------------- | ------ |
@@ -31,7 +31,7 @@ CSS 会把所有的 HTML 元素都看成一个盒子，所有的样式也都是�
 1. max-width 、 min-width 一般不与 width 一起使用
 2. max-height 、 min-height 一般不与 height 一起使用
 
-## 盒子内边距（padding）
+## 2. 盒子内边距（padding）
 
 | CSS 属性名    | 功能     | 属性值 |
 | ------------- | -------- | ------ |
@@ -52,7 +52,7 @@ padding 复合属性的使用规则：
 2. 行内元素的左右内边距是没问题的，上下内边距不能完美的设置
 3. 块级元素、行内块元素，四个方向内边距都可以完美设置
 
-## 盒子边框（border）
+## 3. 盒子边框（border）
 
 border 可以设置元素的边框
 
@@ -85,7 +85,7 @@ border: 1px solid red;  /* 没有顺序 */
 border-top: 1px solid red;  /* 只设定上边框， 其余同理 */   
 ```
 
-## 盒子外边距（margin）
+## 4. 盒子外边距（margin）
 
 margin 属性用于设置外边距，即控制盒子和盒子之间的距离
 
@@ -96,7 +96,7 @@ margin 属性用于设置外边距，即控制盒子和盒子之间的距离
 | margin-top |  上外边距        |
 | margin-bottom            |  下外边距        |
 
-### margin 注意事项
+### 4.1 margin注意事项
 
 1. 子元素的 margin ，是参考父元素的 content 计算的。（因为是父亲的 content 中承装着子元素）
 2. 上 margin 、左 margin ：影响自己的位置；下 margin 、右 margin ：影响后面兄弟元素的位置
@@ -104,7 +104,7 @@ margin 属性用于设置外边距，即控制盒子和盒子之间的距离
 4. margin 的值也可以是 auto ，如果给一个块级元素设置左右 margin 都为 auto ，该块级元素会在父元素中水平居中
 5. margin 的值可以是负值
 
-### margin 合并问题
+### 4.2 margin合并问题
 
 上面兄弟元素的下外边距和下面兄弟元素的上外边距会合并，取一个最大的值，而不是相加
 
@@ -114,9 +114,9 @@ margin 属性用于设置外边距，即控制盒子和盒子之间的距离
 
 ![CSS盒子模型02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型02.png)
 
-### margin 塌陷问题
+### 4.3 margin塌陷问题
 
-第一个子元素的上 margin 会作用在父元素上，最后一个子元素的下 margin 会作用在父元素上
+第一个子元素的上margin会作用在父元素上，最后一个子元素的下margin会作用在父元素上
 
 嵌套块元素垂直外边距的塌陷
 + 对于两个嵌套关系（父子关系）的块元素，父元素有上外边距同时子元素也有上外边距，此时父元素会塌陷较大的外边距值
@@ -126,4 +126,38 @@ margin 属性用于设置外边距，即控制盒子和盒子之间的距离
 	+ 可以为父元素添加 `overflow:hidden`
 
 ![CSS盒子模型03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型03.png)
+
+::: normal-demo Demo 演示
+
+```html
+<style>
+    .fa{
+        width:100px;
+        height:100px;
+        background-color:pink;
+    }
+    .s1{
+        width:50px;
+        height:50px;
+        background-color:red;
+        margin-top:20px;
+    }
+    .s2{
+        width:25px;
+        height:25px;
+        background-color:green;
+        margin-top:20px;
+    }
+</style>
+<body>
+    <div class="fa">
+        <div class="s1">
+            <div class="s2">
+ 		    </div>
+        </div>
+    <div>
+</body>
+```
+
+:::
 
