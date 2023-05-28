@@ -1,1 +1,0 @@
-import{_ as e}from"./plugin-vue_export-helper-c27b6911.js";import{o as _,c as t,d as o}from"./app-be4cb8a2.js";const c={},s=o("p",null,"CSS3新增的选择器有：动态伪类、目标伪类、语言伪类、 UI 伪类、结构伪类、否定伪类、伪元素，具体内容看前面CSS选择器部分",-1),n=[s];function r(a,l){return _(),t("div",null,n)}const i=e(c,[["render",r],["__file","15-CSS3选择器.html.vue"]]);export{i as default};
