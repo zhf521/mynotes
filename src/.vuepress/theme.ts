@@ -178,6 +178,18 @@ export default hopeTheme({
           link: "xiaolin-coding-network/"
         },
       ]
+    },
+    {
+      text: "数据结构与算法",
+      prefix: "/data-structures-and-algorithms/",
+      icon:"structure",
+      children: [
+        {
+          text: "JavaScript数据结构与算法",
+          icon: "javascript",
+          link: "javascript-data-structures-and-algorithms/"
+        },
+      ]
     }
   ],
   //侧边栏
@@ -185,6 +197,7 @@ export default hopeTheme({
     "/front-end/": "structure",
     "/software-tool/": "structure",
     "/computer-usage-skills/": "structure",
-    "/computer-network/":"structure",
+    "/computer-network/": "structure",
+    "/data-structures-and-algorithms/":"structure"
   },
 });
