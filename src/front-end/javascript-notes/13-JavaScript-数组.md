@@ -11,9 +11,9 @@ order: 13
 [1, 2, 3, 'hello', true, false]
 ```
 
-## 创建数组
+## 1. 创建数组
 
-###  字面量创建数组
+###  1.1 字面量创建数组
 
 直接使用 `[]` 的方式创建一个数组
 
@@ -25,7 +25,7 @@ var arr1 = []
 var arr2 = [1, 2, 3]
 ```
 
-### 内置构造函数创建数组
+### 1.2 内置构造函数创建数组
 
 使用 `JS` 的内置构造函数 `Array` 创建一个数组
 
@@ -40,7 +40,7 @@ var arr2 = new Array(10)
 var arr3 = new Array(1, 2, 3)
 ```
 
-## 数组的长度
+## 2. 数组的长度
 
 `length` 表示数组的长度，数组里面有多少个成员，`length` 就是多少
 
@@ -51,7 +51,7 @@ var arr = [1, 2, 3]
 console.log(arr.length) // 3
 ```
 
-## 数组的索引
+## 3. 数组的索引
 
 索引，也叫做下标，是指一个数据在数组里面排在第几个的位置
 
@@ -71,9 +71,9 @@ console.log(arr[0]) // hello
 console.log(arr[1]) // world
 ```
 
-## 数组的常用方法
+## 4. 数组的常用方法
 
-### push
+### 4.1 push
 
 `push` 是用来在数组的末尾追加一个元素
 
@@ -86,7 +86,7 @@ arr.push(4)
 console.log(arr) // [1, 2, 3, 4]
 ```
 
-### pop
+### 4.2 pop
 
 `pop` 是用来删除数组末尾的一个元素
 
@@ -99,7 +99,7 @@ arr.pop()
 console.log(arr) // [1, 2]
 ```
 
-### unshift
+### 4.3 unshift
 
 `unshift` 是在数组的最前面添加一个元素
 
@@ -112,7 +112,7 @@ arr.unshift(4)
 console.log(arr) // [4, 1, 2, 3]
 ```
 
-### shift
+### 4.4 shift
 
 `shift` 是删除数组最前面的一个元素
 
@@ -125,7 +125,7 @@ arr.shift()
 console.log(arr) // [2, 3]
 ```
 
-### splice
+### 4.5 splice
 
 `splice` 是截取数组中的某些内容，按照数组的索引来截取
 
@@ -153,7 +153,7 @@ console.log(arr) // [1, '我是新内容', 4, 5]
 
 `arr.splice(1, 2, '我是新内容')` 表示从索引 1 开始截取 2 个内容，然后用第三个参数把截取完空出来的位置填充
 
-### reverse
+### 4.6 reverse
 
 `reverse` 是用来反转数组使用的
 
@@ -166,7 +166,7 @@ arr.reverse()
 console.log(arr) // [3, 2, 1]
 ```
 
-### sort
+### 4.7 sort
 
 `sort` 是用来给数组排序的
 
@@ -179,7 +179,7 @@ arr.sort()
 console.log(arr) // [1, 2, 3]
 ```
 
-### concat
+### 4.8 concat
 
 `concat` 是把多个数组进行拼接
 
@@ -197,7 +197,7 @@ console.log(newArr) // [1, 2, 3, 4, 5, 6]
 
 注意： **`concat` 方法不会改变原始数组**
 
-### join
+### 4.9 join
 
 `join` 是把数组里面的每一项内容链接起来，变成一个字符串，可以自己定义每一项之间链接的内容 `join(要以什么内容链接)`，不会改变原始数组，而是把链接好的字符串返回
 
@@ -213,7 +213,7 @@ console.log(str) // 1-2-3
 
 注意： **join 方法不会改变原始数组，而是返回链接好的字符串**
 
-### indexOf
+### 4.10 indexOf
 
 `indexOf` 用来找到数组中某一项的索引
 
@@ -241,7 +241,7 @@ console.log(index) // -1
 
 你要找的值在数组中不存在，那么就会返回 -1
 
-### forEach
+### 4.11 forEach
 
 和 `for` 循环一个作用，就是用来遍历数组的
 
@@ -261,7 +261,7 @@ arr.forEach(function (item, index, arr) {
 
 `forEach()` 的时候传递的那个函数，会根据数组的长度执行，数组的长度是多少，这个函数就会执行多少回
 
-### map
+### 4.12 map
 
 和 `forEach` 类似，只不过可以对数组中的每一项进行操作，返回一个新的数组，用于处理数据
 
@@ -279,7 +279,7 @@ var newArr = arr.map(function (item, index, arr) {
 console.log(newArr) // [11, 12, 13]
 ```
 
-### filter
+### 4.13 filter
 
 和 `map` 的使用方式类似，按照我们的条件来筛选数组，把原始数组中满足条件的筛选出来，组成一个新的数组返回，如果没有符合条件的元素则返回空数组，它不会影响原数组
 

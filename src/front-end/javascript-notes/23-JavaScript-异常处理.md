@@ -3,7 +3,7 @@ title: JavaScript-异常处理
 order: 23
 ---
 
-## throw
+## 1. throw
 
 异常处理是指预估代码执行过程中可能发生的错误，然后最大程度的避免错误的发生导致整个程序无法继续运行
 
@@ -29,7 +29,7 @@ order: 23
 </script>
 ```
 
-## try ... catch
+## 2. try...catch
 
 ```html
 <script>
@@ -62,6 +62,6 @@ order: 23
 3. 如果 `try` 代码段中出现错误后，会执行 `catch` 代码段，并截获到错误信息
 4. `finally` 不管是否有错误，都会执行
 
-## debugger
+## 3. debugger
 
 相当于断点调试

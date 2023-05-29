@@ -17,7 +17,7 @@ order: 19
 - 让浏览器出现一个弹出框（`alert` / `confirm` / `prompt`）
 - ……
 
-## window对象 
+## 1. window对象 
 
 window 对象是一个全局对象，也可以说是 JavaScript 中的顶级对象，==基本 BOM 的属性和方法都是 window 对象==
 
@@ -25,7 +25,7 @@ window 对象是一个全局对象，也可以说是 JavaScript 中的顶级对�
 
 window对象下的属性和方法调用的时候可以省略 window
 
-### 获取浏览器窗口的尺寸
+### 1.1 获取浏览器窗口的尺寸
 
 ` innerHeight` 和 `innerWidth`
 
@@ -44,7 +44,7 @@ console.log(windowWidth)
 - `document.documentElement.clientWidth` ： 可视窗口的宽度
 - `document.documentElement.clientHeight` ： 可视窗口的高度
 
-### 获取元素尺寸
+### 1.2 获取元素尺寸
 
 就是获取元素的 "占地面积"，使用`document`对象
 
@@ -55,34 +55,34 @@ console.log(windowWidth)
   - `display: none;` 元素在页面不占位
   - `visibility: hidden;` 元素在页面占位
 
-#### offsetWith 和 offsetHeight
+#### 1.2.1 offsetWith 和 offsetHeight
 
 - `offsetWidth` ： 获取的是元素 `内容 + padding + border` 的宽度
 - `offsetHeight` ： 获取的是元素 `内容 + padding + border` 的高度
 
-#### clientWidth 和 clientHeight
+#### 1.2.2 clientWidth 和 clientHeight
 
 - `clientWidth` ： 获取的是元素 `内容 + padding` 的宽度
 - `clientHeight` ： 获取的是元素 `内容 + padding` 的高度
 
-### 获取元素的偏移量
+### 1.3 获取元素的偏移量
 
 就是元素在页面上相对于参考父级的左边和上边的距离，使用`document`对象
 
-#### offsetParent
+#### 1.3.1 offsetParent
 
 获取元素的偏移量参考父级
 
 其实就是假设你要给一个元素 **绝对定位** 的时候，它是根据谁来进行定位的，那么这个元素的偏移量参考父级就是谁
 
-#### offsetLeft 和 offsetTop
+#### 1.3.2 offsetLeft 和 offsetTop
 
 获取的是元素左边的偏移量和上边的偏移量
 
 - `offsetLeft` ： 该元素相对于参考父级的左侧偏移量
 - `offsetTop` ： 该元素相对于参考父级的上侧偏移量
 
-### 浏览器的弹出层
+### 1.4 浏览器的弹出层
 
 + `alert` 是在浏览器弹出一个提示框
 
@@ -116,7 +116,7 @@ console.log(windowWidth)
   - 当你点击取消的时候，得到的是 `null`
   - 当你点击确定的时候得到的就是你输入的内容
 
-### 控制台对象
+### 1.5 控制台对象
 
 可以输出各种信息到控制台，并且还提供了很多有用的辅助方法
 
@@ -134,11 +134,11 @@ console.log(windowWidth)
 
 `console.log`方法用于在控制台输出信息
 
-### 浏览器的地址信息
+### 1.6 浏览器的地址信息
 
 在 `window` 中有一个对象叫做 `location`，就是专门用来存储浏览器的地址栏内的信息的
 
-#### location.href
+#### 1.6.1 location.href
 
 `location.href` 这个属性存储的是浏览器地址栏内 `url` 地址的信息
 
@@ -155,15 +155,15 @@ window.location.href = './index.html'
 // 这个就会跳转页面到后面你给的那个地址
 ```
 
-#### location.search
+#### 1.6.2 location.search
 
 `location.search`这个属性用于获取地址中携带的参数，符号 ？后面部分
 
-#### location.hash
+#### 1.6.3 location.hash
 
 `location.hash`这个属性用于获取地址中的哈希值，符号 # 后面部分
 
-#### location.reload
+#### 1.6.4 location.reload
 
 `location.reload()` 这个方法会重新加载一遍页面，就相当于刷新，传入参数 true 时表示强制刷新
 
@@ -173,11 +173,11 @@ window.location.reload()
 
 注意： **不要写在全局，不然浏览器就会一直处在刷新状态**
 
-### 浏览器的历史记录
+### 1.7 浏览器的历史记录
 
 `window` 中有一个对象叫做 `history`，是专门用来存储历史记录信息的
 
-#### history.back
+#### 1.7.1 history.back
 
 `history.back` 是用来回退历史记录的，就是回到前一个页面，就相当于浏览器上的 ⬅️ 按钮
 
@@ -187,7 +187,7 @@ window.history.back()
 
 前提是你要有上一条记录，不然就是一直在这个页面，也不会回退
 
-#### history.forword
+#### 1.7.2 history.forword
 
 `history.forword` 是去到下一个历史记录里面，也就是去到下一个页面，就相当于浏览器上的 ➡️ 按钮
 
@@ -197,11 +197,11 @@ window.history.forward()
 
 前提是你要之前有过回退操作，不然的话你现在就是最后一个页面，没有下一个
 
-#### history.go
+#### 1.7.3 history.go
 
 `history.go(参数)`用来前进和后退，参数如果是 1 前进一个页面，如果是 -1 后退一个页面
 
-### 浏览器的onload事件
+### 1.8 浏览器的onload事件
 
 这个不再是对象了，而是一个事件，是在页面所有资源加载完毕后执行的
 
@@ -211,7 +211,7 @@ window.onload = function () {
 }
 ```
 
-#### 在html页面中把JS写在head里面
+#### 1.8.1 在html页面中把JS写在head里面
 
 ```html
 <html>
@@ -234,7 +234,7 @@ window.onload = function () {
 </html>
 ```
 
-#### 在html页面中把JS写在body最后面
+#### 1.8.2 在html页面中把JS写在body最后面
 
 ```html
 <html>
@@ -257,7 +257,7 @@ window.onload = function () {
 </html>
 ```
 
-### 浏览器的onscroll事件
+### 1.9 浏览器的onscroll事件
 
 这个 `onscroll` 事件是当浏览器的滚动条滚动的时候触发或者鼠标滚轮滚动的时候触发
 
@@ -269,7 +269,7 @@ window.onscroll = function () {
 
 注意：**前提是页面的高度要超过浏览器的可是窗口才可以**
 
-### 浏览器滚动的距离
+### 1.10 浏览器滚动的距离
 
 浏览器内的内容既然可以滚动，那么我们就可以获取到浏览器滚动的距离
 
@@ -278,7 +278,7 @@ window.onscroll = function () {
 > 其实我们的浏览器是没有滚动的，是一直在那里，那么滚动的是什么？是我们的页面，所以说，**其实浏览器没有动，只不过是页面向上走了**，所以，这个已经不能单纯的算是浏览器的内容了，而是我们页面的内容，所以不是再用 `window` 对象了，而是使用 `document` 对象
 >
 
-#### scrollTop
+#### 1.10.1 scrollTop
 
 获取的是页面向上滚动的距离
 
@@ -306,7 +306,7 @@ window.onscroll = function () {
 - Safari
   - 两个都不用，使用一个单独的方法 `window.pageYOffset `
 
-#### scrollLeft
+#### 1.10.2 scrollLeft
 
 获取页面向左滚动的距离
 
@@ -323,7 +323,7 @@ window.onscroll = function () {
   }
   ```
 
-### navigator对象
+### 1.11 navigator对象
 
 `window.navigator`对象，该对象下记录了浏览器自身的相关信息
 
@@ -344,7 +344,7 @@ window.onscroll = function () {
   }})();
 ~~~
 
-### 本地存储
+### 1.12 本地存储
 
 本地存储：将数据存储在本地浏览器中
 
@@ -353,7 +353,7 @@ window.onscroll = function () {
 1. 页面刷新或者关闭不丢失数据，实现数据持久化
 2. 容量较大，sessionStorage 和 localStorage 约 5M 左右
 
-#### localStorage
+#### 1.12.1 localStorage
 
 作用: 数据可以长期保留在本地浏览器中，刷新页面和关闭页面，数据也不会丢失, 除非手动删除
 
@@ -403,7 +403,7 @@ localStorage.removeItem(key)
 
 可以在浏览器使用 `F12`，通过 Application 查看本地数据
 
-#### sessionStorage
+#### 1.12.2 sessionStorage
 
 特性：
 
@@ -424,7 +424,7 @@ sessionStorage.getItem(key)
 sessionStorage.removeItem(key)
 ```
 
-#### localStorage 存储复杂数据类型
+#### 1.12.3 localStorage 存储复杂数据类型
 
 问题：本地只能存储字符串, 无法存储复杂数据类型
 
@@ -480,7 +480,7 @@ console.log(JSON.parse(localStorage.getItem('goods')))
 </body>
 ~~~
 
-### cookie
+### 1.13cookie
 
 cookie的特点:
 

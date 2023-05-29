@@ -5,7 +5,7 @@ order: 20
 
 在JavaScript中，DOM (文档对象模型)是一种将HTML或XML文档表示为树形结构的API，它提供了访问和操作HTML或XML文档的方法
 
-## DOM树
+## 1. DOM树
 
 在JavaScript中，DOM (文档对象模型)是一种将HTML或XML文档表示为树形结构的API，它提供了访问和操作HTML或XML文档的方法
 
@@ -16,15 +16,15 @@ order: 20
 3. `文本节点`是指 HTML 标签的文字内容，如 `title` 标签中的文字
 4. `根节点` 特指 `html` 标签
 
-## DOM元素节点
+## 2. DOM元素节点
 
 元素节点是 DOM 树中的一个分支点，它包含元素标签的所有属性和内容
 
-### 获取元素
+### 2.1 获取元素
 
 通过 `JS` 代码来获取页面中的标签，获取到以后我们就可以操作这些标签了
 
-#### getElementById
+#### 2.1.1 getElementById
 
 `getElementById` 是通过标签的 `id` 名称来获取标签的
 
@@ -41,7 +41,7 @@ order: 20
 </body>
 ```
 
-#### getElementsByClassName
+#### 2.1.2 getElementsByClassName
 
 `getElementsByClassName` 是通过标签的 `class` 名称来获取标签的
 
@@ -62,7 +62,7 @@ order: 20
 
 获取到的是一组元素，是一个长得和数组一样的数据结构，但是不是数组，是 **伪数组**，这组数据也是按照索引排列的，所以我们想要准确的拿到这个 `div`，需要用索引来获取
 
-#### getElementsByTagName
+#### 2.1.3 getElementsByTagName
 
 `getElementsByTagName` 是用过标签的标签名称来获取标签的
 
@@ -83,7 +83,7 @@ order: 20
 
 和 `getElementsByClassName` 一样，获取到的是一个长得很像数组的元素，必须要用索引才能得到准确的 `DOM` 元素
 
-#### querySelector
+#### 2.1.4 querySelector
 
 `querySelector` 是按照选择器的方式来获取元素，也就是说，按照我们写 `CSS` 的时候的选择器来获取
 
@@ -95,7 +95,7 @@ console.log(docuemnt.querySelector('.box')) // 获取页面中第一个有 box �
 console.log(document.querySelector('#box')) // 获取页面中第一个 id 名为 box 的元素
 ```
 
-#### querySelectorAll
+#### 2.1.5 querySelectorAll
 
 `querySelectorAll` 是按照选择器的方式来获取元素
 
@@ -108,18 +108,18 @@ console.log(docuemnt.querySelectorAll('.box')) // 获取页面中所有有 box �
 
 获取到的是一组数据，也是需要用索引来获取到准确的每一个 `DOM` 元素，或者是用遍历的方式获得，没有 `pop()` `push()` 等数组方法
 
-#### 获取特殊元素
+#### 2.1.6 获取特殊元素
 
 + 获取body元素：`doucumnet.body`
 + 获取html元素：`document.documentElement`
 
-### 操作元素
+### 2.2 操作元素
 
 通过我们各种获取元素的方式获取到页面中的标签以后，我们可以通过操作 `DOM` 元素的内容和属性，就能直接把效果展示在页面上
 
-#### 操作元素内容
+#### 2.2.1 操作元素内容
 
-##### innerHTML
+##### 2.2.1.1 innerHTML
 
 获取元素内部的 `HTML` 结构
 
@@ -160,7 +160,7 @@ console.log(docuemnt.querySelectorAll('.box')) // 获取页面中所有有 box �
 
 设置完以后，页面中的 `div` 元素里面就会嵌套一个 `p` 元素
 
-##### innerText
+##### 2.2.1.2 innerText
 
 获取元素内部的文本（只能获取到文本内容，获取不到 `html` 标签）
 
@@ -194,7 +194,7 @@ console.log(docuemnt.querySelectorAll('.box')) // 获取页面中所有有 box �
 
 设置完毕以后，会把 `<p>hello</p>` 当作一个文本出现在 `div` 元素里面，而不会把 `p` 解析成标签
 
-#### 操作元素常用属性
+#### 2.2.2 操作元素常用属性
 
 语法：
 
@@ -216,9 +216,9 @@ img.src = './images/2.webp'
 img.title = '小刘'
 ```
 
-#### 样式属性操作
+#### 2.2.3 样式属性操作
 
-##### style
+##### 2.2.3.1 style
 
 专门用来给元素添加 `css` 样式的，添加的都是行内样式
 
@@ -241,7 +241,7 @@ img.title = '小刘'
 
 页面中的 `div` 就会变成一个宽高都是 `100`，背景颜色是粉色
 
-##### 获取元素的非行间样式
+##### 2.2.3.2 获取元素的非行间样式
 
 我们在操作 `DOM` 的时候，很重要的一点就是要操作元素的 `css` 样式，那么在操作 `css` 样式的时候，我们避免不了就要获取元素的样式，之前我们说过可以用 `元素.style.xxx` 来获取，但是这个方法只能获取到元素 **行间样式**，也就是写在行内的样式
 
@@ -268,7 +268,7 @@ img.title = '小刘'
 
 这里我们就要使用`getComputedStyle`和 `currentStyle`方法来获取，这两个方法的作用是一样的，只不过一个在 **非 IE** 浏览器，一个在 **IE** 浏览器
 
-###### getComputedStyle（非IE使用）
+###### 2.2.3.2.1 getComputedStyle（非IE使用）
 
 语法：`window.getComputedStyle(元素, null).要获取的属性`
 
@@ -293,7 +293,7 @@ img.title = '小刘'
 
 这个方法获取行间样式和非行间样式都可以
 
-###### currentStyle（IE使用）
+###### 2.2.3.2.1 currentStyle（IE使用）
 
 语法： `元素.currentStyle.要获取的属性`
 
@@ -316,7 +316,7 @@ img.title = '小刘'
 </body>
 ```
 
-##### className
+##### 2.2.3.3 className
 
 专门用来操作元素的 **类名的**
 
@@ -347,7 +347,7 @@ img.title = '小刘'
 
 在设置的时候，不管之前有没有类名，都会全部被设置的值覆盖
 
-##### classList
+##### 2.2.3.4 classList
 
 为了解决 className 容易覆盖以前的类名的问题，我们可以通过 classList 方式追加或删除类名
 
@@ -385,9 +385,9 @@ var box = document.querySelector('.box')
 box.classList.toggle('active') //切换类
 ```
 
-#### 自定义属性的操作
+#### 2.2.4 自定义属性的操作
 
-##### getAttribute
+##### 2.2.4.1 getAttribute
 
 获取元素的某个属性（包括自定义属性）
 
@@ -403,7 +403,7 @@ box.classList.toggle('active') //切换类
 </body>
 ```
 
-##### setAttribute
+##### 2.2.4.2 setAttribute
 
 给元素设置一个属性（包括自定义属性）
 
@@ -420,7 +420,7 @@ box.classList.toggle('active') //切换类
 </body>
 ```
 
-##### removeAttribute
+##### 2.2.4.3 removeAttribute
 
 直接移除元素的某个属性
 
@@ -436,7 +436,7 @@ box.classList.toggle('active') //切换类
 </body>
 ```
 
-#### 操作H5自定义属性
+#### 2.2.5 操作H5自定义属性
 
 自定义属性目的：是为了保存并使用数据。有些数据可以保存到页面中而不用保存到数据库中
 
@@ -478,13 +478,13 @@ box.classList.toggle('active') //切换类
 </html>
 ~~~
 
-## DOM节点
+## 3. DOM节点
 
-### 节点的分类
+### 3.1 节点的分类
 
 `DOM` 的节点我们一般分为常用的三大类 **元素节点** 、**文本节点** 、 **属性节点**
 
-### 获取节点
+### 3.2 获取节点
 
 `childNodes`：获取某一个节点下**所有的子一级节点**
 
@@ -755,7 +755,7 @@ box.classList.toggle('active') //切换类
 
 获取的是一组数据，是该元素的所有属性，也是一个伪数组，这个 `li` 有三个属性，`id` 、 `a` 、 `test` 三个，所以就获取到了这三个
 
-### 节点属性
+### 3.3 节点属性
 
 我们已经知道节点会分成很多种，而且我们也能获取到各种不同的节点，接下来我们就来学习各种节点之间属性的区别
 
@@ -783,7 +783,7 @@ box.classList.toggle('active') //切换类
 </body>
 ```
 
-#### nodeType
+#### 3.3.1 nodeType
 
 `nodeType`：获取节点的节点类型，用数字表示
 
@@ -797,7 +797,7 @@ console.log(textNode.nodeType) // 3
 - `nodeType === 2` 就表示该节点是一个 **属性节点**
 - `nodeType === 3` 就表示该节点是一个 **文本节点**
 
-#### nodeName
+#### 3.3.2 nodeName
 
 `nodeName`：获取节点的节点名称
 
@@ -811,7 +811,7 @@ console.log(textNode.nodeName) // #text
 - 属性节点的 `nodeName` 就是 **属性名**
 - 文本节点的 `nodeName` 都是 **#text**
 
-#### nodeValue
+#### 3.3.3 nodeValue
 
 `nodeValue`： 获取节点的值
 
@@ -825,7 +825,7 @@ console.log(textNode.nodeValue) // 换行 + 空格
 - 属性节点的 `nodeValue` 就是 **属性值**
 - 文本节点的 `nodeValue` 就是 **文本内容**
 
-#### 总结
+#### 3.3.4 总结
 
 |          | nodeType | nodeName   | nodeValue |
 | -------- | -------- | ---------- | --------- |
@@ -833,7 +833,7 @@ console.log(textNode.nodeValue) // 换行 + 空格
 | 属性节点 | 2        | 属性名     | 属性值    |
 | 文本节点 | 3        | \#text     | 文本内容  |
 
-### 操作节点
+### 3.4 操作节点
 
 我们所说的操作无非就是 **增删改查（CRUD）**
 
@@ -843,7 +843,7 @@ console.log(textNode.nodeValue) // 换行 + 空格
 - 修改页面中的某一个节点
 - 获取页面中的某一个节点
 
-#### 创建一个节点
+#### 3.4.1 创建一个节点
 
 `createElement`：用于创建一个元素节点
 
@@ -863,7 +863,7 @@ var oText = document.createTextNode('我是一个文本')
 console.log(oText) // "我是一个文本"
 ```
 
-#### 追加一个节点
+#### 3.4.2 追加一个节点
 
 `appendChild`：是向一个元素节点的末尾追加一个节点
 
@@ -911,7 +911,7 @@ console.log(oDiv) // <div>我是一个文本</div>
 </body>
 ```
 
-#### 删除一个节点
+#### 3.4.3 删除一个节点
 
 `removeChild`：移除某一节点下的某一个节点
 
@@ -935,7 +935,7 @@ console.log(oDiv) // <div>我是一个文本</div>
 </body>
 ```
 
-#### 修改一个节点
+#### 3.4.4 修改一个节点
 
 `replaceChild`：将页面中的某一个节点替换掉
 
@@ -969,7 +969,7 @@ console.log(oDiv) // <div>我是一个文本</div>
 </body>
 ```
 
-#### 克隆一个节点
+#### 3.4.5 克隆一个节点
 
 `cloneNode`：克隆一个已有的节点
 
@@ -981,9 +981,9 @@ console.log(oDiv) // <div>我是一个文本</div>
 + 若为 false，则代表克隆时不包含后代节点
 + 默认为 false
 
-## 对比DOM节点与元素
+## 4. 对比DOM节点与元素
 
-### 异同
+### 4.1 异同
 
 在JavaScript中，每一个HTML标签都可以看做一个节点（Node）。节点是DOM的基本单位，而元素（Element）是节点的一种，是节点类型之一。可以将元素称为节点的子类。
 
@@ -1005,7 +1005,7 @@ console.log(oDiv) // <div>我是一个文本</div>
 
 总之，元素可以看作是节点的一种特殊情况，是DOM树结构的重要组成部分。它们的关系并不是对立的，而是相互联系的。在进行DOM操作时必须区别开它们的特点，选取特定的操作方法
 
-### 什么时候操作DOM元素，什么时候操作DOM节点
+### 4.2 何时使用
 
 在JavaScript中，开发人员可以通过操作DOM树来实现对HTML或XML文档的访问和修改。一般来说，当开发人员需要访问或修改文档中的HTML或XML元素元素时，它们可以操作DOM中的节点而不是元素。下面是操作DOM元素和操作DOM节点的区别：
 
@@ -1019,7 +1019,7 @@ console.log(oDiv) // <div>我是一个文本</div>
 
 需要注意的是，由于操作DOM可能对应页面的重新计算和渲染，频繁操作DOM会影响整个页面的性能。所以建议在操作DOM时，尽可能地减少对DOM的访问，以达到最佳性能表现
 
-## 事件
+## 5. 事件
 
 事件是编程语言中的术语，它是用来描述程序的行为或状态的，一旦行为或状态发生改变，便立即调用一个函数
 
@@ -1050,7 +1050,7 @@ oDiv.onclick = function () {
 
 当我们点击 `div` 的时候，就会执行事件处理函数内部的代码，每点击一次，就会执行一次事件处理函数
 
-### 事件的绑定方式
+### 5.1 事件的绑定方式
 
 我们现在给一个注册事件都是使用 `onxxx` 的方式，但是这个方式不是很好，只能给一个元素注册一个事件，一旦写了第二个事件，那么第一个就被覆盖了
 
@@ -1121,11 +1121,11 @@ oDiv.attachEvent('onclick', function () {
   - `addEventListener` ： 非 IE7、8 的浏览器
   - `attachEvent` ： IE7、8 浏览器
 
-### 常见的事件类型
+### 5.2 常见的事件类型
 
 我们在写页面的时候经常用到的一些事件，大致分为几类，**浏览器事件** 、 **鼠标事件** 、 **键盘事件** 、 **表单事件** 、 **触摸事件**、**焦点事件**等
 
-#### 浏览器事件
+#### 5.2.1 浏览器事件
 
 - `load` ： 页面全部资源加载完毕
 - `scroll` ： 浏览器滚动的时候触发
@@ -1133,7 +1133,7 @@ oDiv.attachEvent('onclick', function () {
 - `DOMContentLoaded`：当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像等完全加载
 - ...
 
-#### 鼠标事件
+#### 5.2.2 鼠标事件
 
 - `click` ：点击事件
 - `dblclick` ：双击事件
@@ -1147,38 +1147,38 @@ oDiv.attachEvent('onclick', function () {
 - `mouseleave` ：鼠标移出事件，没有冒泡效果
 - ...
 
-#### 键盘事件
+#### 5.2.3 键盘事件
 
 - `keyup` ： 键盘抬起事件
 - `keydown` ： 键盘按下事件
 - `keypress` ： 键盘按下再抬起事件
 - ...
 
-#### 表单事件
+#### 5.2.4 表单事件
 
 - `change` : 表单内容改变事件
 - `input` : 表单内容输入事件
 - `submit` : 表单提交事件
 - ...
 
-#### 触摸事件
+#### 5.2.5 触摸事件
 
 - `touchstart` ： 触摸开始事件
 - `touchend` ： 触摸结束事件
 - `touchmove` ： 触摸移动事件
 - ...
 
-#### 焦点事件
+#### 5.2.6 焦点事件
 
 + `focus`：获得焦点事件
 + `blur`：失去焦点事件
 
-#### 音视频事件
+#### 5.2.7 音视频事件
 
 + `ontimeupdate` 事件在视频或音频当前的播放位置发生改变时触发
 + `onloadeddate` 事件在当前帧的数据加载完成且还没有足够的数据播放视频或音频的下一帧时触发
 
-### 事件对象
+### 5.3 事件对象
 
 什么是事件对象？就是当你触发了一个事件以后，对该事件的一些描述信息
 
@@ -1226,7 +1226,7 @@ oDiv.onclick = function (e) {
 3. `offsetX/offsetY` 光标相于当前 DOM 元素左上角的位置
 4. `key` 用户按下的键盘键的值，不提倡使用 `keycode`
 
-### 事件的传播
+### 5.4 事件的传播
 
 ![JavaScript-DOM02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-DOM02.png)
 
@@ -1238,7 +1238,7 @@ oDiv.onclick = function (e) {
 2. 只会从点击元素开始按照 html 的结构逐层向上元素的事件会被触发
 3. 内部元素不管有没有该事件，只要上层元素有该事件，那么上层元素的事件就会被触发
 
-#### 冒泡、捕获、目标
+#### 5.4.1 冒泡、捕获、目标
 
 我们刚才聊过了，每一个事件，都是有可能从自己到 window ，有可能要执行多个同类型事件，那么这个执行的顺序就有一些说法了
 
@@ -1252,7 +1252,7 @@ oDiv.onclick = function (e) {
 
 > `addEventListener` 第3个参数为  `true` 表示捕获阶段触发，`false` 表示冒泡阶段触发，默认值为 `false`
 
-### 事件委托
+### 5.5 事件委托
 
 事件委托利用了事件传播的特征来解决一些现实开发中的需求 
 
@@ -1261,7 +1261,7 @@ oDiv.onclick = function (e) {
   + 给父元素注册事件，当我们触发子元素的时候，会冒泡到父元素身上，从而触发父元素的事件
   + 实现：`事件对象.target.tagName` 可以获得真正触发事件的元素
 
-#### 事件触发
+#### 5.5.1 事件触发
 
 点击子元素的时候，不管子元素有没有点击事件，只要父元素有点击事件，那么就可以触发父元素的点击事件
 
@@ -1284,7 +1284,7 @@ oDiv.onclick = function (e) {
 
 像上面一段代码，当你点击 ul 的时候肯定会触发，但是当你点击 li 的时候，其实也会触发
 
-#### target
+#### 5.5.2 target
 
 target 这个属性是事件对象里面的属性，表示你点击的目标，当你触发点击事件的时候，你点击在哪个元素上，target 就是哪个元素，这个 target 也不兼容，在 IE 下要使用 srcElement
 
@@ -1309,7 +1309,7 @@ target 这个属性是事件对象里面的属性，表示你点击的目标，�
 
 上面的代码，当你点击 ul 的时候，target 就是 ul，当你点击在 li 上面的时候，target 就是 li
 
-#### 委托
+#### 5.5.3 委托
 
 这个时候，当我们点击 li 的时候，也可以触发 ul 的点事件，并且在事件内不，我们也可以拿到你点击的到底是 ul 还是 li，这个时候，我们就可以把 li 的事件委托给 ul 来做
 
@@ -1341,15 +1341,15 @@ target 这个属性是事件对象里面的属性，表示你点击的目标，�
 
 上面的代码，我们就可以把 li 要做的事情委托给 ul 来做
 
-### 默认行为
+### 5.6 默认行为
 
-#### 什么是默认行为
+#### 5.6.1 什么是默认行为
 
 默认行为，就是不用我们注册，它自己就存在的事情，比如我们点击鼠标右键的时候，会自动弹出一个菜单，比如我们点击 a 标签的时候，我们不需要注册点击事件，他自己就会跳转页面...
 
 这些不需要我们注册就能实现的事情，我们叫做 **默认行为**
 
-#### 阻止默认行为
+#### 5.6.2 阻止默认行为
 
 有的时候，我们不希望浏览器执行默认事件，比如我给 a 标签绑定了一个点击事件，我点击你的时候希望你能告诉我你的地址是什么，而不是直接跳转链接，那么我们就要把 a 标签原先的默认事件阻止，不让他执行默认事件
 
@@ -1377,7 +1377,7 @@ target 这个属性是事件对象里面的属性，表示你点击的目标，�
 
 这样写完以后，你点击 a 标签的时候，就不会跳转链接了，而是会在控制台打印出 a 标签的 href 属性的值
 
-### 阻止冒泡
+### 5.7 阻止冒泡
 
 阻止冒泡是指阻断事件的流动，保证事件只在当前元素被执行，而不再去影响到其对应的祖先元素
 
@@ -1409,7 +1409,7 @@ son.addEventListener('click', function (e) {
 })
 ```
 
-### 解绑事件
+### 5.8 解绑事件
 
 on 事件方式，直接使用 null 覆盖就可以实现事件的解绑
 

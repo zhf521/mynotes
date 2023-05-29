@@ -17,7 +17,7 @@ var obj = {
 
 这里的 `{}` 和函数中的 `{}` 不一样，函数里面的是写代码的，而对象里面是写一些数据的，**对象就是一个键值对的集合**，`{}` 里面的每一个键都是一个成员，也就是说，我们可以把一些数据放在一个对象里面，那么他们就互不干扰了，其实就是我们准备一个房子，把我们想要的数据放进去，然后把房子的地址给到变量名，当我们需要某一个数据的时候，就可以根据变量名里面存储的地址找到对应的房子，然后去房子里面找到对应的数据
 
-## 创建对象
+## 1. 创建对象
 
 - 字面量的方式创建一个对象
 
@@ -44,7 +44,7 @@ var obj = {
   `Object` 是 `js` 内置给我们的构造函数，用于创建一个对象使用的
   
 
-## 属性和访问
+## 2. 属性和访问
 
   数据描述性的信息称为属性，如人的姓名、身高、年龄、性别等，一般是名词性的
 
@@ -66,7 +66,7 @@ var obj = {
       // 通过对象描述一个人的数据信息
       // person 是一个对象，它包含了一个属性 name
       // 属性都是成对出现的，属性名 和 值，它们之间使用英文 : 分隔
-      let person = {
+      var person = {
         name: '小明', // 描述人的姓名
         age: 18, // 描述人的年龄
         stature: 185, // 描述人的身高
@@ -77,7 +77,7 @@ var obj = {
   </html>
   ```
 
-  声明对象，并添加了若干属性后，可以使用 `.` 或 `对象名['属性']` 方式也可以访问 获得对象中属性对应的值，称之为属性访问
+声明对象，并添加了若干属性后，可以使用 `.` 或 `对象名['属性']` 方式也可以访问 获得对象中属性对应的值，称之为属性访问
 
   ```html
   <!DOCTYPE html>
@@ -92,7 +92,7 @@ var obj = {
       // 通过对象描述一个人的数据信息
       // person 是一个对象，它包含了一个属性 name
       // 属性都是成对出现的，属性名 和 值，它们之间使用英文 : 分隔
-      let person = {
+      var person = {
         name: '小明', // 描述人的姓名
         age: 18, // 描述人的年龄
         stature: 185, // 描述人的身高
@@ -113,7 +113,7 @@ var obj = {
   ```
 
   ```js
-  let person = {
+  var person = {
   	'user-name': 'pink',
   	age: 18,
   	gender: '女',
@@ -135,7 +135,7 @@ var obj = {
   
     <script>
       // 声明一个空的对象（没有任何属性）
-  	let user = {}
+  	var user = {}
       // 动态追加属性
       user.name = '小明'
       user['age'] = 18
@@ -146,18 +146,18 @@ var obj = {
   </html>
   ```
 
-  删除属性：`delete 对象名.属性`
+  删除属性：`devare 对象名.属性`
 
   ```js
-  let person = {
+  var person = {
   	uname: 'pink',
   	age: 18,
   	gender: '女',
   }
-  delete person.gender
+  devare person.gender
   ```
 
-  ## 方法和调用
+  ## 3. 方法和调用
 
   数据行为性的信息称为方法，如跑步、唱歌等，一般是动词性的，其本质是函数
 
@@ -177,7 +177,7 @@ var obj = {
   
     <script>
       // 方法是依附在对象上的函数
-      let person = {
+      var person = {
         name: '小红',
         age: 18,
         // 方法是由方法名和函数两部分构成，它们之间使用 : 分隔
@@ -206,7 +206,7 @@ var obj = {
   
     <script>
       // 方法是依附在对象上的函数
-      let person = {
+      var person = {
         name: '小红',
         age: 18,
         // 方法是由方法名和函数两部分构成，它们之间使用 : 分隔
@@ -241,7 +241,7 @@ var obj = {
   
     <script>
       // 声明一个空的对象（没有任何属性，也没有任何方法）
-  	let user = {}
+  	var user = {}
       // 动态追加属性
       user.name = '小明'
       user.['age'] = 18
@@ -259,19 +259,19 @@ var obj = {
 
   ==注：无论是属性或是方法，同一个对象中出现名称一样的，后面的会覆盖前面的==
 
-  ## null
+  ## 4. null
 
   null 也是 JavaScript 中数据类型的一种，通常只用它来表示不存在的对象。使用 typeof 检测类型它的类型时，结果为 `object`
 
-  ## 遍历对象
+  ## 5. 遍历对象
 
   ~~~javascript
-  let obj = {
+  var obj = {
       uname: 'pink',
       age: 18,
       address: '北京',
   }
-  for(let k in obj) {
+  for(var k in obj) {
       // k 是属性名，是一个字符串，带引号    obj.uname才可以取到数据，但是这里，k==='uname'，所以obj.k取不到数据，obj[k]才可以取到属性值，即obj['uname']
       console.log(obj[k])
   }
@@ -281,12 +281,12 @@ var obj = {
   for in 不提倡遍历数组因为 k 是字符串  
 
   ```js
-  let obj = {
+  var obj = {
   	uname: 'andy',
   	age: 18,
   	sex: '男',
   }
-  for(let k in obj){
+  for(var k in obj){
   	console.log(k) //打印属性名
   	console.log(boj[k]) //打印属性值
   }
