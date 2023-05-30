@@ -1,6 +1,6 @@
 ---
 title: JavaScript-拷贝
-order: 27
+order: 28
 ---
 
 浅拷贝和深拷贝只针对引用类型
