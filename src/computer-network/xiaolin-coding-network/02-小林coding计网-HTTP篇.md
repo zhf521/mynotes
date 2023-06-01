@@ -127,7 +127,22 @@ HTTP的通信接口部分用SSL/TLS协议代替 == HTTPS（即HTTP + 加密 + �
 | 减少请求次数           | 1.减少重定向请求次数：利用中间的代理服务器知晓规则<br>2.合并请求：合并资源，如CSS、webpack<br>3.延迟发送请求：按需获取，滑动页面的时候再获取资源 |
 | 减少服务器响应数据大小 | 无损压缩：gzip。请求`Accepy-Encoding`，响应`Content-Encoding`（文本、程序代码)<br>有损压缩：舍弃一些数据（质量）。请求`Accept`中的q质量因子（音视频、图片） |
 
-## 3. 
+## 3. HTTPS如何优化
+
+1. 硬件优化、软件优化：HTTPS 协议是计算密集型，而不是 I/O 密集型，所以不能把钱花在网卡、硬盘等地方，应该花在 `CPU` 上
+2. 协议优化
+   1. 用ECDHE替换RSA，往返`1`RTT
+   2. `TLS 1.2`->`TLS 1.3`，往返`1`RTT；在Hello时就发送椭圆曲线，且废除RSA和DH
+3. 证书优化
+   1. 证书选择：椭圆曲线证书比RSA密钥长度短
+   2. 证书验证优化：`OCSP`(Online Certificate Status Protocal)、`OCSP Stapling`
+4. 密钥缓存（无前向安全，且易被重放攻击）
+   1. Session ID：双方缓存密钥，Session ID和密钥相当于key-value。但是也有缺点，首先是每一个客户端都要保存密钥，其次是现在网站一般多服务器，不一定命中上次的服务器
+   2. Session Ticket：客户端负责缓存
+   3. Pre-shared Key：`TLS 1.3`重连只需要`0` RTT。重连时Ticket和HTTP一起发给服务端
+   4. 解决重放攻击，应给密钥设定过期时间
+
+
 
 
 

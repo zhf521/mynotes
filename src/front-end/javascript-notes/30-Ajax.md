@@ -1,9 +1,9 @@
 ---
 title: Ajax
-order: 28
+order: 30
 ---
 
-# Ajax 简介
+## Ajax简介
 
 Ajax 全称为 `Asynchronous JavaScript And XML`，就是异步 JS 和 XML
 
@@ -16,7 +16,7 @@ Ajax 全称为 `Asynchronous JavaScript And XML`，就是异步 JS 和 XML
 解决问题:
 - 使用 Ajax 可以==无刷新获取数据== 
 
-# Ajax 的特点
+## Ajax的特点
 
 Ajax 的优点：
 + 可以无需刷新页面而与服务器端进行通信
@@ -28,7 +28,7 @@ Ajax 的缺点：
 + 存在跨域问题（同源）
 + SEO（Search Engine Optimization，搜索引擎优化）不友好，爬虫无法爬取
 
-# XML 简介
+## XML简介
 
 XML 可扩展标记语言，被设计用来传输和存储数据
 
@@ -50,13 +50,13 @@ XML 和 HTML 类似，不同的是 HTML 中都是预定义标签，而 XML 中�
 {"name":"孙悟空","age":18,"gender":"男"}
 ```
 
-# 原生 Ajax
+## 原生Ajax
 
-## Ajax 基础
+### Ajax基础
 
 在 JS 中有内置的构造函数来创建 Ajax 对象，创建 Ajax 对象以后，我们就可以使用 Ajax 对象的方法去发送请求和接受响应
 
-### 创建一个 Ajax 对象
+#### 创建一个Ajax对象
 
 ```javascript
 // IE9及以上
@@ -68,7 +68,7 @@ const xhr = new ActiveXObject('Mricosoft.XMLHTTP')
 
 上面代码就创建了一个 Ajax 对象，我们就可以使用这个 `xhr` 对象来发送 Ajax 请求了
 
-### 配置链接信息
+#### 配置链接信息
 
 ```javascript
 const xhr = new XMLHttpRequest()
@@ -83,7 +83,7 @@ xhr.open('get', './data.json')
 
 上面的代码执行完毕以后，本次请求的基本配置信息就写完了
 
-### 发送请求
+#### 发送请求
 
 ```javascript
 const xhr = new XMLHttpRequest()
@@ -95,13 +95,13 @@ xhr.send()
 
 上面代码是把配置好信息的 Ajax 对象发送到服务端
 
-### 一个基本的 Ajax 请求
+#### 一个基本的Ajax请求
 
 一个最基本的 Ajax 请求就是上面三步，但是光有上面的三个步骤，我们确实能把请求发送的到服务端，如果服务端正常的话，响应也能回到客户端，但是我们拿不到响应，如果想拿到响应，有两个前提条件：
   1. 本次 HTTP 请求是成功的，也就是 HTTP 状态码为 200 ~ 299
   2. Ajax 对象也有自己的状态码，用来表示本次 Ajax 请求中各个阶段
 
-### Ajax 状态码
+#### Ajax状态码
 
 Ajax 状态码 `xhr.readyState`，是用来表示一个 Ajax 请求的全部过程中的某一个状态：
 + `readyState === 0`：  表示未初始化完成，也就是 `open` 方法还没有执行
@@ -114,7 +114,7 @@ Ajax 状态码 `xhr.readyState`，是用来表示一个 Ajax 请求的全部过�
 
 一个 Ajax 对象中有一个成员叫做 `xhr.status` ，这个成员就是记录本次请求的 HTTP 状态码的，两个条件都满足的时候，才是本次请求正常完成
 
-### readyStateChange
+#### readyStateChange
 
 在 Ajax 对象中有一个事件，叫做 `readyStateChange` 事件，这个事件是专门用来监听 Ajax 对象的 `readyState` 值改变的的行为，也就是说只要 `readyState` 的值发生变化了，那么就会触发该事件，所以我们就在这个事件中来监听 Ajax 的 `readyState` 是不是到 4 了
 
@@ -135,7 +135,7 @@ Ajax 状态码 `xhr.readyState`，是用来表示一个 Ajax 请求的全部过�
   }
   ```
 
-### responseText
+#### responseText
 
 Ajax 对象中的 `responseText` 成员就是用来记录服务端给我们的响应体内容的，所以我们就用这个成员来获取响应体的内容
 
@@ -153,11 +153,11 @@ Ajax 对象中的 `responseText` 成员就是用来记录服务端给我们的�
   }
   ```
 
-## 使用 Ajax 发送请求时携带参数
+### 使用Ajax发送请求时携带参数
 
 我们使用 Ajax 发送请求也是可以携带参数的，参数就是和后台交互的时候给他的一些信息，携带参数 get 和 post 两个方式还是有区别的
 
-### 发送一个带有参数的 get 请求
+#### 发送一个带有参数的get请求
 
 get 请求的参数就直接在 url 后面进行拼接就可以
 
@@ -174,7 +174,7 @@ get 请求的参数就直接在 url 后面进行拼接就可以
   - 一个是 a，值是 100
   - 一个是 b，值是 200
 
-### 发送一个带有参数的 post 请求
+#### 发送一个带有参数的post请求
 
 post 请求的参数是携带在请求体中的，所以不需要在 url 后面拼接
 
@@ -193,7 +193,7 @@ post 请求的参数是携带在请求体中的，所以不需要在 url 后面�
 
 `application/x-www-form-urlencoded` 表示的数据格式就是 `key=value&key=value`，还可以发送 JSON 格式
 
-### 不同的请求方式
+#### 不同的请求方式
 
 - get  偏向获取 
 - post 偏向提交 
@@ -204,7 +204,7 @@ post 请求的参数是携带在请求体中的，所以不需要在 url 后面�
 - option 偏向获取服务器设备信息
 - connnect 保留请求方式
 
-### 实例
+#### 实例
 
 我们可以使用 `json-server` 来演示，`JSON-Server` 是一个 Node 模块，通过在本地搭建一个 json 服务器，产生测试数据，来模拟服务器端接口数据。用于前端开发人员，在进行前后端分离开发时，后端还没有搭建好时，可以使用 `json-server` 模拟 `REST API`
 
@@ -368,11 +368,11 @@ npm install -g json-server
 
 ```
 
-# Fetch
+## Fetch
 
 XMLHttpRequest 是一个设计粗糙的 API，配置和调用方式非常混乱，而且基于事件的异步模型写起来不友好
 
-## 用法
+### 用法
 
 ```js
 fetch("http://localhost:3000/users")
@@ -420,7 +420,7 @@ fetch("http://localhost:3000/users/5",{
             })
 ```
 
-## 错误处理
+### 错误处理
 
 ```js
 //
@@ -443,7 +443,7 @@ fetch("http://localhost:3000/users1")
             })
 ```
 
-## 实例
+### 实例
 
 `db.json` 文件
 ```json
@@ -583,7 +583,7 @@ fetch("http://localhost:3000/users1")
 
 ```
 
-# axios
+## axios
 
 Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 `node.js` 中
 
@@ -593,7 +593,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 `node.js` 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 ```
 
-## get 请求
+### get请求
 
 ```js
 axios.get("http://localhost:3000/users",{
@@ -605,7 +605,7 @@ axios.get("http://localhost:3000/users",{
 })
 ```
 
-## post 请求
+### post请求
 
 ```js
 axios.post("http://localhost:3000/users",{
@@ -616,7 +616,7 @@ axios.post("http://localhost:3000/users",{
 })
 ```
 
-## put 请求
+### put请求
 
 ```js
 axios.put("http://localhost:3000/users/12",{
@@ -627,7 +627,7 @@ axios.put("http://localhost:3000/users/12",{
 })
 ```
 
-## delete 请求
+### delete请求
 
 ```js
 axios.delete("http://localhost:3000/users/11").then(res=>{
@@ -635,7 +635,7 @@ axios.delete("http://localhost:3000/users/11").then(res=>{
 })
 ```
 
-## axios (config)配置
+### axios(config)配置
 
 ```js
 
@@ -656,7 +656,7 @@ axios({
 
 
 
-## axios 拦截器
+### axios拦截器
 
 ```js
 axios.interceptors.request.use(function (config) {
@@ -683,7 +683,7 @@ axios.interceptors.response.use(function (response) {
 });
 ```
 
-## axios 中断器
+### axios中断器
 
 ```js
 const controller = new AbortController();
@@ -698,9 +698,9 @@ controller.abort()
 
 ```
 
-## 实例
+### 实例
 
-### axios 基础
+#### axios基础
 
 `db.json`
 ```json
@@ -833,7 +833,7 @@ controller.abort()
 
 ```
 
-### axios 拦截、中断
+#### axios拦截、中断
 
 `db.json`
 ```json
@@ -923,7 +923,7 @@ controller.abort()
 
 ```
 
-# 同源策略 (Same-origin policy)
+## 同源策略(Same-origin policy)
 
 一个 URL  有三部分组成：协议、域名 (指向主机)、端口，只有这三个完全相同的 URL 才能称之为同源。如下，能和  `http://www.example.com/dir1/index.html`  同源的是
 
@@ -940,7 +940,7 @@ controller.abort()
 
 注意：同源策略是浏览器的行为，是为了保护本地数据不被 JavaScript 代码获取回来的数据污染，因此拦截的是客户端发出的请求回来的数据接收，即请求发送了，服务器响应了，但是无法被浏览器接收
 
-# Jsonp
+## Jsonp
 
 Jsonp (JSON with Padding) 是 json 的一种"使用模式"，可以让网页从别的域名（网站）那获取资料，即跨域读取数据
 
@@ -996,6 +996,6 @@ Jsonp (JSON with Padding) 是 json 的一种"使用模式"，可以让网页从�
 </body>
 ````
 
-# 其他方法解决跨域问题
+## 其他方法解决跨域问题
 
 可以通过设置响应头解决，还可以使用反向代理来解决
