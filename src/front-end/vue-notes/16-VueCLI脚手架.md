@@ -3,6 +3,8 @@ title: VueCLI脚手架
 order: 16
 ---
 
+> 本文示例代码：[NoteDemoCode/Vue/16-VueCLI脚手架](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/16-VueCLI脚手架)
+
 ## 1. 说明
 
 + Vue 脚手架是 Vue 官方提供的标准化开发工具（开发平台）  
@@ -66,22 +68,26 @@ npm run build
     <button @click="showName">点我提示学校名</button>
   </div>
 </template>
-
 <script>
-  export default {
-    name: "School",
-    data() {
-      return {
-        name: "QFNU",
-        address: "曲阜",
-      };
-    },
-    methods: {showName() {alert(this.name);},},
-  };
+export default {
+  name: "School",
+  data() {
+    return {
+      name: "QFNU",
+      address: "曲阜",
+    }
+  },
+  methods: {
+    showName() {
+      alert(this.name)
+    }
+  }
+}
 </script>
-
 <style>
-  .demo {background-color: orange;}
+.demo {
+  background-color: orange;
+}
 </style>
 ```
 
@@ -93,39 +99,40 @@ npm run build
     <h2>学生年龄：{{ age }}</h2>
   </div>
 </template>
-
 <script>
-  export default {
-    name: "Student",
-    data() {
-      return {
-        name: "zhf",
-        age: 18,
-      };
-    },
-  };
+export default {
+  name: "Student",
+  data() {
+    return {
+      name: "zhf",
+      age: 18,
+    }
+  }
+}
 </script>
 ```
 
 `src/App.vue`
+
 ```vue
 <template>
-	<div>
-		<img src="./assets/logo.png" alt="">
-		<School></School>
-		<Student></Student>
-	</div>
+  <div>
+    <School></School>
+    <Student></Student>
+  </div>
 </template>
 
 <script>
-	// 引入组件
-	import School from './components/School.vue'
-	import Student from './components/Student.vue'
+//引入组件
+import School from './components/School.vue'
+import Student from './components/Student.vue'
 
-	export default {
-		name:'App',
-		components:{ School, Student }
-	}
+export default {
+  name: 'App',
+  components: {
+    School, Student
+  }
+}
 </script>
 ```
 
@@ -175,6 +182,10 @@ new Vue({
     </body>
 </html>
 ```
+
+效果：
+
+![VueCLI脚手架01.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VueCLI脚手架01.gif)
 
 ## 4. render函数
 

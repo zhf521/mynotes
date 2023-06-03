@@ -3,6 +3,8 @@ title: Vue核心-其它小知识
 order: 17
 ---
 
+> 本文示例代码：[NoteDemoCode/Vue/17-Vue核心-其它小知识](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/17-Vue核心-其它小知识)
+
 ## 1. ref属性
 
 ref 被用来给元素或子组件注册引用信息（id 的替代者）  
@@ -13,36 +15,77 @@ ref 被用来给元素或子组件注册引用信息（id 的替代者）
 
 例：
 
+`src/App.vue`
+
 ```vue
 <template>
   <div>
     <h1 v-text="msg" ref="title"></h1>
     <button ref="btn" @click="showDOM">点我输出上方的DOM元素</button>
-    <School ref="sch"/>
+    <School ref="sch"></School>
   </div>
 </template>
 
 <script>
-  import School from './components/School'
+import School from './components/School.vue'
 
-  export default {
-    name:'App',
-    components:{ School },
-    data() {
-      return {
-        msg:'欢迎学习Vue！'
-      }
-    },
-    methods: {
-      showDOM(){
-        console.log(this.$refs.title)	// 真实DOM元素
-        console.log(this.$refs.btn)		// 真实DOM元素
-        console.log(this.$refs.sch)		// School组件的实例对象（vc）
-      }
-    },
+export default {
+  name: 'App',
+  components: {
+    School
+  },
+  data() {
+    return {
+      msg: '欢迎学习Vue!'
+    }
+  },
+  methods: {
+    showDOM() {
+      console.log(this.$refs.title)// 真实DOM元素
+      console.log(this.$refs.btn)//真实DOM元素
+      console.log(this.$refs.sch)//School组件的实例对象（vc）
+    }
   }
+}
 </script>
 ```
+
+`src/components/School.vue`
+
+```vue
+<template>
+  <div class="demo">
+    <h2>学校名称：{{ name }}</h2>
+    <h2>学校地址：{{ address }}</h2>
+    <button @click="showName">点我提示学校名</button>
+  </div>
+</template>
+<script>
+export default {
+  name: "School",
+  data() {
+    return {
+      name: "QFNU",
+      address: "曲阜",
+    }
+  },
+  methods: {
+    showName() {
+      alert(this.name)
+    }
+  }
+}
+</script>
+<style>
+.demo {
+  background-color: orange;
+}
+</style>
+```
+
+效果：
+
+![Vue核心-其它小知识01.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-其它小知识01.gif)
 
 ## 2. props配置项
 
@@ -80,6 +123,7 @@ props: {
 备注：props 是只读的，Vue 底层会监测你对 props 的修改，如果进行了修改，就会发出警告，若业务需求确实需要修改，那么请复制 props 的内容到 data 中，然后去修改 data 中的数据
 
 `src/App.vue`
+
 ```vue
 <template>
   <div>
