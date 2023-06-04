@@ -187,7 +187,7 @@ export default hopeTheme({
         {
           text: "JavaScript数据结构与算法",
           icon: "javascript",
-          link: "javascript-data-structures-and-algorithms/"
+          link: "js-data-structures-and-algorithms/"
         },
       ]
     }

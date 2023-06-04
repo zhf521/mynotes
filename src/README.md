@@ -14,6 +14,8 @@ actions:
     link: /computer-usage-skills/
   - text: 计算机网络
     link: /computer-network/
+  - text: 数据结构与算法
+    link: /data-structures-and-algorithms/
 features:
   - title: 图文并茂
     icon: markdown
