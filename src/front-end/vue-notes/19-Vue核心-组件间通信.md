@@ -315,7 +315,9 @@ export default {
 </script>
 ```
 
-效果：![Vue核心-组件间通信02.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-组件间通信02.gif)
+效果：
+
+![Vue核心-组件间通信02.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-组件间通信02.gif)
 
 ## 5. 消息订阅与发布(基本不用)
 
