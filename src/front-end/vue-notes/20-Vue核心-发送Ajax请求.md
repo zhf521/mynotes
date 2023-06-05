@@ -5,13 +5,13 @@ order: 20
 
 > 本文示例代码：[NoteDemoCode/Vue/20-Vue核心-发送Ajax请求](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/20-Vue核心-发送Ajax请求)
 
-# Vue 脚手架配置代理
+## 1. Vue脚手架配置代理
 
 目的：解决开发环境 Ajax 跨域问题
 
-注意：`vue.config.js` 是一个可选的配置文件，如果项目的 (和 `package.json` 同级的) 根目录中存在这个文件，那么它会被 `@vue/cli-service` 自动加载。你也可以使用 `package.json` 中的 vue 字段，但是注意这种写法需要你严格遵照 JSON 的格式来写
+注意：`vue.config.js` 是一个可选的配置文件，如果项目的 (和 `package.json` 同级的) 根目录中存在这个文件，那么它会被 `@vue/cli-service` 自动加载。你也可以使用 `package.json` 中的 Vue 字段，但是注意这种写法需要你严格遵照 JSON 的格式来写
 
-## 方法一
+### 1.1 方法一
 
 在 `vue.config.js` 中添加如下配置：
 ```js
@@ -25,7 +25,7 @@ order: 20
 2. 缺点：不能配置多个代理，不能灵活的控制请求是否走代理
 3. 工作方式：若按照上述配置代理，当请求了前端不存在的资源时，该请求会转发给服务器 （优先匹配前端资源）
 
-## 方法二
+### 1.2 方法二
 
 编写 `vue.config.js` 配置具体代理规则：
 ```js
@@ -58,7 +58,7 @@ module.exports = {
 1. 优点：可以配置多个代理，且可以灵活的控制请求是否走代理
 2. 缺点：配置略微繁琐，请求资源时必须加前缀
 
-## 示例
+### 1.3 示例
 
 `vue.config.js`
 ```js
@@ -92,11 +92,12 @@ module.exports = {
 }
 ```
 
-# GitHub 用户搜索案例
+## 2. GitHub用户搜索案例
 
 接口地址：`https://api.github.com/search/users?q=xxx`
 
 `src/main.js`
+
 ```js
 import Vue from 'vue'
 import App from './App.vue'
@@ -113,6 +114,7 @@ new Vue({
 ```
 
 `src/App.vue`
+
 ```vue
 <template>
   <div>
@@ -124,9 +126,12 @@ new Vue({
 <script>
 import MyList from './components/MyList'
 import MySearch from './components/MySearch'
+
 export default {
   name: 'App',
-  components: { MyList, MySearch }
+  components: {
+    MyList, MySearch
+  }
 }
 </script>
 ```
@@ -217,15 +222,16 @@ export default {
 </script>
 ```
 
-# Vue 项目常用的两个 Ajax 库
+## 3. Vue项目常用的两个Ajax库
 
 vue 项目常用的两个 Ajax 库:
 1. axios：通用的 Ajax 请求库，官方推荐，效率高，安装 `npm install axios` 
-2. vue-resource：vue 插件库，vue 1. x 使用广泛，官方已不维护   
+2. vue-resource：vue 插件库，`vue1.x`使用广泛，官方已不维护   
 
 下载 vue-resource 库 `npm i vue-resource`
 
 `src/main.js`
+
 ```js
 import Vue from 'vue'
 import App from './App.vue'
