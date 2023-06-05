@@ -3,6 +3,8 @@ title: Vue核心-slot插槽
 order: 18
 ---
 
+> 本文示例代码：[NoteDemoCode/Vue/18-Vue核心-slot插槽](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/18-Vue核心-slot插槽)
+
 作用：`<slot>` 插槽让父组件可以向子组件指定位置插入 html 结构，也是一种组件间通信的方式，适用于 `父组件 ===> 子组件`  
 
 分类：默认插槽、具名插槽、作用域插槽  

@@ -122,24 +122,29 @@ props: {
 
 备注：props 是只读的，Vue 底层会监测你对 props 的修改，如果进行了修改，就会发出警告，若业务需求确实需要修改，那么请复制 props 的内容到 data 中，然后去修改 data 中的数据
 
+例：
+
 `src/App.vue`
 
 ```vue
 <template>
   <div>
-    <Student name="李四" sex="女" :age="18"/> //传递数据
-    <Student name="王五" sex="男" :age="18"/> //传递数据
+    <Student name="李四" sex="女" :age="18"></Student>
+    <Student name="王五" sex="男" :age="20"></Student>
   </div>
 </template>
 
 <script>
-  import Student from './components/Student'
+import Student from './components/Student.vue'
 
-  export default {
-    name:'App',
-    components:{ Student }
+export default {
+  name: 'App',
+  components: {
+    Student
   }
+}
 </script>
+
 ```
 
 `src/components/Student.vue`
@@ -156,25 +161,26 @@ props: {
 
 <script>
 export default {
-  name: "Student",
+  name: 'Student',
   data() {
-    console.log(this);
     return {
-      msg: "我是一个QFNU的学生",
+      msg: "我是QFNU的学生",
       myAge: this.age,
-    };
+    }
   },
-  methods: { updateAge() { this.myAge++; }, },
+  methods: {
+    updateAge() {
+      this.myAge++
+    }
+  },
   // 简单声明接收
-  // props:['name','age','sex']
-
-  // 接收的同时对数据进行类型限制
-  //   props: {
-  //     name: String,
-  //     age: Number,
-  //     sex: String,
-  //   }
-
+  //props: ['name', 'age', 'sex']
+  //接收的同时对数据进行类型限制
+  // props: {
+  //   name: String,
+  //   age: Number,
+  //   sex: String,
+  // }
   // 接收的同时对数据：进行类型限制+默认值的指定+必要性的限制
   props: {
     name: {
@@ -190,9 +196,13 @@ export default {
       required: true,
     },
   },
-};
+}
 </script>
 ```
+
+效果：
+
+![Vue核心-其它小知识02.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-其它小知识02.gif)
 
 ## 3. mixin混入
 
@@ -260,79 +270,78 @@ new Vue({
 // => "组件钩子被调用"
 ```
 
+例：
+
 `src/mixin.js`
+
 ```js
 export const hunhe = {
-	methods: {
-		showName(){
-			alert(this.name)
-		}
-	},
-	mounted() {
-		console.log('你好啊！')
-	},
+  methods: {
+    showName() {
+      alert(this.name)
+    },
+  },
+  mounted() {
+    console.log('你好啊！')
+  },
 }
-
 export const hunhe2 = {
-	data() {
-		return {
-			x:100,
-			y:200
-		}
-	},
+  data() {
+    return {
+      x: 100,
+      y: 200,
+    }
+  },
 }
-
 ```
 
 `src/components/School.vue`
 ```vue
 <template>
   <div>
-    <h2 @click="showName">学校名称：{{name}}</h2>
-    <h2>学校地址：{{address}}</h2>
+    <h2 @click="showName">学校名称：{{ name }}</h2>
+    <h2>学校地址：{{ address }}</h2>
   </div>
 </template>
 
 <script>
-  //引入一个hunhe
-  import {hunhe,hunhe2} from '../mixin'
-
-  export default {
-    name:'School',
-    data() {
-      return {
-        name:'QFNU',
-        address:'山东',
-        x:666
-      }
-    },
-    mixins:[hunhe,hunhe2]	// 局部混入
-  }
+//引入一个hunhe、hunhe2
+import { hunhe, hunhe2 } from '../mixin'
+export default {
+  name: 'School',
+  data() {
+    return {
+      name: 'QFNU',
+      address: '山东',
+      x: 666
+    }
+  },
+  mixins: [hunhe, hunhe2]	// 局部混入
+}
 </script>
+
 ```
 
 `src/components/Student.vue`
 ```vue
 <template>
   <div>
-    <h2 @click="showName">学生姓名：{{name}}</h2>
-    <h2>学生性别：{{sex}}</h2>
+    <h2 @click="showName">学生姓名：{{ name }}</h2>
+    <h2>学生性别：{{ sex }}</h2>
   </div>
 </template>
-
 <script>
-  import {hunhe,hunhe2} from '../mixin'
-
-  export default {
-    name:'Student',
-    data() {
-      return {
-        name:'张三',
-        sex:'男'
-      }
-    },
-    mixins:[hunhe,hunhe2]	// 局部混入
-  }
+import { hunhe, hunhe2 } from '../mixin'
+export default {
+  name: 'Student',
+  data() {
+    return {
+      name: '张三',
+      sex: '男'
+    }
+  },
+  mixins: [hunhe, hunhe2]	// 局部混入
+}
 </script>
 ```
 
@@ -340,20 +349,21 @@ export const hunhe2 = {
 ```vue
 <template>
   <div>
-    <School/>
+    <School></School>
     <hr>
-    <Student/>
+    <Student></Student>
   </div>
 </template>
 
 <script>
-  import School from './components/School'
-  import Student from './components/Student'
-
-  export default {
-    name:'App',
-    components:{School,Student}
+import School from './components/School.vue'
+import Student from './components/Student.vue'
+export default {
+  name: 'App',
+  components: {
+    School, Student
   }
+}
 </script>
 ```
 
@@ -365,13 +375,17 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 // Vue.mixin(hunhe)		// 全局混合引入
-// Vue.mixin(hunhe2)	// 全局混合
+// Vue.mixin(hunhe2)	// 全局混合引入
 
 new Vue({
-    el:"#app",
-    render: h => h(App)
-})
+  render: (h) => h(App),
+}).$mount('#app')
+
 ```
+
+效果：
+
+![Vue核心-其它小知识03.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-其它小知识03.gif)
 
 ## 4. plugin插件
 
@@ -383,36 +397,49 @@ new Vue({
 
 使用插件：`Vue.use()`
 
-`src/plugin.js`
+例：
+
+`src/plugins.js`
+
 ```js
 export default {
-  install(Vue,x,y,z){
-    console.log(x,y,z)
+  install(Vue, x, y, z) {
+    console.log(x, y, z)
     //全局过滤器
-    Vue.filter('mySlice', function(value){return value.slice(0,4)})
-
-    //定义全局指令
-    Vue.directive('fbind',{
-      //指令与元素成功绑定时（一上来）
-      bind(element,binding){element.value = binding.value},
-      //指令所在元素被插入页面时
-      inserted(element,binding){element.focus()},
-      //指令所在的模板被重新解析时
-      update(element,binding){element.value = binding.value}
+    Vue.filter('mySlice', function (value) {
+      return value.slice(0, 4)
     })
-
+    //定义全局指令
+    Vue.directive('fbind', {
+      //指令与元素成功绑定时（一上来）
+      bind(element, binding) {
+        element.value = binding.value
+      },
+      //指令所在元素被插入页面时
+      inserted(element, binding) {
+        element.focus()
+      },
+      //指令所在的模板被重新解析时
+      update(element, binding) {
+        element.value = binding.value
+      },
+    })
     //定义混入
     Vue.mixin({
-      data() {return {x:100,y:200}},
+      data() {
+        return { x: 100, y: 200 }
+      },
     })
-
     //给Vue原型上添加一个方法（vm和vc就都能用了）
-    Vue.prototype.hello = ()=>{alert('你好啊')}
-  }
+    Vue.prototype.hello = () => {
+      alert('你好啊')
+    }
+  },
 }
 ```
 
 `src/main.js`
+
 ```js
 import Vue from 'vue'
 import App from './App.vue'
@@ -439,24 +466,25 @@ new Vue({
 </template>
 
 <script>
-  export default {
-    name:'School',
-    data() {
-      return {
-        name:'曲阜师范大学QFNU',
-        address:'山东',
-      }
-    },
-    methods: {
-      test(){
-        this.hello()
-      }
-    },
-  }
+export default {
+  name: 'School',
+  data() {
+    return {
+      name: '曲阜师范大学QFNU',
+      address: '山东',
+    }
+  },
+  methods: {
+    test() {
+      this.hello()
+    }
+  },
+}
 </script>
 ```
 
 `src/components/Student.vue`
+
 ```vue
 <template>
   <div>
@@ -479,99 +507,37 @@ new Vue({
 </script>
 ```
 
+`src/App.vue`
+
+```vue
+<template>
+  <div>
+    <School></School>
+    <Student></Student>
+  </div>
+</template>
+
+<script>
+import School from './components/School.vue'
+import Student from './components/Student.vue'
+export default {
+  name: 'App',
+  components: {
+    School, Student
+  }
+}
+</script>
+```
+
+效果：
+
+![Vue核心-其它小知识04.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-其它小知识04.gif)
+
 ## 5. scoped样式
 
 作用：让样式在局部生效，防止冲突  
 
 写法：`<style scoped>`
-
-`src/components/School.vue`
-```vue
-<template>
-  <div class="demo">
-    <h2 class="title">学校名称：{{ name }}</h2>
-    <h2>学校地址：{{ address }}</h2>
-  </div>
-</template>
-
-<script>
-  export default {
-    name:'School',
-    data() {
-      return {
-        name:'曲阜师范大学QFNU',
-        address:'山东',
-      }
-    }
-  }
-</script>
-
-<style scoped>
-  .demo{
-    background-color: skyblue;
-  }
-</style>
-```
-
-`src/components/Student.vue`
-```vue
-<template>
-  <div class="demo">
-    <h2 class="title">学生姓名：{{ name }}</h2>
-    <h2 class="atguigu">学生性别：{{ sex }}</h2>
-  </div>
-</template>
-
-<script>
-  export default {
-    name: 'Student',
-    data() {
-      return {
-        name: '张三',
-        sex: '男'
-      }
-    }
-  }
-</script>
-
-<style lang="less" scoped>
-  .demo {
-    background-color: pink;
-    .atguigu {
-      font-size: 40px;
-    }
-  }
-</style>
-
-```
-
-`src/App.vue`
-```vue
-<template>
-  <div>
-    <h1 class="title">你好啊</h1>
-    <School/>
-    <Student/>
-  </div>
-</template>
-
-<script>
-  import Student from './components/Student'
-  import School from './components/School'
-
-  export default {
-    name: 'App',
-    components: { School, Student }
-  }
-</script>
-
-<style scoped>
-  .title {
-    color: red;
-  }
-</style>
-
-```
 
 ## 6. $nextTick
 这是一个生命周期钩子  
@@ -586,3 +552,70 @@ new Vue({
 >
 > 点击表单时会用一个布尔值配合v-show使表单显示，可是改变布尔值的时候，后面的focus方法会跟着执行，然后再渲染模板
 
+例：
+
+`src/App.vue`
+
+```vue
+<template>
+  <div>
+    <Test></Test>
+  </div>
+</template>
+
+<script>
+import Test from './components/Test.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Test
+  }
+}
+</script>
+```
+
+`src/components/Test.vue`
+
+```vue
+<template>
+  <div>
+    <label>
+      <span v-show="!showInput">{{ msg }}</span>
+      <input type="text" v-show="showInput" :value="msg" ref="editMsg" @blur="handleBlur($event)">
+    </label>
+    <br>
+    <br>
+    <button @click="edit">编辑</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Test',
+  data() {
+    return {
+      showInput: false,
+      msg: '你好',
+    }
+  },
+  methods: {
+    edit() {
+      this.showInput = true
+      this.$nextTick(function () {
+        this.$refs.editMsg.focus()
+      })
+    },
+    handleBlur(e) {
+      this.showInput = false
+      this.msg = e.target.value
+      console.log(e.target.value)
+    }
+  }
+}
+</script>
+```
+
+效果：
+
+![Vue核心-其它小知识05.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-其它小知识05.gif)
