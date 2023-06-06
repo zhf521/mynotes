@@ -50,7 +50,7 @@ Vue 的一个插件库，专门用来实现 SPA 应用
 
 ### 3.1 应用VueRouter插件
 
-在 `src` 目录下创建 `main.js` 项目主入口文件，编写如下代码来应用 VueRouter 插件，注册路由器对象（router）
+在 `src` 目录下 `main.js` 项目主入口文件，编写如下代码来应用 VueRouter 插件，注册路由器对象（router）
 
 `main.js`
 ```js
@@ -64,11 +64,13 @@ import VueRouter from 'vue-router'
 import router from './router'
 
 //关闭Vue的生产提示
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 //应用插件
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 //创建vm
+//通过 router 配置参数注入路由
+// 从而让整个应用都有路由功能
 new Vue({
 	el:'#app',
 	render: h => h(App),
@@ -109,13 +111,13 @@ export default {
 `src/components/Banner.vue`
 ```vue
 <template>
-  <div>
-    <h2>Vue Router Demo</h2>
-  </div>
+  <div>
+    <h2>Vue Router Demo</h2>
+  </div>
 </template>
 <script>
 export default {
-  name: 'Banner'
+  name: 'Banner'
 }
 </script>
 ```
@@ -181,7 +183,7 @@ export default {
 
 效果：
 
-
+![VueRouter01.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VueRouter01.gif)
 
 ### 3.6 注意
 
@@ -281,7 +283,6 @@ export default {
   },
 }
 </script>
-<style></style>
 ```
 
 `src/pages/Message.vue`
@@ -324,7 +325,6 @@ export default {
   },
 }
 </script>
-<style></style>
 ```
 
 `src/pages/Home.vue`
@@ -349,6 +349,10 @@ export default {
 }
 </script>
 ```
+
+效果：
+
+![VueRouter02.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VueRouter02.gif)
 
 ## 5. 命名路由
 
@@ -511,7 +515,7 @@ export default {
   data() {
     return {
       messages: [],
-    };
+    }
   },
   mounted() {
     //模拟Ajax请求从后台获取数据
@@ -601,6 +605,10 @@ const router = new VueRouter({
 export default router
 ```
 
+效果：
+
+![VueRouter03.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VueRouter03.gif)
+
 ### 6.2 路由的params参数
 
 配置路由，声明接收 params 参数：
@@ -686,7 +694,7 @@ export default {
   data() {
     return {
       messages: [],
-    };
+    }
   },
   mounted() {
     //模拟Ajax请求从后台获取数据
@@ -730,6 +738,7 @@ export default {
 ```
 
 `src/router/index.js`
+
 ```js
 import VueRouter from 'vue-router' // 引入VueRouter
 import About from '../pages/About' // 路由组件
@@ -776,6 +785,10 @@ const router = new VueRouter({
 export default router
 ```
 
+效果：
+
+![VueRouter04.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VueRouter04.gif)
+
 ### 6.3 路由的props配置
 
 props 作用：让路由组件更方便的收到参数
@@ -807,7 +820,7 @@ props 作用：让路由组件更方便的收到参数
 props['参数1','参数2',……]
 ```
 
-例：将上述案例使用 props 配置的第三种方法
+例：将上述案例使用 props 配置的第三种方法传递query参数
 
 `src/router/index.js`
 ```js
@@ -841,7 +854,7 @@ const router = new VueRouter({
           component: Message,
           children: [
             {
-              path: 'detail', //使用占位符声明接收params参数
+              path: 'detail', 
               name: 'xiangqing', //命名路由
               component: Detail,
               //第一种写法：props值为对象，该对象中所有的key-value的组合最终都会通过props传给Detail组件
@@ -1067,6 +1080,10 @@ export default {
 </script>
 ```
 
+效果：
+
+![VueRouter05.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VueRouter05.gif)
+
 ## 9. 缓存路由组件
 
 作用：让不展示的路由组件保持挂载，不被销毁
@@ -1107,7 +1124,6 @@ export default {
   },
 }
 </script>
-<style></style>
 ```
 
 `src/pages/Home.vue`
@@ -1135,6 +1151,10 @@ export default {
 </script>
 ```
 
+效果：
+
+![VueRouter06.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VueRouter06.gif)
+
 ## 10. activated与deactivated生命周期钩子 
 
 activated 和 deactivated 是路由组件所独有的两个生命周期钩子，用于捕获路由组件的激活状态
@@ -1143,7 +1163,7 @@ activated 和 deactivated 是路由组件所独有的两个生命周期钩子，
 1. activated 路由组件被激活时触发  
 2. deactivated 路由组件失活时触发
 
-例：我们在上面案例中 news 上面添加一个动态的“欢迎学习 Vue”
+例：我们在上面案例中 news 上面添加一个动态的“欢迎学习Vue”
 
 `src/pages/News.vue`
 ```vue
@@ -1176,8 +1196,11 @@ export default {
   }
 }
 </script>
-<style></style>
 ```
+
+效果：
+
+![VueRouter07.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VueRouter07.gif)
 
 ## 11. 路由守卫
 
@@ -1278,6 +1301,10 @@ router.afterEach((to, from) => {
 export default router
 ```
 
+效果：
+
+![VueRouter08.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VueRouter08.gif)
+
 ### 11.2 独享路由守卫
 
 例：我们给上述案例添加独享路由守卫，当 localStorage 中 school 为 `QFNU` 时才可以访问新闻界面
@@ -1364,7 +1391,6 @@ router.afterEach((to, from) => {
 
 //暴露router
 export default router
-
 ```
 
 ### 11.3 组件内路由守卫
@@ -1380,6 +1406,7 @@ beforeRouteLeave (to, from, next) {... next()},
 例：我们将上述案例中其它的路由守卫配置删除，给 About 组件添加组件内路由守卫
 
 `src/pages/About.vue`
+
 ```vue
 <template>
   <h2>我是About的内容</h2>
@@ -1405,6 +1432,10 @@ export default {
 }
 </script>
 ```
+
+效果：
+
+![VueRouter09.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/VueRouter09.gif)
 
 ## 12. 路由器的两种工作模式
 
