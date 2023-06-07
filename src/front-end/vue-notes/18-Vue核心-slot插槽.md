@@ -5,7 +5,7 @@ order: 18
 
 > 本文示例代码：[NoteDemoCode/Vue/18-Vue核心-slot插槽](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/18-Vue核心-slot插槽)
 
-作用：`<slot>` 插槽让父组件可以向子组件指定位置插入 html 结构，也是一种组件间通信的方式，适用于 `父组件 ===> 子组件`  
+什么是插槽：子组件提供给父组件的占位符，用slot元素来表示，父组件可以在这个占位符里面填充各种模板代码（HTML结构、组件等），简而言之，就是子组件留个坑，父组件可以使用指定的内容来填坑
 
 分类：默认插槽、具名插槽、作用域插槽  
 
@@ -14,6 +14,7 @@ order: 18
 父组件中：
 ```vue
 <Category>
+    <!--我将用下面的内容来填坑-->
 	<div>html结构1</div>
 </Category>
 ```
@@ -22,7 +23,7 @@ order: 18
 ```vue
 <template>
 	<div>
-		<!-- 定义插槽 -->
+		<!-- 定义插槽，我是一个坑 -->
 		<slot>插槽默认内容...</slot>
 	</div>
 </template>
@@ -121,7 +122,9 @@ img {
 
 ## 2. 具名插槽
 
-父组件指明放入子组件的哪个插槽 `slot="footer"`，如果是 `template` 可以写成 `v-slot:footer`
+父组件指明放入子组件的哪个插槽 `slot="footer"`
+
+还可以在一个 `<template>` 元素上使用 `v-slot:footer` 指令，并以 slot 的参数的形式提供其名称（可以简写为：`#footer`）
 
 父组件中：
 ```vue
@@ -131,6 +134,7 @@ img {
 	</template>
 	
 	<template v-slot:footer>
+	<template #footer>
 		<div>html结构2</div>
 	</template>
 </Category>
@@ -140,7 +144,7 @@ img {
 ```vue
 <template>
 	<div>
-		<!-- 定义插槽 -->
+		<!-- 定义插槽,使用name来定义 -->
 		<slot name="center">插槽默认内容...</slot>
 		<slot name="footer">插槽默认内容...</slot>
 	</div>
@@ -262,7 +266,7 @@ img {
 
 ## 3. 作用域插槽
 
-scope 用于父组件往子组件插槽放的 html 结构接收子组件的数据  
+作用：能够传递数据，父组件可以接收子组件传递的参数
 
 理解：数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定 
 
@@ -278,16 +282,26 @@ scope 用于父组件往子组件插槽放的 html 结构接收子组件的数�
 		</ul>
 	</template>
 </Category>
-	
+
 <Category>
 	<template slot-scope="scopeData">
 		<!-- 生成的是h4标题 -->
 		<h4 v-for="g in scopeData.games" :key="g">{{g}}</h4>
 	</template>
 </Category>
+	
+<Category>
+	<template v-slot="scopeData">
+		<!-- 生成的是h4标题 -->
+		<h4 v-for="g in scopeData.games" :key="g">{{g}}</h4>
+	</template>
+</Category>
 ```
 
+`slot` 和 `slot-scope`目前已被`v-slot`指令代替
+
 子组件中：
+
 ```vue
 <template>
 	<div>
@@ -333,7 +347,7 @@ scope 用于父组件往子组件插槽放的 html 结构接收子组件的数�
       </template>
     </Category>
     <Category title="游戏">
-      <template slot-scope="{games}">
+      <template v-slot="{games}">
         <h4 v-for="(g, index) in games" :key="index">{{ g }}</h4>
       </template>
     </Category>
