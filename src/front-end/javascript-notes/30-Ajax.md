@@ -3,7 +3,9 @@ title: Ajax
 order: 30
 ---
 
-## Ajax简介
+## 1. 认识Ajax
+
+### 1.1 Ajax简介
 
 Ajax 全称为 `Asynchronous JavaScript And XML`，就是异步 JS 和 XML
 
@@ -16,7 +18,7 @@ Ajax 全称为 `Asynchronous JavaScript And XML`，就是异步 JS 和 XML
 解决问题:
 - 使用 Ajax 可以==无刷新获取数据== 
 
-## Ajax的特点
+### 1.2 Ajax的特点
 
 Ajax 的优点：
 + 可以无需刷新页面而与服务器端进行通信
@@ -28,7 +30,7 @@ Ajax 的缺点：
 + 存在跨域问题（同源）
 + SEO（Search Engine Optimization，搜索引擎优化）不友好，爬虫无法爬取
 
-## XML简介
+### 1.3 XML简介
 
 XML 可扩展标记语言，被设计用来传输和存储数据
 
@@ -50,7 +52,227 @@ XML 和 HTML 类似，不同的是 HTML 中都是预定义标签，而 XML 中�
 {"name":"孙悟空","age":18,"gender":"男"}
 ```
 
-## 原生Ajax
+## 2. axios
+
+### 2.1 基本使用
+
+因为 axios 库语法简单，让我们有更多精力关注在与服务器通信上，后续再学习 XMLHttpRequest 对象了解 Ajax 底层原理
+
+axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 `node.js` 中
+
+> https://www.npmjs.com/package/axios
+
+引入axios：
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+```
+
+引入后会得到一个axios函数，axios函数的基本使用语法：
+
+```js
+axios({
+  url: '目标资源地址'
+}).then((result) => {
+  // 对服务器返回的数据做后续处理
+})
+```
+
+> 注意：请求的 url 地址, 就是标记资源的网址
+
+### 2.2 认识URL
+
+统一资源定位符，简称网址，用于定位网络中的资源（资源指的是：网页，图片，数据，视频，音频等等）
+
+URL的组成：协议，域名，资源路径（URL 组成有很多部分，我们先掌握这3个重要的部分即可）
+
++ 什么是http协议：超文本传输协议，规定了浏览器和服务器传递数据的格式
++ 什么是域名：标记服务器在互联网当中的方位，网络中有很多服务器，你想访问哪一台，就需要知道它的域名才可以
++ 什么是资源路径：一个服务器内有多个资源，用于标识你要访问的资源具体的位置
+
+### 2.3 URL查询参数
+
+查询参数可以携带给服务器额外信息，让服务器返回我想要的某一部分数据而不是全部数据
+
+语法：在URL网址后面用`?`拼接格式：`http://xxxx.com/xxx/xxx?参数名1=值1&参数名2=值2`
+
+axios使用params配置项即可携带查询参数：
+
+```js
+axios({
+  url: '目标资源地址',
+  params: {
+    参数名: 值
+  }
+}).then(result => {
+  // 对服务器返回的数据做后续处理
+})
+```
+
+### 2.4 常用请求方法和数据提交
+
+请求方法是一些固定单词的英文，例如：GET，POST，PUT，DELETE，PATCH（这些都是http协议规定的），每个单词对应一种对服务器资源要执行的操作
+
+| 请求方法 | 操作             |
+| -------- | ---------------- |
+| GET      | 获取数据         |
+| POST     | 数据提交         |
+| PUT      | 修改数据（全部） |
+| DELETE   | 删除数据         |
+| PATCH    | 修改数据（部分） |
+
+注意：前面我们获取数据其实用的就是GET请求方法，但是axios内部设置了默认请求方法就是GET，我们就没有写
+
+axios提交数据到服务器：
+
+```js
+axios({
+  url: '目标资源地址',
+  method: '请求方法',
+  data: {
+    参数名: 值
+  }
+}).then(result => {
+  // 对服务器返回的数据做后续处理
+})
+```
+
+### 2.5 axios错误处理
+
+使用axios的`.catch`方法，可以捕获请求响应的错误并做后续处理，语法如下：
+
+```js
+axios({
+  // ...请求选项
+}).then(result => {
+  // 处理成功数据
+}).catch(error => {
+  // 处理失败错误
+})
+```
+
+## 3. HTTP协议
+
+HTTP 协议规定了浏览器和服务器返回内容的格式
+
+### 3.1 请求报文
+
+请求报文：是浏览器按照协议规定发送给服务器的内容
+
+这里的格式包含：
+
+* 请求行：请求方法，URL，协议
+* 请求头：以键值对的格式携带的附加信息，比如：Content-Type（指定了本次传递的内容类型）
+* 空行：分割请求头，空行之后的是发送给服务器的资源
+* 请求体：发送的资源
+
+### 3.2 响应报文
+
+响应报文：是服务器按照协议固定的格式，返回给浏览器的内容
+
+响应报文的组成：
+
+* 响应行（状态行）：协议，HTTP响应状态码，状态信息
+* 响应头：以键值对的格式携带的附加信息，比如：Content-Type（告诉浏览器，本次返回的内容类型）
+* 空行：分割响应头，控制之后的是服务器返回的资源
+* 响应体：返回的资源
+
+HTTP响应状态码，用来表明请求是否成功完成：
+
+| 状态码 | 说明       |
+| ------ | ---------- |
+| 1xx    | 信息       |
+| 2xx    | 成功       |
+| 3xx    | 重定向消息 |
+| 4xx    | 客户端错误 |
+| 5xx    | 服务端错误 |
+
+## 4. form-serialize插件
+
+使用form-serialize插件，可以快速收集目标表单范围内表单元素的值
+
+官网：[form-serialize - npm (npmjs.com)](https://www.npmjs.com/package/form-serialize)
+
+form-serialize 插件语法：
+
+1. 引入`form-serialize`插件到自己网页中
+2. 使用 serialize 函数
+
+   * 参数1：要获取的form表单标签对象（要求表单元素需要有 name 属性-用来作为收集的数据中属性名）
+   * 参数2：配置对象
+     * hash：
+       * true - 收集出来的是一个 JS 对象结构
+       * false - 收集出来的是一个查询字符串格式
+     * empty：
+       * true - 收集空值
+       * false - 不收集空值
+
+例：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form-serialize插件使用</title>
+</head>
+
+<body>
+  <form class="example-form">
+    <input type="text" name="username">
+    <br>
+    <input type="text" name="password">
+    <br>
+    <input type="button" class="btn" value="提交">
+  </form>
+  <!-- 
+    目标：在点击提交时，使用form-serialize插件，快速收集表单元素值
+    1. 把插件引入到自己网页中
+  -->
+  <script src="./lib/form-serialize.js"></script>
+  <script>
+    document.querySelector('.btn').addEventListener('click', () => {
+      /**
+       * 2. 使用serialize函数，快速收集表单元素的值
+       * 参数1：要获取哪个表单的数据
+       *  表单元素设置name属性，值会作为对象的属性名
+       *  建议name属性的值，最好和接口文档参数名一致
+       * 参数2：配置对象
+       *  hash 设置获取数据结构
+       *    - true：JS对象（推荐）一般请求体里提交给服务器
+       *    - false: 查询字符串
+       *  empty 设置是否获取空值
+       *    - true: 获取空值（推荐）数据结构和标签结构一致
+       *    - false：不获取空值
+      */
+      const form = document.querySelector('.example-form')
+      const data = serialize(form, { hash: true, empty: true })
+      // const data = serialize(form, { hash: false, empty: true })
+      // const data = serialize(form, { hash: true, empty: false })
+      console.log(data) //{username: 'xxx', password: 'xxx'}
+    })
+  </script>
+</body>
+
+</html>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+## . 原生Ajax
 
 ### Ajax基础
 
@@ -368,7 +590,7 @@ npm install -g json-server
 
 ```
 
-## Fetch
+## . Fetch
 
 XMLHttpRequest 是一个设计粗糙的 API，配置和调用方式非常混乱，而且基于事件的异步模型写起来不友好
 
@@ -583,345 +805,11 @@ fetch("http://localhost:3000/users1")
 
 ```
 
-## axios
-
-Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 `node.js` 中
-
-> https://www.npmjs.com/package/axios
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-```
-
-### get请求
-
-```js
-axios.get("http://localhost:3000/users",{
-    params:{
-        name:"kerwin"
-    }
-}).then(res=>{
-    console.log(res.data)
-})
-```
-
-### post请求
-
-```js
-axios.post("http://localhost:3000/users",{
-    name:"kerwin",
-    age:100
-}).then(res=>{
-	console.log(res.data)
-})
-```
-
-### put请求
-
-```js
-axios.put("http://localhost:3000/users/12",{
-    name:"kerwin111",
-    age:200
-}).then(res=>{
-    console.log(res.data)
-})
-```
-
-### delete请求
-
-```js
-axios.delete("http://localhost:3000/users/11").then(res=>{
-    console.log(res.data)
-})
-```
-
-### axios(config)配置
-
-```js
-
-axios({
-    method: 'post',
-    url: 'http://localhost:3000/users',
-    data: {
-        name: 'kerwin',
-        age: 100
-    }
-})
-    .then(res => {
-    console.log(res.data)
-}).catch(err=>{
-    console.log(err)
-})
-```
 
 
 
-### axios拦截器
 
-```js
-axios.interceptors.request.use(function (config) {
-    // Do something before request is sent
-    console.log("loading-开始")
-    return config;
-}, function (error) {
-    // Do something with request error
-    return Promise.reject(error);
-});
 
-// Add a response interceptor
-axios.interceptors.response.use(function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
-
-    console.log("loading-结束")
-    return response;
-}, function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
-    console.log("loading---结束")
-    return Promise.reject(error);
-});
-```
-
-### axios中断器
-
-```js
-const controller = new AbortController();
-
-axios.get('/foo/bar', {
-   signal: controller.signal
-}).then(function(response) {
-   //...
-});
-// cancel the request
-controller.abort()
-
-```
-
-### 实例
-
-#### axios基础
-
-`db.json`
-```json
-{
-  "list": [
-    "111",
-    "222",
-    "333"
-  ],
-  "users": [
-    {
-      "name": "kerwin",
-      "age": "100",
-      "id": 1
-    },
-    {
-      "name": "zhf",
-      "age": 18,
-      "id": 2
-    }
-  ],
-  "shopcar": [],
-  "detail": {
-    "name": "手机"
-  }
-}
-```
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.3.4/axios.js"></script>
-  </head>
-  <body>
-    <button id="get">get</button>
-    <button id="post">post</button>
-    <button id="put">put</button>
-    <button id="patch">patch</button>
-    <button id="delete">delete</button>
-    <script>
-      const oGet = document.querySelector('#get')
-      const oPost = document.querySelector('#post')
-      const oPut = document.querySelector('#put')
-      const oPatch = document.querySelector('#patch')
-      const oDelete = document.querySelector('#delete')
-
-      oGet.addEventListener('click', function () {
-        axios
-          .get('http://localhost:3000/users', {
-            params: { name: 'kerwin' },
-          })
-          .then((res) => {
-            console.log(res.data)
-          })
-          .catch((err) => {
-            console.log('err', err)
-          })
-      })
-      oPost.addEventListener('click', function () {
-        axios
-          .post('http://localhost:3000/users', {
-            name: 'zhf',
-            age: 18,
-          }) //"name=xt&age=18" 传入form格式
-          .then((res) => {
-            console.log(res.data)
-          })
-          .catch((err) => {
-            console.log('err', err)
-          })
-      })
-      oPut.addEventListener('click', function () {
-        axios
-          .put('http://localhost:3000/users/3', {
-            age: 180,
-          })
-          .then((res) => {
-            console.log(res.data)
-          })
-          .catch((err) => {
-            console.log('err', err)
-          })
-      })
-      oPatch.addEventListener('click', function () {
-        axios
-          .patch('http://localhost:3000/users/2', {
-            age: 18,
-          })
-          .then((res) => {
-            console.log(res.data)
-          })
-          .catch((err) => {
-            console.log('err', err)
-          })
-      })
-      oDelete.addEventListener('click', function () {
-        axios
-          .delete('http://localhost:3000/users/3')
-          .then((res) => {
-            console.log(res.data)
-          })
-          .catch((err) => {
-            console.log('err', err)
-          })
-      })
-
-      //使用配置写法
-      // axios({
-      //   method: 'post',
-      //   url: 'http://localhost:3000/users',
-      //   //get 用params
-      //   //put post patch 用data
-      //   data: {
-      //     name: 'gangdan',
-      //     age: 60,
-      //   },
-      // }).then((res) => {
-      //   console.log(res.data).catch((err) => {
-      //     console.log('err', err)
-      //   })
-      // })
-    </script>
-  </body>
-</html>
-
-```
-
-#### axios拦截、中断
-
-`db.json`
-```json
-{
-    "news": [
-      { "id": 1, "title": "男人看了沉默,女人看了流泪", "author": "kerwin" },
-      { "id": 2, "title": "震惊！他年薪仅1元", "author": "tiechui" },
-      { "id": 3, "title": "速看！万分危急！", "author": "gangdan" }
-    ],
-    "comments": [
-      { "id": 1, "body": "我是男人", "newsId": 1 },
-      { "id": 2, "body": "我是女人", "newsId": 1 },
-      { "id": 3, "body": "我年薪2元", "newsId": 2 },
-      { "id": 4, "body": "我年薪3元", "newsId": 2 },
-      { "id": 5, "body": "1块钱就能买1块钱的东西", "newsId": 3 },
-      { "id": 6, "body": "2块钱就能买2块钱的东西", "newsId": 3 }
-    ]
-}
-  
-```
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.3.4/axios.js"></script>
-  </head>
-  <body>
-    <button id="get">get</button>
-    <button id="abort">abort</button>
-    <script>
-      const oGet = document.querySelector('#get')
-      const oAbort = document.querySelector('#abort')
-      // Add a request interceptor
-      axios.interceptors.request.use(
-        function (config) {
-          // Do something before request is sent
-          console.log('loading显示...')
-          return config
-        },
-        function (error) {
-          // Do something with request error
-          return Promise.reject(error)
-        }
-      )
-
-      // Add a response interceptor
-      axios.interceptors.response.use(
-        function (response) {
-          // Any status code that lie within the range of 2xx cause this function to trigger
-          // Do something with response data
-          console.log('成功-隐藏loading')
-          return response
-        },
-        function (error) {
-          // Any status codes that falls outside the range of 2xx cause this function to trigger
-          // Do something with response error
-          console.log('失败-隐藏loading')
-          return Promise.reject(error)
-        }
-      )
-
-      const controller = new AbortController()
-
-      oGet.onclick = function () {
-        axios
-          .get('http://localhost:3000/news', {
-            signal: controller.signal,
-          })
-          .then((res) => {
-            console.log(res.data)
-          })
-          .catch((err) => {
-            console.log('err', err)
-          })
-      }
-      oAbort.onclick = function () {
-        controller.abort()
-      }
-    </script>
-  </body>
-</html>
-
-```
 
 ## 同源策略(Same-origin policy)
 
