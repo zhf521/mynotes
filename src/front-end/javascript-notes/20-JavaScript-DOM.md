@@ -915,7 +915,7 @@ console.log(oDiv) // <div>我是一个文本</div>
 
 `removeChild`：移除某一节点下的某一个节点
 
-语法：`父节点.removeChild(要移除的字节点)`
+语法：`父节点.removeChild(要移除的子节点)`
 
 ```html
 <body>

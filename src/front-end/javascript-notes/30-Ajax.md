@@ -260,9 +260,71 @@ form-serialize 插件语法：
 </html>
 ```
 
+## 5. 图片上传
 
+方法：
 
+1. 先获取图片文件对象
 
+2. 使用 FormData 表单数据对象装入（因为图片是文件而不是以前的数字和字符串了所以传递文件一般需要放入 FormData 以键值对-文件流的数据传递（可以查看请求体-确认请求体结构）
+
+   ```js
+   const fd = new FormData()
+   fd.append(参数名, 值)
+   ```
+
+3. 提交表单数据对象，使用服务器返回图片 url 网址
+
+例：
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片上传</title>
+</head>
+
+<body>
+  <!-- 文件选择元素 -->
+  <input type="file" class="upload">
+  <img src="" alt="" class="my-img">
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    /**
+     * 目标：图片上传，显示到网页上
+     *  1. 获取图片文件
+     *  2. 使用 FormData 携带图片文件
+     *  3. 提交到服务器，获取图片url网址使用
+    */
+    // 文件选择元素->change改变事件
+    document.querySelector('.upload').addEventListener('change', e => {
+      // 1. 获取图片文件
+      console.log(e.target.files[0])
+      // 2. 使用 FormData 携带图片文件
+      const fd = new FormData()
+      fd.append('img', e.target.files[0])
+      // 3. 提交到服务器，获取图片url网址使用
+      axios({
+        url: '接口地址',
+        method: 'POST',
+        data: fd
+      }).then(result => {
+        console.log(result)
+        // 取出图片url网址，用img标签加载显示
+        const imgUrl = result.data.data.url
+        document.querySelector('.my-img').src = imgUrl
+      })
+    })
+  </script>
+</body>
+
+</html>
+```
 
 
 
