@@ -1,6 +1,6 @@
 ---
 title: Ajax
-order: 30
+order: 31
 ---
 
 ## 1. 认识Ajax

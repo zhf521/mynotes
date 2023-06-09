@@ -1,6 +1,6 @@
 ---
 title: JavaScript-执行机制
-order: 32
+order: 30
 ---
 
 JavaScript 语言的一大特点就是单线程，也就是说，同一时间只能做一件事

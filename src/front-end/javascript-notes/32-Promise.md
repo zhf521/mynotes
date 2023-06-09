@@ -1,6 +1,6 @@
 ---
 title: Promise
-order: 31
+order: 32
 ---
 
 ## Promise是什么
