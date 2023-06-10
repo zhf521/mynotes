@@ -326,31 +326,240 @@ form-serialize 插件语法：
 </html>
 ```
 
+## 6. 原生Ajax
 
-
-
-
-
-
-
-
-## . 原生Ajax
-
-### Ajax基础
+### 6.1 基本使用
 
 在 JS 中有内置的构造函数来创建 Ajax 对象，创建 Ajax 对象以后，我们就可以使用 Ajax 对象的方法去发送请求和接受响应
 
-#### 创建一个Ajax对象
+语法：
 
-```javascript
+```js
 // IE9及以上
 const xhr = new XMLHttpRequest()
-
 // IE9以下
 const xhr = new ActiveXObject('Mricosoft.XMLHTTP')
+xhr.open('请求方法', '请求url网址')
+xhr.addEventListener('loadend', () => {
+  // 响应结果
+  console.log(xhr.response)
+})
+xhr.send()
 ```
 
-上面代码就创建了一个 Ajax 对象，我们就可以使用这个 `xhr` 对象来发送 Ajax 请求了
+使用步骤：
+
+1. 创建 XHR 对象 
+2. 调用 open 方法，设置 url 和请求方法
+3. 监听 loadend 事件，接收结果
+4. 调用 send 方法，发起请求
+
+### 6.2 查询参数
+
+查询参数：携带额外信息给服务器，返回匹配想要的数据
+
+查询参数要携带的位置和语法：`http://xxxx.com/xxx/xxx?参数名1=值1&参数名2=值2`
+
+方法：在调用 open 方法的时候，在`url?`后面按照指定格式拼接参数名和值
+
+例：
+
+```js
+/**
+ * 目标：使用XHR携带查询参数，展示某个省下属的城市列表
+*/
+const xhr = new XMLHttpRequest()
+xhr.open('GET', 'http://hmajax.itheima.net/api/city?pname=辽宁省')
+xhr.addEventListener('loadend', () => {
+  console.log(xhr.response)
+  const data = JSON.parse(xhr.response)
+  console.log(data)
+  document.querySelector('.city-p').innerHTML = data.list.join('<br>')
+})
+xhr.send()
+```
+
+如果有多个查询参数，如果我们自己拼接的话，很麻烦，这里用URLSearchParams 把参数对象转成`参数名1=值1&参数名2=值2`格式的字符串，语法如下：
+
+```js
+// 1. 创建 URLSearchParams 对象
+const paramsObj = new URLSearchParams({
+  参数名1: 值1,
+  参数名2: 值2
+})
+
+// 2. 生成指定格式查询参数字符串
+const queryString = paramsObj.toString()
+// 结果：参数名1=值1&参数名2=值2
+```
+
+### 6.3 数据提交
+
+步骤和语法：我们需要自己设置请求头`Content-Type：xxx`，来告诉服务器端，
+
+需要在 send 方法调用时，传入请求体携带
+
+例：
+
+```js
+const xhr = new XMLHttpRequest()
+xhr.open('请求方法', '请求url网址')
+xhr.addEventListener('loadend', () => {
+  console.log(xhr.response)
+})
+
+// 1. 设置请求头，告诉服务器，我传递的内容类型，是 JSON 字符串
+xhr.setRequestHeader('Content-Type', 'application/json')
+// 2. 准备数据并转成 JSON 字符串
+const user = { username: 'xxxxxxxx', password: 'xxxxxxxx' }
+const userStr = JSON.stringify(user)
+// 3. 发送请求体数据
+xhr.send(userStr)
+```
+
+### 6.4 请求响应判断
+
+AJAX 如何判断是否请求响应成功：响应状态码在大于等于 200 并且小于 300 的范围是成功的
+
+响应状态码：`xhr.status`
+
+### 6.5 封装简易axios
+
+步骤：
+
+1. 定义 myAxios 函数，接收配置对象，返回 Promise 对象
+2. 发起 XHR 请求，默认请求方法为 GET
+3. 调用成功/失败的处理程序
+4. 使用 myAxios 函数
+
+代码：
+
+```js
+// 1. 定义myAxios函数，接收配置对象，返回Promise对象
+function myAxios(config){
+    return new Promise((resolve,reject)=>{
+        // 2. 发起XHR请求，默认请求方法为GET
+        const xhr = new XMLHttpRequest()
+        xhr.open(config.method || 'GET', config.url)
+        xhr.addEventListener('loadend',()=>{
+            // 3. 调用成功/失败的处理程序
+            if(xhr.status>=200&&xhr.status<300){
+                resolve(JSON.parse(xhr.response))
+            }else{
+                reject(new Error(xhr.response))
+            }
+        })
+        xhr.send()
+    })
+}
+// 4. 使用myAxios函数
+myAxios({
+    url:'目标资源地址'
+}).then(result=>{
+    
+}).catch(error=>{
+    
+})
+```
+
+修改代码支持传递查询参数功能，步骤：
+
+1. myAxios 函数调用后，判断 params 选项
+2. 基于 URLSearchParams 转换查询参数字符串
+3. 使用封装的 myAxios 函数
+
+代码：
+
+```js
+function myAxios(config) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    // 1. 判断有params选项，携带查询参数
+    if (config.params) {
+      // 2. 使用URLSearchParams转换，并携带到url上
+      const paramsObj = new URLSearchParams(config.params)
+      const queryString = paramsObj.toString()
+      // 把查询参数字符串，拼接在url？后面
+      config.url += `?${queryString}`
+    }
+
+    xhr.open(config.method || 'GET', config.url)
+    xhr.addEventListener('loadend', () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve(JSON.parse(xhr.response))
+      } else {
+        reject(new Error(xhr.response))
+      }
+    })
+    xhr.send()
+  })
+}
+```
+
+修改代码支持传递请求体数据，步骤：
+
+1. myAxios 函数调用后，判断 data 选项
+2. 转换数据类型，在 send 方法中发送
+3. 使用封装的 myAxios 函数
+
+代码：
+
+```js
+function myAxios(config) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+
+    if (config.params) {
+      const paramsObj = new URLSearchParams(config.params)
+      const queryString = paramsObj.toString()
+      config.url += `?${queryString}`
+    }
+    xhr.open(config.method || 'GET', config.url)
+
+    xhr.addEventListener('loadend', () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve(JSON.parse(xhr.response))
+      } else {
+        reject(new Error(xhr.response))
+      }
+    })
+    // 1. 判断有data选项，携带请求体
+    if (config.data) {
+      // 2. 转换数据类型，在send中发送
+      const jsonStr = JSON.stringify(config.data)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.send(jsonStr)
+    } else {
+      // 如果没有请求体数据，正常的发起请求
+      xhr.send()
+    }
+  })
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### 配置链接信息
 

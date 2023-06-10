@@ -3,109 +3,82 @@ title: Promise
 order: 32
 ---
 
-## Promise是什么
+## 1. Promise是什么
 
-Promise 是异步编程的一种解决方案，比传统的解决方案使用回调函数,  更合理、更强大。ES6 将其写进了语言标准，统一了用法，原生提供了 Promise 对象 
+Promise 是异步编程的一种解决方案，比传统的解决方案使用回调函数,  更合理、更强大。可以将异步操作转化为类似同步操作的编码风格，并且在异步操作完成后可以方便地获取到操作结果或者操作失败的原因。ES6 将其写进了语言标准，统一了用法，原生提供了 Promise 对象 
 
 - 指定回调函数方式更灵活易懂
 - 解决异步**回调地狱**的问题
 
-### 回调地狱  
+## 2. Promise使用
 
-当一个回调函数嵌套一个回调函数的时候，就会出现一个嵌套结构，当嵌套的多了就会出现回调地狱的情况
+使用步骤：
 
-比如我们发送三个 Ajax 请求
-  - 第一个正常发送
-  - 第二个请求需要第一个请求的结果中的某一个值作为参数
-  - 第三个请求需要第二个请求的结果中的某一个值作为参数
-
-  ```javascript
-  ajax({
-    url: '我是第一个请求',
-    success (res) {
-      // 现在发送第二个请求
-      ajax({
-        url: '我是第二个请求'，
-        data: { a: res.a, b: res.b },
-        success (res2) {
-          // 进行第三个请求
-          ajax({
-            url: '我是第三个请求',
-            data: { a: res2.a, b: res2.b },
-    				success (res3) { 
-              console.log(res3) 
-            }
-          })
-        }
-      })
-    }
-  })
-  ```
-
-**回调地狱，其实就是回调函数嵌套过多导致的**
-
-## Promise使用
+1. new Promise 对象执行异步任务
+2. 用 resolve 关联 then 的回调函数传递成功结果
+3. 用 reject 关联 catch 的回调函数传递失败结果
 
 语法：
+
   ```javascript
-  new Promise(function (resolve, reject) {
-    // resolve 表示成功的回调
-    // reject 表示失败的回调
-  }).then(function (res) {
-    // 成功的函数
-  }).catch(function (err) {
-    // 失败的函数
+  // 1. 创建 Promise 对象
+  const p = new Promise((resolve, reject) => {
+   // 2. 执行异步任务-并传递结果
+   // 成功调用: resolve(值) 触发 then() 执行
+   // 失败调用: reject(值) 触发 catch() 执行
+  })
+  // 3. 接收结果
+  p.then(result => {
+   // 成功
+  }).catch(error => {
+   // 失败
   })
   ```
 
 例：
 
 ```js
-let pro = new Promise(function(resolve,reject){
-    setTimeout(()=>{
-        reject()
-    },1000)
+/**
+ * 目标：使用Promise管理异步任务
+*/
+// 1. 创建Promise对象
+const p = new Promise((resolve, reject) => {
+  // 2. 执行异步代码
+  setTimeout(() => {
+    // resolve('模拟AJAX请求-成功结果')
+    reject(new Error('模拟AJAX请求-失败结果'))
+  }, 2000)
 })
-// pro.then(()=>{
-//     console.log("奖金")
-// },()=>{
-//     console.log("没有")
-// })
-pro.then(()=>{
-    console.log("奖金")
-}).catch(()=>{
-    console.log("没有")
+
+// 3. 获取结果
+p.then(result => {
+  console.log(result)
+}).catch(error => {
+  console.log(error)
 })
-// 没有
 ```
 
-## Promise对象的状态
+## 3. Promise对象的状态
 
 Promise 对象通过自身的状态，来控制异步操作
 
-Promise 实例具有三种状态
+Promise 实例具有三种状态：
 
- ```txt
-异步操作未完成（pending）
-异步操作成功（fulfilled）
-异步操作失败（rejected）
- ```
++ 异步操作未完成（pending）（待定）
++ 异步操作成功（fulfilled）（已兑现）
++ 异步操作失败（rejected）（已拒绝）
 
-这三种的状态的变化途径只有两种
+这三种的状态的变化途径只有两种：
 
- ```txt
-从“未完成”到“成功”
-从“未完成”到“失败”
- ```
++ 从“未完成”到“成功”
++ 从“未完成”到“失败”
 
 一旦状态发生变化，就凝固了，不会再有新的状态变化。这也是 Promise 这个名字的由来，它的英语意思是“承诺”，一旦承诺生效，就不再改变了。这也意味着，Promise 实例的状态变化只可能发生一次
 
-因此，Promise 的最终结果只有两种
+因此，Promise 的最终结果只有两种：
 
- ```txt
-异步操作成功，Promise 实例传回一个值（value），状态变为fulfilled
-异步操作失败，Promise 实例抛出一个错误（error），状态变为rejected
- ```
++ 异步操作成功，Promise 实例传回一个值（value），状态变为fulfilled
++ 异步操作失败，Promise 实例抛出一个错误（error），状态变为rejected
 
 ![Promise01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Promise01.png)
 
@@ -359,3 +332,36 @@ try{
 	console.log("err",err)
 }
 ```
+
+当一个回调函数嵌套一个回调函数的时候，就会出现一个嵌套结构，当嵌套的多了就会出现回调地狱的情况
+
+比如我们发送三个 Ajax 请求
+
+  - 第一个正常发送
+  - 第二个请求需要第一个请求的结果中的某一个值作为参数
+  - 第三个请求需要第二个请求的结果中的某一个值作为参数
+
+  ```javascript
+ajax({
+  url: '我是第一个请求',
+  success (res) {
+    // 现在发送第二个请求
+    ajax({
+      url: '我是第二个请求'，
+      data: { a: res.a, b: res.b },
+      success (res2) {
+        // 进行第三个请求
+        ajax({
+          url: '我是第三个请求',
+          data: { a: res2.a, b: res2.b },
+  				success (res3) { 
+            console.log(res3) 
+          }
+        })
+      }
+    })
+  }
+})
+  ```
+
+**回调地狱，其实就是回调函数嵌套过多导致的**
