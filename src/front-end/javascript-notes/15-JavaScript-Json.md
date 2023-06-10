@@ -277,7 +277,7 @@ JSON.stringify({ p1: 1, p2: 2 }, null, 2)
 
 ### 2.2 JSON.parse()
 
-`JSON.parse()`方法用于将 JSON 字符串转换成对应的值
+`JSON.parse()`方法用于将 JSON 字符串转换成JavaScript对象
 
 ```js
 JSON.parse('{}') // {}
