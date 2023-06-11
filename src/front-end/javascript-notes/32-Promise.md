@@ -82,6 +82,93 @@ Promise 实例具有三种状态：
 
 ![Promise01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Promise01.png)
 
+## 4. 回调地狱
+
+概念：在回调函数中嵌套回调函数，一直嵌套下去就形成了回调函数地狱
+
+缺点：可读性差，异常无法捕获，耦合性严重，牵一发动全身
+
+比如我们发送三个 Ajax 请求：第一个正常发送，第二个请求需要第一个请求的结果中的某一个值作为参数，第三个请求需要第二个请求的结果中的某一个值作为参数
+
+```js
+axios({ url: 'xxx' }).then(result => {
+  const a = result.data.list[0]
+  axios({ url: 'xxx', params: { a } }).then(result => {
+    const b = result.data.list[0]
+    axios({ url: 'xxx', params: { a, b } }).then(result => {
+      console.log(result)
+    })
+  })
+})
+```
+
+## 5. Promise链式调用
+
+概念：依靠`then()`方法会返回一个新生成的 Promise 对象的特性，继续串联下一环任务，直到结束
+
+利用Promise链式调用可以解决回调函数嵌套问题
+
+![Promise02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Promise02.png)
+
+例：
+
+```js
+const p = new Promise((resolve, reject) => {
+  
+})
+
+const p2 = p.then(result => {
+  console.log(result)
+  // return Promise对象最终状态和结果，影响到新的Promise对象
+  return new Promise((resolve, reject) => {
+    
+  })
+})
+
+p2.then(result => {
+  console.log(result)
+})
+
+```
+
+## 6. async与await
+
+在 async 函数内，使用 await 关键字取代 then 函数，等待获取 Promise 对象成功状态的结果值
+
+### 6.1 基本使用
+
+`await` 命令后面是一个 Promise 对象，返回该对象的结果。如果不是 Promise 对象，就直接返回对应的值
+
+
+
+### 6.2 错误处理
+
+使用`try`和`catch`
+
+```js
+try {
+  // 要执行的代码
+} catch (error) {
+  // error 接收的是，错误消息
+  // try 里代码，如果有错误，直接进入这里执行
+}
+```
+
+> try 里有报错的代码，会立刻跳转到 catch 中
+
+
+
+```js
+try{
+    var res1 =  await ajax("http://localhost:3000/news1")
+    var res2 =  await ajax("http://localhost:3000/news2")
+}catch(err){
+	console.log("err",err)
+}
+```
+
+
+
 ## Promise对象方法
 
 Promise 是一个对象，也是一个构造函数
@@ -287,81 +374,3 @@ KerwinPromise.prototype.catch= function(failCB){
     this.then(undefined,failCB)
 }
 ```
-
-## Async与Await
-
-### Async
-
-async 函数，使得异步操作变得更加方便
-
-- 更好的语义
-- 返回值是 Promise 
-
-```js
-async function test(){
-	
-}
-test()
-```
-
-### Await
-
-`await` 命令后面是一个 Promise 对象，返回该对象的结果。如果不是 Promise 对象，就直接返回对应的值
-
-```js
-async function test(){
-    var res1 =  await ajax("http://localhost:3000/news1")
-    var res2 =  await ajax("http://localhost:3000/news2")
-    return res2
-}
-
-test().then(res=>{
-	console.log("返回结果",res)
-}).catch(err=>{
-	console.log("err",err)
-})
-```
-
-### 错误处理
-
-```js
-try{
-    var res1 =  await ajax("http://localhost:3000/news1")
-    var res2 =  await ajax("http://localhost:3000/news2")
-}catch(err){
-	console.log("err",err)
-}
-```
-
-当一个回调函数嵌套一个回调函数的时候，就会出现一个嵌套结构，当嵌套的多了就会出现回调地狱的情况
-
-比如我们发送三个 Ajax 请求
-
-  - 第一个正常发送
-  - 第二个请求需要第一个请求的结果中的某一个值作为参数
-  - 第三个请求需要第二个请求的结果中的某一个值作为参数
-
-  ```javascript
-ajax({
-  url: '我是第一个请求',
-  success (res) {
-    // 现在发送第二个请求
-    ajax({
-      url: '我是第二个请求'，
-      data: { a: res.a, b: res.b },
-      success (res2) {
-        // 进行第三个请求
-        ajax({
-          url: '我是第三个请求',
-          data: { a: res2.a, b: res2.b },
-  				success (res3) { 
-            console.log(res3) 
-          }
-        })
-      }
-    })
-  }
-})
-  ```
-
-**回调地狱，其实就是回调函数嵌套过多导致的**
