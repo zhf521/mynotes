@@ -537,83 +537,13 @@ function myAxios(config) {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### 配置链接信息
-
-```javascript
-const xhr = new XMLHttpRequest()
-
-// xhr 对象中的 open 方法是来配置请求信息的
-// 第一个参数是本次请求的请求方式 get / post / put / ...
-// 第二个参数是本次请求的 url 
-// 第三个参数是本次请求是否异步，默认 true 表示异步，false 表示同步
-// xhr.open('请求方式', '请求地址', 是否异步)
-xhr.open('get', './data.json')
-```
-
-上面的代码执行完毕以后，本次请求的基本配置信息就写完了
-
-#### 发送请求
-
-```javascript
-const xhr = new XMLHttpRequest()
-xhr.open('get', './data.json')
-
-// 使用 xhr 对象中的 send 方法来发送请求
-xhr.send()
-```
-
-上面代码是把配置好信息的 Ajax 对象发送到服务端
-
-#### 一个基本的Ajax请求
-
-一个最基本的 Ajax 请求就是上面三步，但是光有上面的三个步骤，我们确实能把请求发送的到服务端，如果服务端正常的话，响应也能回到客户端，但是我们拿不到响应，如果想拿到响应，有两个前提条件：
-  1. 本次 HTTP 请求是成功的，也就是 HTTP 状态码为 200 ~ 299
-  2. Ajax 对象也有自己的状态码，用来表示本次 Ajax 请求中各个阶段
-
-#### Ajax状态码
-
-Ajax 状态码 `xhr.readyState`，是用来表示一个 Ajax 请求的全部过程中的某一个状态：
-+ `readyState === 0`：  表示未初始化完成，也就是 `open` 方法还没有执行
-+ `readyState === 1`：  表示配置信息已经完成，也就是执行完 `open` 之后
-+ `readyState === 2`：  表示 `send` 方法已经执行完成
-- `readyState === 3`：  表示正在解析响应内容
-- `readyState === 4`：  表示响应内容已经解析完毕，可以在客户端使用了
-
-这个时候我们就会发现，当一个 Ajax 请求的全部过程中，只有当 `readyState === 4` 的时候，我们才可以正常使用服务端给我们的数据
-
-一个 Ajax 对象中有一个成员叫做 `xhr.status` ，这个成员就是记录本次请求的 HTTP 状态码的，两个条件都满足的时候，才是本次请求正常完成
-
-#### readyStateChange
+### 6.6 readyStateChange
 
 在 Ajax 对象中有一个事件，叫做 `readyStateChange` 事件，这个事件是专门用来监听 Ajax 对象的 `readyState` 值改变的的行为，也就是说只要 `readyState` 的值发生变化了，那么就会触发该事件，所以我们就在这个事件中来监听 Ajax 的 `readyState` 是不是到 4 了
 
   ```javascript
   const xhr = new XMLHttpRequest()
-  xhr.open('get', './data.json')
+  xhr.open('get', '接口')
   
   xhr.send()
   
@@ -628,13 +558,13 @@ Ajax 状态码 `xhr.readyState`，是用来表示一个 Ajax 请求的全部过�
   }
   ```
 
-#### responseText
+### 6.7 responseText
 
 Ajax 对象中的 `responseText` 成员就是用来记录服务端给我们的响应体内容的，所以我们就用这个成员来获取响应体的内容
 
   ```javascript
   const xhr = new XMLHttpRequest()
-  xhr.open('get', './data.json')
+  xhr.open('get', '接口')
   
   xhr.send()
   
@@ -646,235 +576,22 @@ Ajax 对象中的 `responseText` 成员就是用来记录服务端给我们的�
   }
   ```
 
-### 使用Ajax发送请求时携带参数
-
-我们使用 Ajax 发送请求也是可以携带参数的，参数就是和后台交互的时候给他的一些信息，携带参数 get 和 post 两个方式还是有区别的
-
-#### 发送一个带有参数的get请求
-
-get 请求的参数就直接在 url 后面进行拼接就可以
-
-  ```javascript
-  const xhr = new XMLHttpRequest()
-  // 直接在地址后面加一个 ?，然后以 key=value 的形式传递
-  // 两个数据之间以 & 分割
-  xhr.open('get', './data.json?a=100&b=200')
-  
-  xhr.send()
-  ```
-
-这样服务端就能接受到两个参数
-  - 一个是 a，值是 100
-  - 一个是 b，值是 200
-
-#### 发送一个带有参数的post请求
-
-post 请求的参数是携带在请求体中的，所以不需要在 url 后面拼接
-
-  ```javascript
-  const xhr = new XMLHttpRequest()
-  xhr.open('get', './data.json')
-  
-  // 如果是用 Ajax 对象发送 post 请求，必须要先设置一下请求头中的 content-type
-  // 告诉一下服务端我给你的是一个什么样子的数据格式
-  xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
-  
-  // 请求体直接在 send 的时候写在 () 里面就行
-  // 不需要问号，直接就是 'key=value&key=value' 的形式
-  xhr.send('a=100&b=200')
-  ```
-
-`application/x-www-form-urlencoded` 表示的数据格式就是 `key=value&key=value`，还可以发送 JSON 格式
-
-#### 不同的请求方式
-
-- get  偏向获取 
-- post 偏向提交 
-- put  偏向更新
-- patch  偏向修改部分
-- delete 偏向删除信息
-- head 偏向获取服务器头的信息
-- option 偏向获取服务器设备信息
-- connnect 保留请求方式
-
-#### 实例
-
-我们可以使用 `json-server` 来演示，`JSON-Server` 是一个 Node 模块，通过在本地搭建一个 json 服务器，产生测试数据，来模拟服务器端接口数据。用于前端开发人员，在进行前后端分离开发时，后端还没有搭建好时，可以使用 `json-server` 模拟 `REST API`
-
-安装 json-server：
-```
-npm install -g json-server
-```
-
-在当前目录下创建一个 `db.json` 文件
-
-```js
-{
-  "list": [
-    "111",
-    "222",
-    "333"
-  ],
-  "users": [
-    {
-      "id": 1,
-      "name": "zhf"
-    },
-    {
-      "id": 2,
-      "name": "xt"
-    },
-  ],
-  "shopcar": [],
-  "detail": {
-    "name": "手机"
-  }
-}
-```
-
-在当前目录下打开终端环境，键入：`json-server db.json --watch` 即可
-
-测试代码：
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <button id="get">get</button>
-    <button id="post">post</button>
-    <button id="put">put</button>
-    <button id="patch">patch</button>
-    <button id="delete">delete</button>
-    <script>
-      const oGet = document.querySelector('#get')
-      const oPost = document.querySelector('#post')
-      const oPut = document.querySelector('#put')
-      const oPatch = document.querySelector('#patch')
-      const oDelete = document.querySelector('#delete')
-
-      oGet.addEventListener('click', function () {
-        //console.log('get')
-        let xhr = new XMLHttpRequest()
-        xhr.open('GET', 'http://localhost:3000/users?id=1', true)
-        xhr.send()
-        xhr.onload = function () {
-          //console.log(xhr.readyState)
-          if (/^2\d{2}$/.test(xhr.status)) {
-            console.log(JSON.parse(xhr.responseText))
-          } else {
-            console.log('error', xhr.responseText)
-          }
-        }
-      })
-      oPost.addEventListener('click', function () {
-        //console.log('post')
-        let xhr = new XMLHttpRequest()
-        xhr.open('POST', 'http://localhost:3000/users', true)
-        //form编码 name=zhf&age=18
-        //json {name:"zhf",age:18}
-        // xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')
-        // xhr.send(`name=tc&age=18`)//数据放在这里
-        xhr.setRequestHeader('content-type', 'application/json')
-        xhr.send(
-          JSON.stringify({
-            name: 'gl',
-            age: 90,
-          })
-        )
-        xhr.onload = function () {
-          //console.log(xhr.readyState)
-          if (/^2\d{2}$/.test(xhr.status)) {
-            console.log(JSON.parse(xhr.responseText))
-          } else {
-            console.log('error', xhr.responseText)
-          }
-        }
-      })
-      oPut.addEventListener('click', function () {
-        //console.log('put')
-        let xhr = new XMLHttpRequest()
-        xhr.open('PUT', 'http://localhost:3000/users/4', true)
-        //form编码 name=zhf&age=18
-        //json {name:"zhf",age:18}
-        // xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')
-        // xhr.send(`name=tc&age=18`)//数据放在这里
-        xhr.setRequestHeader('content-type', 'application/json')
-        xhr.send(
-          JSON.stringify({
-            age: 80,
-          })
-        )
-        xhr.onload = function () {
-          //console.log(xhr.readyState)
-          if (/^2\d{2}$/.test(xhr.status)) {
-            console.log(JSON.parse(xhr.responseText))
-          } else {
-            console.log('error', xhr.responseText)
-          }
-        }
-      })
-      oPatch.addEventListener('click', function () {
-        //console.log('patch')
-        let xhr = new XMLHttpRequest()
-        xhr.open('PATCH', 'http://localhost:3000/users/5', true)
-        //form编码 name=zhf&age=18
-        //json {name:"zhf",age:18}
-        // xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')
-        // xhr.send(`name=tc&age=18`)//数据放在这里
-        xhr.setRequestHeader('content-type', 'application/json')
-        xhr.send(
-          JSON.stringify({
-            age: 180,
-          })
-        )
-        xhr.onload = function () {
-          //console.log(xhr.readyState)
-          if (/^2\d{2}$/.test(xhr.status)) {
-            console.log(JSON.parse(xhr.responseText))
-          } else {
-            console.log('error', xhr.responseText)
-          }
-        }
-      })
-      oDelete.addEventListener('click', function () {
-        //console.log('delete')
-        let xhr = new XMLHttpRequest()
-        xhr.open('DELETE', 'http://localhost:3000/users/7', true)
-        xhr.send()
-        xhr.onload = function () {
-          //console.log(xhr.readyState)
-          if (/^2\d{2}$/.test(xhr.status)) {
-            console.log(JSON.parse(xhr.responseText))
-          } else {
-            console.log('error', xhr.responseText)
-          }
-        }
-      })
-    </script>
-  </body>
-</html>
-
-```
-
-## . Fetch
+## 7. fetch
 
 XMLHttpRequest 是一个设计粗糙的 API，配置和调用方式非常混乱，而且基于事件的异步模型写起来不友好
 
-### 用法
+fetch 使用 Promise 和链式调用来处理异步操作，提供了更加简洁明了的语法，从而简化了代码的编写和维护
+
+### 7.1 基本使用
 
 ```js
-fetch("http://localhost:3000/users")
-            .then(res=>res.json())
+fetch("接口地址")
+			.then(response=>response.json())
             .then(res=>{
                 console.log(res)
             })
 
-fetch("http://localhost:3000/users",{
+fetch("接口地址",{
             method:"POST",
             headers:{
                 "content-type":"application/json"
@@ -913,10 +630,9 @@ fetch("http://localhost:3000/users/5",{
             })
 ```
 
-### 错误处理
+### 7.2 错误处理
 
 ```js
-//
 fetch("http://localhost:3000/users1")
             .then(res=>{
                 if(res.ok){
@@ -936,153 +652,7 @@ fetch("http://localhost:3000/users1")
             })
 ```
 
-### 实例
-
-`db.json` 文件
-```json
-{
-  "list": [
-    "111",
-    "222",
-    "333"
-  ],
-  "users": [
-    {
-      "name": "kerwin",
-      "age": "100",
-      "id": 1
-    }
-  ],
-  "shopcar": [],
-  "detail": {
-    "name": "手机"
-  }
-}
-```
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <button id="get">get</button>
-    <button id="post">post</button>
-    <button id="put">put</button>
-    <button id="patch">patch</button>
-    <button id="delete">delete</button>
-    <script>
-      const oGet = document.querySelector('#get')
-      const oPost = document.querySelector('#post')
-      const oPut = document.querySelector('#put')
-      const oPatch = document.querySelector('#patch')
-      const oDelete = document.querySelector('#delete')
-
-      oGet.addEventListener('click', function () {
-        fetch('http://localhost:3000/users111?id=1')
-          .then((res) => {
-            if (res.ok) {
-              return res.json()
-            } else {
-              return Promise.reject({
-                status: res.status,
-                statusText: res.statusText,
-              })
-            }
-          })
-          .then((res) => {
-            console.log(res)
-          })
-          .catch((err) => {
-            console.log('err', err)
-          })
-      })
-      oPost.addEventListener('click', function () {
-        fetch('http://localhost:3000/users', {
-          method: 'POST',
-          headers: {
-            //"content-type":"application/x-www-form-urlencoded"
-            'content-type': 'application/json',
-          },
-          //body:"name=kerwin&age=100"
-          body: JSON.stringify({
-            name: 'zhf',
-            age: 18,
-          }),
-        })
-          .then((res) => {
-            return res.json()
-          })
-          .then((res) => {
-            console.log(res)
-          })
-      })
-      oPut.addEventListener('click', function () {
-        fetch('http://localhost:3000/users/2', {
-          method: 'PUT',
-          headers: {
-            //"content-type":"application/x-www-form-urlencoded"
-            'content-type': 'application/json',
-          },
-          //body:"name=kerwin&age=100"
-          body: JSON.stringify({
-            age: 20,
-          }),
-        })
-          .then((res) => {
-            return res.json()
-          })
-          .then((res) => {
-            console.log(res)
-          })
-      })
-      oPatch.addEventListener('click', function () {
-        fetch('http://localhost:3000/users/2', {
-          method: 'PATCH', //必须大写
-          headers: {
-            //"content-type":"application/x-www-form-urlencoded"
-            'content-type': 'application/json',
-          },
-          //body:"name=kerwin&age=100"
-          body: JSON.stringify({
-            age: 280,
-          }),
-        })
-          .then((res) => {
-            return res.json()
-          })
-          .then((res) => {
-            console.log(res)
-          })
-      })
-      oDelete.addEventListener('click', function () {
-        fetch('http://localhost:3000/users/2', {
-          method: 'DELETE',
-        })
-          .then((res) => {
-            return res.json()
-          })
-          .then((res) => {
-            console.log(res)
-          })
-      })
-    </script>
-  </body>
-</html>
-
-```
-
-
-
-
-
-
-
-## 同源策略(Same-origin policy)
+## 8. 同源策略(Same-origin policy)
 
 一个 URL  有三部分组成：协议、域名 (指向主机)、端口，只有这三个完全相同的 URL 才能称之为同源。如下，能和  `http://www.example.com/dir1/index.html`  同源的是
 
@@ -1097,29 +667,29 @@ fetch("http://localhost:3000/users1")
 2. 无法接触非同源网页的 DOM
 3. 无法向非同源地址发送 AJAX 请求（可以发送，但浏览器会拒绝接受响应）
 
-注意：同源策略是浏览器的行为，是为了保护本地数据不被 JavaScript 代码获取回来的数据污染，因此拦截的是客户端发出的请求回来的数据接收，即请求发送了，服务器响应了，但是无法被浏览器接收
+注意：同源策略是==浏览器==的行为，是为了保护本地数据不被 JavaScript 代码获取回来的数据污染，因此拦截的是客户端发出的请求回来的数据接收，即请求发送了，服务器响应了，但是无法被浏览器接收
 
-## Jsonp
+## 9. 解决跨域问题
+
+### 9.1 JSONP
 
 Jsonp (JSON with Padding) 是 json 的一种"使用模式"，可以让网页从别的域名（网站）那获取资料，即跨域读取数据
 
-为什么我们从不同的域（网站）访问数据需要一个特殊的技术 ( JSONP )呢？这是因为同源策略
-
 `script` 标签可以做到这一点：
+
 ```js
-      function test(data) {
-        console.log('111', data)
-      }
+function test(data) {
+    console.log('111', data)
+}
 
-      const script = document.createElement('script')
-      script.src =
-        'http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=test'
-      document.body.appendChild(script)
-      //1.script 没有跨域限制
-      //2.后端配合返回的是 函数()调用
-      //3.前端提前声明好这个函数
+const script = document.createElement('script')
+script.src ='http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=test'
+document.body.appendChild(script)
+//1.script 没有跨域限制
+//2.后端配合返回的是 函数()调用
+//3.前端提前声明好这个函数
 
-      //jsonp只能get请求 无法post put delete
+//jsonp只能get请求 无法post put delete
 ```
 
 实例：
@@ -1155,6 +725,16 @@ Jsonp (JSON with Padding) 是 json 的一种"使用模式"，可以让网页从�
 </body>
 ````
 
-## 其他方法解决跨域问题
+### 9.2 CORS
 
-可以通过设置响应头解决，还可以使用反向代理来解决
+CORS（Cross-Origin Resource Sharing），跨域资源共享
+
+CORS 是官方的跨域解决方 案，它的特点是不需要在客户端做任何特殊的操作，完全在服务器中进行处理，支持 get 和post 请求
+
+跨域资源共享标准新增了一组HTTP 首部字段，允许服务器声明哪些来源站点通过浏览器有权限访问哪些资源
+
+CORS 是通过设置一个响应头来告诉浏览器，该请求允许跨域，浏览器收到该响应以后就会对响应放行
+
+### 9.3 反向代理
+
+使用nginx配置反向代理

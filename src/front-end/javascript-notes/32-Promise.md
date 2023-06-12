@@ -88,6 +88,77 @@ Promise 实例具有三种状态：
 
 缺点：可读性差，异常无法捕获，耦合性严重，牵一发动全身
 
+在ES6之前，我们用回调函数的形式来实现异步操作，容易出现回调地狱问题
+
+比如我们有一个需求，我要先吃火锅，再喝茶，再散步，它们都是耗时的，都是异步操作，需要回调函数实现
+
+```js
+//喝茶
+function getTea(fn) {
+  setTimeout(function () {
+    fn('喝茶')
+  }, 500)
+}
+//吃火锅
+function getHotPot(fn) {
+  setTimeout(() => {
+    fn('吃火锅')
+  }, 800)
+}
+//散步
+function getWalk(fn) {
+  setTimeout(() => {
+    fn('散步')
+  }, 100)
+}
+```
+
+我想直接按顺序执行：
+
+```js
+getHotPot(function (data) {
+  console.log(data)
+})
+getTea(function (data) {
+  console.log(data)
+})
+getWalk(function (data) {
+  console.log(data)
+})
+```
+
+执行结果会按消耗的时间来执行：
+
+```txt
+散步
+喝茶
+吃火锅
+```
+
+通过在回调函数中调用才可以实现：
+
+```js
+getHotPot(function (data) {
+  console.log(data)
+  getTea(function (data) {
+    console.log(data)
+    getWalk(function (data) {
+      console.log(data)
+    })
+  })
+})
+```
+
+结果：
+
+```txt
+吃火锅
+喝茶
+散步
+```
+
+这样就产生了回调地狱问题
+
 比如我们发送三个 Ajax 请求：第一个正常发送，第二个请求需要第一个请求的结果中的某一个值作为参数，第三个请求需要第二个请求的结果中的某一个值作为参数
 
 ```js
@@ -96,7 +167,7 @@ axios({ url: 'xxx' }).then(result => {
   axios({ url: 'xxx', params: { a } }).then(result => {
     const b = result.data.list[0]
     axios({ url: 'xxx', params: { a, b } }).then(result => {
-      console.log(result)
+      const c = result.data.list[0]
     })
   })
 })
@@ -110,25 +181,54 @@ axios({ url: 'xxx' }).then(result => {
 
 ![Promise02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Promise02.png)
 
-例：
+我们利用Promise链式调用解决上面的问题
 
 ```js
-const p = new Promise((resolve, reject) => {
-  
-})
-
-const p2 = p.then(result => {
-  console.log(result)
-  // return Promise对象最终状态和结果，影响到新的Promise对象
-  return new Promise((resolve, reject) => {
-    
+function getTea() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('喝茶')
+    }, 500)
   })
+}
+function getHotPot() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('吃火锅')
+    }, 800)
+  })
+}
+function getWalk() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('散步')
+    }, 100)
+  })
+}
+getHotPot().then((data) => {
+    console.log(data)
+    return getTea()
+}).then((data) => {
+    console.log(data)
+    return getWalk(data)
+}).then((data) => {
+    console.log(data)
 })
+```
 
-p2.then(result => {
-  console.log(result)
+解决Ajax回调地狱：
+
+```js
+const a = ''
+axios({ url: 'xxx' }).then(result => {
+  a = result.data.list[0]
+  return axios({ url: 'xxx', params: { a } })
+}).then(result => {
+  const b = result.data.list[0]
+  return axios({ url: 'xxx', params: { a, b } })
+}).then(result => {
+   const c = result.data.list[0]
 })
-
 ```
 
 ## 6. async与await
@@ -139,7 +239,62 @@ p2.then(result => {
 
 `await` 命令后面是一个 Promise 对象，返回该对象的结果。如果不是 Promise 对象，就直接返回对应的值
 
+```js
+async function(){
+    await promise对象
+}
+```
 
+我们来将上面的例子优化一下：
+
+```js
+function getTea() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('喝茶')
+    }, 500)
+  })
+}
+function getHotPot() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('吃火锅')
+    }, 800)
+  })
+}
+function getWalk() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('散步')
+    }, 100)
+  })
+}
+
+async function getData() {
+  //直接获取resolve传递出来的异步数据
+  let hotPot = await getHotPot()
+  console.log(hotPot)
+  let tea = await getTea()
+  console.log(tea)
+  let walk = await getWalk()
+  console.log(walk)
+}
+getData()
+```
+
+优化Ajax回调地狱：
+
+```js
+async function getData() {
+  const aObj = await axios({ url: 'xxx' })
+  const a = aObj.data.list[0]
+  const bObj = await axios({ url: 'xxx', params: { a } })
+  const b = bObj.data.list[0]
+  const cObj = await axios({ url: 'xxx', params: { a, b } })
+  const c = cObj.data.list[0]
+}
+getData()
+```
 
 ### 6.2 错误处理
 
@@ -156,87 +311,95 @@ try {
 
 > try 里有报错的代码，会立刻跳转到 catch 中
 
-
+例：
 
 ```js
-try{
-    var res1 =  await ajax("http://localhost:3000/news1")
-    var res2 =  await ajax("http://localhost:3000/news2")
-}catch(err){
-	console.log("err",err)
+async function getData() {
+  // 1. try包裹可能产生错误的代码
+  try {
+    const aObj = await axios({ url: 'xxx' })
+    const a = aObj.data.list[0]
+    const bObj = await axios({ url: 'xxx', params: { a } })
+    const b = bObj.data.list[0]
+    const cObj = await axios({ url: 'xxx', params: { a, b } })
+    const c = cObj.data.list[0]
+  } catch (error) {
+    // 2. 接着调用catch块，接收错误信息
+    // 如果try里某行代码报错后，try中剩余的代码不会执行了
+    console.dir(error)
+  }
 }
+getData()
 ```
 
-
-
-## Promise对象方法
+## 7. Promise对象方法
 
 Promise 是一个对象，也是一个构造函数
 
-### Promise.resolve
+### 7.1 Promise.resolve
 
 将现有对象转为 Promise 对象
 
 ```javascript
-Promise.resolve('kerwin')
+Promise.resolve('xxx')
 // 等价于
-new Promise(resolve => resolve('kerwin'))
+new Promise(resolve => resolve('xxx'))
 ```
 
-### Promise.reject
+### 7.2 Promise.reject
 
 `Promise.reject(reason)` 方法也会返回一个新的 Promise 实例，该实例的状态为 `rejected`
 
 ```javascript
-const p = Promise.reject('error');
+const p = Promise.reject('error')
 // 等同于
 const p = new Promise((resolve, reject) => reject('error'))
 ```
 
-### Promise.all
+### 7.3 Promise.all
 
 `Promise.all()`方法用于将多个 Promise 实例，包装成一个新的 Promise 实例
 
 ```javascript
-const p = Promise.all([p1, p2, p3]);
+const p = Promise.all([p1, p2, p3])
 ```
 
 p 的状态由 p1, p2, p3 决定，分成两种情况：
 1. 只有 `p1`、`p2`、`p3` 的状态都变成 `fulfilled`，`p` 的状态才会变成 `fulfilled`，此时 `p1`、`p2`、`p3` 的返回值组成一个数组，传递给 `p` 的回调函数
 2. 只要 `p1`、`p2`、`p3` 之中有一个被 `rejected`，`p` 的状态就变成 `rejected`，此时第一个被 `reject` 的实例的返回值，会传递给 `p` 的回调函数
 
-### Promise.race
+### 7.4 Promise.race
 
 `Promise.race()` 方法同样是将多个 Promise 实例包装成一个新的 Promise 实例
 
 ```javascript
-const p = Promise.race([p1, p2, p3]);
+const p = Promise.race([p1, p2, p3])
 ```
 
 上面代码中，只要 `p1`、`p2`、`p3` 之中有一个实例率先改变状态，`p` 的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给 `p` 的回调函数
 
-### Promise.allSettled
+### 7.5 Promise.allSettled
 
 `Promise.allSettled()` 方法，用来确定一组异步操作是否都结束了（不管成功或失败）。所以，名为"Settled"，包含了"fulfilled"和"rejected"两种情况
 
 ```js
-const promises = [ ajax('/200接口'), ajax('/401接口') ];
+const promises = [ ajax('/200接口'), ajax('/401接口') ]
 
 Promise.allSettled(promises).then(results=>{
     // 过滤出成功的请求
-    results.filter(item =>item.status === 'fulfilled');
+    results.filter(item =>item.status === 'fulfilled')
     过滤出失败的请求
-    results.filter(item=> item.status === 'rejected');
+    results.filter(item=> item.status === 'rejected')
 })
 ```
 
-### Promise.any
+### 7.6 Promise.any
 
 只要参数实例有一个变成 `fulfilled` 状态，包装实例就会变成 `fulfilled` 状态；如果所有参数实例都变成 `rejected` 状态，包装实例就会变成 `rejected` 状态
 
 > `Promise.any()`跟`Promise.race()`方法很像，只有一点不同，就是`Promise.any()`不会因为某个 Promise 变成`rejected`状态而结束，必须等到所有参数 Promise 变成`rejected`状态才会结束
 
-### finally方法
+### 7.7 finally方法
 
 不管 promise 最后的状态，在执行完 then 或 catch 指定的回调函数以后，都会执行 finally 方法指定的回调函数
 
@@ -248,14 +411,14 @@ const p = new Promise((resolve, reject) => {
 p.then((res) => {
 	console.log('then')
 }).catch((err) => {
-    console.log('then')
+    console.log('error')
 }).finally(() => {
     console.log('finally')
 })
 //结果：then finally
 ```
 
-## 手写Promise
+## 8. 手写Promise
 
 ```js
 /*
