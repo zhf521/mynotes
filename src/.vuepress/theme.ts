@@ -96,6 +96,11 @@ export default hopeTheme({
           icon: "vue",
           link: "vue-notes/"
         },
+         {
+          text: "NodeJS笔记",
+          icon: "nodeJS",
+          link: "nodejs-notes/"
+        },
       ]
     },
     {
