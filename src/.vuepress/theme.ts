@@ -78,27 +78,22 @@ export default hopeTheme({
       children: [
         {
           text: "HTML笔记",
-          icon: "html",
           link: "html-notes/"
         },
         {
           text: "CSS笔记",
-          icon: "css",
           link: "css-notes/"
         },
         {
           text: "JavaScript笔记",
-          icon: "javascript",
           link: "javascript-notes/"
         },
         {
           text: "Vue笔记",
-          icon: "vue",
           link: "vue-notes/"
         },
          {
           text: "NodeJS笔记",
-          icon: "nodeJS",
           link: "nodejs-notes/"
         },
       ]
@@ -110,48 +105,43 @@ export default hopeTheme({
       children: [
         {
           text: "Alist",
-          icon: "box",
           link: "alist/"
         },
         {
           text: "Emmet",
-          icon: "emmet",
           link: "emmet/"
         },
         {
           text: "Git",
-          icon: "git",
           link: "git/"
         },
         {
           text: "Halo",
-          icon: "blog",
           link: "halo/"
         },
         {
           text: "MarkDown",
-          icon: "markdown",
           link: "markdown/"
         },
         {
           text: "NodeJS",
-          icon: "nodeJS",
           link: "nodejs/"
         },
         {
           text: "Photoshop",
-          icon: "editor",
           link: "photoshop/"
         },
         {
           text: "VSCode",
-          icon: "vscode",
           link: "vscode/"
         },
         {
           text: "图床",
-          icon: "pic",
           link: "image-hosting-website/"
+        },
+        {
+          text: "webpack",
+          link: "webpack/"
         },
       ]
     },
@@ -162,12 +152,10 @@ export default hopeTheme({
       children: [
         {
           text: "疑难解答",
-          icon: "question",
           link: "troubleshoot/"
         },
         {
           text: "优化设置",
-          icon: "config",
           link: "optimization/"
         }
       ]
@@ -179,7 +167,6 @@ export default hopeTheme({
       children: [
         {
           text: "小林coding计网",
-          icon: "network",
           link: "xiaolin-coding-network/"
         },
       ]
@@ -191,7 +178,6 @@ export default hopeTheme({
       children: [
         {
           text: "JavaScript数据结构与算法",
-          icon: "javascript",
           link: "js-data-structures-and-algorithms/"
         },
       ]
