@@ -1,5 +1,5 @@
 ---
-title: webpack基本使用
+title: webpack基础
 order: 1
 ---
 
@@ -11,7 +11,7 @@ Webpack 是一个静态模块打包工具，从入口构建依赖图，打包有
 
 打包过程：
 
-![webpack基本使用01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/webpack基本使用01.png)
+![webpack基础01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/webpack基础01.png)
 
 注意：只有和入口有直接/间接引入关系的模块，才会被打包
 
