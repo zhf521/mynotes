@@ -3,16 +3,23 @@ title: Halo博客搭建
 order: 1
 ---
 
-## 购买服务器
-需要购买服务器，内存至少 1G，这里以腾讯云为例，进入官网[腾讯云](https://cloud.tencent.com/)选购自己的服务器即可，推荐轻量应用服务器。购买以后装入 centos 系统。
+## 1. 购买服务器
+需要购买服务器，内存至少 1G，这里以腾讯云为例，进入官网[腾讯云](https://cloud.tencent.com/)选购自己的服务器即可，推荐轻量应用服务器。购买以后装入 centos 系统
+
 ![Halo博客搭建01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建01.png)
+
 防火墙开放 8090 端口
+
 ![Halo博客搭建02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建02.png)
-## 安装 Docker
+
+## 2. 安装Docker
 以下为 centos 系统安装教程，其他系统请参照官网教程[官网](https://docs.docker.com/engine/install/centos/)
-### 登录自己的服务器
+
+### 2.1 登录自己的服务器
+
 ![Halo博客搭建03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建03.png)
-### 卸载旧版本
+### 2.2 卸载旧版本
+
 ```bash
 sudo yum remove docker \
                   docker-client \
@@ -24,17 +31,18 @@ sudo yum remove docker \
                   docker-engine
 
 ```
-### 更新、安装必备软件
+### 2.3 更新、安装必备软件
+
 ```bash
 apt-get update && apt-get install -y wget vim
 ```
 
+### 2.4 获取安装包
 
-### 获取安装包
 ```bash
 sudo yum install -y yum-utils
 ```
-### 设置镜像仓库
+### 2.5 设置镜像仓库
 官方镜像：（比较慢，不推荐）
 
 ```bash
@@ -50,7 +58,7 @@ sudo yum-config-manager \
     --add-repo \
     http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
-### 安装 docker
+### 2.6 安装docker
 
 安装前先更新 yum 软件包索引
 
@@ -63,39 +71,47 @@ yum makecache fast
 ```bash
 sudo yum install docker-ce docker-ce-cli containerd.io
 ```
-### 启动 docker
+### 2.7 启动docker
 
 ```bash
 sudo systemctl start docker
 ```
 
-### 判断是否成功安装 docker 查看版本
+### 2.8 判断是否成功安装docker
 
 ```bash
 docker version
 ```
 
-### 设置 docker 开机自启动
+### 2.9 设置docker开机自启动
 
 ```bash
 systemctl enable docker
 ```
 
-## 使用 Docker 部署 Halo
+## 3. 使用Docker部署 Halo
 
 建议查看官方教程
+
 [使用 Docker 部署 Halo](https://docs.halo.run/getting-started/install/docker)
-## 进入后台安装
+
+## 4. 进入后台安装
 通过访问 IP：端口号即可访问安装引导界面
+
 安装完即可
-## 购买域名 (可选)
-进入腾讯云官网[腾讯云](https://cloud.tencent.com/)选购。
-==注意：服务器与域名最好选用同一厂商，不然可能会莫名报错，配置失败。==
+
+## 5. 购买域名 (可选)
+进入腾讯云官网[腾讯云](https://cloud.tencent.com/)选购
+
+==注意：服务器与域名最好选用同一厂商，不然可能会莫名报错，配置失败==
+
 添加域名解析，如图
+
 ![Halo博客搭建04.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建04.png)
-## 反向代理 (可选)
-### 安装 Docker Compose
-#### 下载安装
+
+## 6. 反向代理 (可选)
+### 6.1 安装Docker Compose
+#### 6.1.1 下载安装
 ```bash
 sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 ```
@@ -103,17 +119,17 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-c
 ```bash
 sudo curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 ```
-#### 给执行权限
+#### 6.1.2 给执行权限
 ```bash
 sudo chmod +x /usr/local/bin/docker-compose
 ```
-#### 查看 docker-compose 版本
+#### 6.1.3 查看docker-compose版本
 ```bash
 docker-compose --version
 ```
-### 部署 Nginx Proxy Manager  服务
+### 6.2 部署Nginx Proxy Manager服务
 
-#### 创建一个与此类似的 docker-compose. yml 文件
+#### 6.2.1 创建一个与此类似的 docker-compose.yml文件
 
 ```bash
 mkdir ~/npm #创建一个目录用来安装此服务
@@ -166,23 +182,27 @@ services:
 
 ```
 
-#### 在当前目录运行以下命令安装此服务
+#### 6.2.2 在当前目录运行以下命令安装此服务
 
 ```bash
 sudo docker-compose up -d   #部署服务
 ```
 
-#### 安装完以后进入 81 端口登录
+#### 6.2.3 安装完以后进入81端口登录
 
 默认登陆名和密码：
+
 Email:    admin@example. com
+
 Password: changeme
+
 按如下图设置即可
 
 ![Halo博客搭建05.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Halo博客搭建05.gif)
 
 最后就可以通过域名进行访问了
 
-## 开始写博客
+## 7. 开始写博客
 
 配置好图床使用 GitHub 图床或阿里云对象存储搭建图床，使用 MarkDown 语法就可以愉快的发布文章啦!
+

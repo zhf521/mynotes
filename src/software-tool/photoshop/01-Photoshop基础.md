@@ -1,5 +1,5 @@
 ---
-title: 基本操作
+title: Photoshop基础
 order: 1
 ---
 
