@@ -134,7 +134,7 @@ img {
 	</template>
 	
 	<template v-slot:footer>
-	<template #footer>
+	<!-- <template #footer> -->
 		<div>html结构2</div>
 	</template>
 </Category>

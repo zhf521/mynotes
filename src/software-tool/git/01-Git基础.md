@@ -220,7 +220,24 @@ git push origin master
 ```bash
 git push -u origin master
 ```
+> 关于`-u`参数
+>
+> `-u` 参数是 Git 命令中的一个可选参数，通常用于在执行 `git push` 或 `git pull` 等命令时，建立本地分支和远程分支之间的关联关系。其实际含义是 `--set-upstream`，表示设置当前分支跟踪指定的远程分支
+>
+> 当使用 `git push` 命令将本地分支推送到远程仓库的某个分支时，如果指定了 `-u` 参数，Git 会在成功推送后自动把本地分支和远程分支建立一个追踪关系。这样，在以后的操作中，Git 就知道要将本地分支与哪个远程分支进行同步，并可以通过简单的命令来完成相应的操作
+>
+> 例如，执行以下命令：
+>
+> ```
+> git push -u origin master
+> ```
+>
+> 以上命令将会把本地的 `master` 分支推送到名为 `origin` 的远程仓库，并在本地的 `master` 分支与远程的 `origin/master` 分支之间建立追踪关系。这样，在以后的操作中，可以直接使用 `git push` 命令将本地的 `master` 分支提交到远程的 `origin/master` 分支上，或者使用 `git pull` 命令将远程的 `origin/master` 分支上的更新合并到本地的 `master` 分支上
+>
+> 需要注意的是，`-u` 参数只用于首次推送本地分支时，后续的推送和拉取操作可以直接使用 `git push` 和 `git pull` 命令来完成。另外，在执行 `git branch` 命令时，可以通过 `-u` 参数来手动建立本地分支和远程分支之间的追踪关系
+
 ### 10.3 拉取
+
 使用 `git pull` 拉取更新的文件
 ```bash
 git pull origin master
@@ -231,6 +248,7 @@ git pull origin master
 git pull -u origin master
 ```
 ### 10.4 克隆
+
 使用 `git clone 仓库地址` 克隆远程仓库里面的内容到本地==（注意：克隆只能克隆主分支）==
 
 可以克隆别人的公开的仓库，也可以克隆自己的仓库，克隆别人的仓库，我们只能拿来用，修改后不能重新上传；克隆自己的仓库，我们修改后还可以再次上传更新
