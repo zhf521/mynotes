@@ -1,5 +1,5 @@
 ---
-title: NodeJS基础使用
+title: NodeJS基础
 order: 1
 ---
 

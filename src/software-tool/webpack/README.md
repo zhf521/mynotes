@@ -1,4 +1,4 @@
 ---
 title: webpack
 ---
-<AutoCatalog base='/software-tool/ webpack/' />
+<AutoCatalog base='/software-tool/webpack/' />
