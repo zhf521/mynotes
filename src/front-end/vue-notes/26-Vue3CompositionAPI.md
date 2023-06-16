@@ -1,5 +1,5 @@
 ---
-title: Vue3CompositionAPI（Vue3组合式API）
+title: Vue3CompositionAPI
 order: 26
 ---
 
