@@ -113,6 +113,16 @@ export default {
 
 ![Vue3CompositionAPI06.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue3CompositionAPI06.png)
 
+上面我们使用setup函数定义并暴露出去，这种方式会非常繁琐，我们还可以使用构建工具，`<script setup>`能自动暴露，简化操作（见后面简化操作）
+
+```vue
+<template>
+</template>
+<script setup>
+    
+</script>   
+```
+
 ### 3.2 ref函数
 
 作用: 定义一个响应式的数据
@@ -179,6 +189,12 @@ export default {
 效果：
 
 ![Vue3CompositionAPI07.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue3CompositionAPI07.gif)
+
+简化写法：
+
+```vue
+
+```
 
 通过看源码可以知道调用 ref 会返回一个 RefImpl 的实例对象，RefImpl 类中有 getter 和 setter 可以检测到数据的变化
 
