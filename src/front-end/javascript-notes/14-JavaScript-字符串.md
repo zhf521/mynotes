@@ -144,3 +144,39 @@ var lower = upper.toLowerCase()
 
 console.log(lower) // hello
 ```
+
+### 3.7 split
+
+`split()`方法用于把一个字符串分割成字符串数组
+
+语法：
+
+```js
+string.split(separator,limit)
+```
+
+参数：
+
+| 参数      | 描述                                                         |
+| --------- | ------------------------------------------------------------ |
+| separator | 可选。字符串或正则表达式，从该参数指定的地方分割 string Object |
+| limit     | 可选。该参数可指定返回的数组的最大长度。如果设置了该参数，返回的子串不会多于这个参数指定的数组。如果没有设置该参数，整个字符串都会被分割，不考虑它的长度 |
+
+如果把空字符串 ("") 用作 separator，那么 string Object 中的每个字符之间都会被分割
+
+例：
+
+```js
+var str="How are you doing today?"
+var n=str.split(" ")
+console.log(n)
+// ['How', 'are', 'you', 'doing', 'today?']
+```
+
+```js
+var str="hello"
+var n=str.split("")
+console.log(n)
+// ['h', 'e', 'l', 'l', 'o']
+```
+
