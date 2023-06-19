@@ -124,10 +124,6 @@ export default hopeTheme({
           link: "markdown/"
         },
         {
-          text: "NodeJS",
-          link: "nodejs/"
-        },
-        {
           text: "Photoshop",
           link: "photoshop/"
         },
