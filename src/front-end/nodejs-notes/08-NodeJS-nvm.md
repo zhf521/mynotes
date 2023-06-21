@@ -9,7 +9,7 @@ nvm 的使用非常的简单，跟 npm 的使用方法类似
 
 ## 1. 下载安装
 
-首先先下载 nvm，下载地址：[nvm-windows)](https://github.com/coreybutler/nvm-windows/releases)
+首先先下载 nvm，下载地址：[nvm-windows](https://github.com/coreybutler/nvm-windows/releases)
 
 选择 `nvm-setup.exe` 下载即可
 
