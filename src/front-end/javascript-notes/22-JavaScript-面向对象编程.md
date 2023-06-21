@@ -1,5 +1,5 @@
 ---
-title: JavaScript-面向对象编程
+title: 面向对象编程
 order: 22
 ---
 
