@@ -1,6 +1,0 @@
-import{_ as s,o as n,c as e,b as a}from"./app-0bf01276.js";const t={},o=a(`<p>在 （一般都是这个路径）<code>C:\\Users\\你的用户名\\AppData\\Roaming\\Code\\User</code> 下的 keybindings. json 文件中添加一段代码。</p><div class="language-json line-numbers-mode" data-ext="json"><pre class="language-json"><code><span class="token punctuation">{</span> 
-     <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;enter&quot;</span><span class="token punctuation">,</span> 
-     <span class="token property">&quot;command&quot;</span><span class="token operator">:</span> <span class="token string">&quot;acceptSelectedSuggestion&quot;</span><span class="token punctuation">,</span>
-     <span class="token property">&quot;when&quot;</span><span class="token operator">:</span> <span class="token string">&quot;editorTextFocus &amp;&amp; suggestWidgetVisible&quot;</span> 
-<span class="token punctuation">}</span>    
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后重启即可</p>`,3),p=[o];function c(i,r){return n(),e("div",null,p)}const u=s(t,[["render",c],["__file","05-VSCode使用回车键代码补全.html.vue"]]);export{u as default};
