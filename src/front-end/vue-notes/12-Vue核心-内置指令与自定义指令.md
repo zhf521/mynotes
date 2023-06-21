@@ -1,23 +1,31 @@
 ---
-title: Vue核心-内置指令与自定义指令
+title: 内置指令与自定义指令
 order: 12
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/12-Vue核心-内置指令与自定义指令](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/12-Vue核心-内置指令与自定义指令)
 
-## 内置指令
+## 1. 内置指令
 
-常用的内置指令：
-`v-bind` 单向绑定解析表达式，可简写为 `:`  
+### 1.1 常用的内置指令
+
+`v-bind` 单向绑定解析表达式，可简写为 `:` 
+
 `v-model` 双向数据绑定   
+
 `v-for` 遍历数组 / 对象 / 字符串    
+
 `v-on` 绑定事件监听，可简写为 `@`    
-`v-show` 条件渲染 (动态控制节点是否展示)   
-`v-if` 条件渲染（动态控制节点是否存在）    
-`v-else-if` 条件渲染（动态控制节点是否存在）   
+
+`v-show` 条件渲染 (动态控制节点是否展示)  
+
+`v-if` 条件渲染（动态控制节点是否存在）   
+
+`v-else-if` 条件渲染（动态控制节点是否存在） 
+
 `v-else` 条件渲染（动态控制节点是否存在） 
 
-### v-text 指令
+### 1.2 v-text指令
 
 v-text 指令     
 
@@ -61,7 +69,7 @@ v-text 指令
 
 ![Vue核心-内置指令与自定义指令01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令01.png)
 
-### v-html 指令
+### 1.3 v-html指令
 
 作用：向指定节点中渲染包含 html 结构的内容   
 
@@ -116,7 +124,7 @@ v-text 指令
 
 ![Vue核心-内置指令与自定义指令03.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令03.gif)
 
-### v-cloak 指令
+### 1.4 v-cloak指令
 
 v-cloak 指令（没有值）   
 
@@ -156,7 +164,7 @@ v-cloak 指令（没有值）
 </html>
 ```
 
-### v-once 指令
+### 1.5 v-once指令
 
 + v-once 所在节点在初次动态渲染后，就视为静态内容了  
 + 以后数据的改变不会引起 v-once 所在结构的更新，可以用于优化性能
@@ -196,7 +204,7 @@ v-cloak 指令（没有值）
 
 ![Vue核心-内置指令与自定义指令04.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令04.gif)
 
-### v-pre 指令
+### 1.6 v-pre指令
 
 + 跳过 v-pre 所在节点的编译过程  
 + 可利用它跳过：没有使用指令语法、没有使用插值语法的节点，会加快编译
@@ -236,13 +244,13 @@ v-cloak 指令（没有值）
 
 ![Vue核心-内置指令与自定义指令05.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-内置指令与自定义指令05.gif)
 
-## 自定义指令
+## 2. 自定义指令
 
 `directives`
 
-### 定义语法
+### 2.1 定义语法
 
-#### 局部指令
+#### 2.1.1 局部指令
 
 ```js
 new Vue({															
@@ -271,7 +279,7 @@ directives : {
 }
 ```
 
-#### 全局指令
+#### 2.1.2 全局指令
 
 ```js
 Vue.directive(指令名, 配置对象)
@@ -288,7 +296,7 @@ Vue.directive('my-directive', function(el, binding){
 })
 ```
 
-### 配置对象中常用的3个回调函数  
+### 2.2 配置对象中常用的3个回调函数  
 
 + `bind (element, binding)` 指令与元素成功绑定时调用  
 + `inserted (element, binding)` 指令所在元素被插入页面时调用  
@@ -314,12 +322,12 @@ Vue.directive('fbind', {
 })
 ```
 
-### 注意
+### 2.3 注意
 
 + 指令定义时不加 `v-`，但使用时要加 `v-`  
 + 指令名如果是多个单词，要使用 `kebab-case` 命名方式，不要用 `camelCase` 命名
 
-### 使用指令
+### 2.4 使用指令
 
 ```html
 <!DOCTYPE html>

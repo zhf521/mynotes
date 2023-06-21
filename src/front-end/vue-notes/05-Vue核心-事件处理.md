@@ -1,11 +1,11 @@
 ---
-title: Vue核心-事件处理
+title: 事件处理
 order: 5
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/05-Vue核心-事件处理](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/05-Vue核心-事件处理)
 
-## 事件的基本用法
+## 1. 事件的基本用法
 
 1. 使用 `v-on:xxx` 或 `@xxx` 绑定事件，其中 `xxx` 是事件名
 2. 事件的回调需要配置在 methods 对象中，最终会在 vm 上
@@ -60,7 +60,7 @@ order: 5
 
 ![Vue核心-事件处理01.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-事件处理01.gif)
 
-## 事件修饰符
+## 2. 事件修饰符
 
 Vue 中的事件修饰符：
 1. `prevent` 阻止默认事件（常用）  
@@ -170,25 +170,38 @@ Vue 中的事件修饰符：
 
 ![Vue核心-事件处理02.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-事件处理02.gif)
 
-## 键盘事件
+## 3. 键盘事件
 
 键盘上的每个按键都有自己的名称和编码，例如：Enter（13），而 Vue 还对一些常用按键起了别名方便使用  
 
 1. Vue 中常用的按键别名：
-回车 `enter`  
-删除 `delete` 捕获“删除”和“退格”键  
-退出 `esc`  
-空格 `space`  
-换行 `tab` 特殊，必须配合 keydown 去使用  
-上 `up`  
-下 `down`  
-左 `left`  
-右 `right`  
+
+  回车 `enter` 
+
+  删除 `delete` 捕获“删除”和“退格”键 
+
+  退出 `esc` 
+
+  空格 `space` 
+
+  换行 `tab` 特殊，必须配合 keydown 去使用 
+
+  上 `up`  
+
+  下 `down`  
+
+  左 `left`  
+
+  右 `right`  
+
 2. Vue 未提供别名的按键，可以使用按键原始的 key 值去绑定，但注意要转为 `kebab-case`（多单词小写短横线写法）  
+
 3. 系统修饰键（用法特殊）`ctrl` `alt` `shift` `meta`（`meta` 就是 `win` 键）  
 	1. 配合 keyup 使用：按下修饰键的同时，再按下其他键，随后释放其他键，事件才被触发，指定 `ctr+y` 使用 `@keyup.ctr.y`  
 	2. 配合 keydown 使用：正常触发事件  
+	
 4. 也可以使用 keyCode 去指定具体的按键（不推荐）
+
 5. `Vue.config.keyCodes.自定义键名 = 键码`，可以去定制按键别名
 
 例：

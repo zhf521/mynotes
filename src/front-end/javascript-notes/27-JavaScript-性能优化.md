@@ -1,5 +1,5 @@
 ---
-title: JavaScript-性能优化
+title: 性能优化
 order: 27
 ---
 

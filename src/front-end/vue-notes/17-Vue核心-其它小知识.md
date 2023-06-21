@@ -1,5 +1,5 @@
 ---
-title: Vue核心-其它小知识
+title: 其它小知识
 order: 17
 ---
 

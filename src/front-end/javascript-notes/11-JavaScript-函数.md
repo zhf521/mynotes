@@ -1,5 +1,5 @@
 ---
-title: JavaScript-函数
+title: 函数
 order: 11
 ---
 

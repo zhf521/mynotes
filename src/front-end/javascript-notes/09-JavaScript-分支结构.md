@@ -1,5 +1,5 @@
 ---
-title: JavaScript-分支结构
+title: 分支结构
 order: 9
 ---
 

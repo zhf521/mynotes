@@ -1,5 +1,5 @@
 ---
-title: Vue核心-过渡与动画
+title: 过渡与动画
 order: 15
 ---
 

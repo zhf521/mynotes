@@ -1,5 +1,5 @@
 ---
-title: JavaScript-严格模式
+title: 严格模式
 order: 5
 ---
 

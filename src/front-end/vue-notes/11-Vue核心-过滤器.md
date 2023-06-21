@@ -1,16 +1,16 @@
 ---
-title: Vue核心-过滤器
+title: 过滤器
 order: 11
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/11-Vue核心-过滤器](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/11-Vue核心-过滤器)
 
-## 过滤器 (Vue 3 已经移除)
-
 定义：对要显示的数据进行特定格式化后再显示（适用于一些简单逻辑的处理） 
 
-注册过滤器：  
-`Vue.filter(name, callback)` 全局过滤器   
+注册过滤器：
+
+`Vue.filter(name, callback)` 全局过滤器
+
 `new Vue {filters: {}}` 局部过滤器   
 
 使用过滤器：`{{ xxx | 过滤器名}}` 或 `v-bind:属性 = "xxx | 过滤器名"`  
@@ -19,6 +19,7 @@ order: 11
 + 过滤器可以接收额外参数，多个过滤器也可以串联  
 + 并没有改变原本的数据，而是产生新的对应的数据  
   
+
 处理时间的库：`moment` 体积较大，`dayjs` 轻量级 
 
 ```html

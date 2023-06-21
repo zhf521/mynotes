@@ -1,5 +1,5 @@
 ---
-title: JavaScript-正则表达式
+title: 正则表达式
 order: 24
 ---
 

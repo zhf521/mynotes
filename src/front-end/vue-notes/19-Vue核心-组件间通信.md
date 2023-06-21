@@ -1,5 +1,5 @@
 ---
-title: Vue核心-组件间通信
+title: 组件间通信
 order: 19
 ---
 

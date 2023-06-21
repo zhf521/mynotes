@@ -1,5 +1,5 @@
 ---
-title: JavaScript-输入输出
+title: 输入输出
 order: 3
 ---
 

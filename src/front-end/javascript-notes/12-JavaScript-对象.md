@@ -1,5 +1,5 @@
 ---
-title: JavaScript-对象
+title: 对象
 order: 12
 ---
 

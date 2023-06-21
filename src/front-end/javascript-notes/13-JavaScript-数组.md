@@ -1,5 +1,5 @@
 ---
-title: JavaScript-数组
+title: 数组
 order: 13
 ---
 

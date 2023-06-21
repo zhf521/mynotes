@@ -1,17 +1,17 @@
 ---
-title: Vue核心-绑定样式
+title: 绑定样式
 order: 7
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/07-Vue核心-绑定样式](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/07-Vue核心-绑定样式)
 
-## 绑定 class 样式
+## 1. 绑定class样式
 
 ```js
 :class="xxx" //xxx 可以是字符串、数组、对象  
 ```
 
-### 字符串写法
+### 1.1 字符串写法
 
 字符串写法适用于：类名不确定，要动态获取  
 
@@ -78,7 +78,7 @@ order: 7
 
 ![Vue核心-绑定样式01.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式01.gif)
 
-### 数组写法
+### 1.2 数组写法
 
 数组写法适用于：要绑定多个样式，个数不确定，名字也不确定  
 
@@ -133,7 +133,7 @@ order: 7
 
 ![Vue核心-绑定样式02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式02.png)
 
-### 对象写法
+### 1.3 对象写法
 
 对象写法适用于：要绑定多个样式，个数确定，名字也确定，但不确定用不用 
 
@@ -192,7 +192,7 @@ order: 7
 
 ![Vue核心-绑定样式03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式03.png)
 
-## 绑定 style 样式
+## 2. 绑定 style 样式
 
 ```js
 :style="xxx"
@@ -200,7 +200,7 @@ order: 7
 
 样式对象中的 key，必须是存在的 CSS 属性，如 fontSize、backgroundColor（小驼峰命名法）
 
-### 对象写法
+### 2.1 对象写法
 
 `:style="对象"`
 
@@ -251,7 +251,7 @@ order: 7
 
 ![Vue核心-绑定样式04.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-绑定样式04.png)
 
-### 数组写法
+### 2.2 数组写法
 
 `:style="数组"`
 

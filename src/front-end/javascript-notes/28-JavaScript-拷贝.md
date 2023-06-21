@@ -1,5 +1,5 @@
 ---
-title: JavaScript-拷贝
+title: 拷贝
 order: 28
 ---
 

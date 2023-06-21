@@ -1,5 +1,5 @@
 ---
-title: JavaScript-BOM
+title: BOM
 order: 19
 ---
 

@@ -1,11 +1,11 @@
 ---
-title: Vue核心-计算属性与侦听属性
+title: 计算属性与侦听属性
 order: 6
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/06-Vue核心-计算属性与侦听属性](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/06-Vue核心-计算属性与侦听属性)
 
-## 计算属性
+## 1. 计算属性
 
 姓名案例：
 
@@ -145,9 +145,9 @@ computed 计算属性实现：
 </html>
 ```
 
-## 侦听属性
+## 2. 侦听属性
 
-### 侦听属性基本用法
+### 2.1 侦听属性基本用法
 
 watch 侦听属性   
 1. 当被侦听的属性变化时，回调函数自动调用，进行相关操作  
@@ -217,7 +217,7 @@ watch 侦听属性
 
 ![Vue核心-计算属性与侦听属性02.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-计算属性与侦听属性02.gif)
 
-### 深度侦听
+### 2.2 深度侦听
 
 1. Vue 中的 watch 默认不侦听对象内部值的改变（一层）  
 2. 在 watch 中配置 `deep:true` 可以侦听对象内部值的改变（多层）   
@@ -280,7 +280,7 @@ watch 侦听属性
 
 ![Vue核心-计算属性与侦听属性03.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vue核心-计算属性与侦听属性03.gif)
 
-### 侦听属性简写
+### 2.3 侦听属性简写
 
 如果侦听属性除了 `handler` 没有其他配置项的话，可以进行简写
 
@@ -350,7 +350,7 @@ watch 侦听属性
 </html>
 ```
 
-## 计算属性 VS 侦听属性
+## 3. 计算属性VS侦听属性
 
 computed 和 watch 之间的区别：  
 + computed 能完成的功能，watch 都可以完成  

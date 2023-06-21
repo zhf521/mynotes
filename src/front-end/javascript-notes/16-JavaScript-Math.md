@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Math
+title: Math
 order: 16
 ---
 

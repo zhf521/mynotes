@@ -1,5 +1,5 @@
 ---
-title: Vue核心-发送Ajax请求
+title: 发送Ajax请求
 order: 20
 ---
 

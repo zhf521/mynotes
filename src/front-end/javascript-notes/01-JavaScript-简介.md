@@ -1,5 +1,5 @@
 ---
-title: JavaScript-简介
+title: 简介
 order: 1
 ---
 

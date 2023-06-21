@@ -1,5 +1,5 @@
 ---
-title: JavaScript-变量
+title: 变量
 order: 6
 ---
 

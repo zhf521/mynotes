@@ -1,5 +1,5 @@
 ---
-title: JavaScript-垃圾回收机制
+title: 垃圾回收机制
 order: 25
 ---
 

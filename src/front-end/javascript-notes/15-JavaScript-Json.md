@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Json
+title: Json
 order: 15
 ---
 

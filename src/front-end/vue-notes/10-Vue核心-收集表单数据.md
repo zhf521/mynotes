@@ -1,11 +1,9 @@
 ---
-title: Vue核心-收集表单数据
+title: 收集表单数据
 order: 10
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/10-Vue核心-收集表单数据](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/10-Vue核心-收集表单数据)
-
-## 收集表单数据
 
 收集表单数据
 + 若 `<input type="text"/>`，则 v-model 收集的是 value 值，用户输入的内容就是 value 值

@@ -1,19 +1,19 @@
 ---
-title: Vue核心-快速上手
+title: 快速上手
 order: 1 
 ---
 
 > 本文示例代码：[NoteDemoCode/Vue/01-Vue核心-快速上手](https://github.com/zhf521/NoteDemoCode/tree/main/Vue/01-Vue核心-快速上手)
 
-## Vue 简介
+## 1. Vue简介
 
-### 官网
+### 1.1 官网
 
 [英文官网](https://vuejs.org)
 
 [中文官网](https://cn.vuejs.org/)
 
-### 介绍与描述
+### 1.2 介绍与描述
 
 + Vue 是一套用来动态构建用户界面的渐进式 JavaScript 框架
 	+ 构建用户界面：把数据通过某种办法变成用户界面
@@ -21,7 +21,7 @@ order: 1
 + 作者
 	+ 尤雨溪
 
-### Vue 的特点
+### 1.3 Vue的特点
 
 1. 遵循 `MVVM` 模式
 2. 编码简洁，体积小，运行效率高，适合移动/PC 端开发
@@ -30,12 +30,12 @@ order: 1
 5. 声明式编码，让编码人员无需直接操作 DOM，提高开发效率
 6. 使用虚拟 DOM 和 Diff 算法，尽量复用 DOM 节点
 
-### 与其他 JS 框架的关联
+### 1.4 与其他 JS 框架的关联
 
 + 借鉴 angular 的模板和数据绑定技术 
 + 借鉴 react 的组件化和虚拟 DOM 技术
 
-### Vue 周边库
+### 1.5 Vue周边库
 
 + vue-cli：vue 脚手架  
 + vue-resource (axios)：ajax 请求  
@@ -46,15 +46,15 @@ order: 1
 + mint-ui：基于 vue 的 UI 组件库（移动端）  
 + element-ui：基于 vue 的 UI 组件库（PC 端）
 
-## 初识 Vue
+## 2. 初识Vue
 
-### 前置工作
+### 2.1 前置工作
 
 1. 给浏览器安装 `Vue Devtools` 插件   
 2. 标签引入 Vue 包  
 3. （可选）阻止 Vue 在启动时生成生产提示 `Vue.config.productionTip = false`
 
-### 代码演示
+### 2.2 代码演示
 
 1. 想让 Vue 工作，就必须创建一个 `Vue实例`，且要传入一个配置对象
 2. 容器里的代码依然符合 HTML 规范，只不过混入了一些特殊的 Vue 语法
@@ -102,17 +102,11 @@ order: 1
 1. JS 表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方，如：`a`、`a+b`、`demo(1)`、`x === y ? 'a' : 'b'`  
 2. JS 代码（语句），只控制代码的走向，不生成值，如：`if (){}`、`for (){}`  
 
-### el 和 data
-
-#### el
+### 2.3 el和data
 
 el 用于指定当前 Vue 实例为哪个容器服务，值通常为 CSS 选择器字符串
 
-#### data
-
 data 中用于存储数据，数据供 el 所指定的容器去使用，值暂时先写成一个对象
-
-#### el 和 data 的两种写法
 
 el 有两种写法：
 + 创建 Vue 实例对象的时候配置 el 属性
@@ -124,7 +118,7 @@ const v = new Vue({
 	}
 })
 ```
-+ 先创建 Vue 实例，随后再通过 `vm.$mount('选择器')` 指定 el 的值
++ 先创建 Vue 实例，随后再通过 `v.$mount('选择器')` 指定 el 的值
 ```js
 const v = new Vue({
 	data:{

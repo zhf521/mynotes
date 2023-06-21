@@ -1,5 +1,5 @@
 ---
-title: Vue核心-slot插槽
+title: slot插槽
 order: 18
 ---
 

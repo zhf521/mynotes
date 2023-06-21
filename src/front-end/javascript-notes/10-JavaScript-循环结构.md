@@ -1,5 +1,5 @@
 ---
-title: JavaScript-循环结构
+title: 循环结构
 order: 10
 ---
 

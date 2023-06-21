@@ -1,5 +1,5 @@
 ---
-title: Vue核心-Vue生命周期
+title: Vue生命周期
 order: 13
 ---
 

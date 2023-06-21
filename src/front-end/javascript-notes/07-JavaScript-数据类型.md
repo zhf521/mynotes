@@ -1,5 +1,5 @@
 ---
-title: JavaScript-数据类型
+title: 数据类型
 order: 7
 ---
 

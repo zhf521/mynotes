@@ -1,5 +1,5 @@
 ---
-title: JavaScript-定时器
+title: 定时器
 order: 18
 ---
 

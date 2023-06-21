@@ -1,5 +1,5 @@
 ---
-title: Vue核心-Vue组件化编程
+title: Vue组件化编程
 order: 14
 ---
 

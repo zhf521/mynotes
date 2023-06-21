@@ -1,5 +1,5 @@
 ---
-title: JavaScript-注释与结束符
+title: 注释与结束符
 order: 4
 ---
 

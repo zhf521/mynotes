@@ -1,5 +1,5 @@
 ---
-title: JavaScript-字符串
+title: 字符串
 order: 14
 ---
 

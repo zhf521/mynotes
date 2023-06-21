@@ -1,5 +1,5 @@
 ---
-title: JavaScript-闭包
+title: 闭包
 order: 29
 ---
 

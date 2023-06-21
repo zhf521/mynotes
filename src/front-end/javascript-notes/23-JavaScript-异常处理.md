@@ -1,5 +1,5 @@
 ---
-title: JavaScript-异常处理
+title: 异常处理
 order: 23
 ---
 

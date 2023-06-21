@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Date
+title: Date
 order: 17
 ---
 
