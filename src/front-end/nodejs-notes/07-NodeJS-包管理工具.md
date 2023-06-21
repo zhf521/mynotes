@@ -60,7 +60,7 @@ node.js 在安装时会 `自动安装 npm` ，所以如果你已经安装了 nod
 
 可以通过 `npm -v` 查看版本号测试，如果显示版本号说明安装成功，反之安装失败
 
-### 3.2 npm基本使用
+### 3.2 基本使用
 
 #### 3.2.1 初始化
 
@@ -88,10 +88,10 @@ node.js 在安装时会 `自动安装 npm` ，所以如果你已经安装了 nod
 
 #### 3.2.3 下载安装包
 
-我们可以通过 `npm install` 和 `npm i` 命令安装包
+我们可以通过 `npm install` 或 `npm i` 命令安装包
 
 ```shell
-# 格式
+# 语法
 npm install <包名>
 npm i <包名>
 
@@ -103,32 +103,32 @@ npm i uniq
 
 运行之后文件夹下会增加两个资源
 
-- `node_modules 文件夹` 存放下载的包
-- `package-lock.json 包的锁文件`，用来锁定包的版本
+- `node_modules` 文件夹存放下载的包
+- `package-lock.json` 包的锁文件，用来锁定包的版本
 
 >安装 uniq 之后， uniq 就是当前这个包的一个 `依赖包` ，有时会简称为 `依赖`
 >
->比如我们创建一个包名字为 A，A 中安装了包名字是 B，我们就说 <span style="color:red">B 是 A 的一个依赖包</span>，也会说 <span style="color:red">A 依赖 B</span>
+>比如我们创建一个包名字为 A，A 中安装了包名字是 B，我们就说B 是 A 的一个依赖包，也会说A 依赖 B
 
-#### require 导入 npm 包基本流程
+#### 3.2.4 require导入npm包基本流程
 
-1. 在当前文件夹下 node_modules 中寻找同名的文件夹
-2. 在上级目录中下的 node_modules 中寻找同名的文件夹，直至找到磁盘根目录
+1. 在当前文件夹下 `node_modules` 中寻找同名的文件夹
+2. 在上级目录中下的 `node_modules` 中寻找同名的文件夹，直至找到磁盘根目录
 
-### 生产环境与开发环境
+### 3.3 生产环境与开发环境
 
-`开发环境` 是程序员 <span style="color:red">专门用来写代码</span> 的环境，一般是指程序员的电脑，开发环境的项目一般 <span style="color:red">只能程序员自己访问</span>
+`开发环境` 是程序员专门用来写代码的环境，一般是指程序员的电脑，开发环境的项目一般只能程序员自己访问
 
-`生产环境` 是项目 <span style="color:red">代码正式运行</span> 的环境，一般是指正式的服务器电脑，生产环境的项目一般 <span style="color:red">每个客户都可以访问</span>
+`生产环境` 是项目代码正式运行的环境，一般是指正式的服务器电脑，生产环境的项目一般每个客户都可以访问
 
-### 生产依赖与开发依赖
+### 3.4 生产依赖与开发依赖
 
-我们可以在安装时设置选项来区分 `依赖的类型`，目前分为两类：
+我们可以在安装时设置选项来区分依赖的类型，目前分为两类：
 
-| 类型     | 命令                                    | 补充                                                         |
-| -------- | --------------------------------------- | ------------------------------------------------------------ |
-| 生产依赖 | npm i -S uniq <br/>npm i --save uniq    | -S 等效于 --save，`-S 是默认选项`<br/>包信息保存在 package.json 中 `dependencies` 属性 |
-| 开发依赖 | npm i -D less<br/>npm i --save-dev less | -D 等效于 --save-dev<br/>包信息保存在 package.json 中 `devDependencies` 属性 |
+| 类型     | 命令                                            | 补充                                                         |
+| -------- | ----------------------------------------------- | ------------------------------------------------------------ |
+| 生产依赖 | `npm i -S <包名>` <br/>`npm i --save <包名>`    | `-S` 等效于 `--save`，`-S` 是默认选项<br/>包信息保存在 `package.json` 中 `dependencies` 属性里 |
+| 开发依赖 | `npm i -D <包名>`<br/>`npm i --save-dev <包名>` | `-D` 等效于 `--save-dev`<br/>包信息保存在 `package.json` 中 `devDependencies` 属性里 |
 
 > 举个例子方便大家理解，比如说做蛋炒饭需要`大米`，`油`，`葱`，`鸡蛋`，`锅`，`煤气`，`铲子`等
 >
@@ -138,9 +138,11 @@ npm i uniq
 >
 > 所以 `开发依赖` 是只在开发阶段使用的依赖包，而 `生产依赖` 是开发阶段和最终上线运行阶段都用到的依赖包
 
-### 全局安装
+### 3.5 全局安装
 
-我们可以执行安装选项 -g 进行全局安装
+我们可以执行安装选项 `-g` 进行全局安装
+
+例：
 
 ```shell
 npm i -g nodemon
@@ -148,48 +150,38 @@ npm i -g nodemon
 
 全局安装完成之后就可以在命令行的任何位置运行 `nodemon` 命令
 
-该命令的作用是 `自动重启 node 应用程序`
+该命令的作用是自动重启 node 应用程序
 
 > 说明：
 >
 > - 全局安装的命令不受工作目录位置影响
 > - 可以通过 `npm root -g` 可以查看全局安装包的位置
-> - <span style="color:red">不是所有的包都适合全局安装</span>，只有全局类的工具才适合，可以通过<span style="color:red">查看包的官方文档来确定安装方式</span>，这里先不必太纠结
+> - 不是所有的包都适合全局安装，只有全局类的工具才适合，可以通过查看包的官方文档来确定安装方式
 
-#### 修改 windows 执行策略
+#### 3.5.1 修改windows执行策略
 
-![06_包管理工具](./assets/753392684c58b41b6df39e59a23c80509136fe84.jpg)
+windows默认不允许npm全局命令执行脚本文件，所以需要修改执行策略
 
-windows 默认不允许 npm 全局命令执行脚本文件，所以需要修改执行策略
-
-1. 以`管理员身份`打开 `powershell` 命令行
-
-![06_包管理工具](./assets/88986346dd7ae5c2ef0e784eec6d2b4fe24c53c7.jpg)
+1. 以管理员身份打开 `powershell` 命令行
 
 2. 键入命令 `set-ExecutionPolicy remoteSigned`
 
-![06_包管理工具](./assets/9feab516f2f940881eaa23cd367fe244ab7d3036.jpg)
-
-3. 键入 A 然后敲回车 👌
-
+3. 键入`A`然后敲回车
 4. 如果不生效，可以尝试重启 vscode
 
-#### 环境变量 Path
+#### 3.5.2 环境变量Path
 
-Path 是操作系统的一个环境变量，可以设置一些文件夹的路径，在当前工作目录下找不到可执行文件
-时，就会在环境变量 Path 的目录中挨个的查找，如果找到则执行，如果没有找到就会报错
-
-![06_包管理工具](./assets/7d10fa57df7a791566fb7379c9b700ea67178720.jpg)
+Path 是操作系统的一个环境变量，可以设置一些文件夹的路径，在当前工作目录下找不到可执行文件时，就会在环境变量 Path 的目录中挨个的查找，如果找到则执行，如果没有找到就会报错
 
 > 补充说明：
 >
 > - 如果希望某个程序在任何工作目录下都能正常运行，就应该将该程序的所在目录配置到环境
->   变量 Path 中
-> - windows 下查找命令的所在位置
->   - `cmd 命令行` 中执行 `where nodemon`
->   - `powershell命令行` 执行 `get-command nodemon`
+>   变量Path中
+> - windows下查找命令的所在位置
+>   - cmd命令行中执行`where nodemon`
+>   - powershell命令行执行 `get-command nodemon`
 
-### 安装包依赖
+### 3.6 安装包依赖
 
 在项目协作中有一个常用的命令就是 `npm i`，通过该命令可以依据 `package.json` 和 `package-lock.json` 的依赖声明安装项目依赖
 
@@ -200,36 +192,36 @@ npm install
 
 > node_modules 文件夹大多数情况都不会存入版本库
 
-### 安装指定版本的包
+### 3.7 安装指定版本的包
 
-项目中可能会遇到版本不匹配的情况，有时就需要安装指定版本的包，可以使用下面的命令的
+项目中可能会遇到版本不匹配的情况，有时就需要安装指定版本的包，可以使用下面的命令
 
 ```shell
-## 格式
+## 命令
 npm i <包名@版本号>
 
 ## 示例
 npm i jquery@1.11.2
 ```
 
-### 删除依赖
+### 3.8 删除依赖
 
 项目中可能需要删除某些不需要的包，可以使用下面的命令
 
 ```shell
 ## 局部删除
-npm remove uniq
-npm r uniq
+npm remove <包名>
+npm r <包名>
 
 ## 全局删除
-npm remove -g nodemon
+npm remove -g <包名>
 ```
 
-### 配置命令别名
+### 3.9 配置命令别名
 
 通过配置命令别名可以更简单的执行命令
 
-配置 package.json 中的 `scripts` 属性
+配置 `package.json` 中的 `scripts` 属性
 
 ```json
 {
@@ -264,16 +256,17 @@ npm start
 > - `npm run` 有自动向上级目录查找的特性，跟 `require` 函数也一样
 > - 对于陌生的项目，我们可以通过查看 `scripts` 属性来参考项目的一些操作
 
-## cnpm
+## 4. cnpm
 
-### 介绍
+cnpm 是一个淘宝构建的`npmjs.com`的完整镜像，也称为淘宝镜像
 
-cnpm 是一个淘宝构建的`npmjs.com`的完整镜像，也称为『淘宝镜像』，网址https://npmmirror.com/
-cnpm 服务部署在国内 <span style="color:red">阿里云服务器上</span>，可以提高包的下载速度
+官网：[npmmirror 镜像站](https://npmmirror.com/)
+
+cnpm 服务部署在国内阿里云服务器上，可以提高包的下载速度
 
 官方也提供了一个全局工具包 `cnpm` ，操作命令与 npm 大体相同
 
-### 安装
+### 4.1 cnpm的安装
 
 我们可以通过 npm 来安装 cnpm 工具
 
@@ -281,23 +274,23 @@ cnpm 服务部署在国内 <span style="color:red">阿里云服务器上</span>�
 npm install -g cnpm --registry=https://registry.npmmirror.com
 ```
 
-### 操作命令
+### 4.2 操作命令
 
 | 功能         | 命令                                                         |
 | ------------ | ------------------------------------------------------------ |
-| 初始化       | cnpm init / cnpm init                                        |
-| 安装包       | cnpm i uniq<br/>cnpm i -S uniq<br/>cnpm i -D uniq<br/>cnpm i -g nodemon |
-| 安装项目依赖 | cnpm i                                                       |
-| 删除         | cnpm r uniq                                                  |
+| 初始化       | `cnpm init` / `cnpm init`                                    |
+| 安装包       | `cnpm i <包名>`<br/>`cnpm i -S <包名>`<br/>`cnpm i -D <包名>`<br/>`cnpm i -g <包名>` |
+| 安装项目依赖 | `cnpm i`                                                     |
+| 删除         | `cnpm r <包名>`                                              |
 
-### npm 配置淘宝镜像
+### 4.3 npm配置淘宝镜像
 
-用 npm 也可以使用淘宝镜像，配置的方式有两种
+用 npm 也可以使用淘宝镜像，配置的方式有两种：
 
 - 直接配置
 - 工具配置
 
-#### 直接配置
+#### 4.3.1 直接配置
 
 执行如下命令即可完成配置
 
@@ -305,9 +298,9 @@ npm install -g cnpm --registry=https://registry.npmmirror.com
 npm config set registry https://registry.npmmirror.com/
 ```
 
-#### 工具配置
+#### 4.3.2 工具配置
 
-使用 `nrm` 配置 npm 的镜像地址 `npm registry manager`
+使用 `nrm` 配置 npm 的镜像地址npm registry manager
 
 1. 安装 nrm
 
@@ -327,22 +320,18 @@ npm config set registry https://registry.npmmirror.com/
    npm config list
    ```
 
-   检查 registry 地址是否为 https://registry.npmmirror.com/ , 如果 `是` 则表明成功
+   检查 registry 地址是否为`https://registry.npmmirror.com/`, 如果是则表明成功
 
 > 补充说明：
 >
-> 1. <span style="color:red">建议使用第二种方式</span>进行镜像配置，因为后续修改起来会比较方便
-> 2. 虽然 cnpm 可以提高速度，但是 npm 也可以通过淘宝镜像进行加速，所以 <span style="color:red">npm 的使用率还是高于 cnpm</span>
+> 1. 建议使用第二种方式进行镜像配置，因为后续修改起来会比较方便
+> 2. 虽然 cnpm 可以提高速度，但是 npm 也可以通过淘宝镜像进行加速，所以npm 的使用率还是高于 cnpm
 
-## yarn
+## 5. yarn
 
-![06_包管理工具](./assets/bcc5f325c00fde7886ea75bad1d66b8c2a9add97.jpg)
+yarn 是由 Facebook 在 2016 年推出的新的 Javascript 包管理工具
 
-### yarn 介绍
-
-> yarn 是由 Facebook 在 2016 年推出的新的 Javascript 包管理工具，官方网址：https://yarnpkg.com/
-
-### yarn 特点
+官网：[Yarn - Package Manager](https://yarnpkg.com/)
 
 yarn 官方宣称的一些特点
 
@@ -350,7 +339,7 @@ yarn 官方宣称的一些特点
 - 超级安全：在执行代码之前，yarn 会通过算法校验每个安装包的完整性
 - 超级可靠：使用详细、简洁的锁文件格式和明确的安装算法，yarn 能够保证在不同系统上无差异的工作
 
-### yarn 安装
+### 5.1 yarn的安装
 
 我们可以使用 npm 安装 yarn
 
@@ -358,27 +347,25 @@ yarn 官方宣称的一些特点
 npm i -g yarn
 ```
 
-
-
-### yarn 常用命令
+### 5.2 操作命令
 
 | 功能         | 命令                                                         |
 | ------------ | ------------------------------------------------------------ |
-| 初始化       | yarn init / yarn init -y                                     |
-| 安装包       | yarn add uniq 生产依赖<br/>yarn add less --dev 开发依赖<br/>yarn global add nodemon 全局安装 |
-| 删除包       | yarn remove uniq 删除项目依赖包<br>yarn global remove nodemon 全局删除包 |
-| 安装项目依赖 | yarn                                                         |
-| 运行命令别名 | yarn <别名> # 不需要添加 `run`                               |
+| 初始化       | `yarn init` / `yarn init -y`                                 |
+| 安装包       | `yarn add <包名>` 生产依赖<br/>`yarn add <包名> --dev` 开发依赖<br/>`yarn global add <包名>` 全局安装 |
+| 删除包       | `yarn remove <包名>` 删除项目依赖包<br>`yarn global remove <包名>` 全局删除包 |
+| 安装项目依赖 | `yarn`                                                       |
+| 运行命令别名 | `yarn <别名>` # 不需要添加 `run`                             |
 
 > 思考题：
 >
-> 这里有个小问题就是 <span style="color:red">全局安装的包不可用</span>，yarn 全局安装包的位置可以通过 `yarn global bin`来查看，
+> 这里有个小问题就是全局安装的包不可用，yarn 全局安装包的位置可以通过 `yarn global bin`来查看
 >
 > 那你有没有办法使 yarn 全局安装的包能够正常运行？
 >
 > - 配置 path 环境
 
-### yarn 配置淘宝镜像
+### 5.3 yarn配置淘宝镜像
 
 可以通过如下命令配置淘宝镜像
 
@@ -388,45 +375,45 @@ yarn config set registry https://registry.npmmirror.com/
 
 可以通过 `yarn config list` 查看 yarn 的配置项
 
-### npm 和 yarn 选择
+### 5.4 npm和yarn选择
 
 大家可以根据不同的场景进行选择
 
 1. 个人项目
 
-   如果是个人项目，<span style="color:red">哪个工具都可以</span>，可以根据自己的喜好来选择
+   如果是个人项目，哪个工具都可以，可以根据自己的喜好来选择
 
 2. 公司项目
-   如果是公司要根据项目代码来选择，可以 <span style="color:red">通过锁文件判断</span> 项目的包管理工具
+   如果是公司要根据项目代码来选择，可以通过锁文件判断项目的包管理工具
    
    - npm 的锁文件为 `package-lock.json`
    - yarn 的锁文件为 `yarn.lock`
 
->包管理工具 <span style="color:red">不要混着用，切记，切记，切记</span>
+>包管理工具不要混着用，切记，切记，切记
 
-## 管理发布包
+## 6. 管理发布包
 
-### 创建与发布
+### 6.1 创建与发布
 
 我们可以将自己开发的工具包发布到 npm 服务上，方便自己和其他开发者使用，操作步骤如下：
 
-1. 创建文件夹，并创建文件 index.js， 在文件中声明函数，使用 module.exports 暴露
+1. 创建文件夹，并创建文件 `index.js`， 在文件中声明函数，使用 `module.exports` 暴露
 
-2. npm 初始化工具包，package.json 填写包的信息 (包的名字是唯一的)
+2. npm 初始化工具包，`package.json`填写包的信息 (包的名字是唯一的)
 
-3. 注册账号 https://www.npmjs.com/signup
+3. 注册账号：[npm | Sign Up](https://www.npmjs.com/signup)
 
-4. 激活账号 （ <span style="color:red">一定要激活账号</span> ）
+4. 激活账号（一定要激活账号）
 
 5. 修改为官方的官方镜像 (命令行中运行 `nrm use npm` )
 
 6. 命令行下 `npm login` 填写相关用户信息
 
-7. 命令行下 `npm publish` 提交包 👌
+7. 命令行下 `npm publish` 提交包
 
-### 更新包
+### 6.2 更新包
 
-后续可以对自己发布的包进行更新，操作步骤如下
+后续可以对自己发布的包进行更新，操作步骤：
 
 1. 更新包中的代码
 
@@ -440,7 +427,7 @@ yarn config set registry https://registry.npmmirror.com/
    npm publish
    ```
 
-### 删除包
+### 6.3 删除包
 
 执行如下命令删除包
 
@@ -448,13 +435,13 @@ yarn config set registry https://registry.npmmirror.com/
 npm unpublish --force
 ```
 
-> 删除包需要满足一定的条件， https://docs.npmjs.com/policies/unpublish
+> 删除包需要满足一定的条件：
 >
 > - 你是包的作者
 > - 发布小于 24 小时
 > - 大于 24 小时后，没有其他包依赖，并且每周小于 300 下载量，并且只有一个维护者
 
-## 扩展内容
+## 7. 扩展内容
 
 在很多语言中都有包管理工具，比如：
 
@@ -467,7 +454,7 @@ npm unpublish --force
 | JavaScript | npm/yarn/cnpm/other |
 | Ruby       | rubyGems            |
 
-除了编程语言领域有包管理工具之外，操作系统层面也存在包管理工具，不过这个包指的是『`软件包`』
+除了编程语言领域有包管理工具之外，操作系统层面也存在包管理工具，不过这个包指的是`软件包`
 
 | 操作系统 | 包管理工具 | 网址                                |
 | -------- | ---------- | ----------------------------------- |
@@ -475,4 +462,3 @@ npm unpublish --force
 | Ubuntu   | apt        | https://packages.ubuntu.com/        |
 | MacOS    | homebrew   | https://brew.sh/                    |
 | Windows  | chocolatey | https://chocolatey.org/             |
-
