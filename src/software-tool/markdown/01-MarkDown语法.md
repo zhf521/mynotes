@@ -3,7 +3,7 @@ title: MarkDown语法
 order: 1
 ---
 
-## 标题
+## 1. 标题
 
 ```markdown
 # 标题名字（井号的个数代表标题的级数）
@@ -23,11 +23,9 @@ order: 1
 
 最多支持六级标题#
 
+## 2. 文字相关
 
-
-## 文字
-
-### 删除线
+### 2.1 删除线
 
 ```markdown
 这就是 ~~删除线~~ (使用波浪号)
@@ -35,7 +33,7 @@ order: 1
 
 这就是 ~~删除线~~ (使用波浪号)
 
-### 斜体
+### 2.2 斜体
 
 ```markdown
 这是用来 *斜体* 的 _文本_
@@ -43,7 +41,7 @@ order: 1
 
 这是用来 *斜体* 的 _文本_
 
-### 加粗
+### 2.3 加粗
 
 ```markdown
 这是用来 **加粗** 的 __文本__
@@ -51,7 +49,7 @@ order: 1
 
 这是用来 **加粗** 的 __文本__
 
-### 斜体+加粗
+### 2.4 斜体+加粗
 
 ```markdown
 这是用来 ***斜体+加粗*** 的 ___文本___
@@ -59,23 +57,29 @@ order: 1
 
 这是用来 ***斜体+加粗*** 的 ___文本___
 
-### 下划线
+### 2.5 下划线
 
 下划线是 HTML 语法
 
-`下划线` <u> 下划线 (快捷键 `ctrl` + `u`) </u>
-
-### 高亮（需勾选扩展语法）
-
-```markdown
-这是用来 ==斜体+加粗== 的文本
+```html
+<u>下划线</u>
 ```
 
-这是用来 ==斜体+加粗== 的文本
+<u>下划线</u>
 
-## 符号及数学公式
+快捷键： `ctrl` + `u`
 
-### 下标 (需勾选扩展语法)
+### 2.6 高亮
+
+```markdown
+这是用来 ==高亮== 的文本
+```
+
+这是用来 ==高亮== 的文本
+
+## 3. 符号及数学公式
+
+### 3.1 下标
 
 ```markdown
 水 $H_2O$
@@ -85,7 +89,7 @@ order: 1
 水 $H_2O$
 双氧水 $H_2O_2$
 
-### 上标 (需勾选扩展语法)
+### 3.2 上标
 
 ```markdown
 面积 $m^2$
@@ -97,7 +101,7 @@ order: 1
 体积 $m^3$
 3 的 xy 次方 $3^{xy}$
 
-### 运算符
+### 3.3 运算符
 
 ```Markdown
 乘号: $\times$
@@ -115,7 +119,7 @@ $10 = 2 \times 5$
 开方：$\sqrt{ x }$
 开 n 次方：$\sqrt[ n ]{ x }$
 
-如果要把符号往正上方或者正下方放
+把符号往正上方或者正下方放
 
 比如 :
 ```Markdown
@@ -127,9 +131,9 @@ $\max \limits_{x_0}$
 $\min \limits^{x_0}$
 $\min\limits^{x_0}_{x_0}$
 
-> 但 limits 只允许用于运算符上, 其他的不行
+> limits 只允许用于运算符上, 其他的不行
 
-### 向量
+### 3.4 向量
 
 ```Markdown
 $\vec{ a }$
@@ -138,7 +142,7 @@ $\vec a \cdot \vec b = 0$
 $\vec{ a }$
 $\vec a \cdot \vec b = 0$
 
-### 微积分
+### 3.5 微积分
 
 ```Markdown
 $\int_0^2 x^2 {\rm d}x$
@@ -148,7 +152,7 @@ $\lim\limits_{n \rightarrow +\infty} \frac{1}{n(n+1)}$
 $\int_0^2 x^2 {\rm d}x$
 $\lim\limits_{n \rightarrow +\infty} \frac{1}{n(n+1)}$
 
-### 求和求极限
+### 3.6 求和求极限
 
 ```Markdown
 $\sum_{i = 1}^n{x_i}$
@@ -166,7 +170,7 @@ $\sum\limits_{i=0}^n \frac{1}{i^2}$
 $\frac{\sum_{i = 1}^n{x_i}}{n}$
 $\prod_{i=0}^n \frac{1}{i^2}$
 
-### 括号
+### 3.7 括号
 ```Markdown
 $\{ \}$
 ${a\choose b}$
@@ -179,7 +183,7 @@ ${a\choose b}$
 $\frac{x}{y}$
 $\left ()\right.$
 
-### 省略号
+### 3.8 省略号
 ```Markdown
 跟文本底线对齐的省略号 $\ldots$
 横向的省略号 $\cdots$
@@ -190,7 +194,7 @@ $\left ()\right.$
 横向的省略号 $\cdots$
 竖向的省略号 $\vdots$
 对角线方向的省略号 $\ddots$
-### 数学符号
+### 3.9 数学符号
 ```Markdown
 因为：$\because$
 所以：$\therefore$
@@ -229,7 +233,7 @@ $\left ()\right.$
 ⨀ ：$\bigodot$
 ⨂ ：$\bigotimes$
 ⨁ ：$\bigoplus$
-### 百分号、约等号
+### 3.10 百分号、约等号
 ```Markdown
 $\%$
 $\approx$
@@ -237,7 +241,7 @@ $\approx$
 $\%$
 $\approx$
 
-### 向上/下取整
+### 3.11 向上/下取整
 
 ```Markdown
 向上:
@@ -265,7 +269,7 @@ $\rfloor$
 
 $\lceil$ $\frac{4}{5}$ $\rceil$
 $\lfloor$ $\frac{4}{5}$ $\rfloor$
-### 希腊字母
+### 3.12 希腊字母
 
 | 希腊字母 | 写法 | 希腊字母|写法|
 | ---- | ---- | ----|----|
@@ -289,7 +293,7 @@ $\lfloor$ $\frac{4}{5}$ $\rfloor$
 |   $\varphi$    |   `$\varphi$`    |      $\chi$   | `$\chi$` |
 |  $\psi$  |    `$\psi$`   |   $\Psi$   |   `$\Psi$`   |
 |   $\Omega$    |   `$\Omega$`    | $\omega$     |   `$\omega$`   |
-### 集合运算符
+### 3.13 集合运算符
 ```Markdown
 ∅: $\emptyset$ 
 ∈: $\in$ 
@@ -321,7 +325,7 @@ $A\\2$
 ⨆: $\bigsqcup$
 $A\\2$
 
-### 对数符号
+### 3.14 对数符号
 ```Markdown
 log:$\log$ 
 lg:$\lg$ 
@@ -330,7 +334,7 @@ ln:$\ln$
 log: $\log$
 lg: $\lg$
 ln: $\ln$
-### 箭头符号
+### 3.15 箭头符号
 ```Markdown
 ↑:$\uparrow$  
 ↓:$\downarrow$  
@@ -362,7 +366,7 @@ $\stackrel{*}{\Rightarrow}$
 $\stackrel{+}{\Rightarrow}$
 $\stackrel{*}{\Rightarrow}$
 
-### 三角运算符
+### 3.16 三角运算符
 ```Markdown
 ⊥:$\bot$  
 ∠:$\angle$  
@@ -384,7 +388,7 @@ cot: $\cot$
 sec: $\sec$
 csc: $\csc$
 
-### 分段函数的写法
+### 3.17 分段函数的写法
 用法：`\begin{cases}xxxxxxx \\ xxxxxxx \end{cases}`
 ```Markdown
 $L(Y,f(x))=\begin{cases}1, Y!=f(x) \\0, Y = f(x)\end{cases}$
@@ -398,7 +402,7 @@ $L(Y,f(x))=\begin{cases}1, Y!=f(x) \\0, Y = f(x)\\ -1,Y=\infty \end{cases}$
 $M_p=\begin{cases}x_{([np]+1)} {\quad}{\quad} np不是整数 \\ \frac{1}{2}(x_{(np)}+x_{(np+1)}) {\quad}{\quad} np为整数\end{cases}$
 ```
 $M_p=\begin{cases}x_{([np]+1)} {\quad}{\quad} np不是整数 \\ \frac{1}{2}(x_{(np)}+x_{(np+1)}) {\quad}{\quad} np为整数\end{cases}$
-### 在数学公式中加空格
+### 3.18 在数学公式中加空格
 `${\quad}$` : 输出一个空格
 
 `${\,}$` : 输出半个空格
@@ -413,7 +417,7 @@ $M_p=\begin{cases}x_{([np]+1)} {\quad}{\quad} np不是整数 \\ \frac{1}{2}(x_{(
 |中等空格| `$x \; y$` | $x \; y$ |
 |小空格| `$x\,y$` | $x\,y$ |
 |紧贴| `$x\!y$` | $x\!y$ |
-### 绝对值
+### 3.19 绝对值
 ```Markdown
 $|\overline{x}|$
 $|x|$
@@ -421,39 +425,43 @@ $|x|$
 $|\overline{x}|$
 $|x|$
 
-### 输出矩阵
+### 3.20 输出矩阵
 ```Markdown
 $\begin{matrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{matrix}$
 \\:换行
 ```
 $\begin{matrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{matrix}$
 
-#### 带大圆括号的矩阵
+#### 3.20.1 带大圆括号的矩阵
 ```Markdown
 $\left( \begin{matrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{matrix} \right)$
 ```
 $\left( \begin{matrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{matrix} \right)$
+
 格式 : `\left(` : 代表左圆括号 `\right)` : 代表右圆括号
 
-#### 带中/方括号的矩阵
+#### 3.20.2 带中/方括号的矩阵
 ```Markdown
 $\left[ \begin{matrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{matrix} \right]$
 ```
 $\left[ \begin{matrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{matrix} \right]$
+
 格式 : `\left[` : 代表左中括号 `\right]` : 代表右中括号
 
-#### 带大括号的矩阵
+#### 3.20.3 带大括号的矩阵
 ```Markdown
 $\left\{ \begin{matrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{matrix} \right\}$
 ```
 $\left\{ \begin{matrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{matrix} \right\}$
+
 格式 : `\left\{` : 代表左大括号 `\right\}` : 代表右大括号
 
-### 阵列
+### 3.21 阵列
 ```Markdown
 $\begin{array}{c|ccc} {↓}&{a}&{b}&{c}\\ \hline {R_1}&{c}&{b}&{a}\\ {R_2}&{b}&{c}&{c}\\ \end{array}$
 ```
 $\begin{array}{c|ccc} {↓}&{a}&{b}&{c}\\ \hline {R_1}&{c}&{b}&{a}\\ {R_2}&{b}&{c}&{c}\\ \end{array}$
+
 + 需要 array 环境：起始、结束处以 `{array}` 声明
 + 对齐方式：在{array}后以{逐一声明}
     -   左对齐：`l` ；剧中：`c`；右对齐：`r`
@@ -463,18 +471,20 @@ $\begin{array}{r|c|c|l|} {p}&{x}&{y}&{z}\\ \hline {R_1}&{1}&{2}&{3}\\ {R_2}&{3}&
 ```
 $\begin{array}{r|c|c|l|} {p}&{x}&{y}&{z}\\ \hline {R_1}&{1}&{2}&{3}\\ {R_2}&{3}&{2}&{1}\\ \end{array}$
 
-### 公式推导
+### 3.22 公式推导
 ```Markdown
 $\begin {aligned} 推导内容1 &\Rightarrow 推导内容2 \\ &\Rightarrow 推导内容3 \\ &\Rightarrow 推导内容4 \end {aligned}$
 ```
 $\begin {aligned} 推导内容1 &\Rightarrow 推导内容2 \\ &\Rightarrow 推导内容3 \\ &\Rightarrow 推导内容4 \end {aligned}$
+
 `&` 符号对齐列, `\\`符号换行, ` \` 转义作用
+
 ```Markdown
 $\begin {aligned} 式子1 &= 式子2 \\ &= 式子3 \\ &= 式子4 \end {aligned}$
 ```
 $\begin {aligned} 式子1 &= 式子2 \\ &= 式子3 \\ &= 式子4 \end {aligned}$
 
-### 回归方程符号
+### 3.23 回归方程符号
 
 |样式|写法|样式|写法|
 | ---- | ---- | ----| -----|
@@ -483,9 +493,9 @@ $\begin {aligned} 式子1 &= 式子2 \\ &= 式子3 \\ &= 式子4 \end {aligned}$
 | $\hat{\alpha}$ | `$\hat{\alpha}$` | $\check{\alpha}$ | `$\check{\alpha}$` |
 | $\ddot{y}$ | `$\ddot{y}$` | $\tilde{\iota}$ | `$\tilde{\iota}$` |
 | $\acute{\eta}$ | `$\acute{\eta}$` ||
-## 表格
+## 4. 表格
 
-使用 `|` [[#转换规则]] 来分隔不同的单元格，使用 `-` 来分隔表头和其他行：
+使用 `|` 来分隔不同的单元格，使用 `-` 来分隔表头和其他行：
 
 ```markdown
 | 名称 | 价格 |
@@ -494,7 +504,7 @@ $\begin {aligned} 式子1 &= 式子2 \\ &= 式子3 \\ &= 式子4 \end {aligned}$
 | 可乐 | 5    |
 ```
 
-> 为了使 Markdown 更清晰，`|` 和 `-` 两侧需要至少有一个空格（最左侧和最右侧的 `|` 外就不需要了）。
+> 为了使 Markdown 更清晰，`|` 和 `-` 两侧需要至少有一个空格（最左侧和最右侧的 `|` 外就不需要了）
 
 | 名称 | 价格 |
 | ---- | ---- |
@@ -515,8 +525,8 @@ $\begin {aligned} 式子1 &= 式子2 \\ &= 式子3 \\ &= 式子4 \end {aligned}$
 | 炸鸡 |  19   |
 | 可乐          |  32   |
 
- 若想对一段长文本进行换行，可以在 **中间** 插入一个 ** `<br>` ** （ 换行标签 )
-## 引用
+ 若想对一段长文本进行换行，可以在 **中间** 插入一个 `<br>`（换行标签)
+## 5. 引用
 
 ```markdown
 >“大风起兮云飞扬”
@@ -533,9 +543,9 @@ $\begin {aligned} 式子1 &= 式子2 \\ &= 式子3 \\ &= 式子4 \end {aligned}$
 >
 >>使用嵌套的引用
 
-## 列表
+## 6. 列表
 
-### 无序列表
+### 6.1 无序列表
 
 ```markdown
 * 可以使用 `*` 作为标记
@@ -543,8 +553,6 @@ $\begin {aligned} 式子1 &= 式子2 \\ &= 式子3 \\ &= 式子4 \end {aligned}$
 - 或者 `-`
 	+ 使用tab键可以使用多级列表
 ```
-
-
 
 * 可以使用 `*` 作为标记
 
@@ -554,47 +562,46 @@ $\begin {aligned} 式子1 &= 式子2 \\ &= 式子3 \\ &= 式子4 \end {aligned}$
 
 	+ 使用 tab 键可以使用多级列表
 
-### 有序列表
+### 6.2 有序列表
 
 ```markdown
-1. 有序列表以数字和 `.` 开始；
-3. 数字的序列并不会影响生成的列表序列；
-4. 但仍然推荐按照自然顺序（1.2.3...）编写。
+1. 有序列表以数字和 `.` 开始
+3. 数字的序列并不会影响生成的列表序列
+4. 但仍然推荐按照自然顺序（1.2.3...）编写
 ```
 
-1. 有序列表以数字和 `.` 开始；
-2. 数字的序列并不会影响生成的列表序列；
-3. 但仍然推荐按照自然顺序（1.2.3...）编写。
+1. 有序列表以数字和 `.` 开始
+2. 数字的序列并不会影响生成的列表序列
+3. 但仍然推荐按照自然顺序（1.2.3...）编写
 
-   ```markdown
-   可以使用：数字\. 来取消显示为列表（用反斜杠进行转义）
-   ```
+可以使用：`数字\.` 来取消显示为列表（用反斜杠进行转义）
 
-## 代码
-### 代码块
+## 7. 代码
+### 7.1 代码块
 ```markdown
-	```语言
-		代码
+```语言
+代码
 ```
+```语言
+代码
 ```
-```java
- public static void main(String[] args) {
-    }
-```
-### 行内代码
-```markdown
-也可以通过 ``，插入行内代码（` 是 `Tab` 键上边、数字 `1` 键左侧的那个按键）：
 
-例如 `Markdown`
+### 7.2 行内代码
+
+```markdown
+可以通过``，插入行内代码（`是Tab键上边、数字1键左侧的那个按键）
+
+`Markdown`
 ```
 `Markdown`
 
-### 转换规则
+### 7.3 转换规则
 
 代码块中的文本（包括 Markdown 语法）都会显示为原始内容
-## 分隔线
 
-可以在一行中使用三个或更多的 `*`、`-` 或 `_` 来添加分隔线（``）：
+## 8. 分隔线
+
+可以在一行中使用三个或更多的 `*`、`-` 或 `_` 来添加分隔线：
 
 ```markdown
 ***
@@ -608,27 +615,32 @@ ___
 
 _____
 
-## 待办事项
+## 9. 待办事项
 ```Markdown
 - [ ] 
 ```
 - [ ]
 - [x]
-## 空格
-在一些编辑器或者支持 MD 的笔记软件里，无论你打多少个**空格**，它只会显示单个 **空格** 的距离
-+ 可以使用 HTML 中 **空格** 的 **字符实体** —— ** `&nbsp;` **
-+ 若要添加 **多个** 空格，就输入多个——** `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` **
+## 10. 空格
+在一些编辑器或者支持markdown的笔记软件里，无论你打多少个空格，它只会显示单个空格的距离
+
+可以使用 HTML 中空格的字符实体——`&nbsp;` 
+
+若要添加多个空格，就输入多个——`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`
+
 例如：
+
 ```html
 这里有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6个空格分隔
 ```
 结果：
 这里有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6 个空格分隔
-## 链接
 
-### 超链接
+## 11. 链接
 
-格式为 `[link text](link)`。
+### 11.1 超链接
+
+格式为 `[link text](link)`
 
 ```markdown
 [帮助文档](https://support.typora.io/Links/#faq)
@@ -636,9 +648,9 @@ _____
 
 [帮助文档](https://support.typora.io/Links/#faq)
 
-### 自动链接
+### 11.2 自动链接
 
-使用 `<>` 包括的 URL 或邮箱地址会被自动转换为超链接：
+使用`<>`包括的 URL 或邮箱地址会被自动转换为超链接
 
 ```markdown
 <https://www.baidu.com>
@@ -650,13 +662,13 @@ _____
 
 [123@email.com](mailto:123@email.com)
 
-## 图片
+## 12. 图片
 
 ```markdown
 ![自己起的图片名字](图片地址或者图片本地存储的路径)
 ```
 
-### 网上的图片
+### 12.1 网上的图片
 
 ```markdown
 ![炸鸡](https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1580814517&di=2630beac440e5dab0e44c7286a3b2b61&src=http://imgsrc.baidu.com/forum/w=580/sign=12c730c4ff03738dde4a0c2a831ab073/9497794f9258d1091818e6d6d858ccbf6d814d1b.jpg)
@@ -664,7 +676,7 @@ _____
 
 ![炸鸡](https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1580814517&di=2630beac440e5dab0e44c7286a3b2b61&src=http://imgsrc.baidu.com/forum/w=580/sign=12c730c4ff03738dde4a0c2a831ab073/9497794f9258d1091818e6d6d858ccbf6d814d1b.jpg)
 
-### 本地图片
+### 12.2 本地图片
 
 ```markdown
 ![美食](美食.jpg)
@@ -672,28 +684,24 @@ _____
 或者直接拷贝
 ```
 
+## 13. 画图
 
+markdown 画图也是轻量级的，功能并不全
 
-## 画图
+Mermaid 是一个用于画流程图、状态图、时序图、甘特图的库，使用 JS 进行本地渲染，广泛集成于许多 Markdown 编辑器中
 
+Mermaid 作为一个使用 JS 渲染的库，生成的不是一个“图片”，而是一段 HTML 代码（不同的编辑器渲染的可能不一样）
 
+### 13.1 流程图 (graph)
 
-markdown 画图也是轻量级的，功能并不全。
-
-Mermaid 是一个用于画流程图、状态图、时序图、甘特图的库，使用 JS 进行本地渲染，广泛集成于许多 Markdown 编辑器中。Mermaid 作为一个使用 JS 渲染的库，生成的不是一个“图片”，而是一段 HTML 代码。
-
-（不同的编辑器渲染的可能不一样）
-
-### 流程图 (graph)
-
-### 概述
+#### 13.1.1 概述
 
 ```markdown
 graph 方向描述
     图表中的其他语句...
 ```
 
-关键字 graph 表示一个流程图的开始，同时需要指定该图的方向。
+关键字 graph 表示一个流程图的开始，同时需要指定该图的方向
 
 其中“方向描述”为：
 
@@ -706,7 +714,7 @@ graph 方向描述
 
 > T = TOP，B = BOTTOM，L = LEFT，R = RIGHT，D = DOWN
 
-最常用的布局方向是 TB、LR。
+最常用的布局方向是 TB、LR
 
 ```markdown
 graph TB;
@@ -743,9 +751,7 @@ graph LR;
   C-->A
 ```
 
-#### 流程图常用符号及含义
-
-##### 节点形状
+#### 13.1.2 节点形状
 
 | 表述       | 说明           | 含义                                                 |
 | :--------- | :------------- | ---------------------------------------------------- |
@@ -755,7 +761,7 @@ graph LR;
 | id{文字}   | 菱形节点       | 表示判断、决策                                       |
 | id>文字]   | 右向旗帜状节点 |                                                      |
 
-**单向箭头线段**：表示流程进行方向
+单向箭头线段：表示流程进行方向
 
 >id 即为节点的唯一标识，A~F 是当前节点名字，类似于变量名，画图时便于引用
 >
@@ -783,8 +789,6 @@ graph TB
 
 ```
 
-
-
 ``` markdown
 graph TB
     begin(出门)--> buy[买东西]
@@ -807,7 +811,7 @@ graph TB
 
 
 
-##### 连线
+#### 13.1.3 连线
 
 ```markdown
 graph TB
@@ -848,7 +852,7 @@ graph TB
 
 
 
-##### 子图表
+#### 13.1.4 子图表
 
 使用以下语法添加子图表
 
@@ -878,7 +882,7 @@ graph TB
     IsRemaining -->|有|happy[买到啦]--> goBack
 ```
 
-### 饼图（Pie）
+### 13.2 饼图（Pie）
 
 ```markdown
 pie
@@ -895,7 +899,7 @@ title 销售图
 "香蕉" : 50
 ```
 
-### 甘特图（gantt）
+### 13.3 甘特图（gantt）
 
 ```markdown
   title 标题
