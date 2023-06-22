@@ -1,0 +1,1 @@
+import{_ as o,r as t,o as n,c as a,a as s,d as c}from"./app-e6f8d52b.js";const r={},_=c("p",null,"HTML学习过程中的笔记",-1);function l(d,m){const e=t("AutoCatalog");return n(),a("div",null,[_,s(e,{base:"/front-end/html-notes/"})])}const i=o(r,[["render",l],["__file","index.html.vue"]]);export{i as default};
