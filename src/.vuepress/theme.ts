@@ -92,9 +92,13 @@ export default hopeTheme({
           text: "Vue笔记",
           link: "vue-notes/"
         },
-         {
+        {
           text: "NodeJS笔记",
           link: "nodejs-notes/"
+        },
+         {
+          text: "TypeScript笔记",
+          link: "typescript-notes/"
         },
       ]
     },
