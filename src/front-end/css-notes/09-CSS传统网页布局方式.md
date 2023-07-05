@@ -106,6 +106,50 @@ float 属性用于创建浮动框，将其移动到一边，直到左边缘或�
 
 清除浮动的策略是:  闭合浮动
 
+::: normal-demo Demo演示
+
+```html
+<style>
+    div {
+        background-color: #c5c2c2;
+        width: 300px;
+        padding: 10px;
+      }
+      h2 {
+        text-align: center;
+      }
+      div span {
+        display: block;
+        width: 25%;
+        float: left;
+      }
+      div p {
+        color: white;
+        background-color: lightblue;
+        text-align: center;
+        clear: both;
+      }
+</style>
+<body>
+    <div>
+      <h2><a>浮动演示</a></h2>
+      <span><a></a>1</span>
+      <span><a></a>2</span>
+      <span><a></a>3</span>
+      <span><a></a>4</span>
+      <span><a></a>5</span>
+      <span><a></a>6</span>
+      <span><a></a>7</span>
+      <span><a></a>8</span>
+      <p>我是一个p标签</p>
+    </div>
+</body>
+```
+
+:::
+
+这里我们使用一个p标签来清除浮动
+
 #### 2.5.4 清除浮动的多种方式
 
 ##### 2.5.4.1 额外标签法
@@ -134,6 +178,42 @@ overflow:hidden | auto | scroll;
 + 优点：代码简洁
 + 缺点：无法显示溢出的部分
 + 注意：是给父元素添加代码
+
+::: normal-demo Demo演示
+
+```html
+<style>
+    div {
+        background-color: #c5c2c2;
+        width: 300px;
+        padding: 10px;
+        overflow: hidden;
+      }
+      h2 {
+        text-align: center;
+      }
+      div span {
+        display: block;
+        width: 25%;
+        float: left;
+      }
+</style>
+<body>
+    <div>
+      <h2><a>浮动演示</a></h2>
+      <span><a></a>1</span>
+      <span><a></a>2</span>
+      <span><a></a>3</span>
+      <span><a></a>4</span>
+      <span><a></a>5</span>
+      <span><a></a>6</span>
+      <span><a></a>7</span>
+      <span><a></a>8</span>
+    </div>
+</body>
+```
+
+:::
 
 ##### 2.5.4.3 父级添加after伪元素
 

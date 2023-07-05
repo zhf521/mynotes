@@ -111,25 +111,27 @@ margin 属性用于设置外边距，即控制盒子和盒子之间的距离
 1. 垂直方向
 2. 块级元素，不是行内元素，也不是行内块级元素
 
-#### 4.2.2 上下外边距相遇
-
-当上下相邻的两个块元素（兄弟关系）相遇时，如果上面的元素有下外边距 margin-bottom，下面的元素有上外边距 margin-top ，则他们之间的垂直间距为：
+#### 4.2.2 外边距计算规则
 
 + 两数均为正数时：取最大的数
 + 两数均为负数时：取绝对值最大的数
 + 一正一负时：取两数相加的和
 
+#### 4.2.3 上下外边距相遇
+
+当上下相邻的两个块元素（兄弟关系）相遇时，如果上面的元素有下外边距 margin-bottom，下面的元素有上外边距 margin-top ，则他们之间会出现margin塌陷问题
+
 ::: normal-demo 两数均为正数时
 
 ```html
 <style>
-    .top {
+    .divA {
         width: 100px;
         height: 100px;
         background-color: pink;
         margin-bottom: 20px;
       }
-      .bottom {
+      .divB {
         width: 100px;
         height: 100px;
         background-color: skyblue;
@@ -137,24 +139,26 @@ margin 属性用于设置外边距，即控制盒子和盒子之间的距离
       }
 </style>
 <body>
-    <div class="top">上面的盒子</div>
-    <div class="bottom">下面的盒子</div>
+    <div class="divA">A</div>
+    <div class="divB">B</div>
 </body>
 ```
 
 :::
+
+上述案例中A与B盒子之间间距实际为20px
 
 ::: normal-demo 两数均为负数时
 
 ```html
 <style>
-    .top {
+    .divA {
         width: 100px;
         height: 100px;
         background-color: pink;
         margin-bottom: -20px;
       }
-      .bottom {
+      .divB {
         width: 100px;
         height: 100px;
         background-color: skyblue;
@@ -162,24 +166,26 @@ margin 属性用于设置外边距，即控制盒子和盒子之间的距离
       }
 </style>
 <body>
-    <div class="top">上面的盒子</div>
-    <div class="bottom">下面的盒子</div>
+    <div class="divA">A</div>
+    <div class="divB">B</div>
 </body>
 ```
 
 :::
+
+上述案例中A与B盒子之间间距实际为-20px
 
 ::: normal-demo 一正一负时
 
 ```html
 <style>
-    .top {
+    .divA {
         width: 100px;
         height: 100px;
         background-color: pink;
         margin-bottom: 20px;
       }
-      .bottom {
+      .divB {
         width: 100px;
         height: 100px;
         background-color: skyblue;
@@ -187,61 +193,59 @@ margin 属性用于设置外边距，即控制盒子和盒子之间的距离
       }
 </style>
 <body>
-    <div class="top">上面的盒子</div>
-    <div class="bottom">下面的盒子</div>
+    <div class="divA">A</div>
+    <div class="divB">B</div>
 </body>
 ```
 
 :::
+
+上述案例中A与B盒子之间间距实际为10px
 
 解决方案：尽量只给一个盒子添加 margin 值
 
+#### 4.2.4 父子元素之间的外边距相遇
 
+第一个子元素的margin-top会作用在父元素上，最后一个子元素的margin-bottom会作用在父元素上
 
-#### 4.2.3 margin塌陷问题
-
-第一个子元素的上margin会作用在父元素上，最后一个子元素的下margin会作用在父元素上
-
-嵌套块元素垂直外边距的塌陷
-+ 对于两个嵌套关系（父子关系）的块元素，父元素有上外边距同时子元素也有上外边距，此时父元素会塌陷较大的外边距值
-+ 解决方案：
-	+ 可以为父元素定义上边框（border）
-	+ 可以为父元素定义上内边距（padding）
-	+ 可以为父元素添加 `overflow:hidden`
-
-![CSS盒子模型03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型03.png)
-
-::: normal-demo Demo 演示
+::: normal-demo  父元素与第一个子元素之间的外边距相遇演示
 
 ```html
 <style>
-    .fa{
-        width:100px;
-        height:100px;
-        background-color:pink;
-    }
-    .s1{
-        width:50px;
-        height:50px;
-        background-color:red;
-        margin-top:20px;
-    }
-    .s2{
-        width:25px;
-        height:25px;
-        background-color:green;
-        margin-top:20px;
-    }
+    .divC {
+        width: 300px;
+        height: 100px;
+        background-color: pink;
+      }
+      .divA {
+        width: 300px;
+        height: 100px;
+        background-color: skyblue;
+        margin-top: 10px;
+      }
+      .divB {
+        width: 300px;
+        height: 30px;
+        background-color: slategrey;
+        margin-top: 20px;
+      }
 </style>
 <body>
-    <div class="fa">
-        <div class="s1">
-            <div class="s2">
- 		    </div>
-        </div>
-    <div>
+    <div class="divC">C(蓝色盒子的兄弟元素)</div>
+    <div class="divA">
+      <div class="divB">B(蓝色盒子的子元素)</div>
+    </div>
 </body>
 ```
 
 :::
 
+上述案例中C与B盒子之间间距实际为20px
+
+解决方案：
+
++ 可以为子元素设置绝对定位，父元素设置相对定位
+
++ 可以为父元素定义上（下）边框（border）
++ 可以为父元素定义上（下）内边距（padding）
++ 可以为父元素添加 `overflow:hidden`（即触发BFC）
