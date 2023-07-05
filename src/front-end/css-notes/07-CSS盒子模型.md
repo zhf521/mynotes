@@ -104,17 +104,101 @@ margin 属性用于设置外边距，即控制盒子和盒子之间的距离
 4. margin 的值也可以是 auto ，如果给一个块级元素设置左右 margin 都为 auto ，该块级元素会在父元素中水平居中
 5. margin 的值可以是负值
 
-### 4.2 margin合并问题
+### 4.2 margin塌陷问题
 
-上面兄弟元素的下外边距和下面兄弟元素的上外边距会合并，取一个最大的值，而不是相加
+#### 4.2.1 什么时候出现
 
-相邻块元素垂直外边距的合并
-+ 当上下相邻的两个块元素（兄弟关系）相遇时，如果上面的元素有下外边距 margin-bottom，下面的元素有上外边距 margin-top ，则他们之间的垂直间距不是 margin-bottom 与 margin-top 之和。取两个值中的较大者这种现象被称为相邻块元素垂直外边距的合并
-+ 解决方案：尽量只给一个盒子添加 margin 值
+1. 垂直方向
+2. 块级元素，不是行内元素，也不是行内块级元素
 
-![CSS盒子模型02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/CSS盒子模型02.png)
+#### 4.2.2 上下外边距相遇
 
-### 4.3 margin塌陷问题
+当上下相邻的两个块元素（兄弟关系）相遇时，如果上面的元素有下外边距 margin-bottom，下面的元素有上外边距 margin-top ，则他们之间的垂直间距为：
+
++ 两数均为正数时：取最大的数
++ 两数均为负数时：取绝对值最大的数
++ 一正一负时：取两数相加的和
+
+::: normal-demo 两数均为正数时
+
+```html
+<style>
+    .top {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+        margin-bottom: 20px;
+      }
+      .bottom {
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+        margin-top: 10px;
+      }
+</style>
+<body>
+    <div class="top">上面的盒子</div>
+    <div class="bottom">下面的盒子</div>
+</body>
+```
+
+:::
+
+::: normal-demo 两数均为负数时
+
+```html
+<style>
+    .top {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+        margin-bottom: -20px;
+      }
+      .bottom {
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+        margin-top: -10px;
+      }
+</style>
+<body>
+    <div class="top">上面的盒子</div>
+    <div class="bottom">下面的盒子</div>
+</body>
+```
+
+:::
+
+::: normal-demo 一正一负时
+
+```html
+<style>
+    .top {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+        margin-bottom: 20px;
+      }
+      .bottom {
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+        margin-top: -10px;
+      }
+</style>
+<body>
+    <div class="top">上面的盒子</div>
+    <div class="bottom">下面的盒子</div>
+</body>
+```
+
+:::
+
+解决方案：尽量只给一个盒子添加 margin 值
+
+
+
+#### 4.2.3 margin塌陷问题
 
 第一个子元素的上margin会作用在父元素上，最后一个子元素的下margin会作用在父元素上
 
