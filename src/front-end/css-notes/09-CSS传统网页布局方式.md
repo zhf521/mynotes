@@ -149,14 +149,14 @@ float 属性用于创建浮动框，将其移动到一边，直到左边缘或�
 <body>
     <div>
       <h2><a>浮动演示</a></h2>
-      <span><a></a>1</span>
-      <span><a></a>2</span>
-      <span><a></a>3</span>
-      <span><a></a>4</span>
-      <span><a></a>5</span>
-      <span><a></a>6</span>
-      <span><a></a>7</span>
-      <span><a></a>8</span>
+      <span><a>1</a></span>
+      <span><a>2</a></span>
+      <span><a>3</a></span>
+      <span><a>4</a></span>
+      <span><a>5</a></span>
+      <span><a>6</a></span>
+      <span><a>7</a></span>
+      <span><a>8</a></span>
       <p>我是一个p标签</p>
     </div>
 </body>
@@ -201,14 +201,14 @@ overflow:hidden | auto | scroll;
 <body>
     <div>
       <h2><a>浮动演示</a></h2>
-      <span><a></a>1</span>
-      <span><a></a>2</span>
-      <span><a></a>3</span>
-      <span><a></a>4</span>
-      <span><a></a>5</span>
-      <span><a></a>6</span>
-      <span><a></a>7</span>
-      <span><a></a>8</span>
+      <span><a>1</a></span>
+      <span><a>2</a></span>
+      <span><a>3</a></span>
+      <span><a>4</a></span>
+      <span><a>5</a></span>
+      <span><a>6</a></span>
+      <span><a>7</a></span>
+      <span><a>8</a></span>
     </div>
 </body>
 ```
@@ -263,14 +263,14 @@ overflow:hidden | auto | scroll;
 <body>
     <div class="clearfix">
       <h2><a>浮动演示</a></h2>
-      <span><a></a>1</span>
-      <span><a></a>2</span>
-      <span><a></a>3</span>
-      <span><a></a>4</span>
-      <span><a></a>5</span>
-      <span><a></a>6</span>
-      <span><a></a>7</span>
-      <span><a></a>8</span>
+      <span><a>1</a></span>
+      <span><a>2</a></span>
+      <span><a>3</a></span>
+      <span><a>4</a></span>
+      <span><a>5</a></span>
+      <span><a>6</a></span>
+      <span><a>7</a></span>
+      <span><a>8</a></span>
     </div>
 </body>
 ```
@@ -326,14 +326,14 @@ overflow:hidden | auto | scroll;
 <body>
     <div class="clearfix">
       <h2><a>浮动演示</a></h2>
-      <span><a></a>1</span>
-      <span><a></a>2</span>
-      <span><a></a>3</span>
-      <span><a></a>4</span>
-      <span><a></a>5</span>
-      <span><a></a>6</span>
-      <span><a></a>7</span>
-      <span><a></a>8</span>
+      <span><a>1</a></span>
+      <span><a>2</a></span>
+      <span><a>3</a></span>
+      <span><a>4</a></span>
+      <span><a>5</a></span>
+      <span><a>6</a></span>
+      <span><a>7</a></span>
+      <span><a>8</a></span>
     </div>
 </body>
 ```
@@ -405,6 +405,7 @@ overflow:hidden | auto | scroll;
 | `relative` | **相对**定位 |
 | `absolute` | **绝对**定位 |
 | `fixed`    | **固定**定位 |
+| `sticky`   | **粘性**定位 |
 
 ##### 3.2.2.1 静态定位 (static) 
 
@@ -518,9 +519,9 @@ overflow:hidden | auto | scroll;
 
 | **定位模式**          | **是否脱标**         | **移动位置**           | **是否常用**                 |
 | --------------------- | -------------------- | ---------------------- | ---------------------------- |
-| static 静态定位       | 否                   | 不能使用边偏移         | 很少                         |
+| static 静态定位       | 否 (占有位置)        | 不能使用边偏移         | 很少                         |
 | **relative 相对定位** | **否 (占有位置)**    | **相对于自身位置移动** | **基本单独使用**             |
-| **absolute绝对定位**  | **是（不占有位置）** | **带有定位的父级**     | **要和定位父级元素搭配使用** |
+| **absolute 绝对定位** | **是（不占有位置）** | **带有定位的父级**     | **要和定位父级元素搭配使用** |
 | **fixed 固定定位**    | **是（不占有位置）** | **浏览器可视区**       | **单独使用，不需要父级**     |
 | sticky 粘性定位       | 否   (占有位置)      | 浏览器可视区           | 当前阶段少                   |
 
