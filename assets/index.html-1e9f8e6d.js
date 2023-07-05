@@ -1,0 +1,1 @@
+import{_ as t,r as o,o as a,c as n,a as c}from"./app-ff019303.js";const r={};function s(_,l){const e=o("AutoCatalog");return a(),n("div",null,[c(e,{base:"/data-structures-and-algorithms/"})])}const m=t(r,[["render",s],["__file","index.html.vue"]]);export{m as default};
