@@ -106,6 +106,22 @@ float 属性用于创建浮动框，将其移动到一边，直到左边缘或�
 
 清除浮动的策略是:  闭合浮动
 
+#### 2.5.4 清除浮动的多种方式
+
+##### 2.5.4.1 额外标签法
+
+额外标签法也称为隔墙法，是 W3C 推荐的做法
+
+使用方式：额外标签法会在浮动元素末尾添加一个空的标签
+
+```html
+例如 <div style="clear:both"></div>，或者其他标签（如<br/>等）
+```
+
++ 优点： 通俗易懂，书写方便
++ 缺点： 添加许多无意义的标签，结构化较差
++ 注意： 要求这个新的空标签必须是块级元素
+
 ::: normal-demo Demo演示
 
 ```html
@@ -149,22 +165,6 @@ float 属性用于创建浮动框，将其移动到一边，直到左边缘或�
 :::
 
 这里我们使用一个p标签来清除浮动
-
-#### 2.5.4 清除浮动的多种方式
-
-##### 2.5.4.1 额外标签法
-
-额外标签法也称为隔墙法，是 W3C 推荐的做法
-
-使用方式：额外标签法会在浮动元素末尾添加一个空的标签
-
-```html
-例如 <div style="clear:both"></div>，或者其他标签（如<br/>等）
-```
-
-+ 优点： 通俗易懂，书写方便
-+ 缺点： 添加许多无意义的标签，结构化较差
-+ 注意： 要求这个新的空标签必须是块级元素
 
 ##### 2.5.4.2 父级添加overflow属性
 
@@ -235,6 +235,48 @@ overflow:hidden | auto | scroll;
 + 优点：没有增加标签，结构更简单
 + 缺点：兼容性问题
 
+::: normal-demo Demo演示
+
+```html
+<style>
+    div {
+        background-color: #c5c2c2;
+        width: 300px;
+        padding: 10px;
+      }
+      h2 {
+        text-align: center;
+      }
+      div span {
+        display: block;
+        width: 25%;
+        float: left;
+      }
+      .clearfix:after {
+        content: '';
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+</style>
+<body>
+    <div class="clearfix">
+      <h2><a>浮动演示</a></h2>
+      <span><a></a>1</span>
+      <span><a></a>2</span>
+      <span><a></a>3</span>
+      <span><a></a>4</span>
+      <span><a></a>5</span>
+      <span><a></a>6</span>
+      <span><a></a>7</span>
+      <span><a></a>8</span>
+    </div>
+</body>
+```
+
+:::
+
 ##### 2.5.4.4 父级添加双伪元素
 
 给父元素添加：
@@ -248,11 +290,55 @@ overflow:hidden | auto | scroll;
  }
  .clearfix {
     *zoom:1;
+     /* IE6、7 专有 */
  }   
 ```
 
 + 优点：代码更简洁
 + 缺点：兼容性问题
+
+::: normal-demo Demo演示
+
+```html
+<style>
+    div {
+        background-color: #c5c2c2;
+        width: 300px;
+        padding: 10px;
+      }
+      h2 {
+        text-align: center;
+      }
+      div span {
+        display: block;
+        width: 25%;
+        float: left;
+      }
+      .clearfix:before,
+      .clearfix:after {
+        content: '';
+        display: table;
+      }
+      .clearfix:after {
+        clear: both;
+      }
+</style>
+<body>
+    <div class="clearfix">
+      <h2><a>浮动演示</a></h2>
+      <span><a></a>1</span>
+      <span><a></a>2</span>
+      <span><a></a>3</span>
+      <span><a></a>4</span>
+      <span><a></a>5</span>
+      <span><a></a>6</span>
+      <span><a></a>7</span>
+      <span><a></a>8</span>
+    </div>
+</body>
+```
+
+:::
 
 ### 2.6 总结
 
