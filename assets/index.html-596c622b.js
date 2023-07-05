@@ -1,0 +1,1 @@
+import{_ as o,r as t,o as a,c as n,a as s}from"./app-42031cb4.js";const c={};function r(l,_){const e=t("AutoCatalog");return a(),n("div",null,[s(e,{base:"/computer-usage-skills/troubleshoot/"})])}const m=o(c,[["render",r],["__file","index.html.vue"]]);export{m as default};
