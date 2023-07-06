@@ -3,13 +3,13 @@ title: this关键字
 order: 21
 ---
 
-每一个函数内部都有一个关键字是 `this` ，可以让我们直接使用的
+每一个函数内部都有一个关键字是 `this` ，this用于访问当前方法的所属对象，可以让我们直接使用的
 
 重点： **函数内部的 this 只和函数的调用方式有关系，和函数的定义方式没有关系**
 
 ## 1. this指向
 
-函数内部的 this 指向谁，取决于函数的调用方式
+函数内部的 this 指向谁，取决于函数的调用方式（取决于函数被谁调用）
 
 - 全局定义的函数直接调用，`this => window`
 
@@ -31,6 +31,17 @@ order: 21
       console.log(this)
     }
   }
+  obj.fn()
+  // 此时 this 指向 obj
+  ```
+
+  ```js
+  var obj = {
+  
+  }
+  obj.fn = function () {
+      console.log(this)
+    }
   obj.fn()
   // 此时 this 指向 obj
   ```
