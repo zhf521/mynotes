@@ -371,7 +371,7 @@ console.log(ldh.__proto__.constructor === Star)
 
 当一个对象我们不知道准确的是谁构造的时候，我们呢就把它看成 `Object` 的实例化对象，也就是说，我们的 **构造函数 的 prototype 的 `__proto__`** 指向的是 `Object.prototype`
 
-那么 `Object.prototype` 也是个对象，那么它的 `__proto__` 又指向谁呢？因为 `Object` 的 JS 中的顶级构造函数，我们有一句话叫 **万物皆对象**，所以 `Object.prototype` 就到顶了，`Object.prototype` 的 `__proto__` 就是 null 
+那么 `Object.prototype` 也是个对象，那么它的 `__proto__` 又指向谁呢？因为 `Object` 是 JS 中的顶级构造函数，我们有一句话叫 **万物皆对象**，所以 `Object.prototype` 就到顶了，`Object.prototype` 的 `__proto__` 就是 null 
 
 ![JavaScript-面向对象编程01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-面向对象编程01.png)
 
