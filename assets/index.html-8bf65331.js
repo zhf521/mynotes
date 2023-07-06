@@ -1,1 +1,0 @@
-import{_ as o,r as t,o as a,c as n,a as c}from"./app-9283506f.js";const r={};function s(l,_){const e=t("AutoCatalog");return a(),n("div",null,[c(e,{base:"/software-tool/halo/"})])}const m=o(r,[["render",s],["__file","index.html.vue"]]);export{m as default};
