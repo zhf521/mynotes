@@ -3,132 +3,192 @@ title: 性能优化
 order: 27
 ---
 
+防抖（Debounce）和节流（Throttle）都是在处理 JavaScript 事件时常用的技术，用于限制事件的触发频率。它们可以提高用户体验，减少不必要的资源消耗
+
 ## 1. 防抖 (debounce)
 
-防抖，就是指触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间
+防抖，就是指触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间，也就是说，对于高频触发的事件，我们只在最后一次触发的时候来执行需要的操作
+
+常用场景：
+
+- 用户输入：比如搜索框的自动补全功能，在用户输入期间，可以使用防抖来延迟发送请求，避免频繁请求后端接口
+- 浏览器窗口调整：当浏览器窗口调整大小时，触发的 `resize` 事件可能会非常频繁。利用防抖可以限制事件触发的频率，例如只在最后一次调整完成后重新布局页面
+- 按钮点击：当用户点击按钮时，可使用防抖来确保按钮被点击的间隔时间超过指定的时间，防止误操作或者连续多次点击
+
+例如：
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      .box {
-        width: 500px;
-        height: 500px;
-        background-color: #ccc;
-        color: #fff;
-        text-align: center;
-        font-size: 100px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="box"></div>
-    <script src="./lodash.min.js"></script>
-    <script>
-      //利用防抖实现性能优化
-      //需求：鼠标在盒子上移动，里面的数字就会+1
-      const box = document.querySelector('.box')
-      let i = 1
-      function mouseMove() {
-        box.innerHTML = i++
-        //如果里面存在大量消耗性能的代码，比如DOM操作，比如数据处理，可能会导致卡顿
-      }
-      //添加事件
-      //box.addEventListener('mousemove', mouseMove)
-
-      //利用lodash库实现防抖
-      //语法：_.debounce(fun,时间)
-      //box.addEventListener('mousemove', _.debounce(mouseMove, 500))
-      
-      //手写防抖函数
-      //核心是利用setTimeout定时器来实现
-      //1.声明定时器变量
-      //2.每次鼠标移动（事件触发）的时候都要先判断是否有定时器，如果有，先清除以前的定时器
-      //3.如果没有定时器，则开启定时器，存入到定时器变量里面
-      //4.定时器里面写函数调用
-      function debounce(fn, t) {
-        let timer
-        //return 返回一个匿名函数
-        return function () {
-          if (timer) clearTimeout(timer)
-          timer = setTimeout(function () {
-            fn() //加小括号调用fn函数
-          }, t)
-        }
-      }
-      box.addEventListener('mousemove', debounce(mouseMove, 500))
-    </script>
-  </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <script>
+      let oInput = document.querySelector('input')
+      oInput.oninput = function () {
+        console.log(this.value)
+      }
+    </script>
+  </body>
 </html>
 ```
+
+我们在input框输入时，会频繁地打印每个字符，这时我们可以使用防抖来解决
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <script>
+      let oInput = document.querySelector('input')
+      let timer = null
+      oInput.oninput = function () {
+        if (timer != null) {
+          clearTimeout(timer)
+        }
+        timer = setTimeout(() => {
+          console.log(this.value)
+        }, 1000)
+      }
+    </script>
+  </body>
+</html>
+```
+
+这样就可以实现防抖了，但是我们可以用闭包优化一下
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <script>
+      let oInput = document.querySelector('input')
+      oInput.oninput = debounce(function () {
+        console.log(this.value)
+      }, 1000)
+        
+      // 手写防抖函数
+      // 核心是利用setTimeout定时器来实现
+      // 1.声明定时器变量
+      // 2.每次事件触发的时候都要先判断是否有定时器，如果有，先清除以前的定时器
+      // 3.如果没有定时器，则开启定时器，存入到定时器变量里面
+      // 4.定时器里面写函数调用(注意this指向)
+      function debounce(fn, delay) {
+        let timer = null
+        return function () {
+          if (timer != null) {
+            clearTimeout(timer)
+          }
+          timer = setTimeout(() => {
+            fn.call(this)
+          }, delay)
+        }
+      }
+    </script>
+  </body>
+</html>
+```
+
+我们还可以使用lodash库实现防抖
+
+语法：`_.debounce(fun,时间)`
 
 ## 2. 节流 (throttle)
 
-节流，就是指连续触发事件但是在 n 秒中只执行一次函数
+节流，就是指连续触发事件但是在 n 秒中只执行一次函数，也就是说，在规定时间里面就让它执行一次操作
+
+常用场景：
+
+- 滚动事件：当用户滚动页面时，触发的 `scroll` 事件可能会非常频繁。利用节流可以限制事件触发的频率，例如每隔一段时间执行一次回调函数，以减少事件处理的次数
+- 鼠标移动：当用户在页面上进行鼠标移动时，可能会触发大量的 `mousemove` 事件。使用节流可以减少回调函数的调用次数，提高性能
+- 自动加载：当页面滚动到底部时，可以利用节流来限制触发加载更多数据的频率，避免过于频繁地发送请求
+
+例如：
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      .box {
-        width: 500px;
-        height: 500px;
-        background-color: #ccc;
-        color: #fff;
-        text-align: center;
-        font-size: 100px;
-      }
-    </style>
-  </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 2000px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      window.onscroll = function () {
+        alert('这是广告！')
+      }
+    </script>
+  </body>
+</html>
 
-  <body>
-    <div class="box"></div>
-    <script src="./lodash.min.js"></script>
-    <script>
-      //利用节流实现性能优化
-      //需求：鼠标在盒子上移动，里面的数字就会+1
-      const box = document.querySelector('.box')
-      let i = 1
-      function mouseMove() {
-        box.innerHTML = i++
-      }
-      //添加事件
-      //box.addEventListener('mousemove', mouseMove)
+```
 
-      //利用lodash库实现节流---500毫秒之后采取+1
-      //语法：_.throttle(fun,时间)
-      //box.addEventListener('mousemove', _.throttle(mouseMove, 3000))
+当我们滑动滚动条时，就会频繁触发弹框，我们使用节流来优化：
 
-      //手写一个节流函数---每隔500ms +1
-      //核心是利用setTimeout定时器来实现
-      //1.声明定时器变量
-      //2.每次鼠标移动（事件触发）的时候都要先判断是否有定时器，如果有则不开启新定时器
-      //3.如果没有定时器，则开启定时器，存入到定时器变量里面
-      //4.定时器里面写函数调用，定时器里面要把定时器清空
-      function throttle(fn, t) {
-        let timer = null
-        return function () {
-          if (!timer) {
-            timer = setTimeout(function () {
-              fn()
-              //清空定时器
-              timer = null
-            }, t)
-          }
-        }
-      }
-      box.addEventListener('mousemove', throttle(mouseMove, 500))
-    </script>
-  </body>
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 2000px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      window.onscroll = throttle(function () {
+        alert('这是广告！')
+      }, 2000)
+        
+      // 手写一个节流函数---每隔delay时间触发一次
+      // 核心是利用setTimeout定时器来实现
+      // 1.声明定时器变量
+      // 2.每次事件触发的时候都要先判断是否有定时器，如果有则不开启新定时器
+      // 3.如果没有定时器，则开启定时器，存入到定时器变量里面
+      // 4.定时器里面写函数调用，定时器里面要把定时器清空
+      function throttle(fn, delay) {
+        let timer = true
+        return function () {
+          if (timer) {
+            setTimeout(() => {
+              fn.call(this)
+              timer = true
+            }, delay)
+          }
+          timer = false
+        }
+      }
+    </script>
+  </body>
 </html>
 ```
+
+我们还可以使用lodash库实现节流
+
+语法：`_.throttle(fun,时间)`
