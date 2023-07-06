@@ -1,0 +1,1 @@
+import{_ as t,r as o,o as n,c as a,a as c}from"./app-029021e3.js";const r={};function s(_,l){const e=o("AutoCatalog");return n(),a("div",null,[c(e,{base:"/front-end/typescript-notes/"})])}const f=t(r,[["render",s],["__file","index.html.vue"]]);export{f as default};

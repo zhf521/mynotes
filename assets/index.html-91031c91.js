@@ -1,1 +1,0 @@
-import{_ as o,r as t,o as n,c as a,a as c}from"./app-e4e6c1d3.js";const r={};function s(_,l){const e=t("AutoCatalog");return n(),a("div",null,[c(e,{base:"/computer-network/"})])}const u=o(r,[["render",s],["__file","index.html.vue"]]);export{u as default};
