@@ -3,6 +3,40 @@ title: 拷贝
 order: 28
 ---
 
+JS数据类型分为基本类型（string、number、boolean、undefined、null、symbol、bigint）和引用类型（object）
+
+在JavaScript中，基础类型值的复制是直接拷贝一份新的一模一样的数据，这两份数据相互独立，互不影响
+
+例：
+
+```js
+let a = 10
+let b = a
+a = 100
+console.log(a) // 100
+console.log(b) // 10
+```
+
+![JavaScript-拷贝01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-拷贝01.png)
+
+![JavaScript-拷贝02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-拷贝02.png)
+
+而引用类型值（Object类型）的复制是传递对象的引用（也就是对象所在的内存地址，即指向对象的指针），相当于多个变量指向同一个对象，那么只要其中的一个变量对这个对象进行修改，其他的变量所指向的对象也会跟着修改（因为它们指向的是同一个对象）
+
+例：
+
+```js
+let a = [1, 2, 3]
+let b = a
+a[0] = 100
+console.log(a) //[100,2,3]
+console.log(b) //[100,2,3]
+```
+
+![JavaScript-拷贝03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-拷贝03.png)
+
+![JavaScript-拷贝04.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-拷贝04.png)
+
 浅拷贝和深拷贝只针对引用类型
 
 ## 1. 浅拷贝
@@ -23,6 +57,36 @@ order: 28
 
 浅拷贝的理解：拷贝对象之后，里面的属性值是简单数据类型直接拷贝值，如果属性值是引用数据类型则拷贝的是地址
 
+例：
+
+```js
+let a = [1, 2, 3]
+let b = [...a]
+a[0] = 100
+console.log(a) //[100,2,3]
+console.log(b) //[1,2,3]
+```
+
+![JavaScript-拷贝05.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-拷贝05.png)
+
+![JavaScript-拷贝06.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-拷贝06.png)
+
+如果是单层对象，没问题，如果有多层就有问题
+
+例：
+
+```js
+let a = [1, 2, 3, [3, 4]]
+let b = [...a]
+a[3][1] = 5
+console.log(a) //[1,2,3,[3,5]]
+console.log(b) //[1,2,3,[3,5]]
+```
+
+![JavaScript-拷贝07.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-拷贝07.png)
+
+![JavaScript-拷贝08.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/JavaScript-拷贝08.png)
+
 ## 2. 深拷贝
 
 深拷贝：拷贝的是对象，不是地址
@@ -35,72 +99,37 @@ order: 28
 
 ### 2.1 递归实现深拷贝
 
-函数递归：如果一个函数在内部可以调用其本身，那么这个函数就是递归函数
-
-- 简单理解:函数内部自己调用自己, 这个函数就是递归函数
-- 递归函数的作用和循环效果类似
-- 由于递归很容易发生“栈溢出”错误（stack overflow），所以必须要加退出条件 return
-
-~~~html
-<body>
-  <script>
-    const obj = {
-      uname: 'pink',
-      age: 18,
-      hobby: ['乒乓球', '足球'],
-      family: {
-        baby: '小pink'
-      }
-    }
-    const o = {}
-    // 拷贝函数
-    function deepCopy(newObj, oldObj) {
-      debugger
-      for (let k in oldObj) {
-        // 处理数组的问题  一定先写数组 再写 对象 不能颠倒
-        if (oldObj[k] instanceof Array) {
-          newObj[k] = []
-          //  newObj[k] 接收 []  hobby
-          //  oldObj[k]   ['乒乓球', '足球']
-          deepCopy(newObj[k], oldObj[k])
-        } else if (oldObj[k] instanceof Object) {
-          newObj[k] = {}
-          deepCopy(newObj[k], oldObj[k])
+~~~js
+function deepClone(oldData) {
+    if (typeof oldData !== 'object' || oldData == null) {
+        return oldData
+    } 
+    
+    let res = oldData instanceof Array ? [] : {}
+    
+    for (let k in oldData) {
+        if (oldData.hasOwnProperty(k)) {
+            res[k] = deepClone(oldData[k])
         }
-        else {
-          //  k  属性名 uname age    oldObj[k]  属性值  18
-          // newObj[k]  === o.uname  给新对象添加属性
-          newObj[k] = oldObj[k]
-        }
-      }
     }
-    deepCopy(o, obj) // 函数调用  两个参数 o 新对象  obj 旧对象
-    console.log(o)
-    o.age = 20
-    o.hobby[0] = '篮球'
-    o.family.baby = '老pink'
-    console.log(obj)
-    console.log([1, 23] instanceof Object)
-    // 复习
-    // const obj = {
-    //   uname: 'pink',
-    //   age: 18,
-    //   hobby: ['乒乓球', '足球']
-    // }
-    // function deepCopy({ }, oldObj) {
-    //   // k 属性名  oldObj[k] 属性值
-    //   for (let k in oldObj) {
-    //     // 处理数组的问题   k 变量
-    //     newObj[k] = oldObj[k]
-    //     // o.uname = 'pink'
-    //     // newObj.k  = 'pink'
-    //   }
-    // }
-  </script>
-</body>
+    return res
+}
+
+let obj = {
+name: 'jack',
+age: 18,
+hobby: ['swim', 'sing'],
+fn() {
+    console.log(this.name)
+},
+}
+let obj2 = deepClone(obj)
+obj.hobby[0] = 'play'
+console.log(obj2)
+console.log(obj)
 ~~~
 
-### 2.2 js库lodash里面cloneDeep内部实现了深拷贝
+### 2.2 lodash库里面cloneDeep内部实现深拷贝
 
 ~~~html
 <body>
@@ -123,3 +152,15 @@ order: 28
 </body>
 ~~~
 
+### 2.3 通过JSON.stringify()实现
+
+```js
+let a = [1, 2, 3, [3, 4, { name: 'jack' }]]
+let b = JSON.parse(JSON.stringify(a))
+a[3][1] = 5
+a[3][2] = 'bob'
+console.log(a) // [1,2,3,[3,5,{name:'bob'}]]
+console.log(b) // [1,2,3,[3,4,{name:'jack'}]]
+```
+
+但是这个方法不能拷贝函数，如果里面有函数，则函数无法被拷贝
