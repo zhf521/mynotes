@@ -173,15 +173,15 @@ order: 27
       // 3.如果没有定时器，则开启定时器，存入到定时器变量里面
       // 4.定时器里面写函数调用，定时器里面要把定时器清空
       function throttle(fn, delay) {
-        let timer = true
+        let timer = null
         return function () {
-          if (timer) {
-            setTimeout(() => {
-              fn.call(this)
-              timer = true
-            }, delay)
+          if (timer !== null) {
+            return
           }
-          timer = false
+          timer = setTimeout(() => {
+            fn.call(this)
+            timer = null
+          }, delay)
         }
       }
     </script>
