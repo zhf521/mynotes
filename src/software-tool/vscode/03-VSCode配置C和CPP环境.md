@@ -3,7 +3,7 @@ title: VSCode配置C和C++环境
 order: 3
 ---
 
-## C/C++的编译过程
+## 1. C/C++的编译过程
 
 从 `.c` 或 `.cpp` 文件通过 `编译器` 来生成 `.exe` 文件（可执行程序）
 
@@ -40,7 +40,7 @@ $ ./a.exe
 ```
 可以使用 `-o` 来自定义目标文件的名字
 
-## GCC 编译器下载和配置
+## 2. GCC 编译器下载和配置
 
 > GCC 中 C 语言编译器是 gcc，c++编译器是 g++，调试器是 gdb
 
@@ -48,7 +48,7 @@ $ ./a.exe
 联想应用商店下载链接：[TDM-GCC-联想应用商店](https://lestore.lenovo.com/detail/L101412)
 下载安装即可
 
-## VSCode 配置 C/C++
+## 3. VSCode 配置 C/C++
 
 1. 下载 C/C++插件
 
@@ -105,7 +105,7 @@ int main()
 
 例如：`**/*.exe` `**/*.class`
 
-## 使用命令行进行多文件编译
+## 4. 使用命令行进行多文件编译
 
 文件目录结构如下
 ```bash
@@ -125,9 +125,9 @@ $ g++ .\src\fun.cpp .\main.cpp -o test -I.\include\
 ```
 在目录中会生成名称为 test 的可执行文件
 
-## 配置 CMake
+## 5. 配置 CMake
 
-### CMake 环境配置
+### 5.1 CMake 环境配置
 下载 CMake [Download | CMake](https://cmake.org/download/)
 
 安装过程中注意勾选添加系统环境变量
@@ -140,8 +140,8 @@ $ g++ .\src\fun.cpp .\main.cpp -o test -I.\include\
 
 安装完成后重启即可
 
-### CMake 使用
-#### 单文件编译
+### 5.2 CMake 使用
+#### 5.2.1 单文件编译
 在项目文件中创建一个 `CMakeLists.txt` 文件，注意，==名称不能改变，区分大小写==
 
 首先进入文件，文件第一行（第一行必须填写）填写本项目对 CMake 最低版本的要求
@@ -182,7 +182,7 @@ add_executable(myProject main.cpp)
 
 以上是简单的单文件的编译
 
-#### 多文件编译
+#### 5.2.2 多文件编译
 
 
 文件目录结构如下
