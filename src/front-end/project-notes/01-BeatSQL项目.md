@@ -153,6 +153,125 @@ export default {
 }
 ```
 
+### 4.3 项目的路由配置
+
+```js
+import { createRouter, createWebHistory } from 'vue-router'
+import LearnPage from '../views/LearnPage.vue'
+import LevelsPage from '../views/LevelsPage.vue'
+import PlaygroundPage from '../views/PlaygroundPage.vue'
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    {
+      path: '/',
+      component: LearnPage,
+      redirect: '/learn',
+      props: true,
+    },
+    {
+      path: '/learn/:levelKey?',
+      component: LearnPage,
+      props: true,
+    },
+    {
+      path: '/levels',
+      component: LevelsPage,
+    },
+    {
+      path: '/playground',
+      component: PlaygroundPage,
+    },
+  ],
+})
+
+export default router
+
+```
+
+首先，通过 `import` 语句引入了 Vue Router 相关的模块和组件
+
+然后，通过 `createRouter` 函数创建了一个路由实例，并传入了一个包含路由配置的对象。其中，使用 `createWebHistory()` 创建了一个 Web 历史记录管理器，用于处理浏览器的导航
+
+在路由配置的 `routes` 字段中，定义了几个路由规则：
+
+- `'/'` 路径对应的组件是 `LearnPage`，并且在访问根路径时重定向到 `/learn` 路径。`props: true` 表示将路由参数作为 props 传递给组件。
+- `'/learn/:levelKey?'` 路径对应的组件也是 `LearnPage`，其中 `:levelKey?` 表示这是一个可选的路由参数，即可以通过 `/learn` 访问，也可以通过 `/learn/someLevelKey` 访问。同样，`props: true` 表示将路由参数作为 props 传递给组件。
+- `'/levels'` 路径对应的组件是 `LevelsPage`，没有配置额外的 props。
+- `'/playground'` 路径对应的组件是 `PlaygroundPage`，没有配置额外的 props。
+
+最后，通过 `export default` 导出了路由实例，以便在其他地方引入和使用该实例
+
+### 4.4 路由传参
+
+在 Vue 3 中，你可以使用路由的 `params` 或 `query` 来传递参数到目标组件。下面是两种常用的方式：
+
+1. 使用 `params` 传递参数：
+
+   在路由定义中，可以通过 `props: true` 来启用路由参数自动注入到组件的 props 中
+
+   ```js
+   const routes = [
+     {
+       path: '/user/:userId',
+       name: 'User',
+       component: UserComponent,
+       props: true
+     }
+   ];
+   ```
+
+   然后在接收参数的组件中，可以直接声明接收的 props 属性，并且路由参数会自动注入到这些 props 中。
+
+   ```vue
+   <template>
+     <div>
+       <h1>User ID: {{ userId }}</h1>
+     </div>
+   </template>
+   
+   <script>
+   export default {
+     props: ['userId']
+   };
+   </script>
+   ```
+
+2. 使用 `query` 传递参数：
+
+   在路由跳转时，可以使用 `router-link` 或 `router.push` 来添加查询参数。
+
+   ```vue
+   <!-- 使用 router-link -->
+   <router-link :to="{ path: '/user', query: { userId: '123' } }">User</router-link>
+   
+   <!-- 使用 router.push -->
+   <button @click="goToUser">Go to User</button>
+   
+   <script>
+   export default {
+     methods: {
+       goToUser() {
+         this.$router.push({ path: '/user', query: { userId: '123' } });
+       }
+     }
+   };
+   </script>
+   ```
+
+   在接收参数的组件中，可以使用 `$route.query` 来获取查询参数。
+
+   ```vue
+   <template>
+     <div>
+       <h1>User ID: {{ $route.query.userId }}</h1>
+     </div>
+   </template>
+   ```
+
+   这两种方式可以根据你的需求来选择适合的方法来传递参数到目标组件。注意，使用 `params` 传递参数时，参数会作为路由路径的一部分，而使用 `query` 传递参数时，参数会以查询字符串的形式出现在 URL 中。
+
 ## 5. Ant Design Vue踩坑记录
 
 Menu导航菜单高亮效果没有出现，原因是在 Vue Router 中，路由的 `path` 和菜单项的 `key` 需要保持一致才能正确地匹配并高亮显示菜单项
@@ -215,4 +334,185 @@ const clickMenu = ({ item, key, keyPath }) => {
 };
 </script>
 ```
+
+## 6. 页面基本结构
+
+`APP.vue`
+
+```vue
+<template>
+  <a-row class="header" type="flex" align="middle">
+    <a-col flex="160px" style="margin: 0 auto;">
+      <router-link to="/">
+        <a-row align="middle">
+          <img src="./assets/logo.png" alt="BeatSQL" class="logo">
+          <span class="title">BeatSQL</span>
+        </a-row>
+      </router-link>
+    </a-col>
+    <a-col flex="auto">
+      <a-menu mode="horizontal" :items="items" :style="{ lineHeight: '64px' }" @click="clickMenu"
+        :selected-keys="selectedKeys" />
+    </a-col>
+  </a-row>
+  <div class="content">
+    <router-view></router-view>
+  </div>
+  <div class="footer">
+    BeatSQL - SQL 自学网站 ©2023 by
+    <a href="https://github.com/zhf521" target="_blank">zhf</a>
+  </div>
+  <a-back-top :style="{ right: '24px' }"></a-back-top>
+</template>
+<script setup>
+import { computed, ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+
+const router = useRouter();
+const route = useRoute();
+const selectedKeys = computed(() => [route.path])
+const items = ref([{
+  key: '/learn',
+  label: '学习',
+  title: '学习',
+}, {
+  key: '/levels',
+  label: '关卡',
+  title: '关卡',
+}, {
+  key: '/playground',
+  label: '广场',
+  title: '广场',
+}]);
+// 点击菜单触发菜单切换
+const clickMenu = ({ item, key, keyPath }) => {
+  router.push(key)
+};
+</script>
+
+<style scoped>
+.header {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 0 24px;
+}
+
+.ant-menu-horizontal {
+  border-bottom: none !important;
+}
+
+.logo {
+  width: 56px;
+}
+
+.title {
+  margin-left: 8px;
+  font-size: 20px;
+  color: #000;
+}
+
+.content {
+  padding: 24px;
+}
+
+.footer {
+  padding: 12px;
+  text-align: center;
+  background: #efefef;
+}
+</style>
+```
+
+`views/LearnPage.vue`
+
+```vue
+<template>
+  <a-row :gutter="[16, 16]">
+    <!-- 左半部分区域 -->
+    <a-col :lg="11" :xs="24">
+      <!-- 问题面板 -->
+    </a-col>
+    <!-- 右半部分区域 -->
+    <a-col :lg="13" :xs="24">
+      <!-- SQL编辑区 -->
+      <!-- 可折叠区域 -->
+      <a-collapse v-model:activeKey="activeKey" style="margin-top: 16px;">
+        <a-collapse-panel key="result" header="查看执行结果">
+        </a-collapse-panel>
+        <a-collapse-panel key="hint" header="查看提示">
+        </a-collapse-panel>
+        <a-collapse-panel key="ddl" header="查看建表语句">
+        </a-collapse-panel>
+        <a-collapse-panel key="answer" header="查看答案">
+        </a-collapse-panel>
+      </a-collapse>
+    </a-col>
+  </a-row>
+</template>
+<script  setup>
+import { ref } from 'vue';
+const activeKey = ref(['result']);
+</script>
+<style></style>
+```
+
+## 7. 引入ByteMD
+
+1. 安装
+
+   ```js
+   npm i @bytemd/vue-next
+   ```
+
+2. 使用
+
+   它有两个组件 `Editor` 和 `Viewer` 这两个，比较通俗易懂， `Editor` 顾名思义，就是 Markdown 编辑器，`viewer` 用于显示渲染的 Markdown 结果
+
+   ```js
+   import { Editor, Viewer } from '@bytemd/vue-next'
+   ```
+
+   在使用组件之前，请记住导入 CSS 文件以使样式正确
+
+   ```js
+   import 'bytemd/dist/index.css'
+   ```
+
+3. 示例
+
+   ```vue
+   <template>
+     <Viewer :value="value" :plugins="plugins" />
+   </template>
+   <script setup>
+   import { Viewer } from '@bytemd/vue-next';
+   // 插件：支持 GFM（自动链接文字、删除线、表格、任务列表）
+   import gfm from '@bytemd/plugin-gfm';
+   // 插件：支持代码高亮
+   import heighlight from '@bytemd/plugin-highlight';
+   import 'highlight.js/styles/default.css';
+   // 引入github-markdown-css主题
+   import 'github-markdown-css/github-markdown.css';
+   import 'bytemd/dist/index.css';
+   
+   const plugins = [gfm(), heighlight()];
+   const props = defineProps(['value']);
+   
+   </script>
+   ```
+
+## 8. 引入github-markdown-css主题
+
+1. 安装
+
+   ```js
+   npm install github-markdown-css
+   ```
+
+2. 引入
+
+   ```js
+   import 'github-markdown-css/github-markdown.css';
+   ```
+
+   
 
