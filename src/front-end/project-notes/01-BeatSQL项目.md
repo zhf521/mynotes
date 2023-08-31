@@ -153,3 +153,66 @@ export default {
 }
 ```
 
+## 5. Ant Design Vue踩坑记录
+
+Menu导航菜单高亮效果没有出现，原因是在 Vue Router 中，路由的 `path` 和菜单项的 `key` 需要保持一致才能正确地匹配并高亮显示菜单项
+
+在你之前的代码中，你给菜单项的 `key` 设置的是没有前面的 `/`，所以导致了路径匹配不上，菜单项无法正确高亮显示
+
+为了解决这个问题，你可以通过在菜单项的 `key` 前加上 `/` 来保持和路由的 `path` 一致。例如：
+
+```js
+const items = ref([
+  {
+    key: '/learn',
+    label: '学习',
+    title: '学习'
+  },
+  {
+    key: '/levels',
+    label: '关卡',
+    title: '关卡'
+  },
+  {
+    key: '/playground',
+    label: '广场',
+    title: '广场'
+  }
+]);
+```
+
+这样，当路由的 `path` 与菜单项的 `key` 匹配时，菜单项就会被正确高亮显示了
+
+实现思路：
+
+```vue
+<template>
+	<a-menu mode="horizontal" :items="items" :style="{ lineHeight: '64px' }" @click="clickMenu"
+        :selected-keys="selectedKeys" />
+</template>
+<script setup>
+import { computed, ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+const router = useRouter();
+const route = useRoute();
+const selectedKeys = computed(() => [route.path])
+const items = ref([{
+  key: '/learn',
+  label: '学习',
+  title: '学习',
+}, {
+  key: '/levels',
+  label: '关卡',
+  title: '关卡',
+}, {
+  key: '/playground',
+  label: '广场',
+  title: '广场',
+}]);
+// 点击菜单触发菜单切换
+const clickMenu = ({ item, key, keyPath }) => {
+  router.push(key)
+};
+</script>
+```
+
