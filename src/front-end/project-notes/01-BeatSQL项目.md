@@ -514,5 +514,13 @@ const activeKey = ref(['result']);
    import 'github-markdown-css/github-markdown.css';
    ```
 
-   
 
+## 9. 引入monaco-editor
+
+1. 安装
+
+   ```js
+   npm install monaco-editor
+   ```
+
+2. 
