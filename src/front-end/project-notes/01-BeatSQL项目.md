@@ -523,4 +523,84 @@ const activeKey = ref(['result']);
    npm install monaco-editor
    ```
 
-2. 
+2. 使用
+
+   ```vue
+   <template>
+     <div ref="editorRef" style=" height: 280px;"></div>
+     <a-space :size="16" style="margin-top: 16px;">
+       <a-button type="primary" style="width: 180px;">运行</a-button>
+       <a-button>格式化</a-button>
+       <a-button>重置</a-button>
+     </a-space>
+   </template>
+   <script setup>
+   import * as monaco from 'monaco-editor';
+   import EditorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
+   
+   import { onMounted, onUnmounted, ref, toRaw } from 'vue';
+   const editorRef = ref();
+   const inputEditor = ref();
+   self.MonacoEnvironment = {
+     getWorker() {
+       return new EditorWorker();
+     }
+   };
+   onMounted(() => {
+     // 初始化代码编辑器
+     if (editorRef.value) {
+       const initValue = '';
+       inputEditor.value = monaco.editor.create(editorRef.value, {
+         value: initValue,
+         language: 'sql',
+         theme: 'vs-dark',
+         formatOnPaste: true,
+         automaticLayout: true,
+         fontSize: 16,
+         minimap: {
+           enabled: false,
+         },
+       });
+     }
+   });
+   
+   // 释放资源
+   onUnmounted(() => {
+     if (inputEditor.value) {
+       // 注意：应该使用toRaw将响应式对象转换成普通对象，否则会出现内存泄漏   
+       toRaw(inputEditor.value).dispose();
+     }
+   });
+   
+   </script>
+   <style></style>
+   ```
+
+## 10. 引入sql-formatter
+
+1. 下载
+
+   ```js
+   npm i sql-formatter
+   ```
+
+2. 引入
+
+   ```js
+   import { format } from 'sql-formatter';
+   ```
+
+## 11. 引入sql.js
+
+1. 下载
+
+   ```js
+   npm install sql.js
+   ```
+
+2. 引入
+
+   ```js
+   import initSqlJs from "sql.js";
+   ```
+
