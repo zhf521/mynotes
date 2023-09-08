@@ -1,0 +1,4 @@
+import{_ as s,o as a,c as n,b as t}from"./app-b8175080.js";const e={},c=t(`<p>严格模式：</p><div class="language-html line-numbers-mode" data-ext="html"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
+&#39;use strict&#39;//在代码开头添加该语句，即表示在严格模式下
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,2),l=[c];function i(p,o){return a(),n("div",null,l)}const d=s(e,[["render",i],["__file","05-JavaScript-严格模式.html.vue"]]);export{d as default};
