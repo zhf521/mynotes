@@ -28,9 +28,7 @@ order: 22
 
 ![Vuex03.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vuex03.png)
 
-Vuex 由三个部分构成，Actions (动作)，Mutations (修改，加工维护)，State (状态，即数据)，将数据交给 Vuex 中的 state 对象进行保管，通过 store 来管理 Vuex 的三个部分，通过 store 来调用 dispatch，commit；dispatch 传入2个参数，第一个是动作 (内容)，第二个是传入的值，调用完之后，dispatch 带的参数就到达了 Actions (执行动作对象)，Actions 是一个 obj 的对象，在 Actions 中有个 key 和 dispatch 中的动作相对应，Actions 中的 key 是一个函数，并引起该函数的调用，并且能接收到 dispatch 传过来的值，在 key 的函数中调用 `commit()` (提交函数)，第一个参数还是 key 的字符串，第二个参数是传入的值，然后就到了 Mutations 对象中，结构类型是 k-v 形式，在其中有一个 key 是从 Action 中传过来的，v 的类型是一个函数 function，参数为整个数据 (state)，和一个 commit 传入的值，然后经过 mutate，state 就发生了变化，并且 Vuex 重新解析组件，然后再去渲染 (render)
-
-Actions 的额外作用，与其他服务器进行交互，来获取值，在获取动作的值的时候通过 Ajax 来获取，有业务逻辑的时候必须通过 Actions 来操作，但是如果知道数据的具体值那么 vc 组件就可以直接调用 commit 从而跳过 Actions 直接到达 Mutations
+Vuex 由三个部分构成，Actions (动作)，Mutations (修改，加工维护)，State (状态，即数据)，将数据交给 Vuex 中的 state 对象进行保管，通过 store 来管理 Vuex 的三个部分，当组件需要修改状态时，通过调用 mutations 中的方法来提交 mutation。Mutation 是同步的操作，它会更新状态的值。在某些情况下，组件可能需要进行异步操作，例如从服务器获取数据。在这种情况下，可以调用 actions 中的方法来触发异步操作。Action 会执行异步任务，并在任务完成后提交对应的 mutation。
 
 理解：State 相当于菜，VueComponents 相当于客人，Actions 相当于服务员，Mutations 相当于后厨
 
@@ -42,7 +40,7 @@ Actions 的额外作用，与其他服务器进行交互，来获取值，在获
 2.  它应该是唯一的
 
 ```js
-const state = { xxx: initValue }
+const state = {sum:0};
 ```
 
 #### 1.4.2 mutations
@@ -53,25 +51,26 @@ const state = { xxx: initValue }
 
 ```js
 const mutations = {
-	yyy (state, {data1}) {
+	ADD (state, value) {
 		// 更新state 的某个属性
-	}
-}
+        state.sum += value;
+	};
+};
 ```
 
 #### 1.4.3 actions
 
 1.  包含多个事件回调函数的对象
 2.  通过执行: `commit()` 来触发 mutation 的调用, 间接更新 state
-3.  谁来触发: 组件中: `$store.dispatch ('action 名称', data1) // 'zzz'`
+3.  谁来触发: 组件中: `$store.dispatch ('action 名称', value) `
 4.  可以包含异步代码 (定时器, Ajax)
 
 ```js
 const actions = {
-	zzz ({commit, state}, data1) {
-		commit('yyy', {data1})
-	}
-}
+	add (context, value) {
+		context.commit('ADD', value)
+	};
+};
 ```
 
 #### 1.4.4 getters
@@ -81,10 +80,10 @@ const actions = {
 
 ```js
 const getters = {
-	mmm (state) {
-		return ...
-	}
-}
+	bigNum(state) {
+		return state.sum * 10;
+	};
+};
 ```
 
 #### 1.4.5 modules
@@ -101,77 +100,76 @@ export default new Vuex.Store({
 	mutations,
 	actions,
 	getters
-})
+});
 ```
 
-#### 1.4.7 组件中代码
+#### 1.4.7 引入store
 
 ```js
-import {mapState, mapGetters, mapActions} from 'vuex'
-export default {
-	computed: {
-		...mapState(['xxx']),
-		...mapGetters(['mmm']),
-	}
-	methods: mapActions(['zzz'])
-}
-{{xxx}} {{mmm}} @click="zzz(data)"
-```
-
-#### 1.4.8 映射store
-
-```js
-import store from './store'
+import store from './store';
 new Vue({
 	store
-})
+});
 ```
 
-#### 1.4.9 store对象
+#### 1.4.8 store对象
 
 1. 所有用 Vuex 管理的组件中都多了一个属性 `$store`, 它就是一个 store 对象 
+
 2. 属性:  
-	+ state: 注册的 state 对象
-	+ getters: 注册的 getters 对象
-4. 方法：`dispatch(actionName, data)`，分发调用 action
+  + state: 注册的 state 对象
+  + getters: 注册的 getters 对象
+
+3. 方法：
+
+   `dispatch(actionsName, value)`，分发调用 action
+
+   `commit(mutationsName, value)`，分发调用 mutations
 
 ## 2. Vuex环境搭建
 
-下载安装 Vuex `npm i vuex`，注意如果是用 Vue 2 的话命令要使用 `npm i vuex@3`
+1. 下载安装 Vuex
 
-创建 `src/store/index.js` 文件，该文件用于创建 Vuex 中最为核心的 `store`
-```js
-import Vue from 'vue' //引入Vue核心库
-import Vuex from 'vuex'	// 引入Vuex
+   ```js
+   npm i vuex
+   // Vue2版本
+   npm i vuex@3
+   ```
 
-Vue.use(Vuex)	// 应用Vuex插件
+2. 创建store对象并导出挂载
 
-const actions = {} // 准备actions对象——用于响应组件中的动作
-const mutations = {} // 准备mutations对象——用于操作数据（即修改state中的数据）
-const state = {} // 准备state对象——用于存储数据
+   创建 `src/store/index.js` 文件，该文件用于创建 Vuex 中最为核心的 `store`
 
-// 创建并暴露store
-export default new Vuex.Store({
-	actions,
-	mutations,
-	state,
-})
-```
+   ```js
+   import Vue from 'vue'; //引入Vue核心库
+   import Vuex from 'vuex';	// 引入Vuex
+   Vue.use(Vuex);	// 应用Vuex插件
+   const actions = {}; // 准备actions对象——用于响应组件中的动作（获取后端API数据或者进行业务逻辑处理）
+   const mutations = {}; // 准备mutations对象——用于操作数据（即修改state中的数据）
+   const state = {}; // 准备state对象——用于存储数据
+   // 创建并暴露store
+   export default new Vuex.Store({
+   	actions,
+   	mutations,
+   	state,
+   });
+   ```
 
-在 `src/main.js` 中创建 vm 时传入 `store` 配置项
-```js
-......
+3. 在`src/main.js` 中引入`store`对象
 
-import store from './store'	// 引入store
-
-......
-
-new Vue({
-	el: '#app',
-	render: h => h(App),
-	store,  // 配置项添加store
-})
-```
+   ```js
+   ......
+   
+   import store from './store/index';	// 引入store
+   
+   ......
+   
+   new Vue({
+   	el: '#app',
+   	render: h => h(App),
+   	store,  // 引入store
+   });
+   ```
 
 ## 3. Vuex的基本使用
 
@@ -179,7 +177,7 @@ new Vue({
 2. 组件中读取 Vuex 中的数据 `$store.state.数据`  
 3. 组件中修改 vuex 中的数据 `$store.dispatch('action中的方法名',数据)`或`$store.commit('mutations中的方法名', 数据) `
 
-注意：若没有网络请求或其他业务逻辑，组件中也可越过 actions，即不写 dispatch，直接编写 commit
+==注意：若没有网络请求或其他业务逻辑，组件中也可越过 actions，即不写 dispatch，直接编写 commit==
 
 ## 4. 求和案例
 
@@ -537,26 +535,28 @@ export default {
 
 ![Vuex05.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vuex05.png)
 
-## 6. 四个map方法的使用
+## 6. 常用map映射对象
 
-四个 map 方法在使用时应该先引入
+map映射对象在使用时应该先引入
 
-### 6.1 mapState方法
+```js
+import {map映射对象} from 'vuex';
+```
 
-用于帮助我们映射 state 中的数据为计算属性
+### 6.1 mapState与mapGetters
+
+mapState用于将 Vuex store 的状态映射到组件的计算属性中，可以简化在组件中访问 Vuex store 状态的代码：
 ```js
 computed: {
-  	// 借助mapState生成计算属性：sum、school、subject（写法一：对象写法）
-  	...mapState({sum:'sum',school:'school',subject:'subject'}),
+  	// 借助mapState生成计算属性：sum、mySchool、subject（写法一：对象写法）
+  	...mapState({sum:'sum',mySchool:'school',subject:'subject'}),
 
   	// 借助mapState生成计算属性：sum、school、subject（写法二：数组写法）
   	...mapState(['sum','school','subject']),
 },
 ```
 
-### 6.2 mapGetters方法
-
-用于帮助我们映射 getters 中的数据为计算属性
+mapGetters用于将 Vuex store 的 getters 映射到组件的计算属性中，可以简化在组件中访问 Vuex store getters 的代码：
 ```js
 computed: {
     //借助mapGetters生成计算属性：bigSum（写法一：对象写法）
@@ -567,7 +567,7 @@ computed: {
 },
 ```
 
-### 6.3 mapState与mapGetters代码演示
+### 6.2 mapState与mapGetters代码演示
 
 在求和案例中，我们再添加一行 `我在QFNU学习前端`，模板里要写 `$store.state.sum`、`$store.getters.bigSum` 等，会很麻烦，使用 map 方法我们在模板中只需要写 `sum`、`bigSum` 等，更加方便
 
@@ -696,9 +696,9 @@ export default {
 
 ![Vuex06.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vuex06.png)
 
-### 6.4 mapActions方法
+### 6.3 mapActions与mapMutations
 
-用于帮助生成与 actions 对话的方法，即包含 `$store.dispatch(xxx)` 的函数  
+mapActions用于将 Vuex store 的 actions 映射到组件的方法中，可以简化在组件中触发 Vuex store actions 的代码：
 ```js
 methods:{
     //靠mapActions生成：incrementOdd、incrementWait（对象形式）
@@ -709,9 +709,7 @@ methods:{
 }
 ```
 
-### 6.5 mapMutations方法
-
-用于帮助生成与 mutations 对话的方法，即包含 `$store.commit(xxx)` 的函数
+mapMutations用于将 Vuex store 的 mutations 映射到组件的方法中，可以简化在组件中提交 Vuex store mutations 的代码：
 ```js
 methods:{
     //靠mapActions生成：increment、decrement（对象形式）
@@ -722,9 +720,9 @@ methods:{
 }
 ```
 
-注意：mapActions 与 mapMutations 使用时，若需要传递参数需要：在模板中绑定事件时传递好参数，否则参数是事件对象
+注意：mapActions 与 mapMutations 使用时，若需要传递参数，则需要在模板中绑定事件时传递好参数，否则参数是事件对象
 
-### 6.6 mapActions与mapMutations代码演示
+### 6.4 mapActions与mapMutations代码演示
 
 `src/store/index.js`
 ```js
@@ -831,7 +829,9 @@ export default {
 </script>
 ```
 
-## 7. 多组件共享数据案例
+## 7. 多组件共享数据
+
+案例演示：
 
 `src/App.vue`
 ```vue
@@ -1003,9 +1003,11 @@ export default new Vuex.Store({
 
 ![Vuex07.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Vuex07.gif)
 
-## 8. 模块化+命名空间
+## 8. 模块化编程
 
 目的：让代码更好维护，让多种数据分类更加明确
+
+### 8.1 剥离到单文件
 
 修改 `store.js`，为了解决不同模块命名冲突的问题，将不同模块的命名空间开启 `namespaced: true`，之后在不同页面中引入 `getter`、`actions`、`mutations` 时，需要加上所属的模块名
 ```js
@@ -1064,5 +1066,35 @@ this.$store.dispatch('personAbout/addPersonWang',person)
 this.$store.commit('personAbout/ADD_PERSON',person)
 //方式二：借助mapMutations：
 ...mapMutations('countAbout',{increment:'JIA',decrement:'JIAN'}),
+```
+
+### 8.2 剥离到多个文件
+
+`xxx.js`
+
+```js
+export default{
+    namespaced:true,
+    actions:{},
+    mutations:{},
+    state:{},
+    getters:{}
+}
+```
+
+`index.js`
+
+```js
+import xxx1 from '@/store/xxx.js';
+import xxx2 from '@/store/xxx.js';
+import Vue from 'vue';
+import Vuex from 'vuex';
+Vue.use(Vuex);
+export default new Vuex.Store({
+    modules:{
+        xxx1,
+        xxx2
+    }
+});
 ```
 
