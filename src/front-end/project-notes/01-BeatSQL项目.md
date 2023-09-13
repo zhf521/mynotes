@@ -11,14 +11,14 @@ order: 1
 
 1. 在Vue项目中安装`normalize.css`
 
-   ```js
+   ```bsh
    npm install normalize.css
    ```
 
 2. 在项目的入口文件（如：main.js）中引入
 
    ```js
-   import 'normalize.css'
+   import 'normalize.css';
    ```
 
 ## 2. 网站SEO优化
@@ -50,7 +50,7 @@ order: 1
 
 1. 安装
 
-   ```js
+   ```bash
    npm install ant-design-vue@next
    ```
 
@@ -73,7 +73,7 @@ order: 1
 
 1. 安装
 
-   ```js
+   ```bash
    npm install vue-router@next
    ```
 
@@ -459,7 +459,7 @@ const activeKey = ref(['result']);
 
 1. 安装
 
-   ```js
+   ```bash
    npm i @bytemd/vue-next
    ```
 
@@ -504,7 +504,7 @@ const activeKey = ref(['result']);
 
 1. 安装
 
-   ```js
+   ```bash
    npm install github-markdown-css
    ```
 
@@ -519,7 +519,7 @@ const activeKey = ref(['result']);
 
 1. 安装
 
-   ```js
+   ```bash
    npm install monaco-editor
    ```
 
@@ -580,7 +580,7 @@ const activeKey = ref(['result']);
 
 1. 下载
 
-   ```js
+   ```bash
    npm i sql-formatter
    ```
 
@@ -594,7 +594,7 @@ const activeKey = ref(['result']);
 
 1. 下载
 
-   ```js
+   ```bash
    npm install sql.js
    ```
 
@@ -603,4 +603,81 @@ const activeKey = ref(['result']);
    ```js
    import initSqlJs from "sql.js";
    ```
+
+## 12. pinia持久化存储
+
+使用pinia-plugin-persistedstate插件实现
+
+1. 下载
+
+   ```bash
+   npm i pinia-plugin-persistedstate
+   ```
+
+2. 在入口文件（`main.js`）中将插件添加到 pinia 实例上
+
+   ```js
+   import { createPinia } from 'pinia';
+   import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+   
+   const pinia = createPinia();
+   pinia.use(piniaPluginPersistedstate);
+   ```
+
+3. 在Store中使用
+
+   ```js
+   import { defineStore } from 'pinia';
+   
+   export const useStore = defineStore(
+     'main',
+     () => {
+       const someState = ref('你好 pinia');
+       return { someState };
+     },
+     {
+       persist: true,
+     }
+   );
+   ```
+
+
+## 13. 项目目录结构
+
+- public：公共静态资源
+
+- src
+
+  - assets：静态资源
+  - components：组件
+    - CodeEditor.vue：代码编辑器
+    - MdViewer.vue：Markdown 浏览
+    - QuestionBoard.vue：题目面板（教程区）
+    - SQLEditor.vue：SQL 编辑器（练习区）
+    - SQLResult.vue：SQL 执行结果（结果区）
+  - levels：关卡
+    - custom：自定义关卡文件夹
+    - main：主线关卡文件夹
+    - customLevels.js：自定义关卡列表
+    - index.js：定义了关卡相关变量和函数
+    - mainLevels.js：主线关卡列表
+
+  - router：路由
+    - index.js：路由配置
+  - store
+    - globalStore.js：全局状态管理
+  - utils：核心
+    - sqlExecutor.js：SQL 执行引擎
+    - result.js：SQL执行结果相关变量和函数
+
+  - views：页面
+    - LearnPage.vue：学习页面
+    - LevelsPage.vue：关卡页面
+    - PlaygroundPage.vue：广场页面
+  - App.vue：主页
+  - main.js：Vue 主文件
+
+## 14. 项目组件间通信
+
+
 
