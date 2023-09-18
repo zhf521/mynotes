@@ -3,7 +3,7 @@ title: JavaScript
 order: 2
 ---
 
-## 1. 语言区别
+## 1. 面向过程与面向对象
 
 ### 1.1 面向过程
 
@@ -37,7 +37,7 @@ location对象：`href`属性
 
 ### 2.2 DOM（document）
 
-Document Object Model（文档对象模型）。
+Document Object Model（文档对象模型）
 
 JavaScript中通过DOM来对HTML文档进行操作
 
@@ -46,6 +46,3 @@ JavaScript中通过DOM来对HTML文档进行操作
 将网页中的每一个部分都转换为了一个对象
 
 使用模型来表示对象之间的关系，方便获取对象
-
-
-
