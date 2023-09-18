@@ -255,6 +255,12 @@ inject:['foo'] // 获取到祖先组件传递过来的值
 - 祖先与后代组件数据传递可选择`attrs`与`listeners`或者 `Provide`与 `Inject`
 - 复杂关系的组件数据传递可以通过`vuex`存放共享的变量
 
+## 3. Vue的基本原理
+
+当一个Vue实例创建时，Vue会遍历data中的属性，用 `Object.defineProperty`（Vue3.0使用proxy ）将它们转为 getter/setter，并且在内部追踪相关依赖，在属性被访问和修改时通知变化。 每个组件实例都有相应的 watcher 程序实例，它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的setter被调用时，会通知watcher重新计算，从而致使它关联的组件得以更新
+
+## 4. Vue双向数据绑定的原理
+
 
 
 
