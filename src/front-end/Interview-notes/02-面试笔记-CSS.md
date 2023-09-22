@@ -22,7 +22,11 @@ CSS3中的盒模型有以下两种：标准盒子模型、IE盒子模型
 
 - border-box 怪异盒模型（IE盒模型）
 
+## 2. CSS选择器及其优先级
 
+详见：https://zhf521.github.io/mynotes/front-end/css-notes/02-CSS%E9%80%89%E6%8B%A9%E5%99%A8.html
 
+## 3. CSS样式引入方式
 
+详见：https://zhf521.github.io/mynotes/front-end/css-notes/01-%E5%88%9D%E8%AF%86CSS.html#_2-css%E7%9A%84%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F
 

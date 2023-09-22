@@ -5,11 +5,9 @@ order: 26
 
 ## 1. ES6
 
-### 1.1初识ES6
+### 1. 初识ES6
 
 > ECMAScript 6.0（以下简称 ES6）是 JavaScript 语言的下一代标准，已经在 2015 年 6 月正式发布了。它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言
-
-
 
 -  1997年：ECMAScript 1.0
 
@@ -25,7 +23,7 @@ order: 26
 
 -  至今，版本号改用年号的形式
 
-### 1.2 let和const关键字
+### 2. let和const关键字
 
 我们以前都是使用 `var` 关键字来声明变量的，在 ES6 的时候，多了两个关键字 `let` 和 `const`，也是用来声明变量的
 
@@ -35,40 +33,40 @@ order: 26
 
    ```javascript
    // 使用 var 的时候重复声明变量是没问题的，只不过就是后面会把前面覆盖掉
-   var num = 100
-   var num = 200
+   var num = 100;
+   var num = 200;
    ```
 
    ```javascript
    // 使用 let 重复声明变量的时候就会报错了
-   let num = 100
-   let num = 200 // 这里就会报错了
+   let num = 100;
+   let num = 200; // 这里就会报错了
    ```
 
    ```javascript
    // 使用 const 重复声明变量的时候就会报错
-   const num = 100
-   const num = 200 // 这里就会报错了
+   const num = 100;
+   const num = 200; // 这里就会报错了
    ```
 
 2. `let` 和 `const` 声明的变量不会在预解析的时候解析（也就是没有变量提升）
 
    ```javascript
    // 因为预解析（变量提升）的原因，在前面是有这个变量的，只不过没有赋值
-   console.log(num) // undefined
-   var num = 100
+   console.log(num); // undefined
+   var num = 100;
    ```
 
    ```javascript
    // 因为 let 不会进行预解析（变量提升），所以直接报错了
-   console.log(num) // 这里就会报错了
-   let num = 100
+   console.log(num); // 这里就会报错了
+   let num = 100;
    ```
 
    ```javascript
    // 因为 const 不会进行预解析（变量提升），所以直接报错了
-   console.log(num) // 这里就会报错了
-   const num = 100
+   console.log(num); // 这里就会报错了
+   const num = 100;
    ```
 
 3. `let` 和 `const` 声明的变量会被所有代码块限制作用范围
@@ -76,27 +74,27 @@ order: 26
    ```javascript
    // var 声明的变量只有函数能限制其作用域，其他的不能限制
    if (true) {
-     var num = 100
+     var num = 100;
    }
-   console.log(num) // 100
+   console.log(num); // 100
    ```
 
    ```javascript
    // let 声明的变量，除了函数可以限制，所有的代码块都可以限制其作用域（if/while/for/...）
    if (true) {
-     let num = 100
-     console.log(num) // 100
+     let num = 100;
+     console.log(num); // 100
    }
-   console.log(num) // 报错
+   console.log(num); // 报错
    ```
 
    ```javascript
    // const 声明的变量，除了函数可以限制，所有的代码块都可以限制其作用域（if/while/for/...）
    if (true) {
-     const num = 100
-     console.log(num) // 100
+     const num = 100;
+     console.log(num); // 100
    }
-   console.log(num) // 报错
+   console.log(num); // 报错
    ```
 
 `let` 和 `const` 的区别：
@@ -104,29 +102,29 @@ order: 26
 1. `let` 声明的变量的值可以改变，`const` 声明的变量的值不可以改变
 
    ```javascript
-   let num = 100
-   num = 200
-   console.log(num) // 200
+   let num = 100;
+   num = 200;
+   console.log(num); // 200
    ```
 
    ```javascript
-   const num = 100
-   num = 200 // 这里就会报错了，因为 const 声明的变量值不可以改变（我们也叫做常量）
+   const num = 100;
+   num = 200; // 这里就会报错了，因为 const 声明的变量值不可以改变（我们也叫做常量）
    ```
 
 2. `let` 声明的时候可以不赋值，`const` 声明的时候必须赋值，建议使用 `const` 来声明数组和对象
 
    ```javascript
-   let num
-   num = 100
-   console.log(num) // 100
+   let num;
+   num = 100;
+   console.log(num); // 100
    ```
 
    ```javascript
-   const num // 这里就会报错了，因为 const 声明的时候必须赋值
+   const num; // 这里就会报错了，因为 const 声明的时候必须赋值
    ```
 
-### 1.3 展开运算符
+### 3. 展开运算符
 
 ES6 里面号新添加了一个运算符 `...` ，叫做展开运算符
 
@@ -135,16 +133,16 @@ ES6 里面号新添加了一个运算符 `...` ，叫做展开运算符
 1. 把数组展开，不会修改原数组
 
    ```js
-   let arr = [1, 2, 3, 4, 5]
-   console.log(...arr) // 1 2 3 4 5
+   let arr = [1, 2, 3, 4, 5];
+   console.log(...arr); // 1 2 3 4 5
    ```
 
 2. 合并数组的时候可以使用
 
    ```js
-   let arr = [1, 2, 3, 4]
-   let arr2 = [...arr, 5]
-   console.log(arr2)
+   let arr = [1, 2, 3, 4];
+   let arr2 = [...arr, 5];
+   console.log(arr2);
    ```
 
 3. 也可以合并对象使用
@@ -153,93 +151,88 @@ ES6 里面号新添加了一个运算符 `...` ，叫做展开运算符
    let obj = {
      name: 'Jack',
      age: 18
-   }
+   };
    let obj2 = {
      ...obj,
      gender: '男'
-   }
-   console.log(obj2)
+   };
+   console.log(obj2);
    ```
 
 4. 在函数传递参数的时候也可以使用
 
    ```js
-   let arr = [1, 2, 3]
+   let arr = [1, 2, 3];
    function fn(a, b, c) {
-     console.log(a)
-     console.log(b)
-     console.log(c)
+     console.log(a);
+     console.log(b);
+     console.log(c);
    }
-   fn(...arr)
+   fn(...arr);
    // 等价于 fn(1, 2, 3)
    ```
 
-### 1.4 解构赋值
+### 4. 解构赋值
 
 解构赋值，就是快速的从对象或者数组中取出成员的一个语法方式
 
-#### 1.4.1 数组解构
+#### 1. 数组解构
 
 快速的从数组中获取成员
 
 ```javascript
 // ES5 的方式从数组中获取成员
-const arr = [1, 2, 3]
-let a = arr[0]
-let b = arr[1]
-let c = arr[2]
-console.log(a) // 1
-console.log(b) // 2
-console.log(c) // 3
+const arr = [1, 2, 3];
+let a = arr[0];
+let b = arr[1];
+let c = arr[2];
+console.log(a); // 1
+console.log(b); // 2
+console.log(c); // 3
 ```
 
 ```javascript
 // 使用解构赋值的方式从数组中获取成员
-const arr = [1, 2, 3]
+const arr = [1, 2, 3];
 
 // 前面的 [] 表示要从 arr 这个数组中获取成员
 // a b c 分别对应这数组中的索引 0 1 2
 // arr 必须是一个数组
-let [a, b, c] = arr
-console.log(a) // 1
-console.log(b) // 2
-console.log(c) // 3
+let [a, b, c] = arr;
+console.log(a); // 1
+console.log(b); // 2
+console.log(c); // 3
 ```
 
 ```js
 // 数组解构的典型应用——交换两个变量的值
-let a = 1
-let b = 2  
-;[a,b] = [b,a]     
-console.log(a,b) //2 1
-
-//注意：
-//1. 必须加分号，因为是数组开头->相当于 let b = 2[a,b] = [b,a]，所以不加分号控制台会报错
-//2. 由于我们在JavaScript中习惯语句结束不加分号，而数组开头比较特别，所以这个分号主要是起到标记语句结束的作用
-//3. 也可以在采取下面加分号的方式 let b = 2;
+let a = 1;
+let b = 2;
+[a,b] = [b,a];
+console.log(a,b); //2 1
 ```
 
 ```js
 //数组解构的一些特殊情况——变量多，单元值少
-const [a,b,c,d] = [1,2,3]
-console.log(a,b,c,d) //1  2  3  undefined
+const [a,b,c,d] = [1,2,3];
+console.log(a,b,c,d); //1  2  3  undefined
 
 //为此防止有undefined传递单元值的情况，可以设置默认值
-const [x=0,y=0] = [1]
-console.log(x)  //1
-console.log(y)  //0
+const [x=0,y=0] = [1];
+console.log(x); //1
+console.log(y); //0
 ```
 
 ```js
-//数组解构的一些特殊情况——变量少，单元值多\
-const [a,b,...c] = [1,2,3,4,5]
-console.log(a)  //1
-console.log(b)  //2
-console.log(c)  //[3,4,5]
+//数组解构的一些特殊情况——变量少，单元值多
+const [a,b,...c] = [1,2,3,4,5];
+console.log(a); //1
+console.log(b); //2
+console.log(c); //[3,4,5]
   
 //为此可以按需导入赋值
-const [x,y,,z] = [1,2,3,4]
-console.log(x,y,z)  //1  2  4
+const [x,y,,z] = [1,2,3,4];
+console.log(x,y,z); //1  2  4
 ```
 
 总结：
@@ -251,7 +244,7 @@ console.log(x,y,z)  //1  2  4
 5. 允许初始化变量的默认值，且只有单元值为 `undefined` 时默认值才会生效
 6. 数组解构也支持多维解构赋值
 
-#### 1.4.2 对象解构
+#### 2. 对象解构
 
 快速的从对象中获取成员
 
@@ -261,11 +254,11 @@ const obj = {
   name: 'Jack',
   age: 18,
   gender: '男'
-}
+};
 
-let name = obj.name
-let age = obj.age
-let gender = obj.gender
+let name = obj.name;
+let age = obj.age;
+let gender = obj.gender;
 ```
 
 ```javascript
@@ -274,12 +267,12 @@ const obj = {
   name: 'Jack',
   age: 18,
   gender: '男'
-}
+};
 
 // 前面的 {} 表示我要从 obj 这个对象中获取成员了
 // name age gender 都得是 obj 中有的成员
 // obj 必须是一个对象
-let { name, age, gender } = obj
+let { name, age, gender } = obj;
 ```
 
 ```js
@@ -288,26 +281,26 @@ let { name, age, gender } = obj
 const obj = {
     uname: '游戏',
     price: 58
-}
-const {uname,price} = {uname: '游戏', price: 58}
-console.log(uname) //相当于uname = obj.uname
-console.log(price) //相当于price = obj.price
+};
+const {uname,price} = {uname: '游戏', price: 58};
+console.log(uname); //相当于uname = obj.uname
+console.log(price); //相当于price = obj.price
 
 // 解构的变量名必须与属性名一致
-const {uname1,price1} = {uname: '游戏', price: 58}
-console.log(uname1) //undefined
-console.log(price1) //undefined
+const {uname1,price1} = {uname: '游戏', price: 58};
+console.log(uname1); //undefined
+console.log(price1); //undefined
 
 // 对象解构变量名更改  旧变量名:新变量名
-const {uname:game,price:money} = {uname: '游戏', price: 58}
-console.log(game)  //游戏
-console.log(money) //58
+const {uname:game,price:money} = {uname: '游戏', price: 58};
+console.log(game); //游戏
+console.log(money); //58
 
 //数组对象解构
-const arr = [{uname1: '游戏', price1: 58}]
-const [{p,n}] = [{n: '游戏', p: 58}]
-console.log(p) //58
-console.log(n) //游戏
+const arr = [{uname1: '游戏', price1: 58}];
+const [{p,n}] = [{n: '游戏', p: 58}];
+console.log(p); //58
+console.log(n); //游戏
 ```
 
 总结：
@@ -318,13 +311,13 @@ console.log(n) //游戏
 4. 允许初始化变量的默认值，属性不存在或单元值为 `undefined` 时默认值才会生效
 5. 对象解构也支持多维解构赋值
 
-### 1.5 模版字符串
+### 5. 模版字符串
 
-ES5 中我们表示字符串的时候使用 `''` 或者 `""`，在 ES6 中，我们还有一个东西可以表示字符串，就是` `` ` （反引号）
+ES5 中我们表示字符串的时候使用 `''` 或者 `""`，在 ES6 中，我们还有一个东西可以表示字符串，就是` `` `（反引号）
 
 ```javascript
-let str = `hello world`
-console.log(typeof str) // string
+let str = `hello world`;
+console.log(typeof str); // string
 ```
 
 反引号与单引号、双引号的区别：
@@ -333,284 +326,284 @@ console.log(typeof str) // string
 
    ```javascript
    // 这个单引号或者双引号不能换行，换行就会报错了
-   let str = 'hello world' 
+   let str = 'hello world';
    
    // 下面这个就报错了
    let str2 = 'hello 
-   world'
+   world';
    ```
 
    ```javascript
    let str = `
    	hello
    	world
-   `
+   `;
    
-   console.log(str) // 是可以使用的
+   console.log(str); // 是可以使用的
    ```
 
 2. 反引号可以直接在字符串里面拼接变量
 
    ```javascript
    // ES5 需要字符串拼接变量的时候
-   let num = 100
-   let str = 'hello' + num + 'world' + num
-   console.log(str) // hello100world100
+   let num = 100;
+   let str = 'hello' + num + 'world' + num;
+   console.log(str); // hello100world100
    
    // 直接写在字符串里面不好使
-   let str2 = 'hellonumworldnum'
-   console.log(str2) // hellonumworldnum
+   let str2 = 'hellonumworldnum';
+   console.log(str2); // hellonumworldnum
    ```
 
    ```javascript
    // 模版字符串拼接变量
-   let num = 100
-   let str = `hello${num}world${num}`
-   console.log(str) // hello100world100
+   let num = 100;
+   let str = `hello${num}world${num}`;
+   console.log(str); // hello100world100
    ```
 
    里面的 `${}` 就是用来书写变量的位置
 
-### 1.6字符串扩展
+### 6. 字符串扩展
 
-#### 1.6.1 includes函数
+#### 1. includes函数
 
 判断字符串中是否存在指定字符
 
 ```js
-let myname = "kerwin"
-console.log(myname.includes("e")) //true
-console.log(myname.includes("ker")) //true
-console.log(myname.includes("en")) //false
+let myname = "kerwin";
+console.log(myname.includes("e")); //true
+console.log(myname.includes("ker")); //true
+console.log(myname.includes("en")); //false
 ```
 
 可以传入第二个参数，表示按索引值位置开始查找
 
 ```js
-let myname = "kerwin"
-console.log(myname.includes("e",1)) //true
-console.log(myname.includes("e",3)) //false
+let myname = "kerwin";
+console.log(myname.includes("e",1)); //true
+console.log(myname.includes("e",3)); //false
 ```
 
-#### 1.6.2 startsWith函数
+#### 2. startsWith函数
 
 判断字符串是否以某字符开头
 
 ```js
-let myname = "kerwin"
-console.log(myname.startsWith("k")) //true
-console.log(myname.startsWith("ker")) //true
-console.log(myname.startsWith("er")) //false
+let myname = "kerwin";
+console.log(myname.startsWith("k")); //true
+console.log(myname.startsWith("ker")); //true
+console.log(myname.startsWith("er")); //false
 ```
 
 可以传入第二个参数，表示按索引值位置开始查找
 
 ```js
-let myname = "kerwin"
-console.log(myname.startsWith("k",0)) //true
-console.log(myname.startsWith("k",2)) //false
+let myname = "kerwin";
+console.log(myname.startsWith("k",0)); //true
+console.log(myname.startsWith("k",2)); //false
 ```
 
-#### 1.6.3 endsWith函数
+#### 3. endsWith函数
 
 判断字符串是否以某字符结束
 
 ```js
-let myname = "kerwin"
-console.log(myname.endsWith("n")) //true
-console.log(myname.endsWith("in")) //true
-console.log(myname.endsWith("k")) //false
+let myname = "kerwin";
+console.log(myname.endsWith("n")); //true
+console.log(myname.endsWith("in")); //true
+console.log(myname.endsWith("k")); //false
 ```
 
 可以传入第二个参数，表示按索引值位置开始往前查找
 
 ```js
-let myname = "kerwin"
-console.log(myname.startsWith("n",1)) //false
-console.log(myname.startsWith("n",5)) //true
+let myname = "kerwin";
+console.log(myname.startsWith("n",1)); //false
+console.log(myname.startsWith("n",5)); //true
 ```
 
-#### 1.6.4 repeat函数
+#### 4. repeat函数
 
 `repeat()`方法返回一个新字符串,表示将原字符串重复n次
 
 ````js
-let myname = "kerwin"
-console.log(myname.repeat(3)) //kerwinkerwinkerwin
-console.log(myname.repeat(0)) //"" 
-console.log(myname.repeat(3.5)) //kerwinkerwinkerwin
-console.log(myname.repeat("3"))//kerwinkerwinkerwin
+let myname = "kerwin";
+console.log(myname.repeat(3)); //kerwinkerwinkerwin
+console.log(myname.repeat(0)); //"" 
+console.log(myname.repeat(3.5)); //kerwinkerwinkerwin
+console.log(myname.repeat("3")); //kerwinkerwinkerwin
 ````
 
-### 1.7 数值扩展
+### 7. 数值扩展
 
-#### 1.7.1 进制表示法 
+#### 1. 进制表示法 
 
 ```js
 //十进制
-let count1 = 100
+let count1 = 100;
 //十六进制
-let count2 = 0x100
+let count2 = 0x100;
 //八进制
-let count3 = 0o100
+let count3 = 0o100;
 //二进制
-let count4 = 0b100
+let count4 = 0b100;
 ```
 
-#### 1.7.2 isFinite与isNaN方法
+#### 2. isFinite与isNaN方法
 
 减少全局性方法，使得语言逐步模块化
 
 ```js
-let num1 = Number.isFinite(100) 
-console.log(num1) //true
-let num2 = Number.isFinite(100/0) 
-console.log(num2) //false
-let num3 = Number.isFinite(Infinity)
-console.log(num3) // false
-let num4 = Number.isFinite("100")
-console.log(num4) //false
+let num1 = Number.isFinite(100);
+console.log(num1); //true
+let num2 = Number.isFinite(100/0); 
+console.log(num2); //false
+let num3 = Number.isFinite(Infinity);
+console.log(num3); // false
+let num4 = Number.isFinite("100");
+console.log(num4); //false
 ```
 
 ```js
-let num1 = Number.isNaN(100) 
-console.log(num1) // false
-let num2 = Number.isNaN(NaN)
-console.log(num2) //true
-let num3 = Number.isNaN("kerwin")
-console.log(num3) //false
-let num4 = Number.isNaN("100")
-console.log(num4) // false
+let num1 = Number.isNaN(100);
+console.log(num1); // false
+let num2 = Number.isNaN(NaN);
+console.log(num2); //true
+let num3 = Number.isNaN("kerwin");
+console.log(num3); //false
+let num4 = Number.isNaN("100");
+console.log(num4); // false
 ```
 
 它们与传统的全局方法`isFinite()`和`isNaN()`的区别在于，传统方法先调用`Number()`将非数值的值转为数值，再进行判断，而这两个新方法只对数值有效，`Number.isFinite()`对于非数值一律返回false, `Number.isNaN()`只有对于NaN才返回true，非NaN一律返回false
 
-#### 1.7.3 isInteger方法
+#### 3. isInteger方法
 
 用来判断一个数值是否为整数
 
 ```js
-let num1 = Number.isInteger(100)
-console.log(num1) //true
-let num2 = Number.isInteger(100.0)
-console.log(num2) //true
-let num3 = Number.isInteger("kerwin")
-console.log(num3) //false
-let num4 = Number.isInteger("100")
-console.log(num4) //false
-let num5 = Number.isInteger(100.1)
-console.log(num5) //false
+let num1 = Number.isInteger(100);
+console.log(num1); //true
+let num2 = Number.isInteger(100.0);
+console.log(num2); //true
+let num3 = Number.isInteger("kerwin");
+console.log(num3); //false
+let num4 = Number.isInteger("100");
+console.log(num4); //false
+let num5 = Number.isInteger(100.1);
+console.log(num5); //false
 ```
 
-#### 1.7.4 极小常量Number.EPSILON
+#### 4. 极小常量Number.EPSILON
 
 它表示 1 与大于 1 的最小浮点数之间的差。2.220446049250313e-16
 
 ```js
 function isEqual(a,b){
-        return Math.abs(a-b)<Number.EPSILON
+        return Math.abs(a-b)<Number.EPSILON;
 }
 
-console.log(isEqual(0.1+0.2,0.3)) //true
-console.log(0.1+0.2===0.3) //false
+console.log(isEqual(0.1+0.2,0.3)); //true
+console.log(0.1+0.2===0.3); //false
 ```
 
-#### 1.7.5 Math.trunc
+#### 5. Math.trunc
 
 将小数部分抹掉,返回一个整数
 
 ```js
-console.log(Math.trunc(1.2)) //1
-console.log(Math.trunc(1.8))// 1
-console.log(Math.trunc(-1.8)) //-1
-console.log(Math.trunc(-1.2))//-1
+console.log(Math.trunc(1.2)); //1
+console.log(Math.trunc(1.8)); // 1
+console.log(Math.trunc(-1.8)); //-1
+console.log(Math.trunc(-1.2)); //-1
 ```
 
-#### 1.7.6 Math.sign
+#### 6. Math.sign
 
 `Math.sign`方法用来判断一个数到底是正数、负数、还是零。对于非数值，会先将其转换为数值
 
 ```javascript
-Math.sign(-100) // -1
-Math.sign(100) // +1
-Math.sign(0) // +0
-Math.sign(-0) // -0
-Math.sign("kerwin") // NaN
+Math.sign(-100); // -1
+Math.sign(100); // +1
+Math.sign(0); // +0
+Math.sign(-0); // -0
+Math.sign("kerwin"); // NaN
 ```
 
-### 1.8 数组扩展
+### 8. 数组扩展
 
-#### 1.8.1 Array.from
+#### 1. Array.from
 
 将类数组对象转换为真正数组
 
 ```js
 function test(){
-        console.log(Array.from(arguments))
+        console.log(Array.from(arguments));
 }
 
-test(1,2,3) // [1,2,3]
+test(1,2,3); // [1,2,3]
 ```
 
-#### 1.8.2 Array.of
+#### 2. Array.of
 
 将一组值转化为数组，即新建数组
 
 ```js
-let arr1 = Array(3)
-console.log(arr1)// [,,]
+let arr1 = Array(3);
+console.log(arr1); // [,,]
 
-let arr2 = Array.of(3)
-console.log(arr2)// [3]
+let arr2 = Array.of(3);
+console.log(arr2); // [3]
 ```
 
-#### 1.8.3 find方法
+#### 3. find方法
 
 该方法主要应用于查找第一个符合条件的数组元素 
 
 它的参数是一个回调函数。在回调函数中可以写你要查找元素的条件，当条件成立为true时，返回该元素；如果没有符合条件的元素，返回值为undefined 
 
 ```js
-let arr = [11,12,13,14,15]
+let arr = [11,12,13,14,15];
 let res1 = arr.find(function(item){
-    return item>13
-})
+    return item>13;
+});
 let res2 = arr.findIndex(function(item){
-    return item>13
-})
-console.log(res1) //14
-console.log(res2) //3
+    return item>13;
+});
+console.log(res1); //14
+console.log(res2); //3
 //findLast() findLastIndex() ES2022
-let arr2 = [11,12,13,14,15]
+let arr2 = [11,12,13,14,15];
 let res3 = arr.findLast(function(item){
-    return item>13
-})
+    return item>13;
+});
 let res4 = arr.findLastIndex(function(item){
-    return item>13
-})
-console.log(res3) //15
-console.log(res4) //4
+    return item>13;
+});
+console.log(res3); //15
+console.log(res4); //4
 ```
 
-#### 1.8.4 fill方法
+#### 4. fill方法
 
 使用自己想要的参数替换原数组内容，但是会改变原来的数组
 
 ```js
-let arr1 = new Array(3).fill("kerwin")
-let arr2 = ['a', 'b', 'c'].fill("kerwin", 1, 2)
-console.log(arr1)//['kerwin', 'kerwin', 'kerwin']
-console.log(arr2)// ['a', 'kerwin', 'c']
+let arr1 = new Array(3).fill("kerwin");
+let arr2 = ['a', 'b', 'c'].fill("kerwin", 1, 2);
+console.log(arr1); //['kerwin', 'kerwin', 'kerwin']
+console.log(arr2); // ['a', 'kerwin', 'c']
 ```
 
-#### 1.8.5 flat与flatMap方法
+#### 5. flat与flatMap方法
 
 按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回
 
 ```js
-let arr = [1,2,3,[4,5,6]]
-let arr1 = arr.flat()
-console.log(arr,arr1) //[1,2,3,4,5,6]
+let arr = [1,2,3,[4,5,6]];
+let arr1 = arr.flat();
+console.log(arr,arr1); //[1,2,3,4,5,6]
 
 var obj = [{
                 name: "A",
@@ -620,19 +613,19 @@ var obj = [{
                 name: "B",
                 list: ["北京", "保定", "包头"]
             }
-]
+];
 console.log(obj.flatMap(function(item){
     return item.list
-}))// ['鞍山', '安庆', '安阳', '北京', '保定', '包头']
+})); // ['鞍山', '安庆', '安阳', '北京', '保定', '包头']
 ```
 
-### 1.9 对象扩展
+### 9. 对象扩展
 
-#### 1.9.1 对象简写
+#### 1. 对象简写
 
 ```js
 //原写法
-let name ="moduleA"
+let name ="moduleA";
 let obj = {
     name:name,
     test1:function(){
@@ -641,10 +634,10 @@ let obj = {
     test2:function(){
         
     }
-}
+};
 
 //简写
-let name ="moduleA"
+let name ="moduleA";
 let obj = {
     name,
     test1(){
@@ -653,13 +646,13 @@ let obj = {
     test2(){
 
     }
-}
+};
 ```
 
-#### 1.9.2 属性名表达式
+#### 2. 属性名表达式
 
 ```js
-let name ="moduleA"
+let name ="moduleA";
 let obj = {
     name,
     [name+"test1"](){
@@ -668,11 +661,11 @@ let obj = {
     [name+"test2"](){
 
     }
-}
-console.log(obj) //{name: 'moduleA', moduleAtest1: ƒ, moduleAtest2: ƒ}
+};
+console.log(obj); //{name: 'moduleA', moduleAtest1: ƒ, moduleAtest2: ƒ}
 ```
 
-#### 1.9.3 Object.assign
+#### 3. Object.assign
 
 `Object.assign(target, object1，object2)`的第一个参数是目标对象，后面可以跟一个或多个源对象作为参数
 
@@ -683,38 +676,39 @@ object1：参数1
 object2：参数2
 
 ```js
-const obj = {}
+const obj = {};
 const obj1 = {
     name: "kerwin"
-}
+};
 
 const obj2 = {
     name:"tiechui"
-}
+};
+
 const obj3 = {
     age:100
-}
+};
 
-console.log(Object.assign(obj, obj1, obj2, obj3)) // {name: 'tiechui', age: 100}
+console.log(Object.assign(obj, obj1, obj2, obj3)); // {name: 'tiechui', age: 100}
 ```
 
-#### 1.9.4 Object.is
+#### 4. Object.is
 
 方法判断两个值是否是相同的值
 
 ```js
 // 之前存在的问题：
-console.log(NaN===NaN) //false
-console.log(+0===-0) //true
+console.log(NaN===NaN); //false
+console.log(+0===-0); //true
 
 //解决：
-console.log(Object.is(NaN,NaN)) //true
-console.log(Object.is(+0,-0)) //false
+console.log(Object.is(NaN,NaN)); //true
+console.log(Object.is(+0,-0)); //false
 ```
 
-### 1.10 函数扩展
+### 10. 函数扩展
 
-#### 1.10.1 箭头函数
+#### 1. 箭头函数
 
 箭头函数是 ES6 里面一个简写函数的语法方式
 
@@ -732,33 +726,33 @@ const obj = {
 
 ```javascript
 const fn = function (a, b) {
-  console.log(a)
-  console.log(b)
+  console.log(a);
+  console.log(b);
 }
 // 可以使用箭头函数写成
 const fun = (a, b) => {
-  console.log(a)
-  console.log(b)
+  console.log(a);
+  console.log(b);
 }
 ```
 
 ```javascript
 const obj = {
   fn: function (a, b) {
-    console.log(a)
-    console.log(b)
+    console.log(a);
+    console.log(b);
   }
 }
 // 可以使用箭头函数写成
 const obj2 = {
   fn: (a, b) => {
-    console.log(a)
-    console.log(b)
+    console.log(a);
+    console.log(b);
   }
 }
 ```
 
-#### 1.10.2 箭头函数的特殊性
+#### 2. 箭头函数的特殊性
 
 1. 箭头函数内部没有 this，箭头函数的 this 是上下文的 this
 
@@ -768,17 +762,17 @@ const obj2 = {
        // 在箭头函数定义的位置往上数，这一行是可以打印出 this 的
        // 因为这里的 this 是 window
        // 所以箭头函数内部的 this 就是 window
-       console.log(this)
+       console.log(this);
      },
      // 这个位置是箭头函数的上一行，但是不能打印出 this
      fun: () => {
        // 箭头函数内部的 this 是书写箭头函数的上一行一个可以打印出 this 的位置的 this
-       console.log(this)
+       console.log(this);
      }
    }
    
-   obj.fn()
-   obj.fun()
+   obj.fn();
+   obj.fun();
    ```
 
    按照我们之前的 this 指向来判断，两个都应该指向 obj，但是 fun 因为是箭头函数，所以 this 不指向 obj，而是指向 fun 的外层，就是 window
@@ -788,14 +782,14 @@ const obj2 = {
    ```js
    const obj = {
      fn: function () {
-       console.log(arguments)
+       console.log(arguments);
      },
      fun: () => {
-       console.log(arguments)
+       console.log(arguments);
      }
    }
-   obj.fn(1, 2, 3) // 会打印一个伪数组 [1, 2, 3]
-   obj.fun(1, 2, 3) // 会直接报错
+   obj.fn(1, 2, 3); // 会打印一个伪数组 [1, 2, 3]
+   obj.fun(1, 2, 3); // 会直接报错
    ```
 
 3. 函数的形参只有一个的时候可以不写 `()` 其余情况必须写
@@ -803,13 +797,13 @@ const obj2 = {
    ```js
    const obj = {
      fn: () => {
-       console.log('没有参数，必须写小括号')
+       console.log('没有参数，必须写小括号');
      },
      fn2: a => {
-       console.log('一个形参，可以不写小括号')
+       console.log('一个形参，可以不写小括号');
      },
      fn3: (a, b) => {
-       console.log('两个或两个以上参数，必须写小括号')
+       console.log('两个或两个以上参数，必须写小括号');
      }
    }
    ```
@@ -819,53 +813,53 @@ const obj2 = {
    ```js
    const obj = {
      fn: a => {
-       return a + 10
+       return a + 10;
      },
-     fun: a => a + 10
+     fun: a => a + 10;
    }
    
-   console.log(fn(10)) // 20
-   console.log(fun(10)) // 20
+   console.log(fn(10)); // 20
+   console.log(fun(10)); // 20
    ```
    
 5. 由于箭头函数没有this，所以无法使用call、apply、bind来改变箭头函数的this指向
 
-#### 1.10.3 函数参数默认值
+#### 3. 函数参数默认值
 
 我们在定义函数的时候，有的时候需要一个默认值出现，就是当我不传递参数的时候，使用默认值，传递参数了就使用传递的参数
 
 ```javascript
 function fn(a) {
-  a = a || 10
-  console.log(a)
+  a = a || 10;
+  console.log(a);
 }
-fn()   // 不传递参数的时候，函数内部的 a 就是 10
-fn(20) // 传递了参数 20 的时候，函数内部的 a 就是 20
+fn(); // 不传递参数的时候，函数内部的 a 就是 10
+fn(20); // 传递了参数 20 的时候，函数内部的 a 就是 20
 ```
 
 在 ES6 中我们可以直接把默认值写在函数的形参位置
 
 ```javascript
 function fn(a = 10) {
-  console.log(a)
+  console.log(a);
 }
-fn()   // 不传递参数的时候，函数内部的 a 就是 10
-fn(20) // 传递了参数 20 的时候，函数内部的 a 就是 20
+fn(); // 不传递参数的时候，函数内部的 a 就是 10
+fn(20); // 传递了参数 20 的时候，函数内部的 a 就是 20
 ```
 
 这个默认值的方式箭头函数也可以使用
 
 ```javascript
 const fn = (a = 10) => {
-  console.log(a)
+  console.log(a);
 }
-fn()   // 不传递参数的时候，函数内部的 a 就是 10
-fn(20) // 传递了参数 20 的时候，函数内部的 a 就是 20
+fn(); // 不传递参数的时候，函数内部的 a 就是 10
+fn(20); // 传递了参数 20 的时候，函数内部的 a 就是 20
 ```
 
 注意： **箭头函数如果你需要使用默认值的话，那么一个参数的时候也需要写 （）**
 
-### 1.11 Symbol
+### 11. Symbol
 
 > ES6 引入了一种新的原始数据类型`Symbol`，表示独一无二的值。它属于 JavaScript 语言的原生数据类型之一，其他数据类型是：`undefined`、`null`、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）
 
@@ -874,15 +868,15 @@ fn(20) // 传递了参数 20 的时候，函数内部的 a 就是 20
 1. 使用Symbol作为对象属性名
 
    ```js
-   let name = Symbol() // 生成了一个symbol类型数据
-   let age = Symbol()
-   var obj  ={
+   let name = Symbol(); // 生成了一个symbol类型数据
+   let age = Symbol();
+   var obj  = {
        [name]:"kerwin",
        [age]:100
-   }
-   console.log(obj) // {Symbol(): 'kerwin', Symbol(): 100}
-   console.log(obj.name) // undefined
-   console.log(obj[name]) // kerwin
+   };
+   console.log(obj); // {Symbol(): 'kerwin', Symbol(): 100}
+   console.log(obj.name); // undefined
+   console.log(obj[name]); // kerwin
    ```
 
 2. `Symbol()`函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述。这主要是为了在控制台显示，比较容易区分
@@ -894,7 +888,7 @@ fn(20) // 传递了参数 20 的时候，函数内部的 a 就是 20
        [name]:"kerwin",
        [age]:100
    }
-   console.log(obj) // {Symbol(name): 'kerwin', Symbol(age): 100}
+   console.log(obj); // {Symbol(name): 'kerwin', Symbol(age): 100}
    ```
 
 3. 遍历问题
@@ -917,7 +911,7 @@ fn(20) // 传递了参数 20 的时候，函数内部的 a 就是 20
    }
    
    Reflect.ownKeys(obj).forEach(item=>{
-       console.log(item,obj[item])
+       console.log(item,obj[item]);
    })
    // a 1
    // b 2
@@ -934,32 +928,32 @@ fn(20) // 传递了参数 20 的时候，函数内部的 a 就是 20
        [Symbol.for("age")]:100
    }
    
-   console.log(obj[Symbol.for("name")])
+   console.log(obj[Symbol.for("name")]);
    ```
 
 5. `Symbol`可以作为常量
 
    ```js
-   const VIDEO = Symbol()
-   const AUDIO = Symbol()
-   const IMAGE = Symbol()
+   const VIDEO = Symbol();
+   const AUDIO = Symbol();
+   const IMAGE = Symbol();
    function play(type){
        switch(type){
            case VIDEO:
-               console.log('视频播放')
-               break
+               console.log('视频播放');
+               break;
            case AUDIO:
-               console.log('音频播放')
-               break
+               console.log('音频播放');
+               break;
            case IMAGE:
-               console.log('图片播放')
-               break
+               console.log('图片播放');
+               break;
        }
    }
-   play(VIDEO) // 视频播放
+   play(VIDEO); // 视频播放
    ```
 
-### 1.12 Iterator迭代器
+### 12. Iterator迭代器
 
 > Iterator 的作用有三个：
 >
@@ -968,10 +962,10 @@ fn(20) // 传递了参数 20 的时候，函数内部的 a 就是 20
 > 3. ES6 创造了一种新的遍历命令`for...of`循环，Iterator 接口主要供`for...of`循环
 
 ```js
-let arr = ["kerwin", "tiechui", "gangdaner"]
+let arr = ["kerwin", "tiechui", "gangdaner"];
 
 for(let i of arr){
-    console.log(i) // kerwin tiechui gangdaner
+    console.log(i); // kerwin tiechui gangdaner
 }
 ```
 
@@ -983,11 +977,11 @@ Iterator 的遍历过程是这样的：
 4. 不断调用指针对象的next方法，直到它指向数据结构的结束位置
 
 ```js
-let i = arr[Symbol.iterator]()
-console.log(i.next()) // {value: 'kerwin', done: false}
-console.log(i.next()) // {value: 'tiechui', done: false}
-console.log(i.next()) // {value: 'gangdaner', done: false}
-console.log(i.next()) // {value: undefined, done: true}
+let i = arr[Symbol.iterator]();
+console.log(i.next()); // {value: 'kerwin', done: false}
+console.log(i.next()); // {value: 'tiechui', done: false}
+console.log(i.next()); // {value: 'gangdaner', done: false}
+console.log(i.next()); // {value: undefined, done: true}
 ```
 
 > ES6 规定，默认的 Iterator 接口部署在数据结构的`Symbol.iterator`属性，或者说，一个数据结构只要具有`Symbol.iterator`属性，就可以认为是“可遍历的”（iterable）。`Symbol.iterator`属性本身是一个函数，就是当前数据结构默认的遍历器生成函数。执行这个函数，就会返回一个遍历器
@@ -1013,7 +1007,7 @@ let obj = {
 }
 
 for (let i of obj) {
-    console.log(i)
+    console.log(i);
 }
 // kerwin
 // tiechui
@@ -1045,7 +1039,7 @@ let obj2 = {
 }
 
 for (let i of obj2) {
-    console.log(i)
+    console.log(i);
 }
 // kerwin
 // tiechui
@@ -1079,29 +1073,29 @@ let obj2 = {
         }
     }
 }
-console.log([...obj2]) // ['kerwin', 'tiechui', 'gangdaner']
+console.log([...obj2]); // ['kerwin', 'tiechui', 'gangdaner']
 ```
 
-### 1.13 Set结构
+### 13. Set结构
 
 它类似于数组，但成员的值都是唯一的，没有重复的值
 
-#### 1.13.1 初识Set
+#### 1. 初识Set
 
 ```js
 // 可以实现数组去重
-let s1 = new Set([1, 2, 3, 2, 3])
-console.log(s1) // {1,2,3}
-console.log([...s1]) // [1,2,3]
+let s1 = new Set([1, 2, 3, 2, 3]);
+console.log(s1); // {1,2,3}
+console.log([...s1]); // [1,2,3]
 
-let s2 = new Set()
-s2.add(1)
-s2.add(2)
-s2.add(3)
-console.log(s2) // {1, 2, 3}
+let s2 = new Set();
+s2.add(1);
+s2.add(2);
+s2.add(3);
+console.log(s2); // {1, 2, 3}
 ```
 
-#### 1.13.2 实例的属性和方法
+#### 2. 实例的属性和方法
 
 - size：返回Set实例的成员总数
 - `Set.prototype.add(value)`：添加某个value
@@ -1110,19 +1104,19 @@ console.log(s2) // {1, 2, 3}
 - `Set.prototype.clear()`：清除所有成员，没有返回值
 
 ```js
-let s1 = new Set([1, 2, 3, 2, 3])
-console.log(s1.size) // 3
-s1.add(4).add(5).add(6)
-console.log(s1) // {1, 2, 3, 4, 5, 6}
-console.log(s1.has(8)) // false
-console.log(s1.has(5)) //true
-s1.delete(5)
-console.log(s1) // {1, 2, 3, 4, 6}
-s1.clear()
-console.log(s1) // {size: 0}
+let s1 = new Set([1, 2, 3, 2, 3]);
+console.log(s1.size); // 3
+s1.add(4).add(5).add(6);
+console.log(s1); // {1, 2, 3, 4, 5, 6}
+console.log(s1.has(8)); // false
+console.log(s1.has(5)); //true
+s1.delete(5);
+console.log(s1); // {1, 2, 3, 4, 6}
+s1.clear();
+console.log(s1); // {size: 0}
 ```
 
-#### 1.13.3 遍历
+#### 3. 遍历
 
 - `Set.prototype.keys()`：返回键名的遍历器
 - `Set.prototype.values()`：返回键值的遍历器
@@ -1130,86 +1124,86 @@ console.log(s1) // {size: 0}
 - `Set.prototype.forEach()`：遍历每个成员
 
 ```js
-let s1 = new Set([1, 2, 3, 2, 3])
+let s1 = new Set([1, 2, 3, 2, 3]);
 for(let i of s1){
-    console.log(i)
+    console.log(i);
 }
 // 1
 // 2
 // 3
 for(let i of s1.keys()){
-    console.log(i)
+    console.log(i);
 }
 // 1
 // 2
 // 3
 for(let i of s1.values()){
-    console.log(i)
+    console.log(i);
 }
 // 1
 // 2
 // 3
 for(let i of s1.entries()){
-    console.log(i)
+    console.log(i);
 }
 // [1,1]
 // [2,2]
 // [3,3]
 for(let [index,item] of s1.entries()){
-    console.log(index,item)
+    console.log(index,item);
 }
 // 1 1
 // 2 2
 // 3 3
 s1.forEach((item,index)=>{
-    console.log(item,index)
+    console.log(item,index);
 })
 // 1 1
 // 2 2
 // 3 3
 ```
 
-#### 1.13.4 复杂数据结构去重
+#### 4. 复杂数据结构去重
 
 ```js
 function uni(arr) {
-    let res = new Set()
+    let res = new Set();
     return arr.filter(item => {
-        let id = JSON.stringify(item)
+        let id = JSON.stringify(item);
         if (res.has(id)) {
-            return false
+            return false;
         } else {
-            res.add(id)
-            return true
+            res.add(id);
+            return true;
         }
     })
 }
 
-var list = [1, 2, 3, "data", {name: "kerwin"}, {name: "kerwin"},[1, 2],[3, 4],[3, 4]]
-console.log(uni(list)) //[1,2,3,"data",{name:"kerwin"},[1,2],[3,4]]
+var list = [1, 2, 3, "data", {name: "kerwin"}, {name: "kerwin"},[1, 2],[3, 4],[3, 4]];
+console.log(uni(list)); //[1,2,3,"data",{name:"kerwin"},[1,2],[3,4]]
 ```
 
-### 1.14 Map结构
+### 14. Map结构
 
 > 类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键
 
-#### 1.14.1 初识Map
+#### 1. 初识Map
 
 ```js
-let m1 = new Map()
-m1.set("name","kerwin")
-m1.set({a:1},"大连")
+let m1 = new Map();
+m1.set("name","kerwin");
+m1.set({a:1},"大连");
 
-console.log(m1) //{"name" => "kerwin",{ {a:1}=> "大连"}
+console.log(m1); //{"name" => "kerwin",{ {a:1}=> "大连"}
 
 let m2= new Map([
     ["name","kerwin"],
     [{a:1},"大连"]
-])
-console.log(m2) //{"name" => "kerwin",{ {a:1}=> "大连"}
+]);
+console.log(m2); //{"name" => "kerwin",{ {a:1}=> "大连"}
 ```
 
-#### 1.14.2 实例的属性和方法
+#### 2. 实例的属性和方法
 
 - size：返回 Map 结构的成员总数。
 - `Map.prototype.set(key,value)`：添加key对应得value，返回 Map 结构本身。
@@ -1219,24 +1213,24 @@ console.log(m2) //{"name" => "kerwin",{ {a:1}=> "大连"}
 - `Map.prototype.clear()`：清除所有成员，没有返回值。
 
 ```js
-let o = {a:1}
+let o = {a:1};
 let m1= new Map([
     ["name","kerwin"],
     [o,"大连"]
-])
-m1.set("age",18)
-console.log(m1) // {'name' => 'kerwin', {{a:1}} => '大连', 'age' => 18}
-console.log(m1.size) //3
-console.log(m1.get("name")) // kerwin
-console.log(m1.get(o)) // 大连
-console.log(m1.has("age")) // true
-m1.delete("age")
-console.log(m1.has("age")) //false
-m1.clear()
-console.log(m1) // {size:0}
+]);
+m1.set("age",18);
+console.log(m1); // {'name' => 'kerwin', {{a:1}} => '大连', 'age' => 18}
+console.log(m1.size); //3
+console.log(m1.get("name")); // kerwin
+console.log(m1.get(o)); // 大连
+console.log(m1.has("age")); // true
+m1.delete("age");
+console.log(m1.has("age")); //false
+m1.clear();
+console.log(m1); // {size:0}
 ```
 
-#### 1.14.3 遍历
+#### 3. 遍历
 
 - `Map.prototype.keys()`：返回键名的遍历器
 - `Map.prototype.values()`：返回键值的遍历器
@@ -1244,40 +1238,40 @@ console.log(m1) // {size:0}
 - `Map.prototype.forEach()`：遍历 Map 的所有成员
 
 ```js
-let o = {a:1}
+let o = {a:1};
 let m1= new Map([
     ["name","kerwin"],
     [o,"大连"]
-])
-m1.set("age",18)
+]);
+m1.set("age",18);
 console.log(m1) // {'name' => 'kerwin', {{a:1}} => '大连', 'age' => 18}
 for(let i of m1.keys()){
-    console.log(i) 
+    console.log(i);
 }
 // name 
 // {a:1}
 // age
 for(let i of m1.values()){
-    console.log(i) 
+    console.log(i);
 }
 // kerwin
 // 大连
 // 18
 for(let [index,item] of m1.entries()){
-    console.log(index,item) 
+    console.log(index,item);
 }
 // name kerwin
 // {a: 1} '大连'
 // age 18
 m1.forEach((item,index)=>{
-    console.log(item,index)
+    console.log(item,index);
 })
 // kerwin name
 // 大连 {a: 1}
 // 18 'age'
 ```
 
-### 1.15 Proxy代理
+### 15. Proxy代理
 
 > Proxy如其名， 它的作用是在对象和和对象的属性值之间设置一个代理，获取该对象的值或者设置该对象的值， 以及实例化等等多种操作， 都会被拦截住， 经过这一层我们可以统一处理，我们可以认为它就是“代理器”
 
@@ -1330,47 +1324,47 @@ let proxy = new Proxy(obj,{
 
 ![ES6~ES1302.gif](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/ES6~ES1302.gif)
 
-#### 1.15.1 get方法
+#### 1. get方法
 
 ```js
-let target = {}
+let target = {};
 let proxy = new Proxy(target,{
     get(target,prop){
-        return target[prop]
+        return target[prop];
     }
 })
 ```
 
-#### 1.15.2 set方法
+#### 2. set方法
 
 ```js
-let target = {}
+let target = {};
 let proxy = new Proxy(target,{
     get(target,prop){
-        return target[prop]
+        return target[prop];
     },
     set(target,prop,value){
         if(prop==="data"){
-            box.innerHTML = value
+            box.innerHTML = value;
         }
-        target[prop] = value
+        target[prop] = value;
     }
 })
 ```
 
-#### 1.15.3 has方法
+#### 3. has方法
 
 ```js
 let target = {
     _prop: "内部数据"
-}
+};
 let proxy = new Proxy(target, {
     get(target, prop) {
-        return target[prop]
+        return target[prop];
     },
     set(target, prop, value) {
         if (prop === "data") {
-            box.innerHTML = value
+            box.innerHTML = value;
         }
         target[prop] = value;
     },
@@ -1383,44 +1377,44 @@ let proxy = new Proxy(target, {
 })
 ```
 
-#### 1.15.4 this问题
+#### 4. this问题
 
 ```js
 let target = new Set()
 const proxy = new Proxy(target, {
     get(target, key) {
-        const value =  target[key]
+        const value =  target[key];
         // 遇到 Function 都手动绑定一下 this
         if (value instanceof Function) {
-            console.log(`访问${value}方法了`)
-            return value.bind(target)
+            console.log(`访问${value}方法了`);
+            return value.bind(target);
             //不能 是 call apply 
         }
-        return value
+        return value;
     }
 })
-proxy.add(1) //访问function add() { [native code] }方法了
+proxy.add(1); //访问function add() { [native code] }方法了
 ```
 
 > Proxy本质上属于元编程非破坏性数据劫持，在原对象的基础上进行了功能的衍生而又不影响原对象，符合松耦合高内聚的设计理念
 
-### 1.16 Reflect对象
+### 16. Reflect对象
 
 > Reflect 可以用于获取目标对象的行为，它与 Object 类似，但是更易读，为操作对象提供了一种更优雅的方式。它的方法与 Proxy 是对应的
 
-#### 1.16.1 代替Object的某些方法
+#### 1. 代替Object的某些方法
 
 ```js
 const obj = {
-}
+};
 Reflect.defineProperty(obj, 'name', {
     value: 'kerwin',
     writable: false,
     configurable:false
-})
+});
 ```
 
-#### 1.16.2 修改某些Object方法返回结果
+#### 2. 修改某些Object方法返回结果
 
 ```js
 // 老写法
@@ -1440,58 +1434,58 @@ if (Reflect.defineProperty(target, property, attributes)) {
 
 ```
 
-#### 1.16.3 命令式变为函数行为
+#### 3. 命令式变为函数行为
 
 ```js
 const obj = {
     name:"kerwin"
-}
+};
 //老写法
-console.log("name" in obj) //true
+console.log("name" in obj); //true
 //新写法
-console.log(Reflect.has(obj, 'name')) //true
+console.log(Reflect.has(obj, 'name')); //true
 
 //老写法
-delete obj.name
+delete obj.name;
 //新写法
-Reflect.deleteProperty(obj, "name")
+Reflect.deleteProperty(obj, "name");
 ```
 
-#### 1.16.4 配合Proxy
+#### 4. 配合Proxy
 
 ```js
-let target = new Set()
+let target = new Set();
 const proxy = new Proxy(target, {
     get(target, key) {
-        const value = Reflect.get(target,key)
+        const value = Reflect.get(target,key);
         // 遇到 Function 都手动绑定一下 this
         if (value instanceof Function) {
-            console.log(`访问${value}方法了`)
-            return value.bind(target)
+            console.log(`访问${value}方法了`);
+            return value.bind(target);
             //不能 是 call apply 
         }
-        return value
+        return value;
     },
     set() {
-        return Reflect.set(...arguments)
+        return Reflect.set(...arguments);
     }
 })
-proxy.add(1)
+proxy.add(1);
 ```
 
 ```js
-let arr = [1, 2, 3]
+let arr = [1, 2, 3];
 let proxy = new Proxy(arr, {
     get(target, key) {
-        console.log('get', key)
-        return Reflect.get(...arguments)
+        console.log('get', key);
+        return Reflect.get(...arguments);
     },
     set(target, key, value) {
-        console.log('set', key, value)
-        return Reflect.set(...arguments)
+        console.log('set', key, value);
+        return Reflect.set(...arguments);
     }
 })
-proxy.push(4)
+proxy.push(4);
 // 能够打印出很多内容
 // get push     (寻找 proxy.push 方法)
 // get length   (获取当前的 length)
@@ -1499,13 +1493,13 @@ proxy.push(4)
 // set length 4 (设置 proxy.length = 4)
 ```
 
-### 1.17 Promise
+### 17. Promise
 
 Promise 是异步编程的一种解决方案，比传统的解决方案回调函数,  更合理和更强大。ES6 将其写进了语言标准，统一了用法，原生提供了Promise对象
 
 > 详见Promise篇
 
-### 1.18 Generator函数
+### 18. Generator函数
 
 > Generator 函数是 ES6 提供的一种异步编程解决方案
 >
@@ -1513,21 +1507,21 @@ Promise 是异步编程的一种解决方案，比传统的解决方案回调函
 >
 > 执行 Generator 函数会返回一个遍历器对象，也就是说，Generator 函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历 Generator 函数内部的每一个状态
 
-#### 1.18.1 基本语法
+#### 1. 基本语法
 
 ```js
 function *gen(){
-    console.log(1)
-    yield // 产出
-    console.log(2)
-    yield // 产出
-    console.log(3)
+    console.log(1);
+    yield; // 产出
+    console.log(2);
+    yield; // 产出
+    console.log(3);
 }
 
-let g = gen()
-g.next()
-g.next()
-g.next()
+let g = gen();
+g.next();
+g.next();
+g.next();
 // 1
 // 2
 // 3
@@ -1541,13 +1535,13 @@ function *gen(){
     yield  2
 }
 
-let g = gen()
-let res1 = g.next()
-console.log(res1)
-let res2 = g.next()
-console.log(res2)
-let res3 = g.next()
-console.log(res3)
+let g = gen();
+let res1 = g.next();
+console.log(res1);
+let res2 = g.next();
+console.log(res2);
+let res3 = g.next();
+console.log(res3);
 // {value:'a',done:false}
 // {value:'b',done:false}
 // {value:undefined,done:true}
@@ -1555,37 +1549,37 @@ console.log(res3)
 
 ```js
 function *gen(){
-    let res1 = yield
-    console.log("gen内部",res1)
-    let res2 = yield
-    console.log("gen内部",res2)
+    let res1 = yield;
+    console.log("gen内部",res1);
+    let res2 = yield;
+    console.log("gen内部",res2);
 }
 
-let g = gen()
-g.next("data-1")
-g.next("data-2")
-g.next("data-3")
+let g = gen();
+g.next("data-1");
+g.next("data-2");
+g.next("data-3");
 // gen内部 data-2
 // gen内部 data-3
 ```
 
-#### 1.18.2 异步流程
+#### 2. 异步流程
 
 **手动版本**
 
 ```js
 function *gen(){
-    let res1 = yield ajax("1.json")
-    console.log(res1)
-    let res2 = yield ajax("2.json",res1)
-    console.log(res2)
+    let res1 = yield ajax("1.json");
+    console.log(res1);
+    let res2 = yield ajax("2.json",res1);
+    console.log(res2);
 }
 
-let g = gen()   
+let g = gen();
 
 g.next().value.then(data=>{
     g.next(data).value.then(data=>{
-        g.next(data)
+        g.next(data);
     })
 }) 
 ```
@@ -1594,49 +1588,49 @@ g.next().value.then(data=>{
 
 ```js
 function* gen() {
-    let res1 = yield ajax("1.json")
-    console.log(res1)
-    let res2 = yield ajax("2.json")
-    console.log(res2)
+    let res1 = yield ajax("1.json");
+    console.log(res1);
+    let res2 = yield ajax("2.json");
+    console.log(res2);
 }
 
 
 function AutoRun(gen) {
-    let g = gen()
+    let g = gen();
 
     function next(data) {
-        let res = g.next(data)
-        if (res.done) return 
+        let res = g.next(data);
+        if (res.done) return;
         res.value.then(function (data) {
-            next(data)
+            next(data);
         })
     }
 
-    next()
+    next();
 }
 
-AutoRun(gen)
+AutoRun(gen);
 ```
 
-### 1.19 Class语法
+### 19. Class语法
 
-#### 1.19.1 类的写法
+#### 1. 类的写法
 
 ```js
 class Person {
     constructor(name,age){
-        this.name = name
-        this.age = age
+        this.name = name;
+        this.age = age;
     }
     say(){
-        console.log(this.name,this.age)
+        console.log(this.name,this.age);
     }
 }
-let obj = new Person("kerwin",100)
-console.log(obj) //{name:"kerwin",age:100}
+let obj = new Person("kerwin",100);
+console.log(obj); //{name:"kerwin",age:100}
 ```
 
-#### 1.19.2 getter与setter
+#### 2. getter与setter
 
 ```html
 <ul id="list"></ul>
@@ -1645,19 +1639,19 @@ console.log(obj) //{name:"kerwin",age:100}
 ```js
 class List{
     constructor(ele){
-        this.element = ele
+        this.element = ele;
     }
 
     get html(){
-        return this.element.innerHTML
+        return this.element.innerHTML;
     }
     set html(arr){
-        this.element.innerHTML = arr.map(item=>`<li>${item}</li>`).join("")
+        this.element.innerHTML = arr.map(item=>`<li>${item}</li>`).join("");
     }
 }
-let obj = new List(document.querySelector("#list"))
+let obj = new List(document.querySelector("#list"));
 
-obj.html = ["aaa","bbb","cccc"]
+obj.html = ["aaa","bbb","cccc"];
 ```
 
 结果：
@@ -1668,69 +1662,69 @@ bbb
 ccc
 ```
 
-#### 1.19.3 静态属性和静态方法
+#### 3. 静态属性和静态方法
 
 ```js
 class Person {
-    static name = "Person这个类"
+    static name = "Person这个类";
     constructor(name,age){
         this.name = name;
         this.age = age;
     }
     say(){
-        console.log(this.name,this.age)
+        console.log(this.name,this.age);
     }
 
     static eat(){
-        console.log("eat")
+        console.log("eat");
     }
 }
-let obj = new Person("kerwin",100)
+let obj = new Person("kerwin",100);
 
-console.log(Person.name)
-Person.eat()
+console.log(Person.name);
+Person.eat();
 // Person这个类
 // eat
 ```
 
-#### 1.19.4 继承
+#### 4. 继承
 
 > ES6 规定，子类必须在`constructor()`方法中调用`super()`，否则就会报错。这是因为子类自己的`this`对象，必须先通过父类的构造函数完成塑造，得到与父类同样的实例属性和方法，然后再对其进行加工，添加子类自己的实例属性和方法。如果不调用`super()`方法，子类就得不到自己的`this`对象
 
 ```js
 class Person {
-    static name = "Person这个类"
+    static name = "Person这个类";
     constructor(name,age){
-        this.name = name
-        this.age = age
+        this.name = name;
+        this.age = age;
     }
     say(){
-        console.log(this.name,this.age)
+        console.log(this.name,this.age);
     }
 
     static eat(){
-        console.log("eat")
+        console.log("eat");
     }
 }
 class Student extends Person{
     constructor(name,age,score){
-        super(name,age)
-        this.score = score
+        super(name,age);
+        this.score = score;
     }
     say(){
-        super.say()
-        console.log(this.score)
+        super.say();
+        console.log(this.score);
     }
 
     static eat(){
-        super.eat()
-        console.log("student eat")
+        super.eat();
+        console.log("student eat");
     }
 }
-let obj = new Student("kerwin",100,200)
-console.log(obj)
-obj.say()
-Student.eat()
+let obj = new Student("kerwin",100,200);
+console.log(obj);
+obj.say();
+Student.eat();
 // Student
 // kerwin 100
 // 200
@@ -1738,7 +1732,7 @@ Student.eat()
 // student eat
 ```
 
-### 1.20 模块化
+### 20. 模块化
 
 > JavaScript 现在有两种模块。一种是 ES6 模块，简称 ESM；另一种是 CommonJS 模块，简称 CJS
 >
@@ -1751,8 +1745,8 @@ ES6 模块不是对象，而是通过`export`命令显式指定输出的代码�
 `1.js`
 
 ```js
-const odiv = document.querySelector("div")
-console.log(odiv)
+const odiv = document.querySelector("div");
+console.log(odiv);
 ```
 
 ```html
@@ -1804,8 +1798,8 @@ console.log(odiv)
 `1.js`
 
 ```js
-const odiv = document.querySelector("div")
-console.log(odiv)
+const odiv = document.querySelector("div");
+console.log(odiv);
 ```
 
 ```html
@@ -1832,9 +1826,9 @@ console.log(odiv)
 
 ```js
 //导出
-export default A1
+export default A1;
 //导入
-import a1 from "./1.js"
+import a1 from "./1.js";
 ```
 
 例：
@@ -1843,17 +1837,17 @@ import a1 from "./1.js"
 
 ```js
 function A1() {
-  a1()
-  console.log('A1')
+  a1();
+  console.log('A1');
 }
 function A2() {
-  console.log('A2')
+  console.log('A2');
 }
 function a1() {
-  console.log('a1')
+  console.log('a1');
 }
 //导出暴露的方法
-export default A1
+export default A1;
 ```
 
 ```html
@@ -1878,13 +1872,13 @@ export default A1
 **写法2：**
 
 ```js
-export {A1,A2}
+export {A1,A2};
 
-import {A1,A2} from "./1.js"
+import {A1,A2} from "./1.js";
 
-import {A1 as a1,A2 as a2} from "./1.js" //可以改名
+import {A1 as a1,A2 as a2} from "./1.js"; //可以改名
 
-import * as obj from "./1.js" //全部导入并且名为obj
+import * as obj from "./1.js"; //全部导入并且名为obj
 ```
 
 例：
@@ -1893,17 +1887,17 @@ import * as obj from "./1.js" //全部导入并且名为obj
 
 ```js
 function A1() {
-  a1()
-  console.log('A1')
+  a1();
+  console.log('A1');
 }
 function A2() {
-  console.log('A2')
+  console.log('A2');
 }
 function a1() {
-  console.log('a1')
+  console.log('a1');
 }
 //导出暴露的方法
-export { A1, A2 }
+export { A1, A2 };
 // export default { A1, A2 }
 ```
 
@@ -1933,27 +1927,27 @@ export { A1, A2 }
 ```js
 //还可以直接暴露函数
 export function A1(){
-    console.log("A1")
+    console.log("A1");
 }
 export function A2(){
-    console.log("A2")
+    console.log("A2");
 }
 
 
-import {A1,A2} from "./1.js"
+import {A1,A2} from "./1.js";
 
-import {A1 as a1,A2 as a2} from "./1.js"
+import {A1 as a1,A2 as a2} from "./1.js";
 
-import * as obj from "./1.js"
+import * as obj from "./1.js";
 ```
 
 **混合写法：**
 
 ```js
-export {A1}
-export default A2
+export {A1;
+export default A2;
 
-import A2,{A1} from "./1.js"
+import A2,{A1} from "./1.js";
 ```
 
 ## 2. ES7

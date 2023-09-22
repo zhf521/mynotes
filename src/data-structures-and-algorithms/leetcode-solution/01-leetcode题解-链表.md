@@ -171,3 +171,113 @@ var removeNthFromEnd = function (head, n) {
 };
 ```
 
+## 3. 【24】两两交换链表中的节点
+
+### 1. 题目描述
+
+来源：https://leetcode.cn/problems/swap-nodes-in-pairs/
+
+给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）
+
+**示例 1：**
+
+```
+输入：head = [1,2,3,4]
+输出：[2,1,4,3]
+```
+
+**示例 2：**
+
+```
+输入：head = []
+输出：[]
+```
+
+**示例 3：**
+
+```
+输入：head = [1]
+输出：[1]
+```
+
+**提示：**
+
+- 链表中节点的数目在范围 `[0, 100]` 内
+- `0 <= Node.val <= 100`
+
+### 2. 解题思路
+
+使用虚拟头节点，开始时，我们创建一个虚拟头节点，让cur指向虚拟头节点，然后进行交换操作即可
+
+### 3. 题解
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var swapPairs = function (head) {
+    let dummyHead = new ListNode(); //虚拟头节点
+    dummyHead.next = head; //虚拟头节点指向head
+    let cur = dummyHead;
+    while (cur.next && cur.next.next) {
+        let temp1 = cur.next; //记录临时节点
+        let temp2 = cur.next.next.next; //记录临时节点
+        // 交换操作
+        cur.next = cur.next.next;
+        cur.next.next = temp1;
+        cur.next.next.next = temp2;
+        cur = cur.next.next; //cur移动两位，准备下一轮交换
+    }
+    return dummyHead.next;
+};
+```
+
+## 4. 【92】反转链表 II
+
+### 1. 题目描述
+
+来源：
+
+### 2. 解题思路
+
+### 3. 题解
+
+```js
+
+```
+
+## 5. 【】
+
+### 1. 题目描述
+
+来源：
+
+### 2. 解题思路
+
+### 3. 题解
+
+```js
+```
+
+## 6. 【】
+
+### 1. 题目描述
+
+来源：
+
+### 2. 解题思路
+
+### 3. 题解
+
+```js
+
+```
+
