@@ -188,6 +188,10 @@ export default hopeTheme({
                     text: 'JavaScript数据结构与算法',
                     link: 'js-data-structures-and-algorithms/',
                 },
+                {
+                    text: 'LeetCode题解',
+                    link: 'leetcode-solution/',
+                },
             ],
         },
     ],
