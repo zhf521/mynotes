@@ -107,5 +107,112 @@ document.addEventListener(event, function[, useCapture])
 
 详见：https://zhf521.github.io/mynotes/front-end/javascript-notes/26-JavaScript-ES6~ES13.html#_1-es6
 
+## 5. JavaScript有哪些数据类型，区别是什么
 
+JavaScript共有八种数据类型，分别是 Undefined、Null、Boolean、Number、String、Object、Symbol、BigInt
+
+可以分为两种：基本数据类型和引用数据类型
+
+### 1. 基本数据类型
+
+基本类型主要为以下6种：
+
+- Number
+- String
+- Boolean
+- Undefined
+- Null
+- Symbol
+
+基本数据类型存储在栈中
+
+### 2. 引用数据类型
+
+主要有：
+
+- Object
+- Array
+- Function
+
+引用数据类型的对象存储于堆中
+
+## 6. 数据类型检测的方式
+
+### 1. typeof
+
+typeof是通过变量存储的机器码的低位1-3位存储类型信息来判断的
+
+```js
+console.log(typeof 2);               // number
+console.log(typeof true);            // boolean
+console.log(typeof 'str');           // string
+console.log(typeof []);              // object    
+console.log(typeof function(){});    // function
+console.log(typeof {});              // object
+console.log(typeof undefined);       // undefined
+console.log(typeof null);            // object
+```
+
+其中数组、对象、null都会被判断为Object，其他判断都正确
+
+### 2. instanceof
+
+instanceof可以正确判断对象的类型，其内部运行机制是判断其原型链中能否找到该类型的原型
+
+```js
+console.log(2 instanceof Number);                    // false
+console.log(true instanceof Boolean);                // false 
+console.log('str' instanceof String);                // false 
+ 
+console.log([] instanceof Array);                    // true
+console.log(function(){} instanceof Function);       // true
+console.log({} instanceof Object);                   // true
+```
+
+instanceof只能正确判断引用数据类型，而不能判断基本数据类型
+
+instanceof可以用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性
+
+### 3. constructor
+
+```js
+console.log((2).constructor === Number); // true
+console.log((true).constructor === Boolean); // true
+console.log(('str').constructor === String); // true
+console.log(([]).constructor === Array); // true
+console.log((function() {}).constructor === Function); // true
+console.log(({}).constructor === Object); // true
+```
+
+constructor有两个作用，一是判断数据的类型，二是对象实例通过 constrcutor 对象访问它的构造函数
+
+注意：如果创建一个对象来改变它的原型，constructor就不能用来判断数据类型了
+
+```js
+function Fn(){};
+ 
+Fn.prototype = new Array();
+ 
+var f = new Fn();
+ 
+console.log(f.constructor===Fn);    // false
+console.log(f.constructor===Array); // true
+```
+
+### 4. Object.prototype.toString.call()
+
+使用 Object 对象的原型方法 toString 来判断数据类型：
+
+```js
+var a = Object.prototype.toString;
+ 
+console.log(a.call(2));
+console.log(a.call(true));
+console.log(a.call('str'));
+console.log(a.call([]));
+console.log(a.call(function(){}));
+console.log(a.call({}));
+console.log(a.call(undefined));
+console.log(a.call(null));
+```
 

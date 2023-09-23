@@ -30,3 +30,55 @@ CSS3中的盒模型有以下两种：标准盒子模型、IE盒子模型
 
 详见：https://zhf521.github.io/mynotes/front-end/css-notes/01-%E5%88%9D%E8%AF%86CSS.html#_2-css%E7%9A%84%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F
 
+## 4. CSS中可继承与不可继承属性有哪些
+
+### 1. 可继承属性
+
++ 字体系列属性
+  + font-family：字体系列
+  + font-weight：字体的粗细
+  + font-size：字体的大小
+  + font-style：字体的风格
++ 文本系列属性
+  + text-indent：文本缩进
+  + text-align：文本水平对齐
+  + line-height：行高
+  + word-spacing：单词之间的间距
+  + letter-spacing：中文或者字母之间的间距
+  + text-transform：控制文本大小写（即uppercase、lowercase、capitalize）
+  + color：文本颜色
++ 元素可见性
+  + visibility：控制元素显示隐藏
++ 列表布局属性
+  + list-style：列表风格，包括list-style-type、list-style-image等
++ 光标属性
+  + cursor：光标显示为何种形态
+
+### 2. 不可继承属性
+
++ display
++ 文本属性
+  + vertical-align：垂直文本对齐
+  + text-decoration：规定添加到文本的装饰
+  + text-shadow：文本阴影效果
+  + white-space：空白符的处理
+  + unicode-bidi：设置文本的方向
++ 盒子模型的属性
++ 背景属性
++ 定位属性
++ 生成内容属性
++ 轮廓样式属性
++ 页面样式属性
++ 声音样式属性
+
+## 5. display的属性值及其作用
+
+| 属性值       | 作用                                                     |
+| ------------ | -------------------------------------------------------- |
+| none         | 元素不显示，并且会从文档流中移除                         |
+| block        | 块类型。默认宽度为父元素宽度，可设置宽高，换行显示       |
+| inline       | 行内元素类型。默认宽度为内容宽度，不可设置宽高，同行显示 |
+| inline-block | 默认宽度为内容宽度，可以设置宽高，同行显示               |
+| list-item    | 像块类型元素一样显示，并添加样式列表标记                 |
+| table        | 此元素会作为块级表格来显示                               |
+| inherit      | 规定应该从父元素继承display属性的值                      |

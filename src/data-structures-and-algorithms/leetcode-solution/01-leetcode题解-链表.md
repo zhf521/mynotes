@@ -244,40 +244,229 @@ var swapPairs = function (head) {
 
 ### 1. 题目描述
 
-来源：
+来源：https://leetcode.cn/problems/reverse-linked-list-ii/
+
+给你单链表的头指针 `head` 和两个整数 `left` 和 `right` ，其中 `left <= right` 。请你反转从位置 `left` 到位置 `right` 的链表节点，返回 **反转后的链表** 
+
+**示例 1：**
+
+```
+输入：head = [1,2,3,4,5], left = 2, right = 4
+输出：[1,4,3,2,5]
+```
+
+**示例 2：**
+
+```
+输入：head = [5], left = 1, right = 1
+输出：[5]
+```
+
+**提示：**
+
+- 链表中节点数目为 `n`
+- `1 <= n <= 500`
+- `-500 <= Node.val <= 500`
+- `1 <= left <= right <= n`
+
+**进阶：** 你可以使用一趟扫描完成反转吗？
 
 ### 2. 解题思路
+
+将第left到right的节点进行反转，然后将left-1节点指向right，让right+1节点指向left，这样就实现了链表的局部反转
 
 ### 3. 题解
 
 ```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} left
+ * @param {number} right
+ * @return {ListNode}
+ */
+var reverseBetween = function (head, left, right) {
+    let dummyHead = new ListNode(); // 定义虚拟头节点
+    dummyHead.next = head;
+    // 寻找第left-1节点
+    let p = dummyHead;
+    for (let i = 0; i < left - 1; i++) {
+        p = p.next;
+    }
+    // 定义当前节点和前驱节点，当前节点指向left节点
+    let pre = null;
+    let cur = p.next;
+    // 将left到right节点进行反转
+    for (let i = 0; i <= right - left; i++) {
+        let next = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = next;
+    }
+    // 将反转的局部链表和原链表进行拼接
+    p.next.next = cur;
+    p.next = pre;
 
+    return dummyHead.next;
+};
 ```
 
-## 5. 【】
+## 5. 【142】环形链表 II
 
 ### 1. 题目描述
 
-来源：
+来源：https://leetcode.cn/problems/linked-list-cycle-ii/
+
+给定一个链表的头节点  `head` ，返回链表开始入环的第一个节点。 *如果链表无环，则返回 `null`。*
+
+如果链表中有某个节点，可以通过连续跟踪 `next` 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 `pos` 来表示链表尾连接到链表中的位置（**索引从 0 开始**）。如果 `pos` 是 `-1`，则在该链表中没有环。**注意：`pos` 不作为参数进行传递**，仅仅是为了标识链表的实际情况。
+
+**不允许修改** 链表。
+
+**示例 1：**
+
+```
+输入：head = [3,2,0,-4], pos = 1
+输出：返回索引为 1 的链表节点
+解释：链表中有一个环，其尾部连接到第二个节点。
+```
+
+**示例 2：**
+
+```
+输入：head = [1,2], pos = 0
+输出：返回索引为 0 的链表节点
+解释：链表中有一个环，其尾部连接到第一个节点。
+```
+
+**示例 3：**
+
+```
+输入：head = [1], pos = -1
+输出：返回 null
+解释：链表中没有环。
+```
+
+**提示：**
+
+- 链表中节点的数目范围在范围 `[0, 104]` 内
+- `-105 <= Node.val <= 105`
+- `pos` 的值为 `-1` 或者链表中的一个有效索引
+
+**进阶：**你是否可以使用 `O(1)` 空间解决此题？
 
 ### 2. 解题思路
+
+使用快慢指针，快慢指针用于判断链表是否成环，然后推导公式求得入口
 
 ### 3. 题解
 
 ```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var detectCycle = function (head) {
+    // 定义快慢指针
+    let fast = head;
+    let slow = head;
+    while (fast && fast.next) {
+        slow = slow.next; //慢指针走一步
+        fast = fast.next.next; //快指针走两步
+        if (slow == fast) {
+            // 初次相遇
+            slow = head; //慢指针回到头节点
+            while (slow !== fast) {
+                slow = slow.next; //快慢指针一起走
+                fast = fast.next; //快慢指针一起走
+            }
+            return slow;
+        }
+    }
+    return null;
+};
 ```
 
-## 6. 【】
+## 6. 【203】移除链表元素
 
 ### 1. 题目描述
 
-来源：
+来源：https://leetcode.cn/problems/remove-linked-list-elements/
+
+给你一个链表的头节点 `head` 和一个整数 `val` ，请你删除链表中所有满足 `Node.val == val` 的节点，并返回 **新的头节点** 。
+
+**示例 1：**
+
+```
+输入：head = [1,2,6,3,4,5,6], val = 6
+输出：[1,2,3,4,5]
+```
+
+**示例 2：**
+
+```
+输入：head = [], val = 1
+输出：[]
+```
+
+**示例 3：**
+
+```
+输入：head = [7,7,7,7], val = 7
+输出：[]
+```
+
+**提示：**
+
+- 列表中的节点数目在范围 `[0, 104]` 内
+- `1 <= Node.val <= 50`
+- `0 <= val <= 50`
 
 ### 2. 解题思路
+
+使用虚拟头节点来方便我们操作，定义一个指针来遍历，遍历到符合条件的元素就删除
 
 ### 3. 题解
 
 ```js
-
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} val
+ * @return {ListNode}
+ */
+var removeElements = function (head, val) {
+    let dummyHead = new ListNode(); //定义一个虚拟头节点
+    dummyHead.next = head;
+    let cur = dummyHead; //定义一个指针来指向虚拟头节点
+    while (cur.next) {
+        if (cur.next.val === val) {
+            cur.next = cur.next.next;
+        } else {
+            cur = cur.next;
+        }
+    }
+    return dummyHead.next;
+};
 ```
 
