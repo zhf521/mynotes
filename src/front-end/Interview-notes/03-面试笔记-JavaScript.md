@@ -105,7 +105,7 @@ document.addEventListener(event, function[, useCapture])
 7. 模块化：import、export
 8. 生成器（Generator）和迭代器（Iterator）
 
-详见：https://zhf521.github.io/mynotes/front-end/javascript-notes/26-JavaScript-ES6~ES13.html#_1-es6
+详见：[ES6](https://zhf521.github.io/mynotes/front-end/javascript-notes/26-JavaScript-ES6~ES13.html#_1-es6)
 
 ## 5. JavaScript有哪些数据类型，区别是什么
 

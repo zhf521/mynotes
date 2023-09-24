@@ -359,8 +359,6 @@ var reverseBetween = function (head, left, right) {
 - `-105 <= Node.val <= 105`
 - `pos` 的值为 `-1` 或者链表中的一个有效索引
 
-**进阶：** 你是否可以使用 `O(1)` 空间解决此题？
-
 ### 2. 解题思路
 
 使用快慢指针，快慢指针用于判断链表是否成环，然后推导公式求得入口
@@ -470,3 +468,84 @@ var removeElements = function (head, val) {
 };
 ```
 
+## 7. 【206】反转链表
+
+### 1. 题目描述
+
+来源：https://leetcode.cn/problems/reverse-linked-list/
+
+给你单链表的头节点 `head` ，请你反转链表，并返回反转后的链表
+
+**示例 1：**
+
+```
+输入：head = [1,2,3,4,5]
+输出：[5,4,3,2,1]
+```
+
+**示例 2：**
+
+```
+输入：head = [1,2]
+输出：[2,1]
+```
+
+**示例 3：**
+
+```
+输入：head = []
+输出：[]
+```
+
+**提示：**
+
+- 链表中节点的数目范围是 `[0, 5000]`
+- `-5000 <= Node.val <= 5000`
+
+**进阶：**链表可以选用迭代或递归方式完成反转。你能否用两种方法解决这道题？
+
+### 2. 解题思路
+
+反转两个节点：将n + 1的next指向n；反转多个节点：双指针遍历链表，重复上述操作
+
+ 使用双指针一前一后遍历链表,然后反转双指针
+
+### 3. 题解
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function (head) {
+    let p1 = head;
+    let p2 = null;
+    while (p1) {
+        const temp = p1.next;
+        p1.next = p2;
+        p2 = p1;
+        p1 = temp;
+    }
+    return p2;
+};
+```
+
+## 8. 【】
+
+### 1. 题目描述
+
+来源：
+
+### 2. 解题思路
+
+### 3. 题解
+
+```js
+```

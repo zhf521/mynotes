@@ -7,7 +7,7 @@ order: 27
 
 ## 1. 防抖 (debounce)
 
-防抖，就是指触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间，也就是说，对于高频触发的事件，我们只在最后一次触发的时候来执行需要的操作
+防抖，就是指触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间，也就是说，对于高频触发的事件，==我们只在最后一次触发的时候来执行需要的操作==
 
 常用场景：
 
@@ -28,10 +28,10 @@ order: 27
   <body>
     <input type="text" />
     <script>
-      let oInput = document.querySelector('input')
+      let oInput = document.querySelector('input');
       oInput.oninput = function () {
-        console.log(this.value)
-      }
+        console.log(this.value);
+      };
     </script>
   </body>
 </html>
@@ -50,15 +50,15 @@ order: 27
   <body>
     <input type="text" />
     <script>
-      let oInput = document.querySelector('input')
-      let timer = null
+      let oInput = document.querySelector('input');
+      let timer = null;
       oInput.oninput = function () {
         if (timer != null) {
-          clearTimeout(timer)
+          clearTimeout(timer);
         }
         timer = setTimeout(() => {
-          console.log(this.value)
-        }, 1000)
+          console.log(this.value);
+        }, 1000);
       }
     </script>
   </body>
@@ -78,10 +78,10 @@ order: 27
   <body>
     <input type="text" />
     <script>
-      let oInput = document.querySelector('input')
+      let oInput = document.querySelector('input');
       oInput.oninput = debounce(function () {
-        console.log(this.value)
-      }, 1000)
+        console.log(this.value);
+      }, 1000);
         
       // 手写防抖函数
       // 核心是利用setTimeout定时器来实现
@@ -90,14 +90,14 @@ order: 27
       // 3.如果没有定时器，则开启定时器，存入到定时器变量里面
       // 4.定时器里面写函数调用(注意this指向)
       function debounce(fn, delay) {
-        let timer = null
+        let timer = null;
         return function () {
           if (timer != null) {
-            clearTimeout(timer)
+            clearTimeout(timer); //关闭定时器
           }
-          timer = setTimeout(() => {
-            fn.call(this)
-          }, delay)
+          timer = setTimeout(() => { // 重新计时
+            fn.call(this);
+          }, delay);
         }
       }
     </script>
@@ -111,7 +111,7 @@ order: 27
 
 ## 2. 节流 (throttle)
 
-节流，就是指连续触发事件但是在 n 秒中只执行一次函数，也就是说，在规定时间里面就让它执行一次操作
+节流，就是指连续触发事件但是在 n 秒中只执行一次函数，也就是说，==在规定时间里面就让它执行一次操作==
 
 常用场景：
 
@@ -137,7 +137,7 @@ order: 27
   <body>
     <script>
       window.onscroll = function () {
-        alert('这是广告！')
+        alert('这是广告！');
       }
     </script>
   </body>
@@ -163,25 +163,23 @@ order: 27
   <body>
     <script>
       window.onscroll = throttle(function () {
-        alert('这是广告！')
-      }, 2000)
+        alert('这是广告！');
+      }, 2000);
         
       // 手写一个节流函数---每隔delay时间触发一次
       // 核心是利用setTimeout定时器来实现
-      // 1.声明定时器变量
-      // 2.每次事件触发的时候都要先判断是否有定时器，如果有则不开启新定时器
-      // 3.如果没有定时器，则开启定时器，存入到定时器变量里面
-      // 4.定时器里面写函数调用，定时器里面要把定时器清空
+      // 当函数第一次触发时，不会立即执行，而是开启一个定时器，并打上一个标志位，当函数在一段时间内再次被触发时，发现标志位则忽略本次触发，直至计时结束
       function throttle(fn, delay) {
-        let timer = null
+        let flag = false;
         return function () {
-          if (timer !== null) {
-            return
+          if (flag) {
+            return; // 若进行中，则忽略本次触发
           }
-          timer = setTimeout(() => {
-            fn.call(this)
-            timer = null
-          }, delay)
+          flag = true; // 更改标志位
+          setTimeout(() => {
+            fn.call(this);
+            flag = false; // 执行完毕，还原标志位
+          }, delay);
         }
       }
     </script>
@@ -192,3 +190,4 @@ order: 27
 我们还可以使用lodash库实现节流
 
 语法：`_.throttle(fun,时间)`
+
