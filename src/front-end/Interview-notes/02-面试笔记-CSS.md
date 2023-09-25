@@ -24,11 +24,11 @@ CSS3中的盒模型有以下两种：标准盒子模型、IE盒子模型
 
 ## 2. CSS选择器及其优先级
 
-详见：https://zhf521.github.io/mynotes/front-end/css-notes/02-CSS%E9%80%89%E6%8B%A9%E5%99%A8.html
+详见：[CSS选择器](https://zhf521.github.io/mynotes/front-end/css-notes/02-CSS%E9%80%89%E6%8B%A9%E5%99%A8.html)
 
 ## 3. CSS样式引入方式
 
-详见：https://zhf521.github.io/mynotes/front-end/css-notes/01-%E5%88%9D%E8%AF%86CSS.html#_2-css%E7%9A%84%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F
+详见：[CSS样式引入方式](https://zhf521.github.io/mynotes/front-end/css-notes/01-%E5%88%9D%E8%AF%86CSS.html#_2-css%E7%9A%84%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F)
 
 ## 4. CSS中可继承与不可继承属性有哪些
 
@@ -82,3 +82,20 @@ CSS3中的盒模型有以下两种：标准盒子模型、IE盒子模型
 | list-item    | 像块类型元素一样显示，并添加样式列表标记                 |
 | table        | 此元素会作为块级表格来显示                               |
 | inherit      | 规定应该从父元素继承display属性的值                      |
+
+## 6. display的block、inline和inline-block的区别
+
++ block：会独占一行，多个元素会另起一行，可以设置width、height、margin和padding属性
++ inline：元素不会独占一行，设置width、height属性无效。但可以设置水平方向的margin和padding属性，不能设置垂直方向的padding和margin
++ inline-block：将对象设置为inline对象，但对象的内容作为block对象呈现，之后的内联对象会被排列在同一行内
+
+## 7. 隐藏元素的方法
+
++ display: none：渲染树不会包含该渲染对象，因此该元素不会在页面中占据位置，也不会响应绑定的监听事件
++ visibility: hidden：元素在页面中仍占据空间，但是不会响应绑定的监听事件
++ opacity: 0：将元素的透明度设置为 0，以此来实现元素的隐藏。元素在页面中仍然占据空间，并且能够响应元素绑定的监听事件
++ position: absolute：通过使用绝对定位将元素移除可视区域内，以此来实现元素的隐藏
++ z-index: 负值：来使其他元素遮盖住该元素，以此来实现隐藏
++ clip/clip-path ：使用元素裁剪的方法来实现元素的隐藏，这种方法下，元素仍在页面中占据位置，但是不会响应绑定的监听事件
++ transform: scale(0,0)：将元素缩放为 0，来实现元素的隐藏。这种方法下，元素仍在页面中占据位置，但是不会响应绑定的监听事件
+

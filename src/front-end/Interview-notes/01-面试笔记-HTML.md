@@ -68,9 +68,62 @@ href用于link、a标签
 <link href=”common.css” rel=”stylesheet”/>
 ```
 
+## 4. DOCTYPE的作用
+
+`DOCTYPE`即Document Type（文档类型声明）的作用是告知浏览器的解析器使用哪种`HTML`或`XHTML`规范来解析文档
+
+DOCTYPE需要放置在HTML文件的`<html>`标签之前
+
+当前主流：
+
+```html
+<!DOCTYPE html>
+<html>
+    ...
+</html>
+```
+
+早期：
+
+```html
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    ...
+</html>
+```
+
+## 5. script标签中defer和async
+
+defer 和 async 的使用, 可以用于提升网页性能
+
+script 标签存在两个属性，defer 和 async，因此 script 标签 的使用分为三种情况：
+
+1. `<script src="example.js"></script>`
+
+   没有 defer 或 async 属性，浏览器会立即加载并执行相应的脚本
+
+   不等待后续加载的文档元素，读到就开始加载和执行，此举会阻塞后续文档的加载
+
+2. `<script async src="example.js"></script>`
+
+   有了 async 属性，表示后续文档的加载和渲染与 js 脚本的加载和执行是并行进行的，即异步执行
+
+3. `<script defer src="example.js"></script>`
+
+   有了 defer 属性，加载后续文档的过程和 js 脚本的加载是并行进行的(异步)，此时的 js 脚本仅加载不执行, js 脚本的执行需要等到文档所有元素解析完成之后，DOMContentLoaded 事件触发执行之前
+
+![面试笔记-HTML01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/面试笔记-HTML01.png)
 
 
 
+> 图例：绿线：HTML 的解析时间
+>
+> 蓝线：JS 脚本的加载时间
+>
+> 红色：JS 脚本的执行时间
 
+区别：
 
+1. defer 和 async 在网络加载过程是一致的，都是异步执行的；(放在页面顶部, 也不会阻塞页面的加载, 与页面加载同时进行)
+2. 两者的区别, 脚本加载完成之后, async 是立刻执行, defer 会等一等 (等前面的 defer 脚本执行, 等 dom 的加载)
 
