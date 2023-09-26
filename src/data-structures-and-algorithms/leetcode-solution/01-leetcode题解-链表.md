@@ -585,9 +585,102 @@ myLinkedList.get(1);              // 返回 3
 
 ### 2. 解题思路
 
-
+使用虚拟头节点解决
 
 ### 3. 题解
 
 ```js
+// 先定义节点
+let ListNode = function (val) {
+    this.val = val;
+    this.next = null;
+};
+
+var MyLinkedList = function () {
+    this.size = 0;
+    this.dummyHead = new ListNode(); //创建一个虚拟头节点
+};
+
+/**
+ * @param {number} index
+ * @return {number}
+ */
+MyLinkedList.prototype.get = function (index) {
+    if (index < 0 || index >= this.size) {
+        return -1;
+    }
+    let cur = this.dummyHead;
+    while (index > 0) {
+        cur = cur.next;
+        index--;
+    }
+    return cur.next.val;
+};
+
+/**
+ * @param {number} val
+ * @return {void}
+ */
+MyLinkedList.prototype.addAtHead = function (val) {
+    // 生成一个节点，存放的值是val
+    const node = new ListNode(val);
+    // 将node.next指向第一个节点
+    node.next = this.dummyHead.next;
+    // dummyHead.next指向新节点，使之变成第一个节点
+    this.dummyHead.next = node;
+    // 链表长度+1
+    this.size++;
+};
+
+/**
+ * @param {number} val
+ * @return {void}
+ */
+MyLinkedList.prototype.addAtTail = function (val) {
+    // 生成一个节点，存放的值是val
+    const node = new ListNode(val);
+    let cur = this.dummyHead;
+    while (cur.next !== null) {
+        cur = cur.next;
+    }
+    cur.next = node;
+    this.size++;
+};
+
+/**
+ * @param {number} index
+ * @param {number} val
+ * @return {void}
+ */
+MyLinkedList.prototype.addAtIndex = function (index, val) {
+    if (index > this.size) {
+        return;
+    }
+    const node = new ListNode(val);
+    let cur = this.dummyHead;
+    while (index > 0) {
+        cur = cur.next;
+        index--;
+    }
+    node.next = cur.next;
+    cur.next = node;
+    this.size++;
+};
+
+/**
+ * @param {number} index
+ * @return {void}
+ */
+MyLinkedList.prototype.deleteAtIndex = function (index) {
+    if (index < 0 || index >= this.size) {
+        return;
+    }
+    let cur = this.dummyHead;
+    while (index > 0) {
+        cur = cur.next;
+        index--;
+    }
+    cur.next = cur.next.next;
+    this.size--;
+};
 ```

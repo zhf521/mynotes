@@ -99,3 +99,29 @@ CSS3中的盒模型有以下两种：标准盒子模型、IE盒子模型
 + clip/clip-path ：使用元素裁剪的方法来实现元素的隐藏，这种方法下，元素仍在页面中占据位置，但是不会响应绑定的监听事件
 + transform: scale(0,0)：将元素缩放为 0，来实现元素的隐藏。这种方法下，元素仍在页面中占据位置，但是不会响应绑定的监听事件
 
+## 8. link与@import的区别
+
+两者都是外部引用CSS的方式，区别如下：
+
++ `link`功能较多，可以定义`RSS`，而`@import`只能用于加载`CSS`
++ 当解析到`link`时，页面会同步加载所引用的 `css`，而`@import`所引用的 `css` 会等到页面加载完才被加载
++ `@import`兼容性差
++ `link`可以使用 `js` 动态引入，`@import`不行
+
+## 9. display:none与visibility:hidden的区别
+
+`display:none`与`visibility:hidden`都可以使元素不可见，区别如下：
+
+- 渲染树中
+  - `display: none;`会使元素完全从渲染树中消失，不占据任何空间
+  - `visibility: hidden;`不会使元素从渲染树中消失，仍然占据空间，只是内容不可见
+- 继承性
+  - `display: none;`是非继承属性，子孙节点消失是因为元素本身从渲染树中消失，修改子孙节点的属性无法使其显示
+  - `visibility: hidden;`是继承属性，子孙节点消失是因为继承了`hidden`属性，通过设置`visibility: visible;`可以使子孙节点显示
+- 导致重排和重绘
+  - 修改具有常规流的元素的`display`属性通常会导致文档重排（重新计算元素的位置和大小）
+  - 修改`visibility`属性只会导致本元素的重绘（重新绘制元素的可见部分）
+- 读屏器（屏幕阅读软件）
+  - 不会读取`display: none;`元素的内容
+  - 会读取`visibility: hidden;`元素的内容
+

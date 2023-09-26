@@ -127,3 +127,84 @@ script 标签存在两个属性，defer 和 async，因此 script 标签 的使�
 1. defer 和 async 在网络加载过程是一致的，都是异步执行的；(放在页面顶部, 也不会阻塞页面的加载, 与页面加载同时进行)
 2. 两者的区别, 脚本加载完成之后, async 是立刻执行, defer 会等一等 (等前面的 defer 脚本执行, 等 dom 的加载)
 
+## 6. meta标签的常用用法
+
+`<meta>`标签的具体功能一般由`name/http-equiv`和`content`两部分属性来定义
+
+- 如果设置 `name` 属性，则它描述的是网页文档的信息（例如：作者、日期和时间、网页描述、 关键词）
+- 如果设置 `http-equiv` 属性，则它描述的相当于是 HTTP 响应头信息（例如：网页内容信息, 网页缓存等）
+
+常用的meta标签：
+
+1. charset，用来描述HTML文档的编码类型：
+
+   ```html
+   <meta charset="UTF-8" >
+   ```
+
+2. keywords，页面关键词：
+
+   ```html
+   <meta name="keywords" content="关键词" />
+   ```
+
+3. description，页面描述：
+
+   ```html
+   <meta name="description" content="页面描述内容" />
+   ```
+
+4. refresh，页面重定向和刷新：
+
+   ```html
+   <meta http-equiv="refresh" content="0;url=" />
+   ```
+
+5. viewport，适配移动端，可以控制视口的大小和比例：
+
+   ```html
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   ```
+
+   其中，content 参数有以下几种：
+
+   + width：宽度(数值/device-width)
+   + height：高度(数值/device-height)
+   + initial-scale：初始缩放比例
+   + maximum-scale：最大缩放比例
+   + minimum-scale：最小缩放比例
+   + user-scalable：是否允许用户缩放(yes/no）
+   
+6. 搜索引擎索引方式：
+
+   ```html
+   <meta name="robots" content="index,follow" />
+   ```
+
+   其中，content 参数有以下几种：
+
+   + all：文件将被检索，且页面上的链接可以被查询
+   
+   + none：文件将不被检索，且页面上的链接不可以被查询
+   + index：文件将被检索
+   
+   + follow：页面上的链接可以被查询
+   + noindex：文件将不被检索
+   
+   + nofollow：页面上的链接不可以被查询
+
+## 7. HTML5更新内容
+
+1. 新增语义化标签：nav、header、footer、aside、section、article
+2. 只有一种DOCTYPE文件类型声明（`<!DOCTYPE html>`）
+3. 新增音视频标签：audio、video
+4. 本地存储：localStorage、sessionStorage
+5. Canvas绘图、Geolocation地理定位、WebSocket即时通信、拖拽API
+6. input支持新的类型值：date、email、url等
+7. history API：go、forward、back、pushstate
+
+移除了：
+
+1. 纯表现的元素：basefont，big，center，font, s，strike，tt，u
+2. 对可用性产生负面影响的元素：frame，frameset，noframes
+

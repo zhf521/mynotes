@@ -5,7 +5,7 @@ order: 2
 
 ## 1. 面向过程与面向对象
 
-### 1.1 面向过程
+### 1. 面向过程
 
 **通过函数一步一步实现这些步骤，接着依次调用即可**
 
@@ -15,7 +15,7 @@ order: 2
 
 用途：单片机、嵌入式开发、Linux/Unix等对性能要求较高的地方
 
-### 1.2 面向对象
+### 2. 面向对象
 
 **将数据与函数绑定到一起，进行封装减少了重复代码的重写过程**
 
@@ -25,7 +25,7 @@ order: 2
 
 ## 2. BOM和DOM
 
-### 2.1 BOM（window）
+### 1. BOM（window）
 
 Browser Object Model（浏览器对象模型），是JavaScript的组成之一，它提供了独立于内容与浏览器窗口进行交互的对象，使用浏览器对象模型可以实现与HTML的交互
 
@@ -35,7 +35,7 @@ history对象：`go()`、`back()` , `foward()`
 
 location对象：`href`属性
 
-### 2.2 DOM（document）
+### 2. DOM（document）
 
 Document Object Model（文档对象模型）
 
@@ -262,4 +262,14 @@ console.log(x); // undefined
 ```
 
 当对这两种类型使用 typeof 进行判断时，Null 类型化会返回 `object`，这是一个历史遗留的问题。当使用双等号对两种类型的值进行比较时会返回 true，使用三个等号时会返回 false
+
+## 9. typeof null 的结果是什么，为什么？
+
+JS 存在的一个悠久 Bug。在 JS 的最初版本中使用的是 32 位系统，为了性能考虑使用低位存储变量的类型信息，000 开头代表是对象然而 null 表示为全零，所以将它错误的判断为 object 
+
+## 10. intanceof 操作符的实现原理及实现
+
+详见：[手写instanceof方法](https://zhf521.github.io/mynotes/front-end/Interview-notes/09-%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0-%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81.html#_5-%E6%89%8B%E5%86%99instanceof%E6%96%B9%E6%B3%95)
+
+
 
