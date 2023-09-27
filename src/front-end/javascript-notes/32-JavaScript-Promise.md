@@ -10,7 +10,77 @@ Promise 是异步编程的一种解决方案，比传统的解决方案使用回
 - 指定回调函数方式更灵活易懂
 - 解决异步**回调地狱**的问题
 
-## 2. Promise使用
+## 2. 回调地狱
+
+概念：在回调函数中嵌套回调函数，一直嵌套下去就形成了回调函数地狱
+
+缺点：可读性差，异常无法捕获，耦合性严重，牵一发动全身
+
+在ES6之前，我们用回调函数的形式来实现异步操作，容易出现回调地狱问题
+
+比如我们有一个需求，我要在三秒钟之后输出1，得到结果后两秒钟，输出2，得到结果后一秒钟，输出3，它们都是耗时的，都是异步操作，需要回调函数实现
+
+如果我直接按顺序写：
+
+```js
+setTimeout(() => {
+    console.log(1);
+}, 3000);
+setTimeout(() => {
+    console.log(2);
+}, 2000);
+setTimeout(() => {
+    console.log(3);
+}, 1000);
+```
+
+结果：
+
+```js
+3
+2
+1
+```
+
+我们需要通过在回调函数中调用才可以实现：
+
+```js
+setTimeout(() => {
+    console.log(1);
+    setTimeout(() => {
+        console.log(2);
+        setTimeout(() => {
+            console.log(3);
+        }, 1000);
+    }, 2000);
+}, 3000);
+```
+
+结果：
+
+```txt
+1
+2
+3
+```
+
+这样就产生了回调地狱问题
+
+再比如我们发送三个 Ajax 请求：第一个正常发送，第二个请求需要第一个请求的结果中的某一个值作为参数，第三个请求需要第二个请求的结果中的某一个值作为参数
+
+```js
+axios({ url: 'xxx' }).then((result) => {
+    const a = result.data.list[0];
+    axios({ url: 'xxx', params: { a } }).then((result) => {
+        const b = result.data.list[0];
+        axios({ url: 'xxx', params: { a, b } }).then((result) => {
+            const c = result.data.list[0];
+        });
+    });
+});
+```
+
+## 3. Promise使用
 
 使用步骤：
 
@@ -24,41 +94,39 @@ Promise 是异步编程的一种解决方案，比传统的解决方案使用回
   // 1. 创建 Promise 对象
   const p = new Promise((resolve, reject) => {
    // 2. 执行异步任务-并传递结果
-   // 成功调用: resolve(值) 触发 then() 执行
-   // 失败调用: reject(值) 触发 catch() 执行
-  })
+   // 成功调用: resolve(值); 触发 then() 执行
+   // 失败调用: reject(值); 触发 catch() 执行
+  });
   // 3. 接收结果
   p.then(result => {
    // 成功
   }).catch(error => {
    // 失败
-  })
+  });
   ```
 
 例：
 
 ```js
-/**
- * 目标：使用Promise管理异步任务
-*/
-// 1. 创建Promise对象
 const p = new Promise((resolve, reject) => {
-  // 2. 执行异步代码
-  setTimeout(() => {
-    // resolve('模拟AJAX请求-成功结果')
-    reject(new Error('模拟AJAX请求-失败结果'))
-  }, 2000)
-})
+    resolve('任务成功得到的数据');
+    reject('任务失败的信息');
+});
 
-// 3. 获取结果
-p.then(result => {
-  console.log(result)
-}).catch(error => {
-  console.log(error)
-})
+p.then((result) => {
+    console.log(result);
+}).catch((error) => {
+    console.log(error);
+});
 ```
 
-## 3. Promise对象的状态
+结果：
+
+```js
+任务成功得到的数据
+```
+
+## 4. Promise对象的状态
 
 Promise 对象通过自身的状态，来控制异步操作
 
@@ -82,97 +150,6 @@ Promise 实例具有三种状态：
 
 ![Promise01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Promise01.png)
 
-## 4. 回调地狱
-
-概念：在回调函数中嵌套回调函数，一直嵌套下去就形成了回调函数地狱
-
-缺点：可读性差，异常无法捕获，耦合性严重，牵一发动全身
-
-在ES6之前，我们用回调函数的形式来实现异步操作，容易出现回调地狱问题
-
-比如我们有一个需求，我要先吃火锅，再喝茶，再散步，它们都是耗时的，都是异步操作，需要回调函数实现
-
-```js
-//喝茶
-function getTea(fn) {
-  setTimeout(function () {
-    fn('喝茶')
-  }, 500)
-}
-//吃火锅
-function getHotPot(fn) {
-  setTimeout(() => {
-    fn('吃火锅')
-  }, 800)
-}
-//散步
-function getWalk(fn) {
-  setTimeout(() => {
-    fn('散步')
-  }, 100)
-}
-```
-
-我想直接按顺序执行：
-
-```js
-getHotPot(function (data) {
-  console.log(data)
-})
-getTea(function (data) {
-  console.log(data)
-})
-getWalk(function (data) {
-  console.log(data)
-})
-```
-
-执行结果会按消耗的时间来执行：
-
-```txt
-散步
-喝茶
-吃火锅
-```
-
-通过在回调函数中调用才可以实现：
-
-```js
-getHotPot(function (data) {
-  console.log(data)
-  getTea(function (data) {
-    console.log(data)
-    getWalk(function (data) {
-      console.log(data)
-    })
-  })
-})
-```
-
-结果：
-
-```txt
-吃火锅
-喝茶
-散步
-```
-
-这样就产生了回调地狱问题
-
-比如我们发送三个 Ajax 请求：第一个正常发送，第二个请求需要第一个请求的结果中的某一个值作为参数，第三个请求需要第二个请求的结果中的某一个值作为参数
-
-```js
-axios({ url: 'xxx' }).then(result => {
-  const a = result.data.list[0]
-  axios({ url: 'xxx', params: { a } }).then(result => {
-    const b = result.data.list[0]
-    axios({ url: 'xxx', params: { a, b } }).then(result => {
-      const c = result.data.list[0]
-    })
-  })
-})
-```
-
 ## 5. Promise链式调用
 
 概念：依靠`then()`方法会返回一个新生成的 Promise 对象的特性，继续串联下一环任务，直到结束
@@ -181,7 +158,7 @@ axios({ url: 'xxx' }).then(result => {
 
 ![Promise02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Promise02.png)
 
-我们利用Promise链式调用解决上面的问题
+我们利用Promise链式调用解决的问题
 
 ```js
 function getTea() {
