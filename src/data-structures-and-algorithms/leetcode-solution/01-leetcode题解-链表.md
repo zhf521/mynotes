@@ -134,7 +134,7 @@ var addTwoNumbers = function (l1, l2) {
 
 ### 2. 解题思路
 
-双指针，使用快慢指针，先让一个快指针走 n 步，然后另一个慢指针一起走，当第快指针走到尾的时候，此时慢指针就指向了我们要删除的节点，进行删除即可
+双指针，使用快慢指针，先让一个快指针走 n 步，然后另一个慢指针一起走，当快指针走到尾的时候，此时慢指针就指向了我们要删除的节点的前一个节点，然后删除要删除的节点即可
 
 ### 3. 题解
 
@@ -276,7 +276,7 @@ var swapPairs = function (head) {
 
 ### 2. 解题思路
 
-将第left到right的节点进行反转，然后将left-1节点指向right，让right+1节点指向left，这样就实现了链表的局部反转
+使用双指针遍历，一个pre指针指向虚拟头节点，一个cur指针指向头节点，当pre指针指向左边界的前一个节点开始依次执行交换操作即可
 
 ### 3. 题解
 
@@ -297,25 +297,18 @@ var swapPairs = function (head) {
 var reverseBetween = function (head, left, right) {
     let dummyHead = new ListNode(); // 定义虚拟头节点
     dummyHead.next = head;
-    // 寻找第left-1节点
-    let p = dummyHead;
+    let pre = dummyHead;
+    let cur = head;
     for (let i = 0; i < left - 1; i++) {
-        p = p.next;
+        pre = pre.next;
+        cur = cur.next;
     }
-    // 定义当前节点和前驱节点，当前节点指向left节点
-    let pre = null;
-    let cur = p.next;
-    // 将left到right节点进行反转
-    for (let i = 0; i <= right - left; i++) {
-        let next = cur.next;
-        cur.next = pre;
-        pre = cur;
-        cur = next;
+    for (let i = 0; i < right - left; i++) {
+        let temp = cur.next;
+        cur.next = temp.next;
+        temp.next = pre.next;
+        pre.next = temp;
     }
-    // 将反转的局部链表和原链表进行拼接
-    p.next.next = cur;
-    p.next = pre;
-
     return dummyHead.next;
 };
 ```
