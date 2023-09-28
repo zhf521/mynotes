@@ -12,56 +12,83 @@ Promise 是异步编程的一种解决方案，比传统的解决方案使用回
 
 ## 2. 回调地狱
 
-概念：在回调函数中嵌套回调函数，一直嵌套下去就形成了回调函数地狱
+回调函数的概念：指的是将一个函数作为参数传递给另一个函数，并在特定事件或条件发生时被调用。回调函数通常用于异步编程中，用于处理在异步操作完成后执行的操作。在这种情况下，我们将一个函数传递给一个异步函数，当异步操作完成时，该函数将被调用以处理结果
+
+回调地狱的概念：在回调函数中嵌套回调函数，一直嵌套下去就形成了回调函数地狱
 
 缺点：可读性差，异常无法捕获，耦合性严重，牵一发动全身
 
 在ES6之前，我们用回调函数的形式来实现异步操作，容易出现回调地狱问题
 
-比如我们有一个需求，我要在三秒钟之后输出1，得到结果后两秒钟，输出2，得到结果后一秒钟，输出3，它们都是耗时的，都是异步操作，需要回调函数实现
+比如我们有一个需求，我要先开车，后购物，都是异步操作，需要回调函数实现
 
-如果我直接按顺序写：
+按顺序的话：
 
 ```js
-setTimeout(() => {
-    console.log(1);
-}, 3000);
-setTimeout(() => {
-    console.log(2);
-}, 2000);
-setTimeout(() => {
-    console.log(3);
-}, 1000);
+function drive(fn) {
+    setTimeout(() => {
+        fn();
+    }, 2000);
+}
+
+function shopping(fn) {
+    setTimeout(() => {
+        fn();
+    }, 1000);
+}
+
+function run() {
+    drive(() => {
+        console.log('开车');
+    });
+    shopping(() => {
+        console.log('购物');
+    });
+}
+
+run();
+
 ```
 
-结果：
+结果是
 
 ```js
-3
-2
-1
+购物
+开车
 ```
 
 我们需要通过在回调函数中调用才可以实现：
 
 ```js
-setTimeout(() => {
-    console.log(1);
+function drive(fn) {
     setTimeout(() => {
-        console.log(2);
-        setTimeout(() => {
-            console.log(3);
-        }, 1000);
+        fn();
     }, 2000);
-}, 3000);
+}
+
+function shopping(fn) {
+    setTimeout(() => {
+        fn();
+    }, 1000);
+}
+
+function run() {
+    drive(() => {
+        console.log('开车');
+        shopping(() => {
+            console.log('购物');
+        });
+    });
+}
+
+run();
 ```
 
 结果：
 
 ```txt
-1
-2
-3
+开车
+购物
 ```
 
 这样就产生了回调地狱问题
@@ -158,122 +185,112 @@ Promise 实例具有三种状态：
 
 ![Promise02.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/Promise02.png)
 
-我们利用Promise链式调用解决的问题
+我们利用Promise链式调用解决上面的问题
 
 ```js
-function getTea() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('喝茶')
-    }, 500)
-  })
+function drive() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('开车');
+        }, 2000);
+    });
 }
-function getHotPot() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('吃火锅')
-    }, 800)
-  })
+
+function shopping() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('购物');
+        }, 1000);
+    });
 }
-function getWalk() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('散步')
-    }, 100)
-  })
+
+function run() {
+    drive()
+        .then((data) => {
+            console.log(data);
+            return shopping();
+        })
+        .then((data) => {
+            console.log(data);
+        });
 }
-getHotPot().then((data) => {
-    console.log(data)
-    return getTea()
-}).then((data) => {
-    console.log(data)
-    return getWalk(data)
-}).then((data) => {
-    console.log(data)
-})
+
+run();
 ```
 
 解决Ajax回调地狱：
 
 ```js
-const a = ''
+const a = '';
 axios({ url: 'xxx' }).then(result => {
-  a = result.data.list[0]
-  return axios({ url: 'xxx', params: { a } })
+  a = result.data.list[0];
+  return axios({ url: 'xxx', params: { a } });
 }).then(result => {
-  const b = result.data.list[0]
-  return axios({ url: 'xxx', params: { a, b } })
+  const b = result.data.list[0];
+  return axios({ url: 'xxx', params: { a, b } });
 }).then(result => {
-   const c = result.data.list[0]
-})
+   const c = result.data.list[0];
+});
 ```
 
 ## 6. async与await
 
 在 async 函数内，使用 await 关键字取代 then 函数，等待获取 Promise 对象成功状态的结果值
 
-### 6.1 基本使用
+### 1. 基本使用
 
-`await` 命令后面是一个 Promise 对象，返回该对象的结果。如果不是 Promise 对象，就直接返回对应的值
+`await` 后面是一个 Promise 对象，返回该对象的结果。如果不是 Promise 对象，就直接返回对应的值
 
 ```js
 async function(){
-    await promise对象
+    await promise对象;
 }
 ```
 
 我们来将上面的例子优化一下：
 
 ```js
-function getTea() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('喝茶')
-    }, 500)
-  })
-}
-function getHotPot() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('吃火锅')
-    }, 800)
-  })
-}
-function getWalk() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('散步')
-    }, 100)
-  })
+function drive() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('开车');
+        }, 2000);
+    });
 }
 
-async function getData() {
-  //直接获取resolve传递出来的异步数据
-  let hotPot = await getHotPot()
-  console.log(hotPot)
-  let tea = await getTea()
-  console.log(tea)
-  let walk = await getWalk()
-  console.log(walk)
+function shopping() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('购物');
+        }, 1000);
+    });
 }
-getData()
+
+async function run() {
+    const result1 = await drive();
+    const result2 = await shopping();
+    console.log(result1);
+    console.log(result2);
+}
+
+run();
 ```
 
 优化Ajax回调地狱：
 
 ```js
 async function getData() {
-  const aObj = await axios({ url: 'xxx' })
-  const a = aObj.data.list[0]
-  const bObj = await axios({ url: 'xxx', params: { a } })
-  const b = bObj.data.list[0]
-  const cObj = await axios({ url: 'xxx', params: { a, b } })
-  const c = cObj.data.list[0]
-}
-getData()
+  const aObj = await axios({ url: 'xxx' });
+  const a = aObj.data.list[0];
+  const bObj = await axios({ url: 'xxx', params: { a } });
+  const b = bObj.data.list[0];
+  const cObj = await axios({ url: 'xxx', params: { a, b } });
+  const c = cObj.data.list[0];
+};
+getData();
 ```
 
-### 6.2 错误处理
+### 2. 错误处理
 
 使用`try`和`catch`
 
@@ -283,7 +300,7 @@ try {
 } catch (error) {
   // error 接收的是，错误消息
   // try 里代码，如果有错误，直接进入这里执行
-}
+};
 ```
 
 > try 里有报错的代码，会立刻跳转到 catch 中
@@ -294,223 +311,105 @@ try {
 async function getData() {
   // 1. try包裹可能产生错误的代码
   try {
-    const aObj = await axios({ url: 'xxx' })
-    const a = aObj.data.list[0]
-    const bObj = await axios({ url: 'xxx', params: { a } })
-    const b = bObj.data.list[0]
-    const cObj = await axios({ url: 'xxx', params: { a, b } })
-    const c = cObj.data.list[0]
+    const aObj = await axios({ url: 'xxx' });
+    const a = aObj.data.list[0];
+    const bObj = await axios({ url: 'xxx', params: { a } });
+    const b = bObj.data.list[0];
+    const cObj = await axios({ url: 'xxx', params: { a, b } });
+    const c = cObj.data.list[0];
   } catch (error) {
     // 2. 接着调用catch块，接收错误信息
     // 如果try里某行代码报错后，try中剩余的代码不会执行了
     console.dir(error)
   }
 }
-getData()
+getData();
 ```
 
 ## 7. Promise对象方法
 
 Promise 是一个对象，也是一个构造函数
 
-### 7.1 Promise.resolve
+### 1. Promise.resolve
 
 将现有对象转为 Promise 对象
 
 ```javascript
-Promise.resolve('xxx')
+Promise.resolve('xxx');
 // 等价于
-new Promise(resolve => resolve('xxx'))
+new Promise(resolve => resolve('xxx'));
 ```
 
-### 7.2 Promise.reject
+### 2. Promise.reject
 
 `Promise.reject(reason)` 方法也会返回一个新的 Promise 实例，该实例的状态为 `rejected`
 
 ```javascript
-const p = Promise.reject('error')
+const p = Promise.reject('error');
 // 等同于
-const p = new Promise((resolve, reject) => reject('error'))
+const p = new Promise((resolve, reject) => reject('error'));
 ```
 
-### 7.3 Promise.all
+### 3. Promise.all
 
 `Promise.all()`方法用于将多个 Promise 实例，包装成一个新的 Promise 实例
 
 ```javascript
-const p = Promise.all([p1, p2, p3])
+const p = Promise.all([p1, p2, p3]);
 ```
 
 p 的状态由 p1, p2, p3 决定，分成两种情况：
 1. 只有 `p1`、`p2`、`p3` 的状态都变成 `fulfilled`，`p` 的状态才会变成 `fulfilled`，此时 `p1`、`p2`、`p3` 的返回值组成一个数组，传递给 `p` 的回调函数
 2. 只要 `p1`、`p2`、`p3` 之中有一个被 `rejected`，`p` 的状态就变成 `rejected`，此时第一个被 `reject` 的实例的返回值，会传递给 `p` 的回调函数
 
-### 7.4 Promise.race
+### 4. Promise.race
 
 `Promise.race()` 方法同样是将多个 Promise 实例包装成一个新的 Promise 实例
 
 ```javascript
-const p = Promise.race([p1, p2, p3])
+const p = Promise.race([p1, p2, p3]);
 ```
 
 上面代码中，只要 `p1`、`p2`、`p3` 之中有一个实例率先改变状态，`p` 的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给 `p` 的回调函数
 
-### 7.5 Promise.allSettled
+### 5. Promise.allSettled
 
 `Promise.allSettled()` 方法，用来确定一组异步操作是否都结束了（不管成功或失败）。所以，名为"Settled"，包含了"fulfilled"和"rejected"两种情况
 
 ```js
-const promises = [ ajax('/200接口'), ajax('/401接口') ]
+const promises = [ ajax('/200接口'), ajax('/401接口') ];
 
 Promise.allSettled(promises).then(results=>{
     // 过滤出成功的请求
-    results.filter(item =>item.status === 'fulfilled')
+    results.filter(item =>item.status === 'fulfilled');
     过滤出失败的请求
-    results.filter(item=> item.status === 'rejected')
-})
+    results.filter(item=> item.status === 'rejected');
+});
 ```
 
-### 7.6 Promise.any
+### 6. Promise.any
 
 只要参数实例有一个变成 `fulfilled` 状态，包装实例就会变成 `fulfilled` 状态；如果所有参数实例都变成 `rejected` 状态，包装实例就会变成 `rejected` 状态
 
 > `Promise.any()`跟`Promise.race()`方法很像，只有一点不同，就是`Promise.any()`不会因为某个 Promise 变成`rejected`状态而结束，必须等到所有参数 Promise 变成`rejected`状态才会结束
 
-### 7.7 finally方法
+### 7. finally方法
 
 不管 promise 最后的状态，在执行完 then 或 catch 指定的回调函数以后，都会执行 finally 方法指定的回调函数
 
 ```js
 const p = new Promise((resolve, reject) => {
-    resolve()
-	//reject()
+    resolve();
+	//reject();
 })
 p.then((res) => {
-	console.log('then')
+	console.log('then');
 }).catch((err) => {
-    console.log('error')
+    console.log('error');
 }).finally(() => {
-    console.log('finally')
-})
+    console.log('finally');
+});
 //结果：then finally
 ```
 
 ## 8. 手写Promise
-
-```js
-/*
- * @作者: kerwin
- */
-function KerwinPromise(executor) {
-    this.status = "pending";
-    this.result = undefined;
-    this.cb = []
-    var _this = this;
-
-    function resolve(res) {
-        if (_this.status !== "pending") return;
-        // console.log(_this)
-        _this.status = "fulfilled"
-        _this.result = res;
-
-        _this.cb.forEach(item => {
-            item.successCB && item.successCB(_this.result)
-        });
-    }
-
-    function reject(res) {
-        if (_this.status !== "pending") return;
-        // console.log("reject")
-        _this.status = "rejected"
-        _this.result = res;
-        _this.cb.forEach(item => {
-            item.failCB && item.failCB(_this.result)
-        });
-    }
-    executor(resolve, reject)
-}
-
-KerwinPromise.prototype.then = function (successCB, failCB) {
-
-    if(!successCB){
-        successCB = value=>value
-    }
-    if(!failCB){
-        failCB = error=>error
-    }
-
-    // successCB()
-    return new KerwinPromise((resolve, reject) => {
-        if (this.status === "fulfilled") {
-            var result = successCB && successCB(this.result)
-            // console.log(result);
-
-            if (result instanceof KerwinPromise) {
-                result.then(res => {
-                    // console.log(res)
-                    resolve(res);
-                }, err => {
-                    // console.log(err)
-                    reject(err)
-                })
-            } else {
-                resolve(result);
-            }
-        }
-        if (this.status === "rejected") {
-            var result = failCB && failCB(this.result)
-
-            if (result instanceof KerwinPromise) {
-                result.then(res => {
-                    // console.log(res)
-                    resolve(res);
-                }, err => {
-                    // console.log(err)
-                    reject(err)
-                })
-            } else {
-                reject(result);
-            }
-        }
-
-        if (this.status === "pending") {
-            //收集回调
-            this.cb.push({
-                successCB: () => {
-                    var result = successCB && successCB(this.result)
-
-                    if (result instanceof KerwinPromise) {
-                        result.then(res => {
-                            // console.log(res)
-                            resolve(res);
-                        }, err => {
-                            // console.log(err)
-                            reject(err)
-                        })
-                    } else {
-                        resolve(result);
-                    }
-                },
-                failCB: () => {
-                    var result = failCB && failCB(this.result)
-                    if (result instanceof KerwinPromise) {
-                        result.then(res => {
-                            // console.log(res)
-                            resolve(res);
-                        }, err => {
-                            // console.log(err)
-                            reject(err)
-                        })
-                    } else {
-                        reject(result);
-                    }
-                }
-            })
-        }
-    })
-}
-
-KerwinPromise.prototype.catch= function(failCB){
-    this.then(undefined,failCB)
-}
-```
