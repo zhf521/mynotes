@@ -1,6 +1,6 @@
 ---
 title: 链表
-order: 1
+order: 2
 ---
 
 ## 1. 【2】两数相加
@@ -359,6 +359,8 @@ var reverseBetween = function (head, left, right) {
 
 使用快慢指针，快慢指针用于判断链表是否成环，然后推导公式求得入口
 
+详见：[代码随想录](https://programmercarl.com/0142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II.html#_142-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8ii)
+
 ### 3. 题解
 
 ```js
@@ -498,7 +500,7 @@ var removeElements = function (head, val) {
 - 链表中节点的数目范围是 `[0, 5000]`
 - `-5000 <= Node.val <= 5000`
 
-**进阶：**链表可以选用迭代或递归方式完成反转。你能否用两种方法解决这道题？
+进阶：链表可以选用迭代或递归方式完成反转。你能否用两种方法解决这道题？
 
 ### 2. 解题思路
 
@@ -521,15 +523,16 @@ var removeElements = function (head, val) {
  * @return {ListNode}
  */
 var reverseList = function (head) {
-    let p1 = head;
-    let p2 = null;
-    while (p1) {
-        const temp = p1.next;
-        p1.next = p2;
-        p2 = p1;
-        p1 = temp;
+    let cur = head;
+    let pre = null;
+    while (cur) {
+        const temp = cur.next; // 用temp指针保存一下cur的下一个节点，因为接下来要改变cur.next
+        cur.next = pre; // 反转操作
+        // 更新pre和cur
+        pre = cur;
+        cur = temp;
     }
-    return p2;
+    return pre;
 };
 ```
 
@@ -749,7 +752,7 @@ MyLinkedList.prototype.deleteAtIndex = function (index) {
 - 如果 `listA` 和 `listB` 没有交点，`intersectVal` 为 `0`
 - 如果 `listA` 和 `listB` 有交点，`intersectVal == listA[skipA] == listB[skipB]`
 
-**进阶：**你能否设计一个时间复杂度 `O(m + n)` 、仅用 `O(1)` 内存的解决方案？
+进阶：你能否设计一个时间复杂度 `O(m + n)` 、仅用 `O(1)` 内存的解决方案？
 
 ### 2. 解题思路
 
