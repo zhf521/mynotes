@@ -143,3 +143,156 @@ var removeElement = function (nums, val) {
     return slow;
 };
 ```
+
+## 3. 【977】有序数组的平方
+
+### 1. 题目描述
+
+来源：https://leetcode.cn/problems/squares-of-a-sorted-array/
+
+给你一个按 **非递减顺序** 排序的整数数组 `nums`，返回 **每个数字的平方** 组成的新数组，要求也按 **非递减顺序** 排序
+
+**示例 1：**
+
+```
+输入：nums = [-4,-1,0,3,10]
+输出：[0,1,9,16,100]
+解释：平方后，数组变为 [16,1,0,9,100]
+排序后，数组变为 [0,1,9,16,100]
+```
+
+**示例 2：**
+
+```
+输入：nums = [-7,-3,2,3,11]
+输出：[4,9,9,49,121]
+```
+
+**提示：**
+
+- `1 <= nums.length <= 104`
+- `-104 <= nums[i] <= 104`
+- `nums` 已按 **非递减顺序** 排序
+
+进阶：
+
+- 请你设计时间复杂度为 `O(n)` 的算法解决本问题
+
+### 2. 解题思路
+
+数组其实是有序的， 只不过负数平方之后可能成为最大数了
+
+那么数组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间
+
+此时可以考虑双指针法了，i指向起始位置，j指向终止位置
+
+定义一个新数组result，和A数组一样的大小，让k指向result数组终止位置
+
+如果`A[i] * A[i] < A[j] * A[j]` 那么`result[k--] = A[j] * A[j];` 
+
+如果`A[i] * A[i] >= A[j] * A[j]` 那么`result[k--] = A[i] * A[i];` 
+
+### 3. 题解
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortedSquares = function (nums) {
+    let res = [];
+    let i = 0;
+    let j = nums.length - 1;
+    let k = nums.length - 1;
+    while (i <= j) {
+        let left = nums[i] * nums[i];
+        let right = nums[j] * nums[j];
+        if (left < right) {
+            res[k] = right;
+            k--;
+            j--;
+        } else {
+            res[k] = left;
+            k--;
+            i++;
+        }
+    }
+    return res;
+};
+```
+
+## 4. 【209】长度最小的子数组
+
+### 1. 题目描述
+
+来源：https://leetcode.cn/problems/minimum-size-subarray-sum/
+
+给定一个含有 `n` 个正整数的数组和一个正整数 `target` **。**
+
+找出该数组中满足其总和大于等于 `target` 的长度最小的 **连续子数组** `[numsl, numsl+1, ..., numsr-1, numsr]` ，并返回其长度**。**如果不存在符合条件的子数组，返回 `0` 
+
+**示例 1：**
+
+```
+输入：target = 7, nums = [2,3,1,2,4,3]
+输出：2
+解释：子数组 [4,3] 是该条件下的长度最小的子数组。
+```
+
+**示例 2：**
+
+```
+输入：target = 4, nums = [1,4,4]
+输出：1
+```
+
+**示例 3：**
+
+```
+输入：target = 11, nums = [1,1,1,1,1,1,1,1]
+输出：0
+```
+
+**提示：**
+
+- `1 <= target <= 109`
+- `1 <= nums.length <= 105`
+- `1 <= nums[i] <= 105`
+
+进阶：
+
+- 如果你已经实现 `O(n)` 时间复杂度的解法, 请尝试设计一个 `O(n log(n))` 时间复杂度的解法。
+
+### 2. 解题思路
+
+本题可以使用滑动窗口算法
+
+详见[滑动窗口算法模板]()
+
+### 3. 题解
+
+```js
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function (target, nums) {
+    let left = 0;
+    let right = 0;
+    let curSum = 0;
+    let minLength = 0;
+    while (right < nums.length) {
+        curSum = curSum + nums[right];
+        while (curSum >= target) {
+            if (right - left + 1 < minLength || minLength == 0) {
+                minLength = right - left + 1;
+            }
+            curSum = curSum - nums[left];
+            left++;
+        }
+        right++;
+    }
+    return minLength;
+};
+```
