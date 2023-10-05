@@ -296,3 +296,166 @@ var minSubArrayLen = function (target, nums) {
     return minLength;
 };
 ```
+
+## 5. 【54】螺旋矩阵
+
+### 1. 题目描述
+
+来源：https://leetcode.cn/problems/spiral-matrix/
+
+给你一个 `m` 行 `n` 列的矩阵 `matrix` ，请按照 **顺时针螺旋顺序** ，返回矩阵中的所有元素
+
+**示例 1：**
+
+```
+输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+输出：[1,2,3,6,9,8,7,4,5]
+```
+
+**示例 2：**
+
+```
+输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+输出：[1,2,3,4,8,12,11,10,9,5,6,7]
+```
+
+**提示：**
+
+- `m == matrix.length`
+- `n == matrix[i].length`
+- `1 <= m, n <= 10`
+- `-100 <= matrix[i][j] <= 100`
+
+### 2. 解题思路
+
+维护未遍历数据的上下左右的边界，每次循环获取最外侧一圈边界上的数据，遍历结束后将边界向中心移动，直至边界相交结束循环
+
+### 3. 题解
+
+```js
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+var spiralOrder = function (matrix) {
+    // 获取矩阵大小
+    let m = matrix.length;
+    let n = matrix[0].length;
+    // 定义边界
+    let up = 0,
+        down = m - 1,
+        left = 0,
+        right = n - 1;
+    let ans = [];
+    while (true) {
+        for (let i = left; i <= right; i++) {
+            ans.push(matrix[up][i]);
+        }
+        up++;
+        if (up > down) {
+            break;
+        }
+        for (let i = up; i <= down; i++) {
+            ans.push(matrix[i][right]);
+        }
+        right--;
+        if (right < left) {
+            break;
+        }
+        for (let i = right; i >= left; i--) {
+            ans.push(matrix[down][i]);
+        }
+        down--;
+        if (down < up) {
+            break;
+        }
+        for (let i = down; i >= up; i--) {
+            ans.push(matrix[i][left]);
+        }
+        left++;
+        if (left > right) {
+            break;
+        }
+    }
+    return ans;
+};
+```
+
+## 6. 【59】螺旋矩阵 II
+
+### 1. 题目描述
+
+来源：https://leetcode.cn/problems/spiral-matrix-ii/
+
+给你一个正整数 `n` ，生成一个包含 `1` 到 `n2` 所有元素，且元素按顺时针顺序螺旋排列的 `n x n` 正方形矩阵 `matrix` 
+
+**示例 1：**
+
+```
+输入：n = 3
+输出：[[1,2,3],[8,9,4],[7,6,5]]
+```
+
+**示例 2：**
+
+```
+输入：n = 1
+输出：[[1]]
+```
+
+**提示：**
+
+- `1 <= n <= 20`
+
+### 2. 解题思路
+
+维护未遍历数据的上下左右的边界，每次循环获取最外侧一圈边界上的数据，遍历结束后将边界向中心移动，直至边界相交结束循环
+
+### 3. 题解
+
+```js
+/**
+ * @param {number} n
+ * @return {number[][]}
+ */
+var generateMatrix = function (n) {
+    // 定义边界
+    let up = 0,
+        down = n - 1,
+        left = 0,
+        right = n - 1;
+    let num = 1;
+    let ans = new Array(n).fill(0).map(() => new Array(n).fill(0));
+    while (true) {
+        for (let i = left; i <= right; i++) {
+            ans[up][i] = num++;
+        }
+        up++;
+        if (up > down) {
+            break;
+        }
+        for (let i = up; i <= down; i++) {
+            ans[i][right] = num++;
+        }
+        right--;
+        if (right < left) {
+            break;
+        }
+        for (let i = right; i >= left; i--) {
+            ans[down][i] = num++;
+        }
+        down--;
+        if (down < up) {
+            break;
+        }
+        for (let i = down; i >= up; i--) {
+            ans[i][left] = num++;
+        }
+        left++;
+        if (left > right) {
+            break;
+        }
+    }
+    return ans;
+};
+```
