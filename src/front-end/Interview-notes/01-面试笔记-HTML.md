@@ -208,3 +208,39 @@ script 标签存在两个属性，defer 和 async，因此 script 标签 的使�
 1. 纯表现的元素：basefont，big，center，font, s，strike，tt，u
 2. 对可用性产生负面影响的元素：frame，frameset，noframes
 
+## 8. img的srcset属性的作用
+
+响应式页面中经常用到根据屏幕密度设置不同的图片。这时就用到了 img 标签的srcset属性。srcset属性用于设置不同屏幕密度下，img 会自动加载不同的图片
+
+用法：
+
+```html
+<img src="image-128.png" srcset="image-256.png 2x" />
+```
+
+使用上面的代码，就能实现在屏幕密度为1x的情况下加载image-128.png, 屏幕密度为2x时加载image-256.png
+
+## 9. 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
+
++ 行内元素有：a b span img input select strong；
++ 块级元素有：div ul ol li dl dt dd h1 h2 h3 h4 h5 h6 p；
++ 空元素，即没有内容的HTML元素。空元素是在开始标签中关闭的，也就是空元素没有闭合标签：常见的有：`<br>`、`<hr>`、`<img>`、`<input>`、`<link>`、`<meta>`
+
+## 10. 对web worker的理解
+
+在 HTML 页面中，如果在执行脚本时，页面的状态是不可响应的，直到脚本执行完成后，页面才变成可响应。web worker 是运行在后台的 js，独立于其他脚本，不会影响页面的性能。 并且通过 postMessage 将结果回传到主线程。这样在进行复杂操作的时候，就不会阻塞主线程了
+
+如何创建：
+
+1. 检测浏览器对于 web worker 的支持性
+2. 创建 web worker 文件（js，回传函数等） 
+3. 创建 web worker 对象`const worker = new Worker(path, options);`
+
+## 11. HTML5的离线存储怎么使用，工作原理是什么
+
+
+
+
+
+
+

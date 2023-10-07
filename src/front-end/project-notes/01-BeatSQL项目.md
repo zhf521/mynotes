@@ -679,5 +679,30 @@ const activeKey = ref(['result']);
 
 ## 14. 项目组件间通信
 
+## 15. Vue3修改img的src属性踩坑
 
+获取dom元素后无法直接通过`xxx.style.src`修改
+
+```vue
+<img src="../assets/smile.jpg" alt="" ref="stateImg">
+
+const stateImg = ref(null);
+
+stateImg.value.style.src = '../assets/xxx.png'; //这样修改是错误的
+```
+
+应该
+
+```vue
+<img src="../assets/smile.jpg" alt="" ref="stateImg">
+
+import xxxImage from '@/assets/xxx.jpg';
+const stateImg = ref(null);
+
+stateImg.value.setAttribute('src', xxxImage);
+```
+
+`src`是从src目录中寻找
+
+`:src`是从public目录中寻找
 
