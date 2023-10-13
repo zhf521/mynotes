@@ -706,3 +706,13 @@ stateImg.value.setAttribute('src', xxxImage);
 
 `:src`是从public目录中寻找
 
+## 16. 使用Ant Design Vue的Message组件报错
+
+在使用Hooks调用弹出消息组件并切换路由时，会报错： Uncaught (in promise) TypeError: Cannot read properties of null (reading 'emitsOptions')
+
+默认弹框是关闭的，DOM中没有弹框中的内容。打开弹框再关闭后，弹框中的 DOM 元素没有被销毁，可能会因为不该存在的 DOM 元素而报错
+
+解决办法：使用普通提示
+
+
+
