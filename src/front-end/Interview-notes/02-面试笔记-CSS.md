@@ -1003,3 +1003,271 @@ li:nth-of-type(n+7){
 }
 ```
 
+## 38. 为什么要清除浮动？清除浮动的方式
+
+浮动元素脱离标准流，在标准流中不占位置，不能撑开父元素的高度，当父元素的高度为0时，就会影响后面的标准流，影响元素排版
+
+详见：[清除浮动](https://zhf521.github.io/mynotes/front-end/css-notes/09-CSS%E4%BC%A0%E7%BB%9F%E7%BD%91%E9%A1%B5%E5%B8%83%E5%B1%80%E6%96%B9%E5%BC%8F.html#_2-5-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8)
+
+## 39. 对BFC的理解，如何创建BFC
+
+BFC：块级格式化上下文
+
+形成独立的渲染区域，内部元素的渲染不会影响外界
+
+如何触发：
+
++ 根元素
++ 绝对定位（absolute）、固定定位（fixed）的元素
++ overflow 的值不为 visible 的块元素
++ flex元素
++ inline-block元素
+
+应用场景：清除浮动等
+
+BFC的特点：
+
+1. BFC **内部的**子元素，在垂直方向上，自上而下排列，**边距margin会发生重叠**
+2. BFC在页面中是独立的容器，外面的元素不会影响里面的元素，反之亦然。
+3. **BFC区域不与旁边的`float box`区域重叠**。（可以用来清除浮动带来的影响）
+4. 计算`BFC`的高度时，浮动的子元素也参与计算
+
+## 40. 什么是margin塌陷问题？如何解决？
+
+详见：[margin塌陷](https://zhf521.github.io/mynotes/front-end/css-notes/07-CSS%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B.html#_4-2-margin%E5%A1%8C%E9%99%B7%E9%97%AE%E9%A2%98)
+
+## 41. 元素层叠顺序
+
+层叠顺序，英文称作 stacking order，表示元素发生层叠时有着特定的垂直显示顺序。下面是盒模型的层叠规则：
+
+从下到上：
+
+1. 背景和边框：建立当前层叠上下文元素的背景和边框
+2. 负的z-index：当前层叠上下文中，z-index属性值为负的元素
+3. 块级元素：文档流内非行内级非定位后代元素
+4. 浮动元素：非定位浮动元素
+5. 行内元素：文档流内行内级非定位后代元素
+6. z-index:0/auto：层叠级数为0或auto的定位元素
+7. 正z-index：z-index属性值为正的定位元素
+
+## 42. position的属性有哪些，区别是什么
+
+详见：[定位](https://zhf521.github.io/mynotes/front-end/css-notes/09-CSS%E4%BC%A0%E7%BB%9F%E7%BD%91%E9%A1%B5%E5%B8%83%E5%B1%80%E6%96%B9%E5%BC%8F.html#_3-%E5%AE%9A%E4%BD%8D)
+
+## 43. absolute与fixed共同点与不同点
+
+共同点：
+
++ 使元素脱离普通文档流，不再占据文档物理空间
++ 覆盖非定位文档元素
+
+不同点：
+
++ absolute与fixed的根元素不同，absolute的根元素可以设置，fixed根元素一般是浏览器视口
++ 在有滚动条的页面中，absolute会跟着父元素进行移动，fixed固定在页面的具体位置
+
+## 44. 对 sticky 定位的理解
+
+sticky 英文字面意思是粘贴，所以可以把它称之为粘性定位。语法：position: sticky; 基于用户的滚动位置来定位
+
+粘性定位的特点：
+
+- 以浏览器的可视窗口为参照点移动元素（固定定位特点）
+- 粘性定位占有原先的位置（相对定位特点）
+- 必须添加 top 、left、right、bottom **其中一个**才有效
+
+元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位
+
+## 45. CSS实现梯形、三角形、扇形、圆形、半圆
+
+### 1. 梯形
+
+::: normal-demo Demo 演示
+
+```html
+<div class="box"></div>
+```
+
+```css
+.box {
+    width: 100px;
+    height: 100px;
+    border: 50px solid transparent;
+    border-bottom: 50px solid orange;
+}
+```
+
+:::
+
+### 2. 三角形
+
+::: normal-demo Demo 演示
+
+```html
+<div class="box"></div>
+```
+
+```css
+.box {
+    width: 0;
+    height: 0;
+    border:50px solid transparent;
+    border-bottom: 50px solid orange;
+}
+```
+
+:::
+
+### 3. 扇形
+
+::: normal-demo Demo 演示
+
+```html
+<div class="box"></div>
+```
+
+```css
+.box {
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    border:50px solid transparent;
+    border-bottom: 50px solid orange;
+}
+```
+
+:::
+
+### 4. 圆形
+
+::: normal-demo Demo 演示
+
+```html
+<div class="box"></div>
+```
+
+```css
+.box {
+    width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: green
+}
+```
+
+:::
+
+### 5. 半圆
+
+::: normal-demo Demo 演示
+
+```html
+<div class="box"></div>
+```
+
+```css
+.box {
+    width: 100px;
+    height: 50px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    background-color: green;
+}
+```
+
+:::
+
+## 46. 实现一个宽高自适应的正方形
+
+利用vw来实现：
+
+```css
+.square {
+  width: 10%;
+  height: 10vw;
+  background: tomato;
+}
+```
+
+利用元素的margin/padding百分比是相对父元素width的性质来实现：
+
+```css
+.square {
+  width: 20%;
+  height: 0;
+  padding-top: 20%;
+  background: orange;
+}
+```
+
+利用子元素的margin-top的值来实现：
+
+```css
+.square {
+  width: 30%;
+  overflow: hidden;
+  background: yellow;
+}
+.square::after {
+  content: '';
+  display: block;
+  margin-top: 100%;
+}
+```
+
+## 47. 画一条0.5px的线
+
+采用transform: scale()的方式，该方法用来定义元素的2D 缩放转换：
+
+```css
+<div class="line"></div>
+
+<style>
+  .line {
+    height: 1px;
+    background-color: black;
+    transform-origin: top left;
+    transform: scaleY(0.5);
+  }
+</style>
+```
+
+采用meta viewport的方式：
+
+```css
+<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5"/>
+```
+
+viewport只针对于移动端，只在移动端上才能看到效果
+
+## 48. 设置小于12px的字体
+
+在谷歌下css设置字体大小为12px及以下时，显示都是一样大小，都是默认12px。
+
+解决办法：
+
++ 实现小于12px的字体效果可以使用CSS的`transform: scale()`属性。但需要注意的是，该属性只能应用于具有宽度和高度的元素，而行内元素默认是没有宽度和高度的。为了在行内元素上应用缩放效果，可以将其转换为具有宽度和高度的块级元素，例如使用`display: inline-block`
++ 使用图片：如果是内容固定不变情况下，使用将小于12px文字内容切出做图片，这样不影响兼容也不影响美观
+
+```css
+.small-text {
+  display: inline-block;
+  transform: scale(0.7);
+  transform-origin: left top;
+}
+```
+
+## 49. 如何解决 1px 问题？
+
+一般来说，在PC端浏览器中，设备像素比（dpr）等于1，1个css像素就代表1个物理像素；但是在`retina`屏幕中，dpr普遍是2或3，1个css像素不再等于1个物理像素，因此比实际设计稿看起来粗不少
+
+解决思路：
+
+| 方案                   | 优点                 | 缺点                     |
+| ---------------------- | -------------------- | ------------------------ |
+| 直接写 0.5px           | 代码简单             | IOS及Android老设备不支持 |
+| 用图片代替边框         | 全机型兼容           | 修改颜色及不支持圆角     |
+| background渐变         | 全机型兼容           | 代码多及不支持圆角       |
+| box-shadow模拟边框实现 | 全机型兼容           | 有边框和虚影无法实现     |
+| 伪元素先放大后缩小     | 简单实用             | 缺点不明显               |
+| 设置viewport解决问题   | 一套代码适用所有页面 | 缺点不明显               |
