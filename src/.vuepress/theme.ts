@@ -105,8 +105,8 @@ export default hopeTheme({
                     link: 'project-notes/',
                 },
                 {
-                    text: '面试笔记',
-                    link: 'interview-notes/',
+                    text: '知识点总结',
+                    link: 'knowledge-summary-notes/',
                 },
             ],
         },
