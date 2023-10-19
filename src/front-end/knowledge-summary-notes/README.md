@@ -1,5 +1,5 @@
 ---
-title: 面试笔记
+title: 知识点总结
 ---
 
 <AutoCatalog base='/front-end/knowledge-summary-notes/' />
