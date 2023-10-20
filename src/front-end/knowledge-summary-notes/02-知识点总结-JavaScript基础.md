@@ -342,3 +342,320 @@ console.log( Student.prototype.__proto__ ); // {}
 console.log( People.prototype ); // {}
 console.log( People.prototype === Student.prototype.__proto__ ); // true
 ```
+
+## 9. 作用域
+
+所谓作用域，即一个变量的合法使用范围
+
+作用域分类
+
+- 全局作用域：在全局定义的变量，全局都可用
+
+- 函数作用域：在某个函数中定义的变量，只能用于当前函数
+
+- 块级作用域（ES6）：只能活跃于当前的块，示例如下
+
+  ```js
+  // ES6 块级作用域
+  if (true) {
+      let x = 100;
+  }
+  console.log(x); // 会报错
+  ```
+
+## 10. 自由变量
+
+一个变量在该作用域没有被定义，但被使用，会向上级作用域去寻找该变量，层层往上找
+
+## 11. 闭包
+
+闭包 —— 作用域应用的一个特殊情况。一般有两种书写形式：
+
++ 函数作为返回值
+
+  ```js
+  // 函数作为返回值
+  function create() {
+      let a = 100;
+      return function () {
+          console.log(a);
+      }
+  }
+  let fn = create();
+  let a = 200;
+  fn(); // 100
+  ```
+
+- 函数作为参数被传入
+
+  ```js
+  // 函数作为参数
+  function print(fn) {
+      let a = 100;
+      fn();
+  }
+  let a = 200;
+  function fn() {
+      console.log(a);
+  }
+  print(fn); // 200
+  ```
+
+自由变量要在**函数定义的地方（不是执行的地方）**去寻找上级作用域！！！
+
+## 12. 闭包用途
+
+```js
+// 隐藏数据，只提供 API
+function createCache() {
+    let data = {}; //闭包中的数据，被隐藏，不被外界访问
+    return {
+        set: function (key, val) {
+            data[key] = val;
+        },
+        get: function (key) {
+            return data[key];
+        },
+    };
+}
+
+let c = createCache();
+c.set('a', 100);
+console.log(c.get('a'));
+```
+
+## 13. this
+
+- 作为普通函数调用
+- 使用 `call` `apply` `bind`
+- 作为对象方法调用
+- 在 class 的方法中调用
+- 箭头函数
+
+```js
+// this 场景1
+function fn1() {
+    console.log(this); // Window
+}
+fn1();
+
+fn1.call({ x: 100 }); // {x:100}
+
+const fn2 = fn1.bind({ x: 200 }); // {x:200}
+fn2();
+
+// this 场景2
+const zhangsan = {
+    name: '张三',
+    sayHi() {
+        console.log(this); // zhangsan
+    },
+    wait() {
+        setTimeout(function () {
+            console.log(this); // Window
+        }, 1000);
+    },
+    waitAgain() {
+        setTimeout(() => {
+            console.log(this); // zhangsan
+        }, 1000);
+    },
+};
+
+zhangsan.sayHi();
+zhangsan.wait();
+zhangsan.waitAgain();
+
+// this 场景3
+class People {
+    constructor(name) {
+        this.name = name;
+        this.age = 20;
+    }
+    sayHi() {
+        console.log(this); // People
+    }
+}
+
+const lisi = new People('张三');
+lisi.sayHi();
+```
+
+## 14. 手写bind函数
+
+bind函数的使用：
+
+```js
+function fn1(a, b) {
+    console.log('this为', this);
+    console.log(a, b);
+}
+
+const fn2 = fn1.bind({ x: 100 }, 10, 20); //bind返回一个函数，并改变this指向
+fn2();
+```
+
+手写bind：
+
+```js
+Function.prototype.myBind = function () {
+    // 将参数解析为数组
+    const args = Array.prototype.slice.call(arguments);
+    // 获取this（取出数组第一项，数组剩余的就是传递的参数）
+    const t = args.shift();
+    const self = this; //当前函数
+    // 返回一个函数
+    return function () {
+        // 执行原函数，并返回结果
+        return self.apply(t, args);
+    };
+};
+```
+
+## 15. 单线程和异步
+
+单线程
+
+- JS 是单线程语言，没法创建线程（简单来说，只能同时做一件事，没法先等待一件事儿，然后同时做另外一件事）
+- JS 可启动进程，来同时做多件事，如 Web Worker
+- JS 执行和 DOM 渲染也是同一个线程
+
+异步
+
+- 如果有等待的情况（网络请求、定时任务），不能卡住，需要异步
+- 使用回调函数实现
+
+```js
+// 异步
+console.log(100);
+setTimeout(function () {
+    console.log(200);
+}, 1000)
+console.log(300);
+```
+
+结果：
+
+```js
+100
+300
+200
+```
+
+```js
+// 同步
+console.log(100);
+alert(200);
+console.log(300);
+```
+
+结果：
+
+```js
+100
+200
+300
+```
+
+同步和异步
+
+- 基于单线程
+- 异步不会阻塞代码运行
+- 同步会阻塞代码运行
+
+## 16. 异步应用场景
+
+哪些地方可能会阻塞呢？
+
+- 网络请求，如 Ajax 图片加载
+- 定时任务，如 setTimeout
+
+```js
+// Ajax
+console.log('start');
+$.get('./data1.json', function (data1) {
+    console.log(data1);
+})
+console.log('end');
+```
+
+```js
+// 图片加载
+console.log('start');
+let img = document.createElement('img');
+img.onload = function () {
+    console.log('loaded');
+}
+img.src = '/xxx.png';
+console.log('end');
+```
+
+```js
+// setTimeout
+console.log(100);
+setTimeout(function () {
+    console.log(200);
+}, 1000)
+console.log(300);
+```
+
+```js
+// setInterval
+console.log(100);
+setInterval(function () {
+    console.log(200);
+}, 1000)
+console.log(300);
+```
+
+## 17. callback hell
+
+容易出现回调地狱，当前请求依赖上一个请求的结果
+
+```js
+const url1 = '/data1.json';
+const url2 = '/data2.json';
+const url3 = '/data3.json';
+
+// 获取第一份数据
+$.get(url1, (data1) => {
+    console.log(data1);
+
+    // 获取第二份数据
+    $.get(url2, (data2) => {
+        console.log(data2);
+
+        // 获取第三份数据
+        $.get(url3, (data3) => {
+            console.log(data3);
+
+            // 还可能获取更多的数据
+        });
+    });
+});
+```
+
+## 18. Promise
+
+```js
+function getData(url) {
+    return new Promise((resolve, reject) => {
+        $.get(url, (data) => {
+            resolve(data);
+        })
+    })
+}
+const url1 = '/data1.json';
+const url2 = '/data2.json';
+const url3 = '/data3.json';
+getData(url1).then(data1 => {
+    console.log(data1);
+    return getData(url2);
+}).then(data2 => {
+    console.log(data2);
+    return getData(url3);
+}).then(data3 => {
+    console.log(data3);
+})
+```
+
