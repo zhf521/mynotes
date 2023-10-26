@@ -16,12 +16,11 @@ order: 1
 apt update && apt install alist
 ```
 
-安装成功后输入如下命令查看管理员密码：
+安装成功后输入如下命令设置管理员密码：
 ```
-alist admin
+# 手动设置一个密码 `NEW_PASSWORD`是指你需要设置的密码
+admin set NEW_PASSWORD
 ```
-
-复制密码备用
 
 启动 Alist：
 

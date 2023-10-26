@@ -17,7 +17,13 @@ Github地址：[Alist](https://github.com/alist-org/alist)
 
 进入浏览器进入 `localhost:5244` 即可访问
 
-使用 `alist admin` 命令可以查看管理员密码
+使用如下命令可以查看管理员密码
+
+```
+# 手动设置一个密码 `NEW_PASSWORD`是指你需要设置的密码
+admin set NEW_PASSWORD
+```
+
 ## 2. 开机自启
 
 在 `alist.exe` 文件的目录里新建一个文件名为 `alist.vbs`
