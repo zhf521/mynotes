@@ -5,7 +5,7 @@ order: 31
 
 ## 1. 认识Ajax
 
-### 1.1 Ajax简介
+### 1. Ajax简介
 
 Ajax 全称为 `Asynchronous JavaScript And XML`，就是异步 JS 和 XML
 
@@ -18,7 +18,7 @@ Ajax 全称为 `Asynchronous JavaScript And XML`，就是异步 JS 和 XML
 解决问题:
 - 使用 Ajax 可以==无刷新获取数据== 
 
-### 1.2 Ajax的特点
+### 2. Ajax的特点
 
 Ajax 的优点：
 + 可以无需刷新页面而与服务器端进行通信
@@ -30,7 +30,7 @@ Ajax 的缺点：
 + 存在跨域问题（同源）
 + SEO（Search Engine Optimization，搜索引擎优化）不友好，爬虫无法爬取
 
-### 1.3 XML简介
+### 3. XML简介
 
 XML 可扩展标记语言，被设计用来传输和存储数据
 
@@ -54,7 +54,7 @@ XML 和 HTML 类似，不同的是 HTML 中都是预定义标签，而 XML 中�
 
 ## 2. axios
 
-### 2.1 基本使用
+### 1. 基本使用
 
 因为 axios 库语法简单，让我们有更多精力关注在与服务器通信上，后续再学习 XMLHttpRequest 对象了解 Ajax 底层原理
 
@@ -80,7 +80,7 @@ axios({
 
 > 注意：请求的 url 地址, 就是标记资源的网址
 
-### 2.2 认识URL
+### 2. 认识URL
 
 统一资源定位符，简称网址，用于定位网络中的资源（资源指的是：网页，图片，数据，视频，音频等等）
 
@@ -90,7 +90,7 @@ URL的组成：协议，域名，资源路径（URL 组成有很多部分，我�
 + 什么是域名：标记服务器在互联网当中的方位，网络中有很多服务器，你想访问哪一台，就需要知道它的域名才可以
 + 什么是资源路径：一个服务器内有多个资源，用于标识你要访问的资源具体的位置
 
-### 2.3 URL查询参数
+### 3. URL查询参数
 
 查询参数可以携带给服务器额外信息，让服务器返回我想要的某一部分数据而不是全部数据
 
@@ -109,7 +109,7 @@ axios({
 })
 ```
 
-### 2.4 常用请求方法和数据提交
+### 4. 常用请求方法和数据提交
 
 请求方法是一些固定单词的英文，例如：GET，POST，PUT，DELETE，PATCH（这些都是http协议规定的），每个单词对应一种对服务器资源要执行的操作
 
@@ -137,7 +137,7 @@ axios({
 })
 ```
 
-### 2.5 axios错误处理
+### 5. axios错误处理
 
 使用axios的`.catch`方法，可以捕获请求响应的错误并做后续处理，语法如下：
 
@@ -151,7 +151,7 @@ axios({
 })
 ```
 
-### 2.6 设置baseURL
+### 6. 设置baseURL
 
 作用：提取公共前缀地址，配置后axios请求时都会`baseURL + url`
 
@@ -161,7 +161,7 @@ axios({
 axios.defaults.baseURL = '基地址'
 ```
 
-### 2.7 请求拦截器
+### 7. 请求拦截器
 
 在发送请求之前，触发配置函数，对请求参数进行额外配置
 
@@ -175,7 +175,7 @@ axios.interceptors.request.use(function (config) {
 })
 ```
 
-### 2.8 响应拦截器
+### 8. 响应拦截器
 
 响应回到 then/catch 之前，触发拦截函数，对响应结果统一处理
 
@@ -196,7 +196,7 @@ axios.interceptors.response.use(function (response) {
 
 HTTP 协议规定了浏览器和服务器返回内容的格式
 
-### 3.1 请求报文
+### 1. 请求报文
 
 请求报文：是浏览器按照协议规定发送给服务器的内容
 
@@ -207,7 +207,7 @@ HTTP 协议规定了浏览器和服务器返回内容的格式
 * 空行：分割请求头，空行之后的是发送给服务器的资源
 * 请求体：发送的资源
 
-### 3.2 响应报文
+### 2. 响应报文
 
 响应报文：是服务器按照协议固定的格式，返回给浏览器的内容
 
@@ -369,7 +369,7 @@ form-serialize 插件语法：
 
 ## 6. 原生Ajax
 
-### 6.1 基本使用
+### 1. 基本使用
 
 在 JS 中有内置的构造函数来创建 Ajax 对象，创建 Ajax 对象以后，我们就可以使用 Ajax 对象的方法去发送请求和接受响应
 
@@ -377,25 +377,62 @@ form-serialize 插件语法：
 
 ```js
 // IE9及以上
-const xhr = new XMLHttpRequest()
+const xhr = new XMLHttpRequest();
 // IE9以下
-const xhr = new ActiveXObject('Mricosoft.XMLHTTP')
-xhr.open('请求方法', '请求url网址')
-xhr.addEventListener('loadend', () => {
-  // 响应结果
-  console.log(xhr.response)
-})
-xhr.send()
+const xhr = new ActiveXObject('Microsoft.XMLHTTP');
+xhr.open('请求方法', '请求url网址', 是否异步);
+xhr.onreadystatechange = function () {
+    // 判断异步对象的状态
+    if (xhr.readyState === 4) {
+        // 判断交互是否成功
+        if (xhr.status === 200) {
+            //获取服务器响应数据
+            let res = xhr.responseText;
+            // 解析数据
+            res = JSON.parse(res);
+        }
+    }
+};
+xhr.send();
 ```
 
 使用步骤：
 
 1. 创建 XHR 对象 
-2. 调用 open 方法，设置 url 和请求方法
-3. 监听 loadend 事件，接收结果
+2. 调用 open 方法，设置 url 、请求方法、是否异步
+3. 监听 readyState 变化事件，接收结果
 4. 调用 send 方法，发起请求
 
-### 6.2 查询参数
+`readyStateChange` 事件，这个事件是专门用来监听 Ajax 对象的 `readyState` 值改变的的行为，也就是说只要 `readyState` 的值发生变化了，那么就会触发该事件，所以我们就在这个事件中来监听 Ajax 的 `readyState` 是不是到 4 了
+
+AJAX 如何判断是否请求响应成功：响应状态码在大于等于 200 并且小于 300 的范围是成功的
+
+响应状态码：`xhr.status`
+
+Ajax 对象中的 `responseText` 成员就是用来记录服务端给我们的响应体内容的，所以我们就用这个成员来获取响应体的内容
+
+  ```javascript
+const xhr = new XMLHttpRequest();
+xhr.open('get', '接口');
+
+xhr.send();
+
+xhr.onreadyStateChange = function () {
+    // 每次 readyState 改变的时候都会触发该事件
+    // 我们就在这里判断 readyState 的值是不是到 4
+    // 并且 http 的状态码是不是 200 ~ 299
+    if (xhr.readyState === 4) {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            // 这里表示验证通过
+            // 我们就可以获取服务端给我们响应的内容了
+            // 我们在这里直接打印 xhr.responseText 来查看服务端给我们返回的内容
+            console.log(xhr.responseText);
+        } 
+    }
+};
+  ```
+
+### 2. 查询参数
 
 查询参数：携带额外信息给服务器，返回匹配想要的数据
 
@@ -408,63 +445,62 @@ xhr.send()
 ```js
 /**
  * 目标：使用XHR携带查询参数，展示某个省下属的城市列表
-*/
-const xhr = new XMLHttpRequest()
-xhr.open('GET', 'http://hmajax.itheima.net/api/city?pname=辽宁省')
-xhr.addEventListener('loadend', () => {
-  console.log(xhr.response)
-  const data = JSON.parse(xhr.response)
-  console.log(data)
-  document.querySelector('.city-p').innerHTML = data.list.join('<br>')
-})
-xhr.send()
+ */
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://hmajax.itheima.net/api/city?pname=辽宁省');
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+            let res = xhr.responseText;
+            console.log(res);
+        }
+    }
+};
+xhr.send();
 ```
 
-如果有多个查询参数，如果我们自己拼接的话，很麻烦，这里用URLSearchParams 把参数对象转成`参数名1=值1&参数名2=值2`格式的字符串，语法如下：
+如果有多个查询参数，如果我们自己拼接的话，很麻烦，这里用 URLSearchParams 把参数对象转成`参数名1=值1&参数名2=值2`格式的字符串，语法如下：
 
 ```js
 // 1. 创建 URLSearchParams 对象
 const paramsObj = new URLSearchParams({
   参数名1: 值1,
   参数名2: 值2
-})
+});
 
 // 2. 生成指定格式查询参数字符串
-const queryString = paramsObj.toString()
+const queryString = paramsObj.toString();
 // 结果：参数名1=值1&参数名2=值2
 ```
 
-### 6.3 数据提交
+### 3. 数据提交
 
-步骤和语法：我们需要自己设置请求头`Content-Type：xxx`，来告诉服务器端，
-
-需要在 send 方法调用时，传入请求体携带
+步骤和语法：我们需要自己设置请求头来告诉服务器我的内容类型，然后在 send 方法调用时，传入请求体携带发送的数据
 
 例：
 
 ```js
-const xhr = new XMLHttpRequest()
-xhr.open('请求方法', '请求url网址')
-xhr.addEventListener('loadend', () => {
-  console.log(xhr.response)
-})
+const xhr = new XMLHttpRequest();
+xhr.open('请求方法', '请求url网址');
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+            let res = xhr.responseText;
+            console.log(res);
+        }
+    }
+};
 
 // 1. 设置请求头，告诉服务器，我传递的内容类型，是 JSON 字符串
-xhr.setRequestHeader('Content-Type', 'application/json')
+xhr.setRequestHeader('Content-Type', 'application/json');
 // 2. 准备数据并转成 JSON 字符串
-const user = { username: 'xxxxxxxx', password: 'xxxxxxxx' }
-const userStr = JSON.stringify(user)
+const user = { username: 'xxxxxxxx', password: 'xxxxxxxx' };
+const userStr = JSON.stringify(user);
 // 3. 发送请求体数据
-xhr.send(userStr)
+xhr.send(userStr);
 ```
 
-### 6.4 请求响应判断
-
-AJAX 如何判断是否请求响应成功：响应状态码在大于等于 200 并且小于 300 的范围是成功的
-
-响应状态码：`xhr.status`
-
-### 6.5 封装简易axios
+### 4. 封装简易axios
 
 步骤：
 
@@ -477,30 +513,30 @@ AJAX 如何判断是否请求响应成功：响应状态码在大于等于 200 �
 
 ```js
 // 1. 定义myAxios函数，接收配置对象，返回Promise对象
-function myAxios(config){
-    return new Promise((resolve,reject)=>{
+function myAxios(config) {
+    return new Promise((resolve, reject) => {
         // 2. 发起XHR请求，默认请求方法为GET
-        const xhr = new XMLHttpRequest()
-        xhr.open(config.method || 'GET', config.url)
-        xhr.addEventListener('loadend',()=>{
+        const xhr = new XMLHttpRequest();
+        xhr.open(config.method || 'GET', config.url);
+        xhr.onreadystatechange = () => {
             // 3. 调用成功/失败的处理程序
-            if(xhr.status>=200&&xhr.status<300){
-                resolve(JSON.parse(xhr.response))
-            }else{
-                reject(new Error(xhr.response))
+            if (xhr.readyState === 4) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    resolve(JSON.parse(xhr.response));
+                } else {
+                    reject(new Error(xhr.response));
+                }
             }
-        })
-        xhr.send()
-    })
+        };
+        xhr.send();
+    });
 }
 // 4. 使用myAxios函数
 myAxios({
-    url:'目标资源地址'
-}).then(result=>{
-    
-}).catch(error=>{
-    
+    url: '目标资源地址',
 })
+    .then((result) => {})
+    .catch((error) => {});
 ```
 
 修改代码支持传递查询参数功能，步骤：
@@ -513,27 +549,29 @@ myAxios({
 
 ```js
 function myAxios(config) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest()
-    // 1. 判断有params选项，携带查询参数
-    if (config.params) {
-      // 2. 使用URLSearchParams转换，并携带到url上
-      const paramsObj = new URLSearchParams(config.params)
-      const queryString = paramsObj.toString()
-      // 把查询参数字符串，拼接在url？后面
-      config.url += `?${queryString}`
-    }
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        // 1. 判断有params选项，携带查询参数
+        if (config.params) {
+            // 2. 使用URLSearchParams转换，并携带到url上
+            const paramsObj = new URLSearchParams(config.params);
+            const queryString = paramsObj.toString();
+            // 把查询参数字符串，拼接在url？后面
+            config.url += `?${queryString}`;
+        }
 
-    xhr.open(config.method || 'GET', config.url)
-    xhr.addEventListener('loadend', () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        resolve(JSON.parse(xhr.response))
-      } else {
-        reject(new Error(xhr.response))
-      }
-    })
-    xhr.send()
-  })
+        xhr.open(config.method || 'GET', config.url);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    resolve(JSON.parse(xhr.response));
+                } else {
+                    reject(new Error(xhr.response));
+                }
+            }
+        };
+        xhr.send();
+    });
 }
 ```
 
@@ -547,75 +585,38 @@ function myAxios(config) {
 
 ```js
 function myAxios(config) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest()
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
 
-    if (config.params) {
-      const paramsObj = new URLSearchParams(config.params)
-      const queryString = paramsObj.toString()
-      config.url += `?${queryString}`
-    }
-    xhr.open(config.method || 'GET', config.url)
+        if (config.params) {
+            const paramsObj = new URLSearchParams(config.params);
+            const queryString = paramsObj.toString();
+            config.url += `?${queryString}`;
+        }
+        xhr.open(config.method || 'GET', config.url);
 
-    xhr.addEventListener('loadend', () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        resolve(JSON.parse(xhr.response))
-      } else {
-        reject(new Error(xhr.response))
-      }
-    })
-    // 1. 判断有data选项，携带请求体
-    if (config.data) {
-      // 2. 转换数据类型，在send中发送
-      const jsonStr = JSON.stringify(config.data)
-      xhr.setRequestHeader('Content-Type', 'application/json')
-      xhr.send(jsonStr)
-    } else {
-      // 如果没有请求体数据，正常的发起请求
-      xhr.send()
-    }
-  })
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    resolve(JSON.parse(xhr.response));
+                } else {
+                    reject(new Error(xhr.response));
+                }
+            }
+        };
+        // 1. 判断有data选项，携带请求体
+        if (config.data) {
+            // 2. 转换数据类型，在send中发送
+            const jsonStr = JSON.stringify(config.data);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(jsonStr);
+        } else {
+            // 如果没有请求体数据，正常的发起请求
+            xhr.send();
+        }
+    });
 }
 ```
-
-### 6.6 readyStateChange
-
-在 Ajax 对象中有一个事件，叫做 `readyStateChange` 事件，这个事件是专门用来监听 Ajax 对象的 `readyState` 值改变的的行为，也就是说只要 `readyState` 的值发生变化了，那么就会触发该事件，所以我们就在这个事件中来监听 Ajax 的 `readyState` 是不是到 4 了
-
-  ```javascript
-  const xhr = new XMLHttpRequest()
-  xhr.open('get', '接口')
-  
-  xhr.send()
-  
-  xhr.onreadyStateChange = function () {
-    // 每次 readyState 改变的时候都会触发该事件
-    // 我们就在这里判断 readyState 的值是不是到 4
-    // 并且 http 的状态码是不是 200 ~ 299
-    if (xhr.readyState === 4 && /^2\d{2}$/.test(xhr.status)) {
-      // 这里表示验证通过
-      // 我们就可以获取服务端给我们响应的内容了
-    }
-  }
-  ```
-
-### 6.7 responseText
-
-Ajax 对象中的 `responseText` 成员就是用来记录服务端给我们的响应体内容的，所以我们就用这个成员来获取响应体的内容
-
-  ```javascript
-  const xhr = new XMLHttpRequest()
-  xhr.open('get', '接口')
-  
-  xhr.send()
-  
-  xhr.onreadyStateChange = function () {
-    if (xhr.readyState === 4 && /^2\d{2}$/.test(xhr.status)) {
-      // 我们在这里直接打印 xhr.responseText 来查看服务端给我们返回的内容
-      console.log(xhr.responseText)
-    }
-  }
-  ```
 
 ## 7. fetch
 
@@ -623,7 +624,7 @@ XMLHttpRequest 是一个设计粗糙的 API，配置和调用方式非常混乱�
 
 fetch 使用 Promise 和链式调用来处理异步操作，提供了更加简洁明了的语法，从而简化了代码的编写和维护
 
-### 7.1 基本使用
+### 1. 基本使用
 
 ```js
 fetch("接口地址")
@@ -671,7 +672,7 @@ fetch("http://localhost:3000/users/5",{
             })
 ```
 
-### 7.2 错误处理
+### 2. 错误处理
 
 ```js
 fetch("http://localhost:3000/users1")
@@ -712,7 +713,7 @@ fetch("http://localhost:3000/users1")
 
 ## 9. 解决跨域问题
 
-### 9.1 JSONP
+### 1. JSONP
 
 Jsonp (JSON with Padding) 是 json 的一种"使用模式"，可以让网页从别的域名（网站）那获取资料，即跨域读取数据
 
@@ -727,7 +728,7 @@ const script = document.createElement('script')
 script.src ='http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=test'
 document.body.appendChild(script)
 //1.script 没有跨域限制
-//2.后端配合返回的是 函数()调用
+//2.后端配合返回的是函数()调用
 //3.前端提前声明好这个函数
 
 //jsonp只能get请求 无法post put delete
@@ -766,7 +767,7 @@ document.body.appendChild(script)
 </body>
 ````
 
-### 9.2 CORS
+### 2. CORS
 
 CORS（Cross-Origin Resource Sharing），跨域资源共享
 
@@ -776,6 +777,6 @@ CORS 是官方的跨域解决方 案，它的特点是不需要在客户端做�
 
 CORS 是通过设置一个响应头来告诉浏览器，该请求允许跨域，浏览器收到该响应以后就会对响应放行
 
-### 9.3 反向代理
+### 3. 反向代理
 
 使用nginx配置反向代理

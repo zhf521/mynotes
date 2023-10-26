@@ -48,7 +48,7 @@ HTML 是一个有既定标签标准的 XML 格式，标签的名字、层级关�
 
 ### 2. DOM 节点操作
 
-### 1. 获取 DOM 节点
+#### 1. 获取 DOM 节点
 
 ```javascript
 const div1 = document.getElementById('div1'); // 元素
@@ -60,7 +60,7 @@ const containerList = document.getElementsByClassName('.container'); // 集合
 const pList = document.querySelectorAll('p'); // 集合
 ```
 
-### 2. property
+#### 2. property
 
 DOM 节点就是一个 JS 对象，它符合之前讲述的对象的特征 ———— 可扩展属性（推荐使用）
 
@@ -77,7 +77,7 @@ console.log(p.nodeName);
 console.log(p.nodeType);
 ```
 
-### 3. Attribute
+#### 3. Attribute
 
 property 的获取和修改，是直接改变 JS 对象，而 Attibute 是直接改变 HTML 的属性，会改变 HTML 结构
 
@@ -90,7 +90,7 @@ p.getAttribute('style');
 p.setAttribute('style', 'font-size:30px;');
 ```
 
-## 3. DOM 树操作
+### 3. DOM 树操作
 
 新增节点
 
@@ -127,7 +127,7 @@ const child = div1.childNodes;
 div1.removeChild(child[0]);
 ```
 
-## 4. DOM 性能
+### 4. DOM 性能
 
 DOM 操作是昂贵的 —— 非常耗费性能。因此针对频繁的 DOM 操作一定要做一些处理。
 
@@ -178,7 +178,7 @@ for(let x = 0; x < 10; x++) {
 listNode.appendChild(frag);
 ```
 
-## 5. BOM
+## 2. BOM
 
 DOM 是浏览器针对下载的 HTML 代码进行解析得到的 JS 可识别的数据对象
 
@@ -211,7 +211,7 @@ history.back();
 history.forward();
 ```
 
-## 6. 事件
+## 3. 事件
 
 ### 1. 事件绑定
 
@@ -299,4 +299,150 @@ div.addEventListener('click', (e) => {
 
 - 使代码简洁
 - 减少浏览器的内存占用
+
+## 4. Ajax
+
+### 1. XMLHttpRequest
+
+原生Ajax使用XHR来发送
+
+语法：
+
+```javascript
+// IE9及以上
+const xhr = new XMLHttpRequest();
+// IE9以下
+const xhr = new ActiveXObject('Microsoft.XMLHTTP');
+xhr.open('请求方法', '请求url网址', 是否异步);
+xhr.onreadystatechange = function () {
+    // 判断异步对象的状态
+    if (xhr.readyState === 4) {
+        // 判断交互是否成功
+        if (xhr.status === 200) {
+            //获取服务器响应数据
+            let res = xhr.responseText;
+            // 解析数据
+            res = JSON.parse(res);
+        }
+    }
+};
+xhr.send();
+```
+
+使用步骤：
+
+1. 创建 XHR 对象 
+2. 调用 open 方法，设置 url 、请求方法、是否异步
+3. 监听 readyState 变化事件，接收结果
+4. 调用 send 方法，发起请求
+
+### 2. 状态码说明
+
+#### 1. readyState
+
+`xhr.readyState` 的状态码说明：
+
+- 0 - (未初始化）还没有调用send()方法 
+- 1 -（载入）已调用send()方法，正在发送请求 
+- 2 -（载入完成）send()方法执行完成，已经接收到全部响应内容
+- 3 -（交互）正在解析响应内容 
+- 4 -（完成）响应内容解析完成，可以在客户端调用了 
+
+#### 2. status
+
+HTTP 状态吗有 `2xx` `3xx` `4xx` `5xx` 这几种，比较常用的有以下几种
+
+- 200 正常
+- 301 永久重定向；302 临时重定向；304 资源未被修改
+- 404 找不到资源；403 权限不允许
+- 5xx 服务器端出错了
+
+### 3. 跨域
+
+#### 1. 什么是跨域
+
+浏览器中有“同源策略”，即一个域下的页面中，无法通过 Ajax 获取到其他域的接口。例如慕课网有一个接口`http://m.imooc.com/course/ajaxcourserecom?cid=459`，你自己的一个页面`http://www.yourname.com/page1.html`中的 Ajax 无法获取这个接口。这正是命中了“同源策略”。如果浏览器哪些地方忽略了同源策略，那就是浏览器的安全漏洞，需要紧急修复
+
+url 哪些地方不同算作跨域？
+
+- 协议
+- 域名
+- 端口
+
+但是HTML中几个标签能逃避过同源策略——`<script src="xxx">`、`<img src="xxxx"/>`、`<link href="xxxx">`，这俩标签的 `src` 或 `href` 可以加载其他域的资源，不受同源策略限制
+
+因此，这三个标签可以做一些特殊的事情。
+
+- `<img>`可以做打点统计，因为统计方并不一定是同域的，除了能跨域之外，`<img>`几乎没有浏览器兼容问题，它是一个非常古老的标签
+- `<script>`和`<link>`可以使用CDN，CDN基本都是其他域的链接
+- `<script>`还可以实现JSONP，能获取其他域接口的信息
+
+但是请注意，所有的跨域请求方式，最终都需要信息提供方来做出相应的支持和改动，也就是要经过信息提供方的同意才行，否则接收方是无法得到他们的信息的，浏览器是不允许的
+
+#### 2. JSONP
+
+首先，有一个概念要明白，例如访问`http://coding.m.imooc.com/classindex.html`的时候，服务器端就一定有一个`classindex.html`文件吗？—— 不一定，服务器可以拿到这个请求，然后动态生成一个文件，然后返回。
+同理，`<script src="http://coding.m.imooc.com/api.js">`也不一定加载一个服务器端的静态文件，服务器也可以动态生成文件并返回
+
+例如我们的网站和慕课网，肯定不是一个域。我们需要慕课网提供一个接口，供我们来获取。首先，我们在自己的页面这样定义
+
+```html
+<script>
+    // 前端提前声明好这个函数
+    window.callback = function (data) {
+        // 这是我们跨域得到信息
+        console.log(data);
+    }
+</script>
+```
+
+然后慕课网给我提供了一个`http://coding.m.imooc.com/api.js`，内容如下（之前说过，服务器可动态生成内容）
+
+```js
+// 后端配合返回的是函数()调用
+callback({x:100, y:200});
+```
+
+最后我们在页面中加入`<script src="http://coding.m.imooc.com/api.js"></script>`，那么这个 JS 加载之后，就会执行内容，我们就得到内容了
+
+#### 3. CORS
+
+CORS（Cross-Origin Resource Sharing），跨域资源共享
+
+这是需要在服务器端设置的，现在推崇的跨域解决方案是这一种，比 JSONP 简单许多
+
+```js
+response.setHeader("Access-Control-Allow-Origin", "http://localhost:8011");  // 第二个参数填写允许跨域的域名称，不建议直接写 "*"
+response.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
+response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+
+// 接收跨域的cookie
+response.setHeader("Access-Control-Allow-Credentials", "true");
+```
+
+## 5.存储
+
+### 1. cookie
+
+cookie 本身不是用来做存储的，它设计是用来在服务器和客户端进行信息传递的，因此我们的每个 HTTP 请求都带着 cookie。但是 cookie 也具备浏览器端存储的能力（例如记住用户名和密码）
+
+使用起来也非常简单`document.cookie = ....`即可
+
+但是 cookie 有它致命的缺点：
+
+- 存储量太小，只有 4KB
+- 所有 http 请求都带着，会影响获取资源的效率
+- API 简单，需要封装才能用
+
+### 2. locationStorage 和 sessionStorage
+
+HTML5标准就带来了`sessionStorage`和`localStorage`，先拿`localStorage`来说，它是专门为了浏览器端缓存而设计的。其优点有：
+
+- 存储量增大到 5M
+- 不会带到 http 请求中
+- API 适用于数据存储 `localStorage.setItem(key, value)`、`localStorage.getItem(key)`
+
+`sessionStorage`的区别就在于它是根据 session 过去时间而实现，而`localStorage`会永久有效，应用场景不同。例如，一些重要信息需要及时失效的放在`sessionStorage`中，一些不重要但是不经常设置的信息，放在`localStorage`
+
+另外一个小技巧：iOS系统的safari浏览器的隐藏模式，使用`localStorage.setItem`，因此使用时尽量加入到`try-catch`中
 
