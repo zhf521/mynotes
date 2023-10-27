@@ -208,3 +208,7 @@ HTTP + TLS/SSL = HTTPS ，即加密传输信息。只有客户端和服务端可
 这样，当黑客使用中间人攻击时，浏览器就会识别到它的证书不合规范，就会提示用户
 
 所以，尽量使用正规渠道申请的证书，花点钱，保证安全和稳定性
+
+### 2. 过程解析
+
+![知识点总结-HTTP01.png](https://zhf-picture.oss-cn-qingdao.aliyuncs.com/my-img/知识点总结-HTTP01.png)
