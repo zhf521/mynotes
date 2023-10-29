@@ -20,20 +20,20 @@ order: 27
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <input type="text" />
-    <script>
-      let oInput = document.querySelector('input');
-      oInput.oninput = function () {
-        console.log(this.value);
-      };
-    </script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="text" />
+        <script>
+            let oInput = document.querySelector('input');
+            oInput.oninput = function () {
+                console.log(this.value);
+            };
+        </script>
+    </body>
 </html>
 ```
 
@@ -42,26 +42,26 @@ order: 27
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <input type="text" />
-    <script>
-      let oInput = document.querySelector('input');
-      let timer = null;
-      oInput.oninput = function () {
-        if (timer != null) {
-          clearTimeout(timer);
-        }
-        timer = setTimeout(() => {
-          console.log(this.value);
-        }, 1000);
-      }
-    </script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="text" />
+        <script>
+            let oInput = document.querySelector('input');
+            let timer = null;
+            oInput.oninput = function () {
+                if (timer != null) {
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(() => {
+                    console.log(this.value);
+                }, 1000);
+            }
+        </script>
+    </body>
 </html>
 ```
 
@@ -70,38 +70,41 @@ order: 27
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <input type="text" />
-    <script>
-      let oInput = document.querySelector('input');
-      oInput.oninput = debounce(function () {
-        console.log(this.value);
-      }, 1000);
-        
-      // 手写防抖函数
-      // 核心是利用setTimeout定时器来实现
-      // 1.声明定时器变量
-      // 2.每次事件触发的时候都要先判断是否有定时器，如果有，先清除以前的定时器
-      // 3.如果没有定时器，则开启定时器，存入到定时器变量里面
-      // 4.定时器里面写函数调用(注意this指向)
-      function debounce(fn, delay) {
-        let timer = null;
-        return function () {
-          if (timer != null) {
-            clearTimeout(timer); //关闭定时器
-          }
-          timer = setTimeout(() => { // 重新计时
-            fn.call(this);
-          }, delay);
-        }
-      }
-    </script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="text" />
+        <script>
+            let oInput = document.querySelector('input');
+            oInput.oninput = debounce(function () {
+                console.log(this.value);
+            }, 1000);
+
+            // 手写防抖函数
+            // 核心是利用setTimeout定时器来实现
+            // 1.声明定时器变量
+            // 2.每次事件触发的时候都要先判断是否有定时器，如果有，先清除以前的定时器
+            // 3.如果没有定时器，则开启定时器，存入到定时器变量里面
+            // 4.定时器里面写函数调用(注意this指向)
+            function debounce(fn, delay) {
+                let timer = null; // 声明定时器变量
+                // 返回一个函数
+                return function () {
+                    if (timer) {
+                        clearTimeout(timer); //清除定时器
+                    }
+                    // 重新计时
+                    timer = setTimeout(() => { 
+                        fn.call(this);
+                        timer = null; // 触发过了，重新计时
+                    }, delay);
+                }
+            }
+        </script>
+    </body>
 </html>
 ```
 
@@ -124,23 +127,23 @@ order: 27
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      body {
-        height: 2000px;
-      }
-    </style>
-  </head>
-  <body>
-    <script>
-      window.onscroll = function () {
-        alert('这是广告！');
-      }
-    </script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                height: 2000px;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            window.onscroll = function () {
+                alert('这是广告！');
+            }
+        </script>
+    </body>
 </html>
 
 ```
@@ -150,40 +153,41 @@ order: 27
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      body {
-        height: 2000px;
-      }
-    </style>
-  </head>
-  <body>
-    <script>
-      window.onscroll = throttle(function () {
-        alert('这是广告！');
-      }, 2000);
-        
-      // 手写一个节流函数---每隔delay时间触发一次
-      // 核心是利用setTimeout定时器来实现
-      // 当函数第一次触发时，不会立即执行，而是开启一个定时器，并打上一个标志位，当函数在一段时间内再次被触发时，发现标志位则忽略本次触发，直至计时结束
-      function throttle(fn, delay) {
-        let flag = false;
-        return function () {
-          if (flag) {
-            return; // 若进行中，则忽略本次触发
-          }
-          flag = true; // 更改标志位
-          setTimeout(() => {
-            fn.call(this);
-            flag = false; // 执行完毕，还原标志位
-          }, delay);
-        }
-      }
-    </script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                height: 2000px;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            window.onscroll = throttle(function () {
+                alert('这是广告！');
+            }, 2000);
+
+            // 手写一个节流函数---每隔delay时间触发一次
+            // 核心是利用setTimeout定时器来实现
+            function throttle(fn, delay) {
+                let timer = null;
+                // 返回一个函数
+                return function () {
+                    // 当我们发现这个定时器存在时，则表示定时器已经在运行中，还没到该触发的时候，则 return
+                    if (timer) {
+                        return; // 若进行中，则忽略本次触发
+                    }
+                    // 定时器不存在了，说明已经触发过了，重新计时
+                    timer = setTimeout(() => {
+                        fn.call(this);
+                        timer = null; // 清空定时器
+                    }, delay);
+                }
+            }
+        </script>
+    </body>
 </html>
 ```
 
