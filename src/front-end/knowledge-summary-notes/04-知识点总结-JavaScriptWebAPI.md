@@ -92,40 +92,7 @@ p.setAttribute('style', 'font-size:30px;');
 
 ### 3. DOM 树操作
 
-新增节点
-
-```javascript
-const div1 = document.getElementById('div1');
-// 添加新节点
-const p1 = document.createElement('p');
-p1.innerHTML = 'this is p1';
-div1.appendChild(p1); // 添加新创建的元素
-// 移动已有节点。注意是移动！！！
-const p2 = document.getElementById('p2');
-div1.appendChild(p2);
-```
-
-获取父元素
-
-```javascript
-const div1 = document.getElementById('div1');
-const parent = div1.parentNode;
-```
-
-获取子元素
-
-```javascript
-const div1 = document.getElementById('div1');
-const child = div1.childNodes;
-```
-
-删除节点
-
-```javascript
-const div1 = document.getElementById('div1');
-const child = div1.childNodes;
-div1.removeChild(child[0]);
-```
+详见：[操作节点](https://zhf521.github.io/mynotes/front-end/javascript-notes/20-JavaScript-DOM.html#_3-4-%E6%93%8D%E4%BD%9C%E8%8A%82%E7%82%B9)
 
 ### 4. DOM 性能
 
