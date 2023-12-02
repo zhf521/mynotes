@@ -7,7 +7,7 @@ order: 2
 
 2. 使用npm全局安装typescript
 
-   ```bash
+   ```shell
    npm i -g typescript
    ```
 
@@ -21,7 +21,7 @@ order: 2
 
    + 执行命令
 
-     ```bash
+     ```shell
      tsc xxx.ts
      ```
 

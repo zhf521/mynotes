@@ -9,7 +9,7 @@ order: 4
 
 示例：
 
-```powershell
+```shell
 tsc xxx.ts -w
 ```
 
