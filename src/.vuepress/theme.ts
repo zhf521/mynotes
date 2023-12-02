@@ -111,6 +111,17 @@ export default hopeTheme({
             ],
         },
         {
+            text: '后端',
+            icon: 'back-stage',
+            prefix: '/back-end/',
+            children: [
+                {
+                    text: 'Nest',
+                    link: 'nest-notes/',
+                },
+            ],
+        },
+        {
             text: '软件工具',
             prefix: '/software-tool/',
             icon: 'tool',
