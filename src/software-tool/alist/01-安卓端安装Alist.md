@@ -12,20 +12,20 @@ order: 1
 ## 2. 安装Alist
 
 在 termux 中输入如下命令：
-```
+```shell
 apt update && apt install alist
-```
-
-安装成功后输入如下命令设置管理员密码：
-```
-# 手动设置一个密码 `NEW_PASSWORD`是指你需要设置的密码
-admin set NEW_PASSWORD
 ```
 
 启动 Alist：
 
-```
+```shell
 alist server
+```
+
+在输出的INFO中可以看到密码：
+
+```shell
+INFO[2023-12-02 02:21:36] Successfully created the admin user and the initial password is: 此处为密码
 ```
 
 进入 `localhost:5244` 访问即可
@@ -37,27 +37,27 @@ alist server
 ## 4. 设置一键启动脚本
 
 下载 vim：
-```
+```shell
 pkg install vim
 ```
 
 建立文件夹：
-```
+```shell
 mkdir .shortcuts
 ```
 
 进入文件夹：
-```
+```shell
 cd .shortcuts
 ```
 
 编辑脚本：
-```
+```shell
 vim start_alist.sh
 ```
 
 进入脚本编辑界面，按 `i` 进入编辑模式，输入以下内容：
-```
+```shell
 alist server
 ```
 
@@ -67,4 +67,8 @@ alist server
 
 ## 5. 更新Alist
 
-在 termux 中输入 `pkg upgrade alist` 即可
+在 termux 中输入以下命令即可：
+
+```shell
+pkg upgrade alist
+```
