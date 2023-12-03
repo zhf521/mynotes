@@ -1,1 +1,0 @@
-import{_ as o,r as t,o as a,c as n,a as c}from"./app-52d63649.js";const r={};function s(_,l){const e=t("AutoCatalog");return a(),n("div",null,[c(e,{base:"/software-tool/git/"})])}const i=o(r,[["render",s],["__file","index.html.vue"]]);export{i as default};
