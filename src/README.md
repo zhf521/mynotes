@@ -8,6 +8,8 @@ tagline: 学习过程中的个人笔记
 actions:
   - text: 前端
     link: /front-end/
+  - text: 后端
+    link: /back-end/
   - text: 软件工具
     link: /software-tool/
   - text: 电脑使用技巧
