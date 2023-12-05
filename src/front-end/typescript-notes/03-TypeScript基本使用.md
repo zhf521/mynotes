@@ -27,7 +27,7 @@ TS拥有自动的类型推断机制，当对变量的声明和赋值是同时进
 有些情况下，变量的类型对于我们来说是很明确，但是TS编译器却并不清楚，此时，可以通过类型断言来告诉编译器变量的类型，断言有两种形式：
 
 - 第一种
-
+  
   ```typescript
   // 变量 as 类型
   let s: string;
@@ -36,7 +36,7 @@ TS拥有自动的类型推断机制，当对变量的声明和赋值是同时进
   ```
 
 - 第二种
-
+  
   ```typescript
   // <类型>变量
   let s: string;
@@ -49,7 +49,7 @@ TS拥有自动的类型推断机制，当对变量的声明和赋值是同时进
 ### 1. 基础数据类型
 
 - number
-
+  
   ```typescript
   let decimal: number = 6;
   let hex: number = 0xf00d;
@@ -57,7 +57,7 @@ TS拥有自动的类型推断机制，当对变量的声明和赋值是同时进
   let octal: number = 0o744;
   let big: bigint = 100n;
   ```
-
+  
   ```typescript
   // 声明一个变量a，同时指定它的类型为number
   let a: number;
@@ -67,27 +67,27 @@ TS拥有自动的类型推断机制，当对变量的声明和赋值是同时进
   ```
 
 - boolean
-
+  
   ```typescript
   let isDone: boolean = false;
   ```
 
 - string
-
+  
   ```typescript
   let b: string;
   b = 'hello';
   b = 123; //报错
   ```
-  
-- null
 
+- null
+  
   ```typescript
   let nu: null = null;
   ```
-  
-- undefined
 
+- undefined
+  
   ```typescript
   let un: undefined = undefined;
   ```
@@ -190,6 +190,7 @@ function MyFn(a = 10,b: 类型,c?: 类型,...rest:数组类型):返回值类型{
 + 可以使用默认参数
 
 + `?`表示可选的值，可选参数要在必选参数后面
+
 + 剩余参数是数组类型
 
 ## 9. 接口
@@ -228,7 +229,7 @@ let a: MyUserName = 'abc';
 
 ```typescript
 function test(arg: any): any{
-	return arg;
+    return arg;
 }
 ```
 
@@ -238,7 +239,7 @@ function test(arg: any): any{
 
 ```typescript
 function test<T>(arg: T): T{
-	return arg;
+    return arg;
 }
 ```
 
@@ -249,17 +250,17 @@ function test<T>(arg: T): T{
 那么如何使用上边的函数呢？
 
 - 方式一（直接使用）：
-
+  
   使用时可以直接传递参数使用，类型会由TS自动推断出来，但有时编译器无法自动推断时还需要使用下面的方式
-
+  
   ```typescript
   test(10);
   ```
 
 - 方式二（指定类型）：
-
+  
   可以在函数后手动指定泛型
-
+  
   ```typescript
   test<number>(10);
   ```
@@ -281,7 +282,6 @@ test<number, string>(10, "hello");
 ```typescript
 class MyClass<T>{
     prop: T;
-
     constructor(prop: T){
         this.prop = prop;
     }
@@ -301,4 +301,3 @@ function test<T extends MyInter>(arg: T): number{
 ```
 
 使用`T extends MyInter`表示泛型T必须是MyInter的子类，不一定非要使用接口，类和抽象类同样适用
-
