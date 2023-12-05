@@ -1,5 +1,5 @@
 ---
-title: TypeScript进阶使用
+title: 进阶使用
 order: 4
 ---
 
