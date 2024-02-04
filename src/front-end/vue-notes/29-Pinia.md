@@ -3,15 +3,13 @@ title: Pinia
 order: 29
 ---
 
-Pinia 是 Vue 的存储库，它允许您跨组件/页面共享状态，类似Vuex
+[Pinia](https://pinia.vuejs.org/zh/) 是 Vue 的存储库，它允许您跨组件/页面共享状态，类似 Vuex
 
 ## 1. 安装Pinia
 
 在项目中安装：
 
 ```bash
-yarn add pinia
-# or with npm
 npm install pinia
 ```
 
@@ -39,7 +37,7 @@ store 是使用`defineStore()` 定义的，第一个参数是整个应用中stor
 
 > 建议：可以为defineStore()的返回值任意命名，但是最好使用use加上store的名称和Store，例如：useUserStore、useCartStore、useProductStore
 
-新建文件夹`store`，在`store`中新建文件`index.js`
+新建文件夹`store`，在`store`中新建文件`index.ts`
 
 ```typescript
 import { defineStore } from 'pinia';
@@ -69,8 +67,8 @@ export const useMainStore = defineStore('main',()=>{
 
 ```vue
 <template>
-	<button @click="mainStore.add()">{{mainStore.sum}}</button>
-	<h3>放大十倍为：{{mainStore.cSum}}</h3>
+    <button @click="mainStore.add()">{{mainStore.sum}}</button>
+    <h3>放大十倍为：{{mainStore.cSum}}</h3>
 </template>
 
 <script setup>
@@ -98,8 +96,8 @@ const { sum,cSum } = mainStore;
 
 ```vue
 <template>
-	<button @click="add()">{{sum}}</button>
-	<h3>放大十倍为：{{cSum}}</h3>
+    <button @click="add()">{{sum}}</button>
+    <h3>放大十倍为：{{cSum}}</h3>
 </template>
 
 <script setup>
@@ -114,6 +112,6 @@ const { sum,cSum } = storeToRefs(mainStore);
 
 方法解构时使用普通解构即可
 
-```js
+```typescript
 const {add} = mainStore;
 ```
